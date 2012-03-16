@@ -107,3 +107,6 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
+
+;; auto fill mode
+(global-set-key (kbd "C-c q") 'auto-fill-mode)
