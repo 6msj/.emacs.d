@@ -33,10 +33,6 @@
     (transient-mark-mode 1) ;; No region when it is not highlighted
     (setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
 
-;; tab/auto completion
-;;(require 'smart-tab)
-;;(global-smart-tab-mode 1)
-
 ;; highlight parentheses
 (require 'paren)
 (show-paren-mode t)
@@ -108,6 +104,8 @@
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
 
-;; auto fill mode
-(global-set-key (kbd "C-c q") 'auto-fill-mode)
+;; ido mode for buffers
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
 
