@@ -105,6 +105,8 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
+(setq c-default-style "k&r"
+      c-basic-offset 4)
 
 ;; ido mode for buffers
 (setq ido-enable-flex-matching t)
