@@ -3,13 +3,17 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(inhibit-startup-screen t))
+ '(column-number-mode t)
+ '(cua-mode t nil (cua-base))
+ '(inhibit-startup-screen t)
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
+ '(default ((t (:inherit nil :stipple nil :background "#002b36" :foreground "#839496" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "xos4" :family "Terminus")))))
 
 ;; loadpath
 (let ((default-directory "~/.emacs.d/"))
@@ -24,8 +28,13 @@
 
 ;; autopair
 (require 'autopair)
-(autopair-global-mode) ;; enable autopair in all buffers_
+(autopair-global-mode) ;; enable autopair in all buffers
 
+;; disable menubar
+(menu-bar-mode -1)
+
+;; disable scrollbar
+(scroll-bar-mode -1)
 
 ;; ctrl+c ctrl+v
 (cua-mode t)
@@ -47,7 +56,7 @@
 (global-set-key (kbd "\C-c o") 'occur) ;; occur!!
 (global-set-key (kbd "C-S-n") 'scroll-up) ;; pagedown
 (global-set-key (kbd "C-S-p") 'scroll-down) ;; pageup
-
+(global-set-key (kbd "C-<f1>") 'menu-bar-mode) ;; disables the menu bar
 ;; editing
 (setq kill-whole-line t) ;; kills entire line if at the beginning
 (fset 'yes-or-no-p 'y-or-n-p) ;; yes or no to y or n
@@ -198,3 +207,26 @@ instead."
  
 (global-set-key (kbd "M-n") 'smart-symbol-go-forward)
 (global-set-key (kbd "M-p") 'smart-symbol-go-backward)
+
+
+;; auto complete clang
+    (require 'auto-complete-config)
+    (require 'auto-complete-clang)
+    (setq ac-auto-start nil)
+    (setq ac-quick-help-delay 0.5)
+    (ac-set-trigger-key "TAB")
+    ;; (define-key ac-mode-map  [(control tab)] 'auto-complete)
+    (define-key ac-mode-map  [(control tab)] 'auto-complete)
+    (defun my-ac-config ()
+      (setq-default ac-sources '(ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
+      (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)
+      ;; (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
+      (add-hook 'ruby-mode-hook 'ac-ruby-mode-setup)
+      (add-hook 'css-mode-hook 'ac-css-mode-setup)
+      (add-hook 'auto-complete-mode-hook 'ac-common-setup)
+      (global-auto-complete-mode t))
+    (defun my-ac-cc-mode-setup ()
+      (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))
+    (add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)
+    ;; ac-source-gtags
+    (my-ac-config)
