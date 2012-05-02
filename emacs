@@ -54,9 +54,8 @@
 (global-set-key (kbd "<f6>") 'recompile) ;; recompile
 (global-set-key (kbd "<f7>") 'compile) ;; compiling
 (global-set-key (kbd "\C-c o") 'occur) ;; occur!!
-(global-set-key (kbd "C-S-n") 'scroll-up) ;; pagedown
-(global-set-key (kbd "C-S-p") 'scroll-down) ;; pageup
 (global-set-key (kbd "C-<f1>") 'menu-bar-mode) ;; disables the menu bar
+
 ;; editing
 (setq kill-whole-line t) ;; kills entire line if at the beginning
 (fset 'yes-or-no-p 'y-or-n-p) ;; yes or no to y or n
@@ -127,6 +126,63 @@
 
 ;; ctrn-n starts new lines
 (setq next-line-add-newlines t)
+
+
+
+;; auto complete clang
+    (require 'auto-complete-config)
+    (require 'auto-complete-clang)
+    (setq ac-auto-start nil)
+    (setq ac-quick-help-delay 0.5)
+    (ac-set-trigger-key "TAB")
+    ;; (define-key ac-mode-map  [(control tab)] 'auto-complete)
+    (define-key ac-mode-map  [(control tab)] 'auto-complete)
+    (defun my-ac-config ()
+      (setq-default ac-sources '(ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
+      (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)
+      ;; (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
+      (add-hook 'ruby-mode-hook 'ac-ruby-mode-setup)
+      (add-hook 'css-mode-hook 'ac-css-mode-setup)
+      (add-hook 'auto-complete-mode-hook 'ac-common-setup)
+      (global-auto-complete-mode t))
+    (defun my-ac-cc-mode-setup ()
+      (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))
+    (add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)
+    ;; ac-source-gtags
+    (my-ac-config)
+
+;; evil
+(require 'evil)
+(evil-mode 1)
+
+;; evil normal-mode
+(define-key evil-normal-state-map "L" 'evil-end-of-line)
+(define-key evil-normal-state-map "H" 'evil-first-non-blank)
+(define-key evil-normal-state-map ";" 'evil-ex)
+(define-key evil-visual-state-map "L" 'evil-end-of-line)
+(define-key evil-visual-state-map "H" 'evil-first-non-blank)
+(define-key evil-visual-state-map ";" 'evil-ex)
+
+
+;; undo-true
+(require 'undo-tree)
+(global-undo-tree-mode)
+
+;; windmove & framemove
+(when (fboundp 'windmove-default-keybindings)
+      (windmove-default-keybindings 'meta))
+
+(global-set-key (kbd "C-c h") 'windmove-left)
+(global-set-key (kbd "C-c l") 'windmove-right)
+(global-set-key (kbd "C-c k") 'windmove-up)
+(global-set-key (kbd "C-c j") 'windmove-down) 
+
+(require 'framemove)
+(windmove-default-keybindings)
+(setq framemove-hook-into-windmove t)
+
+;; switch between header and implementation
+(add-hook 'c-mode-common-hook (lambda() (local-set-key (kbd "C-c p") 'ff-find-other-file)))
 
 ;; smartscan
 (defvar smart-use-extended-syntax nil
@@ -209,24 +265,5 @@ instead."
 (global-set-key (kbd "M-p") 'smart-symbol-go-backward)
 
 
-;; auto complete clang
-    (require 'auto-complete-config)
-    (require 'auto-complete-clang)
-    (setq ac-auto-start nil)
-    (setq ac-quick-help-delay 0.5)
-    (ac-set-trigger-key "TAB")
-    ;; (define-key ac-mode-map  [(control tab)] 'auto-complete)
-    (define-key ac-mode-map  [(control tab)] 'auto-complete)
-    (defun my-ac-config ()
-      (setq-default ac-sources '(ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
-      (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)
-      ;; (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
-      (add-hook 'ruby-mode-hook 'ac-ruby-mode-setup)
-      (add-hook 'css-mode-hook 'ac-css-mode-setup)
-      (add-hook 'auto-complete-mode-hook 'ac-common-setup)
-      (global-auto-complete-mode t))
-    (defun my-ac-cc-mode-setup ()
-      (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))
-    (add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)
-    ;; ac-source-gtags
-    (my-ac-config)
+
+
