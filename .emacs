@@ -4,7 +4,14 @@
 
 ;; no startup message
 (custom-set-variables
-'(inhibit-startup-screen t))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
+ '(inhibit-startup-screen t)
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
 
 ;; turn off toolbar
 (tool-bar-mode -1)
@@ -12,6 +19,17 @@
 (menu-bar-mode -1)
 ;; disable scrollbar
 (scroll-bar-mode -1)
+
+(when (eq system-type 'darwin)
+  ;; default Latin font (e.g. Consolas)
+  (set-face-attribute 'default nil :family "Consolas")
+  (set-face-attribute 'default nil :height 120)
+  (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
+)
+
+;; enable menu bar if in gui
+(if window-system
+  (menu-bar-mode 1))
 
 ;; line numbers
 (require 'linum)
@@ -49,7 +67,6 @@
 (add-hook 'lisp-mode-hook       'hs-minor-mode)
 (add-hook 'perl-mode-hook       'hs-minor-mode)
 (add-hook 'sh-mode-hook         'hs-minor-mode)
-
 
 ;; indent whole buffer
 (defun iwb ()
@@ -128,3 +145,9 @@
 
 ;; Tips
 ;; <M-x> ielm opens up the ELISP interpreter.
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
