@@ -13,12 +13,14 @@
     :lastmodtime '(20875 55650 0 0)
     :unmatched-syntax 'nil
     )
-    (semanticdb-table "asdfasdfasdf.c"
-    :major-mode 'c-mode
+    (semanticdb-table "test.py"
+    :major-mode 'python-mode
     :tags nil
-    :file "asdfasdfasdf.c"
+    :file "test.py"
     :pointmax 1
-    :unmatched-syntax 'nil
+    :fsize 51
+    :lastmodtime '(20877 62697 0 0)
+    :unmatched-syntax '(($EOI 13 . 13))
     )
    )
   :file "!Users!james!semantic.cache"

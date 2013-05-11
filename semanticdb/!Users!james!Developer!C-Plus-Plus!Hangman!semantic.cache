@@ -1,0 +1,145 @@
+;; Object Hangman/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "Hangman/"
+  :tables (list 
+   (semanticdb-table "Hangman.cpp"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("iostream" include (:system-flag t) nil [1 20])
+            ("string" include (:system-flag t) nil [22 39])
+            ("vector" include (:system-flag t) nil [40 57])
+            ("map" include (:system-flag t) nil [58 72])
+            ("ctime" include (:system-flag t) nil [73 89])
+            ("cstdlib" include (:system-flag t) nil [91 109])
+            ("ctype.h" include (:system-flag t) nil [111 129])
+            ("std" using (:type ("std" type
+                 (:prototype t
+                  :type "namespace")
+                  nil nil)) nil [130 150])
+            ("returnRandom" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("n" variable (:type "int") (reparse-symbol arg-sub-list) [194 200]))                  
+                :type ("string" type (:type "class") nil nil))
+                nil [174 201])
+            ("checkLetters" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("underScores" variable
+                       (:reference 1
+                        :type ("string" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [239 259])
+                    ("userEnterLetter" variable
+                       (:reference 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [260 282])
+                    ("hangmanWord" variable
+                       (:reference 1
+                        :type ("string" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [283 303]))                  
+                :type "bool")
+                nil [221 304])
+            ("assignValues" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("underScores" variable
+                       (:reference 1
+                        :type ("string" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [343 363])
+                    ("hangmanWord" variable
+                       (:reference 1
+                        :type ("string" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [364 384]))                  
+                :type "void")
+                nil [325 385])
+            ("compareValues" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("underScores" variable
+                       (:reference 1
+                        :type ("string" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [405 425])
+                    ("hangmanWord" variable
+                       (:reference 1
+                        :type ("string" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [426 446])
+                    ("counter" variable
+                       (:reference 1
+                        :type "int")
+                        (reparse-symbol arg-sub-list) [447 460])
+                    ("numGueses" variable
+                       (:reference 1
+                        :type "int")
+                        (reparse-symbol arg-sub-list) [461 476]))                  
+                :type "void")
+                nil [386 477])
+            ("instructions" function
+               (:prototype-flag t
+                :type "void")
+                nil [478 498])
+            ("main" function (:type "int") nil [500 1030])
+            ("instructions" function (:type "void") nil [1032 1266])
+            ("returnRandom" function
+               (:arguments 
+                  ( ("n" variable (:type "int") (reparse-symbol arg-sub-list) [1288 1294]))                  
+                :type ("string" type (:type "class") nil nil))
+                nil [1268 1816])
+            ("assignValues" function
+               (:arguments 
+                  ( ("underScores" variable
+                       (:reference 1
+                        :type ("string" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [1836 1856])
+                    ("hangmanWord" variable
+                       (:reference 1
+                        :type ("string" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [1857 1877]))                  
+                :type "void")
+                nil [1818 2071])
+            ("compareValues" function
+               (:arguments 
+                  ( ("underScores" variable
+                       (:reference 1
+                        :type ("string" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [2092 2112])
+                    ("hangmanWord" variable
+                       (:reference 1
+                        :type ("string" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [2113 2133])
+                    ("counter" variable
+                       (:reference 1
+                        :type "int")
+                        (reparse-symbol arg-sub-list) [2134 2147])
+                    ("numGuesses" variable
+                       (:reference 1
+                        :type "int")
+                        (reparse-symbol arg-sub-list) [2148 2164]))                  
+                :type "void")
+                nil [2073 3248])
+            ("checkLetters" function
+               (:arguments 
+                  ( ("underScores" variable
+                       (:reference 1
+                        :type ("string" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [3268 3288])
+                    ("userEnterLetter" variable
+                       (:reference 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [3289 3311])
+                    ("hangmanWord" variable
+                       (:reference 1
+                        :type ("string" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [3312 3332]))                  
+                :type "bool")
+                nil [3250 3471]))          
+    :file "Hangman.cpp"
+    :pointmax 3472
+    :fsize 3471
+    :lastmodtime '(20739 3997 0 0)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!Users!james!Developer!C-Plus-Plus!Hangman!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

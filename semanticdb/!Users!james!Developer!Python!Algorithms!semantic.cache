@@ -1,0 +1,40 @@
+;; Object Algorithms/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "Algorithms/"
+  :tables (list 
+   (semanticdb-table "quicksort.py"
+    :major-mode 'python-mode
+    :tags 
+        '( ("random" include nil nil [1 27])
+            ("list" variable nil nil [29 59])
+            ("quicksort" function (:arguments 
+              ( ("list" variable nil (reparse-symbol function_parameters) [75 79]))              ) nil [61 382])
+            ("print" code nil nil [383 404]))          
+    :file "quicksort.py"
+    :pointmax 405
+    :fsize 404
+    :lastmodtime '(20832 52977 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "mergesort.py"
+    :major-mode 'python-mode
+    :tags 
+        '( ("list" variable nil nil [1 32])
+            ("mergesort" function (:arguments 
+              ( ("list" variable nil (reparse-symbol function_parameters) [48 52]))              ) nil [34 313])
+            ("mergelist" function (:arguments 
+              ( ("list" variable nil (reparse-symbol function_parameters) [328 332])
+                ("left" variable nil (reparse-symbol function_parameters) [334 338])
+                ("right" variable nil (reparse-symbol function_parameters) [340 345]))              ) nil [314 950])
+            ("print" code nil nil [951 972]))          
+    :file "mergesort.py"
+    :pointmax 994
+    :fsize 993
+    :lastmodtime '(20832 61461 0 0)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!Users!james!Developer!Python!Algorithms!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

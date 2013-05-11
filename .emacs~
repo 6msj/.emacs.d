@@ -2,8 +2,6 @@
 (let ((default-directory "~/.emacs.d/"))
   (normal-top-level-add-subdirs-to-load-path))
 
-(add-to-list 'load-path "~/.emacs.d/packages/")
-
 ;; no startup message
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -11,7 +9,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
- '(custom-safe-themes (quote ("1157a4055504672be1df1232bed784ba575c60ab44d8e6c7b3800ae76b42f8bd" "7f1263c969f04a8e58f9441f4ba4d7fb1302243355cb9faecb55aec878a06ee9" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default)))
+ '(custom-safe-themes (quote ("1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default)))
  '(inhibit-startup-screen t)
  '(show-paren-mode t)
  '(tool-bar-mode nil))
@@ -40,6 +38,7 @@
 (global-set-key "\C-c\C-k" 'kill-region)
 
 (when (eq system-type 'darwin)
+  ;; default Latin font (e.g. Consolas)
   (set-face-attribute 'default nil :family "Consolas")
   (set-face-attribute 'default nil :height 120)
   ;;(set-face-attribute 'default nil :family "PragmataPro")
@@ -51,9 +50,6 @@
       (menu-bar-mode 1))
 )
 
-;; stop creating backup and #autosave# files
-(setq make-backup-files nil)
-(setq auto-save-default nil)
 
 ;; line numbers
 (require 'linum)
@@ -70,12 +66,12 @@
 ;; unset keys
 
 ;; key mappings
-(global-set-key (kbd "<F2>") 'hs-toggle-hiding) ;; toggle folds
-(global-set-key (kbd "<F3>") 'hs-show-all) ;; open all folds
-(global-set-key (kbd "<F4>") 'hs-hide-all) ;; hides all folds
-(global-set-key (kbd "<F5>") 'gdb) ;; debugging
-(global-set-key (kbd "<F6>") 'recompile) ;; recompile
-(global-set-key (kbd "<F7>") 'compile) ;; compiling
+(global-set-key (kbd "<f2>") 'hs-toggle-hiding) ;; toggle folds
+(global-set-key (kbd "<f3>") 'hs-show-all) ;; open all folds
+(global-set-key (kbd "<f4>") 'hs-hide-all) ;; hides all folds
+(global-set-key (kbd "<f5>") 'gdb) ;; debugging
+(global-set-key (kbd "<f6>") 'recompile) ;; recompile
+(global-set-key (kbd "<f7>") 'compile) ;; compiling
 (global-set-key (kbd "\C-c o") 'occur) ;; occur!!
 
 ;; editing
@@ -154,6 +150,7 @@
 (define-key evil-visual-state-map "H" 'evil-first-non-blank)
 (define-key evil-visual-state-map ";" 'evil-ex)
 
+(add-to-list 'load-path "~/.emacs.d/packages/")
 
 ;; auto-complete
 (add-to-list 'load-path "~/.emacs.d/packages/auto-complete")
@@ -185,7 +182,6 @@
 
 ;; color schemes
 (add-to-list 'custom-theme-load-path "~/.emacs.d/packages/solarized")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 ;; theme changer based on time
 (add-to-list 'load-path "~/.emacs.d/packages/theme-changer")
@@ -194,23 +190,14 @@
 (setq calendar-longitude -96.85)
 (require 'theme-changer)
 ;;(change-theme 'solarized-dark 'solarized-light)
-(change-theme 'solarized-light 'solarized-dark)
-;;(change-theme 'adwaita 'adwaita)
-
-;; scroll one line at a time (less "jumpy" than defaults)
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
-(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
-(setq scroll-step 1) ;; keyboard scroll one line at a time
-
-;; get the zsh path
-(let ((path (shell-command-to-string ". ~/.zshrc; echo -n $PATH")))
-  (setenv "PATH" path)
-  (setq exec-path 
-        (append
-         (split-string-and-unquote path ":")
-         exec-path)))
+(change-theme 'adwaita 'adwaita)
 
 ;; Tips
 ;; <M-x> ielm opens up the ELISP interpreter.
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 

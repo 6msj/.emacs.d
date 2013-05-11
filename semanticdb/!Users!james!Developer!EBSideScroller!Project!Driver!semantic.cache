@@ -66,16 +66,26 @@
                         :type "char")
                         (reparse-symbol arg-sub-list) [683 697]))                  
                 :type "int")
-                nil [663 1806])
-            ("init" function (:type "bool") nil [1808 2163])
-            ("load_files" function (:type "bool") nil [2165 2203])
-            ("clean_up" function (:type "void") nil [2205 2342])
-            ("handle_return_key" function (:type "void") nil [2344 2526]))          
+                nil [663 1951])
+            ("init" function (:type "bool") nil [1953 2306])
+            ("load_files" function (:type "bool") nil [2308 2346])
+            ("clean_up" function (:type "void") nil [2348 2485])
+            ("handle_return_key" function (:type "void") nil [2487 2669]))          
     :file "main.cpp"
-    :pointmax 2526
-    :fsize 2525
-    :lastmodtime '(20877 53995 0 0)
+    :pointmax 2670
+    :fsize 2669
+    :lastmodtime '(20878 34081 0 0)
     :unmatched-syntax 'nil
+    )
+   (semanticdb-table "makefile"
+    :major-mode 'makefile-bsdmake-mode
+    :tags 
+        '( ("all" function nil nil [1 159]))          
+    :file "makefile"
+    :pointmax 159
+    :fsize 158
+    :lastmodtime '(20876 32521 0 0)
+    :unmatched-syntax '((shell-command 7 . 158) (bol 6 . 6))
     )
    )
   :file "!Users!james!Developer!EBSideScroller!Project!Driver!semantic.cache"
