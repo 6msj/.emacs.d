@@ -1,0 +1,84 @@
+;; Object Driver/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "Driver/"
+  :tables (list 
+   (semanticdb-table "main.cpp"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("iostream" include (:system-flag t) nil [1 20])
+            ("SDL/SDL.h" include nil nil [21 41])
+            ("SDL/SDL_image.h" include nil nil [42 68])
+            ("string" include (:system-flag t) nil [69 86])
+            ("../SoundManager/SoundManager.h" include nil nil [88 129])
+            ("../ScreenManager/ScreenManager.h" include nil nil [130 173])
+            ("SCREEN_HEIGHT" variable
+               (:constant-flag t
+                :type "int")
+                nil [196 226])
+            ("SCREEN_BPP" variable
+               (:constant-flag t
+                :type "int")
+                nil [227 253])
+            ("SCREEN_WIDTH" variable
+               (:constant-flag t
+                :type "int")
+                nil [254 283])
+            ("FRAMES_PER_SECOND" variable
+               (:constant-flag t
+                :type "int")
+                nil [302 335])
+            ("screen" variable
+               (:pointer 1
+                :type ("SDL_Surface" type (:type "class") nil nil))
+                nil [352 379])
+            ("startScreen" variable
+               (:pointer 1
+                :type ("SDL_Surface" type (:type "class") nil nil))
+                nil [380 412])
+            ("gameScreen" variable
+               (:pointer 1
+                :type ("SDL_Surface" type (:type "class") nil nil))
+                nil [413 444])
+            ("event" variable (:type ("SDL_Event" type (:type "class") nil nil)) nil [468 484])
+            ("gameStart" variable (:type "bool") nil [517 540])
+            ("init" function
+               (:prototype-flag t
+                :type "bool")
+                nil [559 571])
+            ("load_files" function
+               (:prototype-flag t
+                :type "bool")
+                nil [572 590])
+            ("clean_up" function
+               (:prototype-flag t
+                :type "void")
+                nil [591 607])
+            ("handle_return_key" function
+               (:prototype-flag t
+                :type "void")
+                nil [636 661])
+            ("main" function
+               (:arguments 
+                  ( ("argc" variable (:type "int") (reparse-symbol arg-sub-list) [673 682])
+                    ("args" variable
+                       (:pointer 1
+                        :dereference 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [683 697]))                  
+                :type "int")
+                nil [663 1806])
+            ("init" function (:type "bool") nil [1808 2163])
+            ("load_files" function (:type "bool") nil [2165 2203])
+            ("clean_up" function (:type "void") nil [2205 2342])
+            ("handle_return_key" function (:type "void") nil [2344 2526]))          
+    :file "main.cpp"
+    :pointmax 2526
+    :fsize 2525
+    :lastmodtime '(20877 53995 0 0)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!Users!james!Developer!EBSideScroller!Project!Driver!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

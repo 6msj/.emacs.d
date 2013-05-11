@@ -1,0 +1,27 @@
+;; Object james/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "james/"
+  :tables (list 
+   (semanticdb-table "a.cpp"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("iostream" include (:system-flag t) nil [1 20])
+            ("main" function (:type "int") nil [22 88]))          
+    :file "a.cpp"
+    :pointmax 89
+    :fsize 88
+    :lastmodtime '(20875 55650 0 0)
+    :unmatched-syntax 'nil
+    )
+    (semanticdb-table "asdfasdfasdf.c"
+    :major-mode 'c-mode
+    :tags nil
+    :file "asdfasdfasdf.c"
+    :pointmax 1
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!Users!james!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

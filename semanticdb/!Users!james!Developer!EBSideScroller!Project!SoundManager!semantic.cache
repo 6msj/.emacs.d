@@ -1,0 +1,51 @@
+;; Object SoundManager/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "SoundManager/"
+  :tables (list 
+   (semanticdb-table "SoundManager.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("SOUND_H" variable (:constant-flag t) nil [25 32])
+            ("SDL_mixer.h" include nil nil [34 56])
+            ("string" include (:system-flag t) nil [57 74])
+            ("SoundManager" type
+               (:members 
+                  ( ("private" label nil (reparse-symbol classsubparts) [101 109])
+                    ("public" label nil (reparse-symbol classsubparts) [114 121])
+                    ("SoundManager" function
+                       (:prototype-flag t
+                        :constructor-flag t
+                        :type ("SoundManager" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [130 145])
+                    ("SoundManager" function
+                       (:prototype-flag t
+                        :destructor-flag t
+                        :type "void")
+                        (reparse-symbol classsubparts) [154 170])
+                    ("play_music" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("filename" variable (:type ("std::string" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [196 218]))                          
+                        :type "bool")
+                        (reparse-symbol classsubparts) [179 219])
+                    ("stop_music" function
+                       (:prototype-flag t
+                        :type "void")
+                        (reparse-symbol classsubparts) [228 246]))                  
+                :type "class")
+                nil [76 249]))          
+    :file "SoundManager.h"
+    :pointmax 258
+    :fsize 257
+    :lastmodtime '(20877 54043 0 0)
+    :unmatched-syntax 'nil
+    :lexical-table 
+        '(("SOUND_H")
+          )
+
+    )
+   )
+  :file "!Users!james!Developer!EBSideScroller!Project!SoundManager!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

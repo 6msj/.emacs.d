@@ -1,0 +1,18 @@
+;; Object .emacs.d/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file ".emacs.d/"
+  :tables (list 
+   (semanticdb-table "ede-projects.el"
+    :major-mode 'emacs-lisp-mode
+    :tags nil
+    :file "ede-projects.el"
+    :pointmax 86
+    :fsize 85
+    :lastmodtime '(20877 41983 0 0)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!Users!james!.emacs.d!semantic.cache"
+  :semantic-tag-version "2.2"
+  :semanticdb-version "2.2"
+  )

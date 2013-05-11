@@ -1,0 +1,29 @@
+;; Object Developer/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "Developer/"
+  :tables (list 
+    (semanticdb-table "test.cpp"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("iostream" include (:system-flag t) nil [1 20])
+            ("std" using (:type ("std" type
+                 (:prototype t
+                  :type "namespace")
+                  nil nil)) nil [21 41])
+            ("function" function
+               (:prototype-flag t
+                :type "void")
+                nil [43 59])
+            ("main" function (:type "int") nil [61 117])
+            ("function" function (:type "void") nil [120 144]))          
+    :file "test.cpp"
+    :pointmax 144
+    :fsize 99
+    :lastmodtime '(20876 45780 0 0)
+    :unmatched-syntax '((symbol 119 . 120))
+    )
+   )
+  :file "!Users!james!Developer!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

@@ -1,0 +1,57 @@
+;; Object include/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "include/"
+  :tables (list 
+   (semanticdb-table "stdarg.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("_STDARG_H" variable (:constant-flag t) nil [1275 1284])
+            ("_ANSI_STDARG_H_" variable (:constant-flag t) nil [1293 1308])
+            ("__GNUC_VA_LIST" variable (:constant-flag t) nil [1430 1444])
+            ("__gnuc_va_list" type
+               (:typedef ("__builtin_va_list" type (:type "class") nil nil)
+                :superclasses "__builtin_va_list"
+                :type "typedef")
+                nil [1445 1486])
+            ("va_start" variable (:constant-flag t) nil [1618 1626])
+            ("va_end" variable (:constant-flag t) nil [1664 1670])
+            ("va_arg" variable (:constant-flag t) nil [1702 1708])
+            ("va_copy" variable (:constant-flag t) nil [1809 1816])
+            ("__va_copy" variable (:constant-flag t) nil [1860 1869])
+            ("va_list" type
+               (:typedef ("__gnuc_va_list" type (:type "class") nil nil)
+                :superclasses "__gnuc_va_list"
+                :type "typedef")
+                nil [3651 3682])
+            ("_VA_LIST_" variable (:constant-flag t) nil [3940 3949])
+            ("_VA_LIST" variable (:constant-flag t) nil [3982 3990])
+            ("_VA_LIST_DEFINED" variable (:constant-flag t) nil [4031 4047])
+            ("_VA_LIST_T_H" variable (:constant-flag t) nil [4084 4096])
+            ("__va_list__" variable (:constant-flag t) nil [4132 4143]))          
+    :file "stdarg.h"
+    :pointmax 4318
+    :fsize 4317
+    :lastmodtime '(20848 31109 0 0)
+    :unmatched-syntax 'nil
+    :lexical-table 
+        '(("__va_list__")
+          ("_VA_LIST_DEFINED")
+          ("va_start" (spp-arg-list ("v" "l") 1626 . 1631) . ((symbol "__builtin_va_start" 1632 . 1650) (semantic-list "(v,l)" 1650 . 1655)))
+          ("_VA_LIST_T_H")
+          ("_STDARG_H")
+          ("va_end" (spp-arg-list ("v") 1670 . 1673) . ((symbol "__builtin_va_end" 1674 . 1690) (semantic-list "(v)" 1690 . 1693)))
+          ("__va_copy" (spp-arg-list ("d" "s") 1869 . 1874) . ((symbol "__builtin_va_copy" 1875 . 1892) (semantic-list "(d,s)" 1892 . 1897)))
+          ("_VA_LIST")
+          ("_ANSI_STDARG_H_")
+          ("_VA_LIST_")
+          ("__GNUC_VA_LIST")
+          ("va_arg" (spp-arg-list ("v" "l") 1708 . 1713) . ((symbol "__builtin_va_arg" 1714 . 1730) (semantic-list "(v,l)" 1730 . 1735)))
+          ("va_copy" (spp-arg-list ("d" "s") 1816 . 1821) . ((symbol "__builtin_va_copy" 1822 . 1839) (semantic-list "(d,s)" 1839 . 1844)))
+          )
+
+    )
+   )
+  :file "!usr!llvm-gcc-4.2!lib!gcc!i686-apple-darwin11!4.2.1!include!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

@@ -1,9 +1,12 @@
 ;;; theme-changer.el --- Sunrise/Sunset Theme Changer for Emacs
 
-;; Copyright (C) 2011 Joshua B. Griffith
+;; Copyright (C) 2011-2013 Joshua B. Griffith
 
 ;; Author: Joshua B. Griffith <josh.griffith@gmail.com>
-;; Keywords: color-theme
+;; URL: https://github.com/hadronzoo/theme-changer
+;; Created: 20 Jun 2011
+;; Version: 2.0.0
+;; Keywords: color-theme, deftheme, solar, sunrise, sunset
 
 ;; Permission is hereby granted, free of charge, to any person obtaining
 ;; a copy of this software and associated documentation files (the
@@ -39,14 +42,24 @@
 
 ;; Specify the day and night themes:
 ;;     (require 'theme-changer)
-;;     (change-theme 'color-theme-solarized-light 'color-theme-solarized-dark)
+;;     (change-theme 'solarized-light 'solarized-dark)
 
 ;; You may need to add this file path to your loadpath. For example:
 ;;     (add-to-list 'load-path "~/.emacs.d/elisp/theme-changer")
 
+;; If you want to use the color-theme package instead of the Emacs 24 color
+;; theme facility:
+;;     (setq theme-changer-mode "color-theme")
+;;     (change-theme 'color-theme-solarized-light 'color-theme-solarized-dark)
+
 ;;; Code:
 
+(require 'cl)
 (require 'solar)
+
+(defvar theme-changer-mode "deftheme"
+  "Specify the theme change mode: \"color-theme\" or Emacs 24's
+\"deftheme\".")
 
 (defun hour-fraction-to-time (date hour-fraction)
   (let*
@@ -89,6 +102,15 @@
 (defun +second (time)
   (time-add time (seconds-to-time 1)))
 
+(defun switch-theme (old new)
+  "Change the theme from OLD to NEW, using Emacs 24's built-in
+theme facility (\"deftheme\") or color-theme."
+  (if (string= theme-changer-mode "deftheme")
+      (progn
+        (disable-theme old)
+        (load-theme new t))
+    (apply (symbol-function new) '())))
+
 (defun change-theme (day-theme night-theme)
   (let*
       ((now (current-time))
@@ -102,11 +124,11 @@
     
     (if (daytime-p sunrise-today sunset-today)
 	(progn
-	  (apply (symbol-function day-theme) '())
+	  (switch-theme night-theme day-theme)
 	  (run-at-time (+second sunset-today) nil
 		       'change-theme day-theme night-theme))
 
-      (apply (symbol-function night-theme) '())
+      (switch-theme day-theme night-theme)
       (if (time-less-p now sunrise-today)
 	  (run-at-time (+second sunrise-today) nil
 		       'change-theme day-theme night-theme)
@@ -114,3 +136,5 @@
 		     'change-theme day-theme night-theme)))))
 
 (provide 'theme-changer)
+
+;;; theme-changer.el ends here

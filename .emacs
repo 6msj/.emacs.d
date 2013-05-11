@@ -13,23 +13,42 @@
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 
-;; turn off toolbar
-(tool-bar-mode -1)
-;; disable menubar
-(menu-bar-mode -1)
-;; disable scrollbar
-(scroll-bar-mode -1)
+;; package manager
+(require 'package)
+;; Add the original Emacs Lisp Package Archive
+(add-to-list 'package-archives
+             '("elpa" . "http://tromey.com/elpa/"))
+;; Add the user-contributed repository
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
+
+;; disable ui fluff
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+
+;; another way to use meta
+(global-set-key "\C-x\C-m" 'execute-extended-command)
+(global-set-key "\C-c\C-m" 'execute-extended-command)
+
+;; ways to delete word backwards
+(global-set-key "\C-w" 'backward-kill-word)
+(global-set-key "\C-x\C-k" 'kill-region)
+(global-set-key "\C-c\C-k" 'kill-region)
 
 (when (eq system-type 'darwin)
   ;; default Latin font (e.g. Consolas)
   (set-face-attribute 'default nil :family "Consolas")
   (set-face-attribute 'default nil :height 120)
+  ;;(set-face-attribute 'default nil :family "PragmataPro")
+  ;;(set-face-attribute 'default nil :height 130)
   (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
+
+  ;; mac needs the menu bar 
+  (if window-system
+      (menu-bar-mode 1))
 )
 
-;; enable menu bar if in gui
-(if window-system
-  (menu-bar-mode 1))
 
 ;; line numbers
 (require 'linum)
@@ -131,8 +150,37 @@
 (define-key evil-visual-state-map ";" 'evil-ex)
 
 (add-to-list 'load-path "~/.emacs.d/packages/")
-;; solarized color scheme
-(require 'color-theme-solarized)
+
+;; auto-complete
+(add-to-list 'load-path "~/.emacs.d/packages/auto-complete")
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/packages/auto-complete/ac-dict")
+(ac-config-default)
+
+
+(global-ede-mode 1)                      ; Enable the Project management system
+
+;; yasnippet
+(require 'yasnippet)
+(yas-global-mode 1)
+(setq ac-source-yasnippet nil)
+
+;; semantic
+(semantic-mode 1)
+(add-hook 'c++-mode (lambda () (add-to-list 'ac-sources 'ac-source-semantic)))
+
+;; integration with imenu
+(defun my-semantic-hook ()
+  (imenu-add-to-menubar "Tags"))
+(add-hook 'semantic-init-hooks 'my-semantic-hook)
+
+(defun my-c-mode-cedet-hook ()
+  (add-to-list 'ac-sources 'ac-source-gtags)
+  (add-to-list 'ac-sources 'ac-source-semantic))
+(add-hook 'c-mode-common-hook 'my-c-mode-cedet-hook)
+
+;; color schemes
+(add-to-list 'custom-theme-load-path "~/.emacs.d/packages/solarized")
 
 ;; theme changer based on time
 (add-to-list 'load-path "~/.emacs.d/packages/theme-changer")
@@ -140,8 +188,8 @@
 (setq calendar-latitude 32.85)
 (setq calendar-longitude -96.85)
 (require 'theme-changer)
-(change-theme 'color-theme-solarized-light 'color-theme-solarized-dark)
-
+;;(change-theme 'solarized-dark 'solarized-light)
+(change-theme 'adwaita 'adwaita)
 
 ;; Tips
 ;; <M-x> ielm opens up the ELISP interpreter.
@@ -151,3 +199,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
