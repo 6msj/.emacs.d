@@ -1,0 +1,71 @@
+;; Object C-Plus-Plus/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "C-Plus-Plus/"
+  :tables (list 
+   (semanticdb-table "abc.cpp"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("iostream" include (:system-flag t) nil [1 20])
+            ("std" using (:type ("std" type
+                 (:prototype t
+                  :type "namespace")
+                  nil nil)) nil [21 41])
+            ("SIZE" variable (:constant-flag t) nil [51 55])
+            ("isPalindrome" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("str" variable
+                       (:pointer 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [78 88])
+                    ("len" variable (:type "int") (reparse-symbol arg-sub-list) [89 97]))                  
+                :type "bool")
+                nil [60 98])
+            ("findPalindromeStrings" function
+               (:prototype-flag t
+                :pointer 1
+                :arguments 
+                  ( ("s" variable
+                       (:pointer 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [128 137])
+                    ("curr_len" variable (:type "int") (reparse-symbol arg-sub-list) [138 151])
+                    ("lengthString" variable (:type "int") (reparse-symbol arg-sub-list) [152 169]))                  
+                :type "char")
+                nil [99 170])
+            ("main" function (:type "int") nil [172 1779])
+            ("isPalindrome" function
+               (:arguments 
+                  ( ("str" variable
+                       (:pointer 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [1799 1809])
+                    ("len" variable (:type "int") (reparse-symbol arg-sub-list) [1810 1818]))                  
+                :type "bool")
+                nil [1781 2003])
+            ("findPalindromeStrings" function
+               (:pointer 1
+                :arguments 
+                  ( ("s" variable
+                       (:pointer 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [2034 2043])
+                    ("curr_len" variable (:type "int") (reparse-symbol arg-sub-list) [2044 2057])
+                    ("lengthString" variable (:type "int") (reparse-symbol arg-sub-list) [2058 2075]))                  
+                :type "char")
+                nil [2005 2202]))          
+    :file "abc.cpp"
+    :pointmax 2203
+    :fsize 2202
+    :lastmodtime '(20831 16926 0 0)
+    :unmatched-syntax 'nil
+    :lexical-table 
+        '(("SIZE" . ((number "256" 56 . 59)))
+          )
+
+    )
+   )
+  :file "!Users!james!Developer!C-Plus-Plus!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

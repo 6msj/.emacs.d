@@ -43,10 +43,10 @@
     :lastmodtime '(20834 392 0 0)
     :unmatched-syntax '((INDENT_BLOCK 3980 . 4190) (NEWLINE 3979 . 3980) (COLON 3978 . 3979) (TRY 3870 . 3873) (AS 3974 . 3976))
     )
-   (semanticdb-table "test.cpp"
+   (semanticdb-table "a.cpp"
     :major-mode 'c++-mode
     :tags nil
-    :file "test.cpp"
+    :file "a.cpp"
     :pointmax 1
     :unmatched-syntax 'nil
     )

@@ -12,7 +12,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
- '(custom-safe-themes (quote ("5ee12d8250b0952deefc88814cf0672327d7ee70b16344372db9460e9a0e3ffc" "1157a4055504672be1df1232bed784ba575c60ab44d8e6c7b3800ae76b42f8bd" "7f1263c969f04a8e58f9441f4ba4d7fb1302243355cb9faecb55aec878a06ee9" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default)))
+ '(custom-safe-themes (quote ("68769179097d800e415631967544f8b2001dae07972939446e21438b1010748c" "5ee12d8250b0952deefc88814cf0672327d7ee70b16344372db9460e9a0e3ffc" "1157a4055504672be1df1232bed784ba575c60ab44d8e6c7b3800ae76b42f8bd" "7f1263c969f04a8e58f9441f4ba4d7fb1302243355cb9faecb55aec878a06ee9" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default)))
  '(inhibit-startup-screen t)
  '(show-paren-mode t)
  '(tool-bar-mode nil))
@@ -108,6 +108,10 @@
 ;; ctrn-n starts new lines
 (setq next-line-add-newlines t)
 
+;; autopairs
+(require 'autopair)
+(autopair-global-mode)
+
 ;; ----------------- EDITING ----------------------------------
 
 ;; ----------------- FUNCTIONS --------------------------------
@@ -181,12 +185,12 @@
 (define-key minibuffer-local-isearch-map [escape]
             'minibuffer-keyboard-quit)
 
-(define-key evil-normal-state-map (kbd "<F2>") 'hs-toggle-hiding)
-(define-key evil-normal-state-map (kbd "<F3>") 'hs-show-all)
-(define-key evil-normal-state-map (kbd "<F4>") 'hs-hide-all)
-(define-key evil-normal-state-map (kbd "<F5>") 'gdb)
-(define-key evil-normal-state-map (kbd "<F6>") 'recompile)
-(define-key evil-normal-state-map (kbd "<F7>") 'compile)
+(define-key evil-normal-state-map [f2] 'hs-toggle-hiding)
+(define-key evil-normal-state-map [f3] 'hs-show-all)
+(define-key evil-normal-state-map [f4] 'hs-hide-all)
+(define-key evil-normal-state-map [f5] 'gdb)
+(define-key evil-normal-state-map [f6] 'recompile)
+(define-key evil-normal-state-map [f7] 'compile)
 
 ;; evil surround
 (add-to-list 'load-path "~/.emacs.d/packages/evil-surround")
@@ -243,8 +247,6 @@
 (change-theme 'solarized-light 'solarized-dark)
 ;;(change-theme 'adwaita 'adwaita)
 
-;; ----------------- THEME ------------------------------------
-
 ;; disable ui fluff
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -255,6 +257,8 @@
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 (setq scroll-step 1) ;; keyboard scroll one line at a time
+
+;; ----------------- THEME ------------------------------------
 
 
 ;; ----------------- FILES ------------------------------------
