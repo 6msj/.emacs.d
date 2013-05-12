@@ -2,25 +2,53 @@
 ;; SEMANTICDB Tags save file
 (semanticdb-project-database-file "james/"
   :tables (list 
-   (semanticdb-table "a.cpp"
-    :major-mode 'c++-mode
+   (semanticdb-table "test.py"
+    :major-mode 'python-mode
     :tags 
-        '( ("iostream" include (:system-flag t) nil [1 20])
-            ("main" function (:type "int") nil [22 88]))          
-    :file "a.cpp"
-    :pointmax 89
-    :fsize 88
-    :lastmodtime '(20875 55650 0 0)
+        '( ("print" code nil nil [1 13]))          
+    :file "test.py"
+    :pointmax 15
+    :fsize 13
+    :lastmodtime '(20878 55001 0 0)
     :unmatched-syntax 'nil
     )
-    (semanticdb-table "test.py"
+   (semanticdb-table "bootstrap.py"
     :major-mode 'python-mode
+    :tags 
+        '( ("__future__" include nil nil [619 656])
+            ("os" include nil nil [658 667])
+            ("shutil" include nil nil [668 681])
+            ("sys" include nil nil [682 692])
+            ("tempfile" include nil nil [693 708])
+            ("try" code nil nil [709 805])
+            ("optparse" include nil nil [806 839])
+            ("REPOSITORY_PATH_PREFIX" variable nil nil [1006 1047])
+            ("REPOSITORY_PATHS" variable nil nil [1049 1320])
+            ("TEMPDIR" variable nil nil [1322 1336])
+            ("fetch_files" function (:arguments 
+              ( ("repo_url" variable nil (reparse-symbol function_parameters) [1354 1362])
+                ("repo_type" variable nil (reparse-symbol function_parameters) [1364 1373]))              ) nil [1338 1763])
+            ("ensure_environment" function
+               (:documentation "Ensure we can load the Python modules necessary to perform bootstrap."
+                :arguments 
+                  ( ("repo_url" variable nil (reparse-symbol function_parameters) [1787 1795])
+                    ("repo_type" variable nil (reparse-symbol function_parameters) [1802 1811]))                  )
+                nil [1764 3302])
+            ("main" function (:arguments 
+              ( ("args" variable nil (reparse-symbol function_parameters) [3312 3316]))              ) nil [3303 4341])
+            ("if" code nil nil [4343 4399]))          
+    :file "bootstrap.py"
+    :pointmax 4399
+    :fsize 4398
+    :lastmodtime '(20834 392 0 0)
+    :unmatched-syntax '((INDENT_BLOCK 3980 . 4190) (NEWLINE 3979 . 3980) (COLON 3978 . 3979) (TRY 3870 . 3873) (AS 3974 . 3976))
+    )
+   (semanticdb-table "test.cpp"
+    :major-mode 'c++-mode
     :tags nil
-    :file "test.py"
+    :file "test.cpp"
     :pointmax 1
-    :fsize 51
-    :lastmodtime '(20877 62697 0 0)
-    :unmatched-syntax '(($EOI 13 . 13))
+    :unmatched-syntax 'nil
     )
    )
   :file "!Users!james!semantic.cache"
