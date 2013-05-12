@@ -279,7 +279,7 @@
 (setq ac-source-yasnippet nil)
 (setq yas/prompt-functions '(yas/x-prompt 'yas/ido-prompt))
 
-;;(add-to-list 'load-path "~/.emacs.d/packages/auto-complete")
+;; autocompletion
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/packages/auto-complete/ac-dict")
 (add-to-list 'ac-sources 'ac-source-yasnippet)
@@ -360,6 +360,8 @@
 
 ;; ----------------- FILES ------------------------------------
 
+;; ----------------- END --------------------------------------
+
 ;; Tips
 ;; <M-x> ielm opens up the ELISP interpreter.
 
@@ -370,3 +372,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; ----------------- END --------------------------------------
