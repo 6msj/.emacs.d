@@ -74,7 +74,7 @@
     :file "main.cpp"
     :pointmax 2670
     :fsize 2669
-    :lastmodtime '(20878 34081 0 0)
+    :lastmodtime '(20880 18676 0 0)
     :unmatched-syntax 'nil
     )
    (semanticdb-table "makefile"

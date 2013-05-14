@@ -1,16 +1,16 @@
-;; Object james/
+;; Object /
 ;; SEMANTICDB Tags save file
-(semanticdb-project-database-file "james/"
+(semanticdb-project-database-file "/"
   :tables (list 
-    (semanticdb-table "a.cpp"
+   (semanticdb-table "test.cpp"
     :major-mode 'c++-mode
     :tags nil
-    :file "a.cpp"
+    :file "test.cpp"
     :pointmax 1
     :unmatched-syntax 'nil
     )
    )
-  :file "!Users!james!semantic.cache"
+  :file "!semantic.cache"
   :semantic-tag-version "2.0"
   :semanticdb-version "2.2"
   )

@@ -252,6 +252,8 @@
 (define-key evil-normal-state-map [f5] 'gdb)
 (define-key evil-normal-state-map [f6] 'recompile)
 (define-key evil-normal-state-map [f7] 'compile)
+(define-key evil-normal-state-map [f8] 'eval-last-sexp)
+(define-key evil-motion-state-map [f8] 'eval-last-sexp)
 
 ;; evil surround
 (require 'surround)
@@ -264,6 +266,7 @@
   ;; evil nerd commenter
   "ci" 'evilnc-comment-or-uncomment-lines
   "cc" 'evilnc-comment-or-uncomment-to-the-line
+  "v"  (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
   )
 
 ;; fix black cursor
@@ -338,8 +341,11 @@
 
 ;; colorful delimiters
 (require 'rainbow-delimiters)
-(global-rainbow-delimiters-mode)
+;;(global-rainbow-delimiters-mode)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
+;; visual lines
+(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
 
 ;; ----------------- THEME ------------------------------------
 
