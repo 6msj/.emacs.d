@@ -12,7 +12,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
- '(custom-safe-themes (quote ("68769179097d800e415631967544f8b2001dae07972939446e21438b1010748c" "5ee12d8250b0952deefc88814cf0672327d7ee70b16344372db9460e9a0e3ffc" "1157a4055504672be1df1232bed784ba575c60ab44d8e6c7b3800ae76b42f8bd" "7f1263c969f04a8e58f9441f4ba4d7fb1302243355cb9faecb55aec878a06ee9" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default)))
+ '(custom-safe-themes (quote ("4325f9a9fb853d0116a1197ece0dc22027ae67ef798efa6e05e009fe41e2f899" "68769179097d800e415631967544f8b2001dae07972939446e21438b1010748c" "5ee12d8250b0952deefc88814cf0672327d7ee70b16344372db9460e9a0e3ffc" "1157a4055504672be1df1232bed784ba575c60ab44d8e6c7b3800ae76b42f8bd" "7f1263c969f04a8e58f9441f4ba4d7fb1302243355cb9faecb55aec878a06ee9" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default)))
  '(inhibit-startup-screen t)
  '(show-paren-mode t)
  '(tool-bar-mode nil))
@@ -26,6 +26,7 @@
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/"))
 
+;; Download and install packages if they aren't already installed.
 (require 'package)
 (package-initialize)
 (dolist (package '(
@@ -34,8 +35,11 @@
                      evil
                      evil-leader
                      evil-nerd-commenter
+                     fuzzy
                      key-chord
                      rainbow-delimiters
+                     org
+                     smooth-scrolling
                      surround
                      theme-changer
                      undo-tree
@@ -46,29 +50,13 @@
 
 ;; ----------------- START -----------------------------------
 
-;; ----------------- MAC --------------------------------------
-
-(when (eq system-type 'darwin)
-  (set-face-attribute 'default nil :family "Consolas")
-  (set-face-attribute 'default nil :height 120)
-  ;;(set-face-attribute 'default nil :family "PragmataPro")
-  ;;(set-face-attribute 'default nil :height 130)
-  (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
-
-  ;; mac needs the menu bar 
-  (if window-system
-      (menu-bar-mode 1))
-)
-
-;; ----------------- MAC --------------------------------------
-
 ;; ----------------- MAPPINGS ---------------------------------
 
-;; another way to use meta
+;; Another way to use Meta.
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-c\C-m" 'execute-extended-command)
 
-;; ways to delete word backwards
+;; Ways to delete word backwards.
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
@@ -87,7 +75,7 @@
 ;; line numbers
 (require 'linum)
 (global-linum-mode 1)
-(require 'linum-relative)
+;;(require 'linum-relative)
 
 ;; highlight parentheses
 (require 'paren)
@@ -125,8 +113,14 @@
 (setq ido-enable-tramp-completion nil)
 (setq ido-enable-last-directory-history nil)
 (setq ido-confirm-unique-completion nil) ;; wait for RET, even for unique?
-(setq ido-show-dot-for-dired t) ;; put . as the first item
 (setq ido-use-filename-at-point t) ;; prefer file names near point
+
+;; same filenames get the directory name inserted also
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'reverse)
+(setq uniquify-separator "|")
+(setq uniquify-after-kill-buffer-p t)
+(setq uniquify-ignore-buffers-re "^\\*")
 
 ;; reload buffers
 (global-auto-revert-mode t)
@@ -184,6 +178,21 @@
   (interactive)
   (rotate-windows-helper (window-list) (window-buffer (car (window-list))))
   (select-window (car (last (window-list)))))
+
+;; Use variable width font faces in current buffer
+(defun my-buffer-face-mode-variable ()
+"Set font to a variable width (proportional) fonts in current buffer"
+(interactive)
+(setq buffer-face-mode-face '(:family "Helvetica" :height 130 :width semi-condensed))
+(buffer-face-mode))
+
+;; Use monospaced font faces in current buffer
+(defun my-buffer-face-mode-fixed ()
+"Sets a fixed width (monospace) font in current buffer"
+(interactive)
+(setq buffer-face-mode-face '(:family "Consolas" :height 120))
+(buffer-face-mode))
+
 
 ;; ----------------- FUNCTIONS --------------------------------
 
@@ -267,6 +276,8 @@
   "ci" 'evilnc-comment-or-uncomment-lines
   "cc" 'evilnc-comment-or-uncomment-to-the-line
   "v"  (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
+  "wh" 'split-window-below
+  "wv" 'split-window-right
   )
 
 ;; fix black cursor
@@ -294,7 +305,8 @@
 ;; ----------------- CEDET ------------------------------------
 
 ;; project management
-(global-ede-mode 1)
+;(global-ede-mode 1)
+
 ;; integration with imenu
 (defun my-semantic-hook ()
   (imenu-add-to-menubar "Tags"))
@@ -322,12 +334,23 @@
 (setq calendar-longitude -96.85)
 (require 'theme-changer)
 (change-theme 'solarized-light 'solarized-dark)
-;;(change-theme 'adwaita 'adwaita)
 
 ;; disable ui fluff
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+
+;; Mac Specific
+(when (eq system-type 'darwin)
+  (set-face-attribute 'default nil :family "Consolas")
+  (set-face-attribute 'default nil :height 120)
+  (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
+
+  ;; mac needs the menu bar 
+  (if window-system
+      (menu-bar-mode 1))
+
+)
 
 ;; scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
@@ -339,13 +362,16 @@
 (set-variable 'smooth-scroll-margin 5)
 (setq scroll-preserve-screen-position 1)
 
-;; colorful delimiters
+;; Colorful Delimiters.
 (require 'rainbow-delimiters)
-;;(global-rainbow-delimiters-mode)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
-;; visual lines
+;; Wraps line visually when it reaches the end.
 (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
+
+;; Set default fonts for programming and for regular text mode.
+(add-hook 'text-mode-hook 'my-buffer-face-mode-variable)
+(add-hook 'prog-mode-hook 'my-buffer-face-mode-fixed)
 
 ;; ----------------- THEME ------------------------------------
 
@@ -368,9 +394,23 @@
 
 ;; ----------------- END --------------------------------------
 
+;; Enable transient mark mode.
+(transient-mark-mode 1)
+
+;; Load org-mode
+(require 'org)
+
+;; Associate .org files with org-mode inside of Emacs
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+
+;; Hotkeys for org-mode
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
+
 ;; Tips
 ;; <M-x> ielm opens up the ELISP interpreter.
-
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

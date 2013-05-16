@@ -1,9 +1,10 @@
-;;; fuzzy.el --- Fuzzy matching utilities
+;;; fuzzy.el --- Fuzzy Matching
 
-;; Copyright (C) 2010  Tomohiro Matsuyama
+;; Copyright (C) 2010, 2011, 2012  Tomohiro Matsuyama
 
-;; Author: Tomohiro Matsuyama <m2ym.pub@gmail.com>
+;; Author: Tomohiro Matsuyama <tomo@cx4a.org>
 ;; Keywords: convenience
+;; Version: 0.1
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -24,12 +25,11 @@
 
 ;;; Code:
 
-(eval-when-compile
-  (require 'cl))
+(eval-when-compile (require 'cl))
 (require 'regexp-opt)
 
 (defgroup fuzzy nil
-  "Fuzzy matching utilities."
+  "Fuzzy Matching"
   :group 'convenience
   :prefix "fuzzy-")
 

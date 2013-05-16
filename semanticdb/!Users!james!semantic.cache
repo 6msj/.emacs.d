@@ -2,7 +2,7 @@
 ;; SEMANTICDB Tags save file
 (semanticdb-project-database-file "james/"
   :tables (list 
-    (semanticdb-table "a.cpp"
+   (semanticdb-table "a.cpp"
     :major-mode 'c++-mode
     :tags nil
     :file "a.cpp"
