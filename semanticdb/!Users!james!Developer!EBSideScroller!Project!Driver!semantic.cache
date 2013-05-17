@@ -72,7 +72,7 @@
             ("clean_up" function (:type "void") nil [2348 2485])
             ("handle_return_key" function (:type "void") nil [2487 2669]))          
     :file "main.cpp"
-    :pointmax 2670
+    :pointmax 2678
     :fsize 2669
     :lastmodtime '(20880 18676 0 0)
     :unmatched-syntax 'nil

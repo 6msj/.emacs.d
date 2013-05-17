@@ -9469,6 +9469,1761 @@
           )
 
     )
+   (semanticdb-table "math.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("__MATH_H__" variable (:constant-flag t) nil [1526 1536])
+            ("__MATH__" variable (:constant-flag t) nil [1563 1571])
+            ("sys/cdefs.h" include (:system-flag t) nil [1580 1602])
+            ("Availability.h" include (:system-flag t) nil [1603 1628])
+            ("C" extern nil nil [1630 1643])
+            ("float_t" type
+               (:typedef ("float")
+                :superclasses "float"
+                :type "typedef")
+                nil [2218 2240])
+            ("double_t" type
+               (:typedef ("double")
+                :superclasses "double"
+                :type "typedef")
+                nil [2245 2269])
+            ("HUGE_VAL" variable (:constant-flag t) nil [2643 2651])
+            ("HUGE_VALF" variable (:constant-flag t) nil [2692 2701])
+            ("HUGE_VALL" variable (:constant-flag t) nil [2742 2751])
+            ("NAN" variable (:constant-flag t) nil [2792 2795])
+            ("__MATH_H_ALWAYS_INLINE__" variable (:constant-flag t) nil [2848 2872])
+            ("INFINITY" variable (:constant-flag t) nil [3109 3117])
+            ("FP_NAN" variable (:constant-flag t) nil [3382 3388])
+            ("FP_INFINITE" variable (:constant-flag t) nil [3408 3419])
+            ("FP_ZERO" variable (:constant-flag t) nil [3434 3441])
+            ("FP_NORMAL" variable (:constant-flag t) nil [3460 3469])
+            ("FP_SUBNORMAL" variable (:constant-flag t) nil [3486 3498])
+            ("FP_SUPERNORMAL" variable (:constant-flag t) nil [3512 3526])
+            ("FP_ILOGB0" variable (:constant-flag t) nil [4175 4184])
+            ("FP_ILOGBNAN" variable (:constant-flag t) nil [4216 4227])
+            ("MATH_ERRNO" variable (:constant-flag t) nil [4306 4316])
+            ("MATH_ERREXCEPT" variable (:constant-flag t) nil [4373 4387])
+            ("math_errhandling" variable (:constant-flag t) nil [4449 4465])
+            ("__math_errhandling" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [4519 4524]))                  
+                :type "int")
+                nil [4489 4525])
+            ("fpclassify" variable (:constant-flag t) nil [5759 5769])
+            ("__fpclassifyf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [6071 6077]))                  
+                :type "int")
+                nil [6046 6078])
+            ("__fpclassifyd" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [6104 6111]))                  
+                :type "int")
+                nil [6079 6112])
+            ("__fpclassifyl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [6138 6150]))                  
+                :type "int")
+                nil [6113 6151])
+            ("isnormal" variable (:constant-flag t) nil [7018 7026])
+            ("isfinite" variable (:constant-flag t) nil [7318 7326])
+            ("isinf" variable (:constant-flag t) nil [7618 7623])
+            ("isnan" variable (:constant-flag t) nil [7915 7920])
+            ("signbit" variable (:constant-flag t) nil [8212 8219])
+            ("__inline_isfinitef" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [8544 8550]))                  
+                :type "int")
+                nil [8521 8576])
+            ("__inline_isfinited" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [8618 8625]))                  
+                :type "int")
+                nil [8595 8651])
+            ("__inline_isfinitel" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [8693 8705]))                  
+                :type "int")
+                nil [8670 8731])
+            ("__inline_isinff" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [8770 8776]))                  
+                :type "int")
+                nil [8750 8802])
+            ("__inline_isinfd" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [8841 8848]))                  
+                :type "int")
+                nil [8821 8874])
+            ("__inline_isinfl" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [8913 8925]))                  
+                :type "int")
+                nil [8893 8951])
+            ("__inline_isnanf" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [8990 8996]))                  
+                :type "int")
+                nil [8970 9022])
+            ("__inline_isnand" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [9061 9068]))                  
+                :type "int")
+                nil [9041 9094])
+            ("__inline_isnanl" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [9133 9145]))                  
+                :type "int")
+                nil [9113 9171])
+            ("__inline_isnormalf" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [9213 9219]))                  
+                :type "int")
+                nil [9190 9245])
+            ("__inline_isnormald" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [9287 9294]))                  
+                :type "int")
+                nil [9264 9320])
+            ("__inline_isnormall" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [9362 9374]))                  
+                :type "int")
+                nil [9339 9400])
+            ("__inline_signbitf" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [9441 9447]))                  
+                :type "int")
+                nil [9419 9473])
+            ("__inline_signbitd" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [9514 9521]))                  
+                :type "int")
+                nil [9492 9547])
+            ("__inline_signbitl" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [9588 9600]))                  
+                :type "int")
+                nil [9566 9626])
+            ("__inline_isfinitef" function
+               (:arguments 
+                  ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [9673 9683]))                  
+                :type "int")
+                nil [9650 9754])
+            ("__inline_isfinited" function
+               (:arguments 
+                  ( ("__x" variable (:type "double") (reparse-symbol arg-sub-list) [9796 9807]))                  
+                :type "int")
+                nil [9773 9876])
+            ("__inline_isfinitel" function
+               (:arguments 
+                  ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [9918 9934]))                  
+                :type "int")
+                nil [9895 10005])
+            ("__inline_isinff" function
+               (:arguments 
+                  ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [10044 10054]))                  
+                :type "int")
+                nil [10024 10111])
+            ("__inline_isinfd" function
+               (:arguments 
+                  ( ("__x" variable (:type "double") (reparse-symbol arg-sub-list) [10150 10161]))                  
+                :type "int")
+                nil [10130 10216])
+            ("__inline_isinfl" function
+               (:arguments 
+                  ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [10255 10271]))                  
+                :type "int")
+                nil [10235 10328])
+            ("__inline_isnanf" function
+               (:arguments 
+                  ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [10367 10377]))                  
+                :type "int")
+                nil [10347 10404])
+            ("__inline_isnand" function
+               (:arguments 
+                  ( ("__x" variable (:type "double") (reparse-symbol arg-sub-list) [10443 10454]))                  
+                :type "int")
+                nil [10423 10481])
+            ("__inline_isnanl" function
+               (:arguments 
+                  ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [10520 10536]))                  
+                :type "int")
+                nil [10500 10563])
+            ("__inline_signbitf" function
+               (:arguments 
+                  ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [10604 10614]))                  
+                :type "int")
+                nil [10582 10718])
+            ("__inline_signbitd" function
+               (:arguments 
+                  ( ("__x" variable (:type "double") (reparse-symbol arg-sub-list) [10759 10770]))                  
+                :type "int")
+                nil [10737 10881])
+            ("__inline_signbitl" function
+               (:arguments 
+                  ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [10965 10981]))                  
+                :type "int")
+                nil [10943 11164])
+            ("__inline_isnormalf" function
+               (:arguments 
+                  ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [11391 11401]))                  
+                :type "int")
+                nil [11368 11480])
+            ("__inline_isnormald" function
+               (:arguments 
+                  ( ("__x" variable (:type "double") (reparse-symbol arg-sub-list) [11522 11533]))                  
+                :type "int")
+                nil [11499 11611])
+            ("__inline_isnormall" function
+               (:arguments 
+                  ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [11653 11669]))                  
+                :type "int")
+                nil [11630 11749])
+            ("acosf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [14315 14321]))                  
+                :type "float")
+                nil [14296 14322])
+            ("acos" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [14342 14349]))                  
+                :type "double")
+                nil [14323 14350])
+            ("acosl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [14376 14388]))                  
+                :type "long double")
+                nil [14351 14389])
+            ("asinf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [14414 14420]))                  
+                :type "float")
+                nil [14395 14421])
+            ("asin" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [14441 14448]))                  
+                :type "double")
+                nil [14422 14449])
+            ("asinl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [14475 14487]))                  
+                :type "long double")
+                nil [14450 14488])
+            ("atanf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [14513 14519]))                  
+                :type "float")
+                nil [14494 14520])
+            ("atan" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [14540 14547]))                  
+                :type "double")
+                nil [14521 14548])
+            ("atanl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [14574 14586]))                  
+                :type "long double")
+                nil [14549 14587])
+            ("atan2f" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [14613 14619])
+                    ("" variable (:type "float") (reparse-symbol arg-sub-list) [14620 14626]))                  
+                :type "float")
+                nil [14593 14627])
+            ("atan2" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [14648 14655])
+                    ("" variable (:type "double") (reparse-symbol arg-sub-list) [14656 14663]))                  
+                :type "double")
+                nil [14628 14664])
+            ("atan2l" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [14691 14703])
+                    ("" variable (:type "long double") (reparse-symbol arg-sub-list) [14704 14716]))                  
+                :type "long double")
+                nil [14665 14717])
+            ("cosf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [14741 14747]))                  
+                :type "float")
+                nil [14723 14748])
+            ("cos" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [14767 14774]))                  
+                :type "double")
+                nil [14749 14775])
+            ("cosl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [14800 14812]))                  
+                :type "long double")
+                nil [14776 14813])
+            ("sinf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [14837 14843]))                  
+                :type "float")
+                nil [14819 14844])
+            ("sin" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [14863 14870]))                  
+                :type "double")
+                nil [14845 14871])
+            ("sinl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [14896 14908]))                  
+                :type "long double")
+                nil [14872 14909])
+            ("tanf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [14933 14939]))                  
+                :type "float")
+                nil [14915 14940])
+            ("tan" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [14959 14966]))                  
+                :type "double")
+                nil [14941 14967])
+            ("tanl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [14992 15004]))                  
+                :type "long double")
+                nil [14968 15005])
+            ("acoshf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [15031 15037]))                  
+                :type "float")
+                nil [15011 15038])
+            ("acosh" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [15059 15066]))                  
+                :type "double")
+                nil [15039 15067])
+            ("acoshl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [15094 15106]))                  
+                :type "long double")
+                nil [15068 15107])
+            ("asinhf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [15133 15139]))                  
+                :type "float")
+                nil [15113 15140])
+            ("asinh" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [15161 15168]))                  
+                :type "double")
+                nil [15141 15169])
+            ("asinhl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [15196 15208]))                  
+                :type "long double")
+                nil [15170 15209])
+            ("atanhf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [15235 15241]))                  
+                :type "float")
+                nil [15215 15242])
+            ("atanh" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [15263 15270]))                  
+                :type "double")
+                nil [15243 15271])
+            ("atanhl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [15298 15310]))                  
+                :type "long double")
+                nil [15272 15311])
+            ("coshf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [15336 15342]))                  
+                :type "float")
+                nil [15317 15343])
+            ("cosh" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [15363 15370]))                  
+                :type "double")
+                nil [15344 15371])
+            ("coshl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [15397 15409]))                  
+                :type "long double")
+                nil [15372 15410])
+            ("sinhf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [15435 15441]))                  
+                :type "float")
+                nil [15416 15442])
+            ("sinh" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [15462 15469]))                  
+                :type "double")
+                nil [15443 15470])
+            ("sinhl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [15496 15508]))                  
+                :type "long double")
+                nil [15471 15509])
+            ("tanhf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [15534 15540]))                  
+                :type "float")
+                nil [15515 15541])
+            ("tanh" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [15561 15568]))                  
+                :type "double")
+                nil [15542 15569])
+            ("tanhl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [15595 15607]))                  
+                :type "long double")
+                nil [15570 15608])
+            ("expf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [15632 15638]))                  
+                :type "float")
+                nil [15614 15639])
+            ("exp" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [15658 15665]))                  
+                :type "double")
+                nil [15640 15666])
+            ("expl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [15691 15703]))                  
+                :type "long double")
+                nil [15667 15704])
+            ("exp2f" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [15725 15731]))                  
+                :type "float")
+                nil [15706 15732])
+            ("exp2" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [15752 15759]))                  
+                :type "double")
+                nil [15733 15760])
+            ("exp2l" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [15787 15799]))                  
+                :type "long double")
+                nil [15762 15800])
+            ("expm1f" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [15823 15829]))                  
+                :type "float")
+                nil [15803 15830])
+            ("expm1" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [15851 15858]))                  
+                :type "double")
+                nil [15831 15859])
+            ("expm1l" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [15887 15899]))                  
+                :type "long double")
+                nil [15861 15900])
+            ("logf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [15921 15927]))                  
+                :type "float")
+                nil [15903 15928])
+            ("log" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [15947 15954]))                  
+                :type "double")
+                nil [15929 15955])
+            ("logl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [15980 15992]))                  
+                :type "long double")
+                nil [15956 15993])
+            ("log10f" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [16015 16021]))                  
+                :type "float")
+                nil [15995 16022])
+            ("log10" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [16043 16050]))                  
+                :type "double")
+                nil [16023 16051])
+            ("log10l" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [16078 16090]))                  
+                :type "long double")
+                nil [16052 16091])
+            ("log2f" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [16112 16118]))                  
+                :type "float")
+                nil [16093 16119])
+            ("log2" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [16139 16146]))                  
+                :type "double")
+                nil [16120 16147])
+            ("log2l" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [16173 16185]))                  
+                :type "long double")
+                nil [16148 16186])
+            ("log1pf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [16208 16214]))                  
+                :type "float")
+                nil [16188 16215])
+            ("log1p" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [16236 16243]))                  
+                :type "double")
+                nil [16216 16244])
+            ("log1pl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [16271 16283]))                  
+                :type "long double")
+                nil [16245 16284])
+            ("logbf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [16305 16311]))                  
+                :type "float")
+                nil [16286 16312])
+            ("logb" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [16332 16339]))                  
+                :type "double")
+                nil [16313 16340])
+            ("logbl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [16366 16378]))                  
+                :type "long double")
+                nil [16341 16379])
+            ("modff" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [16400 16406])
+                    ("" variable
+                       (:pointer 1
+                        :type "float")
+                        (reparse-symbol arg-sub-list) [16407 16415]))                  
+                :type "float")
+                nil [16381 16416])
+            ("modf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [16436 16443])
+                    ("" variable
+                       (:pointer 1
+                        :type "double")
+                        (reparse-symbol arg-sub-list) [16444 16453]))                  
+                :type "double")
+                nil [16417 16454])
+            ("modfl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [16480 16492])
+                    ("" variable
+                       (:pointer 1
+                        :type "long double")
+                        (reparse-symbol arg-sub-list) [16493 16507]))                  
+                :type "long double")
+                nil [16455 16508])
+            ("ldexpf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [16530 16536])
+                    ("" variable (:type "int") (reparse-symbol arg-sub-list) [16537 16541]))                  
+                :type "float")
+                nil [16510 16542])
+            ("ldexp" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [16563 16570])
+                    ("" variable (:type "int") (reparse-symbol arg-sub-list) [16571 16575]))                  
+                :type "double")
+                nil [16543 16576])
+            ("ldexpl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [16603 16615])
+                    ("" variable (:type "int") (reparse-symbol arg-sub-list) [16616 16620]))                  
+                :type "long double")
+                nil [16577 16621])
+            ("frexpf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [16643 16649])
+                    ("" variable
+                       (:pointer 1
+                        :type "int")
+                        (reparse-symbol arg-sub-list) [16650 16656]))                  
+                :type "float")
+                nil [16623 16657])
+            ("frexp" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [16678 16685])
+                    ("" variable
+                       (:pointer 1
+                        :type "int")
+                        (reparse-symbol arg-sub-list) [16686 16692]))                  
+                :type "double")
+                nil [16658 16693])
+            ("frexpl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [16720 16732])
+                    ("" variable
+                       (:pointer 1
+                        :type "int")
+                        (reparse-symbol arg-sub-list) [16733 16739]))                  
+                :type "long double")
+                nil [16694 16740])
+            ("ilogbf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [16760 16766]))                  
+                :type "int")
+                nil [16742 16767])
+            ("ilogb" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [16785 16792]))                  
+                :type "int")
+                nil [16768 16793])
+            ("ilogbl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [16812 16824]))                  
+                :type "int")
+                nil [16794 16825])
+            ("scalbnf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [16848 16854])
+                    ("" variable (:type "int") (reparse-symbol arg-sub-list) [16855 16859]))                  
+                :type "float")
+                nil [16827 16860])
+            ("scalbn" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [16882 16889])
+                    ("" variable (:type "int") (reparse-symbol arg-sub-list) [16890 16894]))                  
+                :type "double")
+                nil [16861 16895])
+            ("scalbnl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [16923 16935])
+                    ("" variable (:type "int") (reparse-symbol arg-sub-list) [16936 16940]))                  
+                :type "long double")
+                nil [16896 16941])
+            ("scalblnf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [16965 16971])
+                    ("" variable (:type "long int") (reparse-symbol arg-sub-list) [16972 16981]))                  
+                :type "float")
+                nil [16943 16982])
+            ("scalbln" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [17005 17012])
+                    ("" variable (:type "long int") (reparse-symbol arg-sub-list) [17013 17022]))                  
+                :type "double")
+                nil [16983 17023])
+            ("scalblnl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [17052 17064])
+                    ("" variable (:type "long int") (reparse-symbol arg-sub-list) [17065 17074]))                  
+                :type "long double")
+                nil [17024 17075])
+            ("fabsf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [17096 17102]))                  
+                :type "float")
+                nil [17077 17103])
+            ("fabs" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [17123 17130]))                  
+                :type "double")
+                nil [17104 17131])
+            ("fabsl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [17157 17169]))                  
+                :type "long double")
+                nil [17132 17170])
+            ("cbrtf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [17191 17197]))                  
+                :type "float")
+                nil [17172 17198])
+            ("cbrt" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [17218 17225]))                  
+                :type "double")
+                nil [17199 17226])
+            ("cbrtl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [17252 17264]))                  
+                :type "long double")
+                nil [17227 17265])
+            ("hypotf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [17287 17293])
+                    ("" variable (:type "float") (reparse-symbol arg-sub-list) [17294 17300]))                  
+                :type "float")
+                nil [17267 17301])
+            ("hypot" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [17322 17329])
+                    ("" variable (:type "double") (reparse-symbol arg-sub-list) [17330 17337]))                  
+                :type "double")
+                nil [17302 17338])
+            ("hypotl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [17365 17377])
+                    ("" variable (:type "long double") (reparse-symbol arg-sub-list) [17378 17390]))                  
+                :type "long double")
+                nil [17339 17391])
+            ("powf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [17411 17417])
+                    ("" variable (:type "float") (reparse-symbol arg-sub-list) [17418 17424]))                  
+                :type "float")
+                nil [17393 17425])
+            ("pow" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [17444 17451])
+                    ("" variable (:type "double") (reparse-symbol arg-sub-list) [17452 17459]))                  
+                :type "double")
+                nil [17426 17460])
+            ("powl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [17485 17497])
+                    ("" variable (:type "long double") (reparse-symbol arg-sub-list) [17498 17510]))                  
+                :type "long double")
+                nil [17461 17511])
+            ("sqrtf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [17532 17538]))                  
+                :type "float")
+                nil [17513 17539])
+            ("sqrt" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [17559 17566]))                  
+                :type "double")
+                nil [17540 17567])
+            ("sqrtl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [17593 17605]))                  
+                :type "long double")
+                nil [17568 17606])
+            ("erff" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [17626 17632]))                  
+                :type "float")
+                nil [17608 17633])
+            ("erf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [17652 17659]))                  
+                :type "double")
+                nil [17634 17660])
+            ("erfl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [17685 17697]))                  
+                :type "long double")
+                nil [17661 17698])
+            ("erfcf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [17719 17725]))                  
+                :type "float")
+                nil [17700 17726])
+            ("erfc" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [17746 17753]))                  
+                :type "double")
+                nil [17727 17754])
+            ("erfcl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [17780 17792]))                  
+                :type "long double")
+                nil [17755 17793])
+            ("lgammaf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [18036 18042]))                  
+                :type "float")
+                nil [18015 18043])
+            ("lgamma" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [18065 18072]))                  
+                :type "double")
+                nil [18044 18073])
+            ("lgammal" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [18101 18113]))                  
+                :type "long double")
+                nil [18074 18114])
+            ("tgammaf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [18137 18143]))                  
+                :type "float")
+                nil [18116 18144])
+            ("tgamma" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [18166 18173]))                  
+                :type "double")
+                nil [18145 18174])
+            ("tgammal" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [18202 18214]))                  
+                :type "long double")
+                nil [18175 18215])
+            ("ceilf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [18236 18242]))                  
+                :type "float")
+                nil [18217 18243])
+            ("ceil" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [18263 18270]))                  
+                :type "double")
+                nil [18244 18271])
+            ("ceill" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [18297 18309]))                  
+                :type "long double")
+                nil [18272 18310])
+            ("floorf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [18332 18338]))                  
+                :type "float")
+                nil [18312 18339])
+            ("floor" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [18360 18367]))                  
+                :type "double")
+                nil [18340 18368])
+            ("floorl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [18395 18407]))                  
+                :type "long double")
+                nil [18369 18408])
+            ("nearbyintf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [18434 18440]))                  
+                :type "float")
+                nil [18410 18441])
+            ("nearbyint" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [18466 18473]))                  
+                :type "double")
+                nil [18442 18474])
+            ("nearbyintl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [18505 18517]))                  
+                :type "long double")
+                nil [18475 18518])
+            ("rintf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [18539 18545]))                  
+                :type "float")
+                nil [18520 18546])
+            ("rint" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [18566 18573]))                  
+                :type "double")
+                nil [18547 18574])
+            ("rintl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [18600 18612]))                  
+                :type "long double")
+                nil [18575 18613])
+            ("lrintf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [18638 18644]))                  
+                :type "long int")
+                nil [18615 18645])
+            ("lrint" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [18668 18675]))                  
+                :type "long int")
+                nil [18646 18676])
+            ("lrintl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [18700 18712]))                  
+                :type "long int")
+                nil [18677 18713])
+            ("roundf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [18735 18741]))                  
+                :type "float")
+                nil [18715 18742])
+            ("round" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [18763 18770]))                  
+                :type "double")
+                nil [18743 18771])
+            ("roundl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [18798 18810]))                  
+                :type "long double")
+                nil [18772 18811])
+            ("lroundf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [18837 18843]))                  
+                :type "long int")
+                nil [18813 18844])
+            ("lround" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [18868 18875]))                  
+                :type "long int")
+                nil [18845 18876])
+            ("lroundl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [18901 18913]))                  
+                :type "long int")
+                nil [18877 18914])
+            ("llrintf" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [19131 19137]))                  
+                :type "long int")
+                nil [19114 19138])
+            ("llrint" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [19167 19174]))                  
+                :type "long int")
+                nil [19151 19175])
+            ("llrintl" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [19205 19217]))                  
+                :type "long int")
+                nil [19188 19218])
+            ("llroundf" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [19250 19256]))                  
+                :type "long int")
+                nil [19232 19257])
+            ("llround" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [19287 19294]))                  
+                :type "long int")
+                nil [19270 19295])
+            ("llroundl" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [19326 19338]))                  
+                :type "long int")
+                nil [19308 19339])
+            ("truncf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [19399 19405]))                  
+                :type "float")
+                nil [19379 19406])
+            ("trunc" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [19427 19434]))                  
+                :type "double")
+                nil [19407 19435])
+            ("truncl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [19462 19474]))                  
+                :type "long double")
+                nil [19436 19475])
+            ("fmodf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [19496 19502])
+                    ("" variable (:type "float") (reparse-symbol arg-sub-list) [19503 19509]))                  
+                :type "float")
+                nil [19477 19510])
+            ("fmod" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [19530 19537])
+                    ("" variable (:type "double") (reparse-symbol arg-sub-list) [19538 19545]))                  
+                :type "double")
+                nil [19511 19546])
+            ("fmodl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [19572 19584])
+                    ("" variable (:type "long double") (reparse-symbol arg-sub-list) [19585 19597]))                  
+                :type "long double")
+                nil [19547 19598])
+            ("remainderf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [19624 19630])
+                    ("" variable (:type "float") (reparse-symbol arg-sub-list) [19631 19637]))                  
+                :type "float")
+                nil [19600 19638])
+            ("remainder" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [19663 19670])
+                    ("" variable (:type "double") (reparse-symbol arg-sub-list) [19671 19678]))                  
+                :type "double")
+                nil [19639 19679])
+            ("remainderl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [19710 19722])
+                    ("" variable (:type "long double") (reparse-symbol arg-sub-list) [19723 19735]))                  
+                :type "long double")
+                nil [19680 19736])
+            ("remquof" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [19759 19765])
+                    ("" variable (:type "float") (reparse-symbol arg-sub-list) [19766 19772])
+                    ("" variable
+                       (:pointer 1
+                        :type "int")
+                        (reparse-symbol arg-sub-list) [19773 19779]))                  
+                :type "float")
+                nil [19738 19780])
+            ("remquo" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [19802 19809])
+                    ("" variable (:type "double") (reparse-symbol arg-sub-list) [19810 19817])
+                    ("" variable
+                       (:pointer 1
+                        :type "int")
+                        (reparse-symbol arg-sub-list) [19818 19824]))                  
+                :type "double")
+                nil [19781 19825])
+            ("remquol" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [19853 19865])
+                    ("" variable (:type "long double") (reparse-symbol arg-sub-list) [19866 19878])
+                    ("" variable
+                       (:pointer 1
+                        :type "int")
+                        (reparse-symbol arg-sub-list) [19879 19885]))                  
+                :type "long double")
+                nil [19826 19886])
+            ("copysignf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [19911 19917])
+                    ("" variable (:type "float") (reparse-symbol arg-sub-list) [19918 19924]))                  
+                :type "float")
+                nil [19888 19925])
+            ("copysign" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [19949 19956])
+                    ("" variable (:type "double") (reparse-symbol arg-sub-list) [19957 19964]))                  
+                :type "double")
+                nil [19926 19965])
+            ("copysignl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [19995 20007])
+                    ("" variable (:type "long double") (reparse-symbol arg-sub-list) [20008 20020]))                  
+                :type "long double")
+                nil [19966 20021])
+            ("nanf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [20041 20054]))                  
+                :type "float")
+                nil [20023 20055])
+            ("nan" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [20074 20087]))                  
+                :type "double")
+                nil [20056 20088])
+            ("nanl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [20113 20126]))                  
+                :type "long double")
+                nil [20089 20127])
+            ("nextafterf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [20153 20159])
+                    ("" variable (:type "float") (reparse-symbol arg-sub-list) [20160 20166]))                  
+                :type "float")
+                nil [20129 20167])
+            ("nextafter" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [20192 20199])
+                    ("" variable (:type "double") (reparse-symbol arg-sub-list) [20200 20207]))                  
+                :type "double")
+                nil [20168 20208])
+            ("nextafterl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [20239 20251])
+                    ("" variable (:type "long double") (reparse-symbol arg-sub-list) [20252 20264]))                  
+                :type "long double")
+                nil [20209 20265])
+            ("nexttoward" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [20292 20299])
+                    ("" variable (:type "long double") (reparse-symbol arg-sub-list) [20300 20312]))                  
+                :type "double")
+                nil [20267 20313])
+            ("nexttowardf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [20339 20345])
+                    ("" variable (:type "long double") (reparse-symbol arg-sub-list) [20346 20358]))                  
+                :type "float")
+                nil [20314 20359])
+            ("nexttowardl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [20391 20403])
+                    ("" variable (:type "long double") (reparse-symbol arg-sub-list) [20404 20416]))                  
+                :type "long double")
+                nil [20360 20417])
+            ("fdimf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [20438 20444])
+                    ("" variable (:type "float") (reparse-symbol arg-sub-list) [20445 20451]))                  
+                :type "float")
+                nil [20419 20452])
+            ("fdim" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [20472 20479])
+                    ("" variable (:type "double") (reparse-symbol arg-sub-list) [20480 20487]))                  
+                :type "double")
+                nil [20453 20488])
+            ("fdiml" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [20514 20526])
+                    ("" variable (:type "long double") (reparse-symbol arg-sub-list) [20527 20539]))                  
+                :type "long double")
+                nil [20489 20540])
+            ("fmaxf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [20561 20567])
+                    ("" variable (:type "float") (reparse-symbol arg-sub-list) [20568 20574]))                  
+                :type "float")
+                nil [20542 20575])
+            ("fmax" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [20595 20602])
+                    ("" variable (:type "double") (reparse-symbol arg-sub-list) [20603 20610]))                  
+                :type "double")
+                nil [20576 20611])
+            ("fmaxl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [20637 20649])
+                    ("" variable (:type "long double") (reparse-symbol arg-sub-list) [20650 20662]))                  
+                :type "long double")
+                nil [20612 20663])
+            ("fminf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [20684 20690])
+                    ("" variable (:type "float") (reparse-symbol arg-sub-list) [20691 20697]))                  
+                :type "float")
+                nil [20665 20698])
+            ("fmin" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [20718 20725])
+                    ("" variable (:type "double") (reparse-symbol arg-sub-list) [20726 20733]))                  
+                :type "double")
+                nil [20699 20734])
+            ("fminl" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [20760 20772])
+                    ("" variable (:type "long double") (reparse-symbol arg-sub-list) [20773 20785]))                  
+                :type "long double")
+                nil [20735 20786])
+            ("fmaf" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "float") (reparse-symbol arg-sub-list) [20806 20812])
+                    ("" variable (:type "float") (reparse-symbol arg-sub-list) [20813 20819])
+                    ("" variable (:type "float") (reparse-symbol arg-sub-list) [20820 20826]))                  
+                :type "float")
+                nil [20788 20827])
+            ("fma" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [20846 20853])
+                    ("" variable (:type "double") (reparse-symbol arg-sub-list) [20854 20861])
+                    ("" variable (:type "double") (reparse-symbol arg-sub-list) [20862 20869]))                  
+                :type "double")
+                nil [20828 20870])
+            ("fmal" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "long double") (reparse-symbol arg-sub-list) [20895 20907])
+                    ("" variable (:type "long double") (reparse-symbol arg-sub-list) [20908 20920])
+                    ("" variable (:type "long double") (reparse-symbol arg-sub-list) [20921 20933]))                  
+                :type "long double")
+                nil [20871 20934])
+            ("isgreater" variable (:constant-flag t) nil [20944 20953])
+            ("isgreaterequal" variable (:constant-flag t) nil [20997 21011])
+            ("isless" variable (:constant-flag t) nil [21060 21066])
+            ("islessequal" variable (:constant-flag t) nil [21107 21118])
+            ("islessgreater" variable (:constant-flag t) nil [21164 21177])
+            ("isunordered" variable (:constant-flag t) nil [21225 21236])
+            ("__OSX_AVAILABLE_STARTING" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("__MAC_10_0" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [21407 21418])
+                    ("" variable (:type ("__IPHONE_NA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [21418 21430]))                  
+                :type "int")
+                nil [21382 21431])
+            ("__OSX_AVAILABLE_STARTING" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("__MAC_10_0" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [21483 21494])
+                    ("" variable (:type ("__IPHONE_NA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [21494 21506]))                  
+                :type "int")
+                nil [21458 21507])
+            ("__OSX_AVAILABLE_STARTING" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("__MAC_10_0" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [21565 21576])
+                    ("" variable (:type ("__IPHONE_NA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [21576 21588]))                  
+                :type "int")
+                nil [21540 21589])
+            ("__OSX_AVAILABLE_STARTING" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("__MAC_10_0" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [21640 21651])
+                    ("" variable (:type ("__IPHONE_NA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [21651 21663]))                  
+                :type "int")
+                nil [21615 21664])
+            ("__OSX_AVAILABLE_STARTING" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("__MAC_10_0" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [22636 22647])
+                    ("" variable (:type ("__IPHONE_3_2" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [22647 22660]))                  
+                :type "int")
+                nil [22611 22661])
+            ("__OSX_AVAILABLE_STARTING" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("__MAC_10_0" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [22713 22724])
+                    ("" variable (:type ("__IPHONE_3_2" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [22724 22737]))                  
+                :type "int")
+                nil [22688 22738])
+            ("__OSX_AVAILABLE_STARTING" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("__MAC_10_0" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [22795 22806])
+                    ("" variable (:type ("__IPHONE_3_2" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [22806 22819]))                  
+                :type "int")
+                nil [22770 22820])
+            ("__OSX_AVAILABLE_STARTING" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("__MAC_10_0" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [22872 22883])
+                    ("" variable (:type ("__IPHONE_3_2" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [22883 22896]))                  
+                :type "int")
+                nil [22847 22897])
+            ("__OSX_AVAILABLE_STARTING" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("__MAC_10_0" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [22949 22960])
+                    ("" variable (:type ("__IPHONE_3_2" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [22960 22973]))                  
+                :type "int")
+                nil [22924 22974])
+            ("__OSX_AVAILABLE_STARTING" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("__MAC_10_0" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [23031 23042])
+                    ("" variable (:type ("__IPHONE_3_2" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [23042 23055]))                  
+                :type "int")
+                nil [23006 23056])
+            ("scalb" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("" variable (:type "double") (reparse-symbol arg-sub-list) [23078 23085])
+                    ("" variable (:type "double") (reparse-symbol arg-sub-list) [23086 23093]))                  
+                :type "double")
+                nil [23058 23094])
+            ("signgam" variable
+               (:typemodifiers ("extern")
+                :type "int")
+                nil [23096 23115])
+            ("M_E" variable (:constant-flag t) nil [23281 23284])
+            ("M_LOG2E" variable (:constant-flag t) nil [23362 23369])
+            ("M_LOG10E" variable (:constant-flag t) nil [23443 23451])
+            ("M_LN2" variable (:constant-flag t) nil [23524 23529])
+            ("M_LN10" variable (:constant-flag t) nil [23605 23611])
+            ("M_PI" variable (:constant-flag t) nil [23686 23690])
+            ("M_PI_2" variable (:constant-flag t) nil [23767 23773])
+            ("M_PI_4" variable (:constant-flag t) nil [23848 23854])
+            ("M_1_PI" variable (:constant-flag t) nil [23929 23935])
+            ("M_2_PI" variable (:constant-flag t) nil [24010 24016])
+            ("M_2_SQRTPI" variable (:constant-flag t) nil [24091 24101])
+            ("M_SQRT2" variable (:constant-flag t) nil [24172 24179])
+            ("M_SQRT1_2" variable (:constant-flag t) nil [24253 24262])
+            ("MAXFLOAT" variable (:constant-flag t) nil [24335 24343])
+            ("FP_SNAN" variable (:constant-flag t) nil [24696 24703])
+            ("FP_QNAN" variable (:constant-flag t) nil [24720 24727])
+            ("HUGE" variable (:constant-flag t) nil [24744 24748])
+            ("X_TLOSS" variable (:constant-flag t) nil [24767 24774])
+            ("DOMAIN" variable (:constant-flag t) nil [24812 24818])
+            ("SING" variable (:constant-flag t) nil [24830 24834])
+            ("OVERFLOW" variable (:constant-flag t) nil [24846 24854])
+            ("UNDERFLOW" variable (:constant-flag t) nil [24865 24874])
+            ("TLOSS" variable (:constant-flag t) nil [24885 24890])
+            ("PLOSS" variable (:constant-flag t) nil [24902 24907])
+            ("__OSX_AVAILABLE_STARTING" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("__MAC_10_0" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [25050 25061])
+                    ("" variable (:type ("__IPHONE_NA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [25061 25073]))                  
+                :type "int")
+                nil [25025 25074])
+            ("__OSX_AVAILABLE_STARTING" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("__MAC_10_0" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [25214 25225])
+                    ("" variable (:type ("__IPHONE_NA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [25225 25237]))                  
+                :type "int")
+                nil [25189 25238])
+            ("__OSX_AVAILABLE_STARTING" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("__MAC_10_0" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [25380 25391])
+                    ("" variable (:type ("__IPHONE_NA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [25391 25403]))                  
+                :type "int")
+                nil [25355 25404])
+            ("__OSX_AVAILABLE_STARTING" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("__MAC_10_0" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [25537 25548])
+                    ("" variable (:type ("__IPHONE_NA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [25548 25560]))                  
+                :type "int")
+                nil [25512 25561])
+            ("__OSX_AVAILABLE_STARTING" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("__MAC_10_0" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [25696 25707])
+                    ("" variable (:type ("__IPHONE_NA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [25707 25719]))                  
+                :type "int")
+                nil [25671 25720])
+            ("__OSX_AVAILABLE_STARTING" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("__MAC_10_0" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [25861 25872])
+                    ("" variable (:type ("__IPHONE_NA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [25872 25884]))                  
+                :type "int")
+                nil [25836 25885]))          
+    :file "math.h"
+    :pointmax 26307
+    :fsize 26306
+    :lastmodtime '(20848 31121 0 0)
+    :unmatched-syntax '((close-paren "}" 26271 . 26282) (semantic-list 25827 . 25835) (symbol 25816 . 25827) (DOUBLE 25809 . 25815) (EXTERN 25802 . 25808) (semantic-list 25662 . 25670) (symbol 25657 . 25662) (DOUBLE 25650 . 25656) (EXTERN 25643 . 25649) (semantic-list 25503 . 25511) (symbol 25497 . 25503) (INT 25493 . 25496) (EXTERN 25486 . 25492) (semantic-list 25338 . 25354) (symbol 25334 . 25338) (DOUBLE 25327 . 25333) (EXTERN 25320 . 25326) (semantic-list 25180 . 25188) (symbol 25172 . 25180) (INT 25168 . 25171) (LONG 25163 . 25167) (EXTERN 25156 . 25162) (semantic-list 25016 . 25024) (symbol 25009 . 25016) (INT 25005 . 25008) (LONG 25000 . 25004) (EXTERN 24993 . 24999) (semantic-list 22992 . 23005) (symbol 22990 . 22992) (DOUBLE 22983 . 22989) (EXTERN 22976 . 22982) (semantic-list 22915 . 22923) (symbol 22913 . 22915) (DOUBLE 22906 . 22912) (EXTERN 22899 . 22905) (semantic-list 22838 . 22846) (symbol 22836 . 22838) (DOUBLE 22829 . 22835) (EXTERN 22822 . 22828) (semantic-list 22756 . 22769) (symbol 22754 . 22756) (DOUBLE 22747 . 22753) (EXTERN 22740 . 22746) (semantic-list 22679 . 22687) (symbol 22677 . 22679) (DOUBLE 22670 . 22676) (EXTERN 22663 . 22669) (semantic-list 22602 . 22610) (symbol 22600 . 22602) (DOUBLE 22593 . 22599) (EXTERN 22586 . 22592) (semantic-list 21608 . 21614) (symbol 21603 . 21608) (FLOAT 21597 . 21602) (EXTERN 21590 . 21596) (semantic-list 21533 . 21539) (symbol 21527 . 21533) (DOUBLE 21520 . 21526) (LONG 21515 . 21519) (EXTERN 21508 . 21514) (semantic-list 21451 . 21457) (symbol 21446 . 21451) (DOUBLE 21439 . 21445) (EXTERN 21432 . 21438) (semantic-list 21375 . 21381) (symbol 21369 . 21375) (FLOAT 21363 . 21368) (EXTERN 21356 . 21362) (LONG 19303 . 19307) (EXTERN 19296 . 19302) (LONG 19265 . 19269) (EXTERN 19258 . 19264) (LONG 19227 . 19231) (EXTERN 19220 . 19226) (LONG 19183 . 19187) (EXTERN 19176 . 19182) (LONG 19146 . 19150) (EXTERN 19139 . 19145) (LONG 19109 . 19113) (EXTERN 19102 . 19108) (symbol 11619 . 11629) (STATIC 11612 . 11618) (symbol 11488 . 11498) (STATIC 11481 . 11487) (symbol 11357 . 11367) (STATIC 11350 . 11356) (symbol 10932 . 10942) (STATIC 10925 . 10931) (symbol 10726 . 10736) (STATIC 10719 . 10725) (symbol 10571 . 10581) (STATIC 10564 . 10570) (symbol 10489 . 10499) (STATIC 10482 . 10488) (symbol 10412 . 10422) (STATIC 10405 . 10411) (symbol 10336 . 10346) (STATIC 10329 . 10335) (symbol 10224 . 10234) (STATIC 10217 . 10223) (symbol 10119 . 10129) (STATIC 10112 . 10118) (symbol 10013 . 10023) (STATIC 10006 . 10012) (symbol 9884 . 9894) (STATIC 9877 . 9883) (symbol 9762 . 9772) (STATIC 9755 . 9761) (symbol 9639 . 9649) (STATIC 9632 . 9638) (symbol 9555 . 9565) (STATIC 9548 . 9554) (symbol 9481 . 9491) (STATIC 9474 . 9480) (symbol 9408 . 9418) (STATIC 9401 . 9407) (symbol 9328 . 9338) (STATIC 9321 . 9327) (symbol 9253 . 9263) (STATIC 9246 . 9252) (symbol 9179 . 9189) (STATIC 9172 . 9178) (symbol 9102 . 9112) (STATIC 9095 . 9101) (symbol 9030 . 9040) (STATIC 9023 . 9029) (symbol 8959 . 8969) (STATIC 8952 . 8958) (symbol 8882 . 8892) (STATIC 8875 . 8881) (symbol 8810 . 8820) (STATIC 8803 . 8809) (symbol 8739 . 8749) (STATIC 8732 . 8738) (symbol 8659 . 8669) (STATIC 8652 . 8658) (symbol 8584 . 8594) (STATIC 8577 . 8583) (symbol 8510 . 8520) (STATIC 8503 . 8509) (string 2528 . 2571) (symbol 2522 . 2527) (punctuation 2521 . 2522))
+    :lexical-table 
+        '(("__MATH_H__")
+          ("NAN" . ((symbol "__builtin_nanf" 2805 . 2819) (semantic-list "(\"0x7fc00000\")" 2819 . 2833)))
+          ("math_errhandling" . ((semantic-list "(__math_errhandling())" 4466 . 4488)))
+          ("isinf" (spp-arg-list ("x") 7623 . 7626) . ((semantic-list "( sizeof(x) == sizeof(float)  ? __inline_isinff((float)(x))          \\
+    : sizeof(x) == sizeof(double) ? __inline_isinfd((double)(x))         \\
+                                  : __inline_isinfl((long double)(x)))" 7689 . 7905)))
+          ("X_TLOSS" . ((number "1.41484755040568800000e+16" 24776 . 24802)))
+          ("__MATH__")
+          ("FP_SUBNORMAL" . ((number "5" 3502 . 3503)))
+          ("FP_SUPERNORMAL" . ((number "6" 3528 . 3529)))
+          ("isnan" (spp-arg-list ("x") 7920 . 7923) . ((semantic-list "( sizeof(x) == sizeof(float)  ? __inline_isnanf((float)(x))          \\
+    : sizeof(x) == sizeof(double) ? __inline_isnand((double)(x))         \\
+                                  : __inline_isnanl((long double)(x)))" 7986 . 8202)))
+          ("M_LN10" . ((number "2.30258509299404568401799145468436421" 23617 . 23654)))
+          ("M_SQRT2" . ((number "1.41421356237309504880168872420969808" 24184 . 24221)))
+          ("FP_SNAN" . ((symbol "FP_NAN" 24705 . 24711)))
+          ("HUGE" . ((symbol "MAXFLOAT" 24750 . 24758)))
+          ("DOMAIN" . ((number "1" 24820 . 24821)))
+          ("HUGE_VALF" . ((symbol "__builtin_huge_valf" 2705 . 2724) (semantic-list "()" 2724 . 2726)))
+          ("FP_NAN" . ((number "1" 3398 . 3399)))
+          ("isgreater" (spp-arg-list ("x" "y") 20953 . 20959) . ((symbol "__builtin_isgreater" 20960 . 20979) (semantic-list "((x),(y))" 20979 . 20988)))
+          ("M_2_SQRTPI" . ((number "1.12837916709551257389615890312154517" 24103 . 24140)))
+          ("islessequal" (spp-arg-list ("x" "y") 21118 . 21124) . ((symbol "__builtin_islessequal" 21125 . 21146) (semantic-list "((x),(y))" 21146 . 21155)))
+          ("M_LOG2E" . ((number "1.44269504088896340735992468100189214" 23374 . 23411)))
+          ("FP_ZERO" . ((number "3" 3450 . 3451)))
+          ("SING" . ((number "2" 24836 . 24837)))
+          ("FP_INFINITE" . ((number "2" 3424 . 3425)))
+          ("FP_ILOGB0" . ((semantic-list "(-2147483647 - 1)" 4190 . 4207)))
+          ("OVERFLOW" . ((number "3" 24855 . 24856)))
+          ("TLOSS" . ((number "5" 24892 . 24893)))
+          ("islessgreater" (spp-arg-list ("x" "y") 21177 . 21183) . ((symbol "__builtin_islessgreater" 21184 . 21207) (semantic-list "((x),(y))" 21207 . 21216)))
+          ("M_E" . ((number "2.71828182845904523536028747135266250" 23293 . 23330)))
+          ("M_LN2" . ((number "0.693147180559945309417232121458176568" 23536 . 23574)))
+          ("PLOSS" . ((number "6" 24909 . 24910)))
+          ("HUGE_VALL" . ((symbol "__builtin_huge_vall" 2755 . 2774) (semantic-list "()" 2774 . 2776)))
+          ("fpclassify" (spp-arg-list ("x") 5769 . 5772) . ((semantic-list "( sizeof(x) == sizeof(float)  ? __fpclassifyf((float)(x))            \\
+    : sizeof(x) == sizeof(double) ? __fpclassifyd((double)(x))           \\
+                                  : __fpclassifyl((long double)(x)))" 5830 . 6044)))
+          ("isfinite" (spp-arg-list ("x") 7326 . 7329) . ((semantic-list "( sizeof(x) == sizeof(float)  ? __inline_isfinitef((float)(x))       \\
+    : sizeof(x) == sizeof(double) ? __inline_isfinited((double)(x))      \\
+                                  : __inline_isfinitel((long double)(x)))" 7389 . 7608)))
+          ("MATH_ERRNO" . ((number "1" 4324 . 4325)))
+          ("isunordered" (spp-arg-list ("x" "y") 21236 . 21242) . ((symbol "__builtin_isunordered" 21243 . 21264) (semantic-list "((x),(y))" 21264 . 21273)))
+          ("M_LOG10E" . ((number "0.434294481903251827651128918916605082" 23455 . 23493)))
+          ("M_PI_2" . ((number "1.57079632679489661923132169163975144" 23779 . 23816)))
+          ("UNDERFLOW" . ((number "4" 24875 . 24876)))
+          ("MATH_ERREXCEPT" . ((number "2" 4391 . 4392)))
+          ("isnormal" (spp-arg-list ("x") 7026 . 7029) . ((semantic-list "( sizeof(x) == sizeof(float)  ? __inline_isnormalf((float)(x))       \\
+    : sizeof(x) == sizeof(double) ? __inline_isnormald((double)(x))      \\
+                                  : __inline_isnormall((long double)(x)))" 7089 . 7308)))
+          ("signbit" (spp-arg-list ("x") 8219 . 8222) . ((semantic-list "( sizeof(x) == sizeof(float)  ? __inline_signbitf((float)(x))        \\
+    : sizeof(x) == sizeof(double) ? __inline_signbitd((double)(x))       \\
+                                  : __inline_signbitl((long double)(x)))" 8283 . 8501)))
+          ("isgreaterequal" (spp-arg-list ("x" "y") 21011 . 21017) . ((symbol "__builtin_isgreaterequal" 21018 . 21042) (semantic-list "((x),(y))" 21042 . 21051)))
+          ("M_PI" . ((number "3.14159265358979323846264338327950288" 23698 . 23735)))
+          ("M_SQRT1_2" . ((number "0.707106781186547524400844362104849039" 24265 . 24303)))
+          ("isless" (spp-arg-list ("x" "y") 21066 . 21072) . ((symbol "__builtin_isless" 21073 . 21089) (semantic-list "((x),(y))" 21089 . 21098)))
+          ("M_PI_4" . ((number "0.785398163397448309615660845819875721" 23860 . 23898)))
+          ("M_1_PI" . ((number "0.318309886183790671537767526745028724" 23941 . 23979)))
+          ("MAXFLOAT" . 
+              ((number "0x1" 24347 . 24350) (punctuation "." 24350 . 24351) (symbol "fffffep" 24351 . 24358) (punctuation "+" 24358 . 24359) (number "127f" 24359 . 24363)))
+          ("HUGE_VAL" . ((symbol "__builtin_huge_val" 2656 . 2674) (semantic-list "()" 2674 . 2676)))
+          ("__MATH_H_ALWAYS_INLINE__" . ((symbol "__attribute__" 2873 . 2886) (semantic-list "((__always_inline__))" 2887 . 2908)))
+          ("INFINITY" . ((symbol "HUGE_VALF" 3121 . 3130)))
+          ("FP_NORMAL" . ((number "4" 3476 . 3477)))
+          ("FP_ILOGBNAN" . ((semantic-list "(-2147483647 - 1)" 4231 . 4248)))
+          ("M_2_PI" . ((number "0.636619772367581343075535053490057448" 24022 . 24060)))
+          ("FP_QNAN" . ((symbol "FP_NAN" 24729 . 24735)))
+          )
+
+    )
    )
   :file "!usr!include!semantic.cache"
   :semantic-tag-version "2.0"

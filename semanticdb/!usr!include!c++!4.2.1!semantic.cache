@@ -6552,6 +6552,1404 @@
           )
 
     )
+   (semanticdb-table "fstream"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("_GLIBCXX_FSTREAM" variable (:constant-flag t) nil [1633 1649])
+            ("istream" include (:system-flag t) nil [1680 1698])
+            ("ostream" include (:system-flag t) nil [1699 1717])
+            ("locale" include (:system-flag t) nil [1718 1735])
+            ("cstdio" include (:system-flag t) nil [1751 1768])
+            ("bits/basic_file.h" include (:system-flag t) nil [1824 1852])
+            ("bits/gthr.h" include (:system-flag t) nil [1853 1875])
+            ("std" type
+               (:members 
+                  ( ("basic_filebuf" type
+                       (:template 
+                          ( ("_CharT" type (:type "class") nil nil)
+                            ("_Traits" type (:type "class") nil nil))                          
+                        :type "class"
+                        :members 
+                          ( ("public" label nil (reparse-symbol classsubparts) [2745 2752])
+                            ("char_type" type
+                               (:typedef ("_CharT" type (:type "class") nil nil)
+                                :superclasses "_CharT"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [2775 2829])
+                            ("traits_type" type
+                               (:typedef ("_Traits" type (:type "class") nil nil)
+                                :superclasses "_Traits"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [2836 2892])
+                            ("int_type" type
+                               (:typedef ("traits_type::int_type" type (:type "class") nil nil)
+                                :superclasses "traits_type::int_type"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [2899 2949])
+                            ("pos_type" type
+                               (:typedef ("traits_type::pos_type" type (:type "class") nil nil)
+                                :superclasses "traits_type::pos_type"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [2956 3006])
+                            ("off_type" type
+                               (:typedef ("traits_type::off_type" type (:type "class") nil nil)
+                                :superclasses "traits_type::off_type"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [3013 3063])
+                            ("__streambuf_type" type
+                               (:typedef ("basic_streambuf" type
+                                     (:template-specifier 
+                                        ( ("char_type" type nil nil nil)
+                                          ("traits_type" type nil nil nil))                                        
+                                      :type "class")
+                                      nil nil)
+                                :superclasses "basic_streambuf"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [3071 3138])
+                            ("__filebuf_type" type
+                               (:typedef ("basic_filebuf" type
+                                     (:template-specifier 
+                                        ( ("char_type" type nil nil nil)
+                                          ("traits_type" type nil nil nil))                                        
+                                      :type "class")
+                                      nil nil)
+                                :superclasses "basic_filebuf"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [3145 3210])
+                            ("__file_type" type
+                               (:typedef ("__basic_file" type
+                                     (:template-specifier 
+                                        ( ("char" type nil nil nil))                                        
+                                      :type "class")
+                                      nil nil)
+                                :superclasses "__basic_file"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [3217 3265])
+                            ("__state_type" type
+                               (:typedef ("traits_type::state_type" type (:type "class") nil nil)
+                                :superclasses "traits_type::state_type"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [3272 3335])
+                            ("__codecvt_type" type
+                               (:typedef ("codecvt" type
+                                     (:template-specifier 
+                                        ( ("char_type" type nil nil nil)
+                                          ("char" type nil nil nil)
+                                          ("__state_type" type nil nil nil))                                        
+                                      :type "class")
+                                      nil nil)
+                                :superclasses "codecvt"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [3342 3407])
+                            ("ios_base" friend nil (reparse-symbol classsubparts) [3415 3436])
+                            ("protected" label nil (reparse-symbol classsubparts) [3467 3477])
+                            ("_M_lock" variable (:type ("__c_lock" type (:type "class") nil nil)) (reparse-symbol classsubparts) [3576 3603])
+                            ("_M_file" variable (:type ("__file_type" type (:type "class") nil nil)) (reparse-symbol classsubparts) [3637 3659])
+                            ("_M_mode" variable (:type ("ios_base::openmode" type (:type "class") nil nil)) (reparse-symbol classsubparts) [3800 3828])
+                            ("_M_state_beg" variable (:type ("__state_type" type (:type "class") nil nil)) (reparse-symbol classsubparts) [3879 3907])
+                            ("_M_state_cur" variable (:type ("__state_type" type (:type "class") nil nil)) (reparse-symbol classsubparts) [4064 4091])
+                            ("_M_state_last" variable (:type ("__state_type" type (:type "class") nil nil)) (reparse-symbol classsubparts) [4206 4234])
+                            ("_M_buf" variable
+                               (:pointer 1
+                                :type ("char_type" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [4353 4372])
+                            ("_M_buf_size" variable (:type ("size_t" type (:type "class") nil nil)) (reparse-symbol classsubparts) [4610 4631])
+                            ("_M_buf_allocated" variable (:type "bool") (reparse-symbol classsubparts) [4717 4741])
+                            ("_M_reading" variable (:type "bool") (reparse-symbol classsubparts) [5053 5090])
+                            ("_M_writing" variable (:type "bool") (reparse-symbol classsubparts) [5097 5134])
+                            ("_M_pback" variable (:type ("char_type" type (:type "class") nil nil)) (reparse-symbol classsubparts) [5348 5369])
+                            ("_M_pback_cur_save" variable
+                               (:pointer 1
+                                :type ("char_type" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [5377 5407])
+                            ("_M_pback_end_save" variable
+                               (:pointer 1
+                                :type ("char_type" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [5414 5444])
+                            ("_M_pback_init" variable (:type "bool") (reparse-symbol classsubparts) [5451 5472])
+                            ("_M_codecvt" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type ("__codecvt_type" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [5523 5557])
+                            ("_M_ext_buf" variable
+                               (:pointer 1
+                                :type "char")
+                                (reparse-symbol classsubparts) [5780 5799])
+                            ("_M_ext_buf_size" variable (:type ("streamsize" type (:type "class") nil nil)) (reparse-symbol classsubparts) [5909 5937])
+                            ("_M_ext_next" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type "char")
+                                (reparse-symbol classsubparts) [6203 6228])
+                            ("_M_ext_end" variable
+                               (:pointer 1
+                                :type "char")
+                                (reparse-symbol classsubparts) [6235 6254])
+                            ("_M_create_pback" function (:type "void") (reparse-symbol classsubparts) [6462 6697])
+                            ("_M_destroy_pback" function (:type "void") (reparse-symbol classsubparts) [6909 7192])
+                            ("public" label nil (reparse-symbol classsubparts) [7198 7205])
+                            ("basic_filebuf" function
+                               (:prototype-flag t
+                                :constructor-flag t
+                                :type ("basic_filebuf" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [7418 7434])
+                            ("basic_filebuf" function
+                               (:destructor-flag t
+                                :typemodifiers ("virtual")
+                                :type "void")
+                                (reparse-symbol classsubparts) [7517 7572])
+                            ("is_open" function (:type "bool") (reparse-symbol classsubparts) [7678 7748])
+                            ("open" function
+                               (:prototype-flag t
+                                :pointer 1
+                                :arguments 
+                                  ( ("__s" variable
+                                       (:pointer 1
+                                        :constant-flag t
+                                        :type "char")
+                                        (reparse-symbol arg-sub-list) [9770 9786])
+                                    ("__mode" variable (:type ("ios_base::openmode" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9787 9813]))                                  
+                                :type ("__filebuf_type" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [9743 9814])
+                            ("close" function
+                               (:prototype-flag t
+                                :pointer 1
+                                :type ("__filebuf_type" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [10245 10283])
+                            ("protected" label nil (reparse-symbol classsubparts) [10289 10299])
+                            ("_M_allocate_internal_buffer" function
+                               (:prototype-flag t
+                                :type "void")
+                                (reparse-symbol classsubparts) [10306 10347])
+                            ("_M_destroy_internal_buffer" function
+                               (:prototype-flag t
+                                :type "void")
+                                (reparse-symbol classsubparts) [10355 10403])
+                            ("showmanyc" function
+                               (:prototype-flag t
+                                :typemodifiers ("virtual")
+                                :type ("streamsize" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [10460 10497])
+                            ("underflow" function
+                               (:prototype-flag t
+                                :typemodifiers ("virtual")
+                                :type ("int_type" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [10722 10757])
+                            ("pbackfail" function
+                               (:prototype-flag t
+                                :typemodifiers ("virtual")
+                                :arguments 
+                                  ( ("__c" variable (:type ("int_type" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10798 10812])
+                                    ("" variable (:type ("_Traits::eof" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10813 10827]))                                  
+                                :type ("int_type" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [10765 10829])
+                            ("overflow" function
+                               (:prototype-flag t
+                                :typemodifiers ("virtual")
+                                :arguments 
+                                  ( ("__c" variable (:type ("int_type" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11224 11238])
+                                    ("" variable (:type ("_Traits::eof" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11239 11253]))                                  
+                                :type ("int_type" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [11192 11255])
+                            ("_M_convert_to_external" function
+                               (:prototype-flag t
+                                :arguments 
+                                  ( ("" variable
+                                       (:pointer 1
+                                        :type ("char_type" type (:type "class") nil nil))
+                                        (reparse-symbol arg-sub-list) [11392 11403])
+                                    ("" variable (:type ("streamsize" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11404 11415]))                                  
+                                :type "bool")
+                                (reparse-symbol classsubparts) [11358 11416])
+                            ("setbuf" function
+                               (:prototype-flag t
+                                :pointer 1
+                                :typemodifiers ("virtual")
+                                :arguments 
+                                  ( ("__s" variable
+                                       (:pointer 1
+                                        :type ("char_type" type (:type "class") nil nil))
+                                        (reparse-symbol arg-sub-list) [11900 11915])
+                                    ("__n" variable (:type ("streamsize" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11916 11931]))                                  
+                                :type ("__streambuf_type" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [11861 11932])
+                            ("seekoff" function
+                               (:prototype-flag t
+                                :typemodifiers ("virtual")
+                                :arguments 
+                                  ( ("__off" variable (:type ("off_type" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11971 11986])
+                                    ("__way" variable (:type ("ios_base::seekdir" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11987 12011])
+                                    ("__mode" variable (:type ("ios_base::openmode" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12019 12046])
+                                    ("" variable (:type ("ios_base::in" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12047 12061])
+                                    ("" variable (:type ("ios_base::out" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12062 12076]))                                  
+                                :type ("pos_type" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [11940 12077])
+                            ("seekpos" function
+                               (:prototype-flag t
+                                :typemodifiers ("virtual")
+                                :arguments 
+                                  ( ("__pos" variable (:type ("pos_type" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12116 12131])
+                                    ("__mode" variable (:type ("ios_base::openmode" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12139 12166])
+                                    ("" variable (:type ("ios_base::in" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12167 12181])
+                                    ("" variable (:type ("ios_base::out" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12182 12196]))                                  
+                                :type ("pos_type" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [12085 12197])
+                            ("_M_seek" function
+                               (:prototype-flag t
+                                :arguments 
+                                  ( ("__off" variable (:type ("off_type" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12273 12288])
+                                    ("__way" variable (:type ("ios_base::seekdir" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12289 12313])
+                                    ("__state" variable (:type ("__state_type" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12314 12335]))                                  
+                                :type ("pos_type" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [12250 12336])
+                            ("sync" function
+                               (:prototype-flag t
+                                :typemodifiers ("virtual")
+                                :type "int")
+                                (reparse-symbol classsubparts) [12344 12369])
+                            ("imbue" function
+                               (:prototype-flag t
+                                :typemodifiers ("virtual")
+                                :arguments 
+                                  ( ("__loc" variable
+                                       (:reference 1
+                                        :constant-flag t
+                                        :type ("locale" type (:type "class") nil nil))
+                                        (reparse-symbol arg-sub-list) [12402 12422]))                                  
+                                :type "void")
+                                (reparse-symbol classsubparts) [12377 12423])
+                            ("xsgetn" function
+                               (:prototype-flag t
+                                :typemodifiers ("virtual")
+                                :arguments 
+                                  ( ("__s" variable
+                                       (:pointer 1
+                                        :type ("char_type" type (:type "class") nil nil))
+                                        (reparse-symbol arg-sub-list) [12463 12478])
+                                    ("__n" variable (:type ("streamsize" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12479 12494]))                                  
+                                :type ("streamsize" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [12431 12495])
+                            ("xsputn" function
+                               (:prototype-flag t
+                                :typemodifiers ("virtual")
+                                :arguments 
+                                  ( ("__s" variable
+                                       (:pointer 1
+                                        :constant-flag t
+                                        :type ("char_type" type (:type "class") nil nil))
+                                        (reparse-symbol arg-sub-list) [12535 12556])
+                                    ("__n" variable (:type ("streamsize" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12557 12572]))                                  
+                                :type ("streamsize" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [12503 12573])
+                            ("_M_terminate_output" function
+                               (:prototype-flag t
+                                :type "bool")
+                                (reparse-symbol classsubparts) [12643 12676])
+                            ("_M_set_buffer" function
+                               (:arguments 
+                                  ( ("__off" variable (:type ("streamsize" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13297 13314]))                                  
+                                :type "void")
+                                (reparse-symbol classsubparts) [13272 13683]))                          
+                        :superclasses 
+                          ( ("basic_streambuf" type
+                               (:protection "public"
+                                :type "class")
+                                nil nil))                          )
+                        (reparse-symbol namespacesubparts) [2625 13690])
+                    ("basic_ifstream" type
+                       (:template 
+                          ( ("_CharT" type (:type "class") nil nil)
+                            ("_Traits" type (:type "class") nil nil))                          
+                        :type "class"
+                        :members 
+                          ( ("public" label nil (reparse-symbol classsubparts) [14159 14166])
+                            ("char_type" type
+                               (:typedef ("_CharT" type (:type "class") nil nil)
+                                :superclasses "_CharT"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [14189 14219])
+                            ("traits_type" type
+                               (:typedef ("_Traits" type (:type "class") nil nil)
+                                :superclasses "_Traits"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [14226 14259])
+                            ("int_type" type
+                               (:typedef ("traits_type::int_type" type (:type "class") nil nil)
+                                :superclasses "traits_type::int_type"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [14266 14316])
+                            ("pos_type" type
+                               (:typedef ("traits_type::pos_type" type (:type "class") nil nil)
+                                :superclasses "traits_type::pos_type"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [14323 14373])
+                            ("off_type" type
+                               (:typedef ("traits_type::off_type" type (:type "class") nil nil)
+                                :superclasses "traits_type::off_type"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [14380 14430])
+                            ("__filebuf_type" type
+                               (:typedef ("basic_filebuf" type
+                                     (:template-specifier 
+                                        ( ("char_type" type nil nil nil)
+                                          ("traits_type" type nil nil nil))                                        
+                                      :type "class")
+                                      nil nil)
+                                :superclasses "basic_filebuf"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [14467 14529])
+                            ("__istream_type" type
+                               (:typedef ("basic_istream" type
+                                     (:template-specifier 
+                                        ( ("char_type" type nil nil nil)
+                                          ("traits_type" type nil nil nil))                                        
+                                      :type "class")
+                                      nil nil)
+                                :superclasses "basic_istream"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [14536 14597])
+                            ("private" label nil (reparse-symbol classsubparts) [14603 14611])
+                            ("_M_filebuf" variable (:type ("__filebuf_type" type (:type "class") nil nil)) (reparse-symbol classsubparts) [14670 14725])
+                            ("public" label nil (reparse-symbol classsubparts) [14731 14738])
+                            ("basic_ifstream" function
+                               (:constructor-flag t
+                                :type ("basic_ifstream" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [15043 15127])
+                            ("basic_ifstream" function
+                               (:constructor-flag t
+                                :arguments 
+                                  ( ("__s" variable
+                                       (:pointer 1
+                                        :constant-flag t
+                                        :type "char")
+                                        (reparse-symbol arg-sub-list) [15587 15603])
+                                    ("__mode" variable (:type ("ios_base::openmode" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [15604 15631])
+                                    ("" variable (:type ("ios_base::in" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [15632 15645]))                                  
+                                :type ("basic_ifstream" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [15572 15752])
+                            ("basic_ifstream" function
+                               (:destructor-flag t
+                                :type "void")
+                                (reparse-symbol classsubparts) [15924 15951])
+                            ("rdbuf" function
+                               (:pointer 1
+                                :type ("__filebuf_type" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [16174 16268])
+                            ("is_open" function (:type "bool") (reparse-symbol classsubparts) [16388 16447])
+                            ("is_open" function (:type "bool") (reparse-symbol classsubparts) [16548 16613])
+                            ("open" function
+                               (:arguments 
+                                  ( ("__s" variable
+                                       (:pointer 1
+                                        :constant-flag t
+                                        :type "char")
+                                        (reparse-symbol arg-sub-list) [17074 17090])
+                                    ("__mode" variable (:type ("ios_base::openmode" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [17091 17118])
+                                    ("" variable (:type ("ios_base::in" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [17119 17132]))                                  
+                                :type "void")
+                                (reparse-symbol classsubparts) [17058 17351])
+                            ("close" function (:type "void") (reparse-symbol classsubparts) [17551 17649]))                          
+                        :superclasses 
+                          ( ("basic_istream" type
+                               (:protection "public"
+                                :type "class")
+                                nil nil))                          )
+                        (reparse-symbol namespacesubparts) [14040 17656])
+                    ("basic_ofstream" type
+                       (:template 
+                          ( ("_CharT" type (:type "class") nil nil)
+                            ("_Traits" type (:type "class") nil nil))                          
+                        :type "class"
+                        :members 
+                          ( ("public" label nil (reparse-symbol classsubparts) [18126 18133])
+                            ("char_type" type
+                               (:typedef ("_CharT" type (:type "class") nil nil)
+                                :superclasses "_CharT"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [18156 18186])
+                            ("traits_type" type
+                               (:typedef ("_Traits" type (:type "class") nil nil)
+                                :superclasses "_Traits"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [18193 18226])
+                            ("int_type" type
+                               (:typedef ("traits_type::int_type" type (:type "class") nil nil)
+                                :superclasses "traits_type::int_type"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [18233 18283])
+                            ("pos_type" type
+                               (:typedef ("traits_type::pos_type" type (:type "class") nil nil)
+                                :superclasses "traits_type::pos_type"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [18290 18340])
+                            ("off_type" type
+                               (:typedef ("traits_type::off_type" type (:type "class") nil nil)
+                                :superclasses "traits_type::off_type"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [18347 18397])
+                            ("__filebuf_type" type
+                               (:typedef ("basic_filebuf" type
+                                     (:template-specifier 
+                                        ( ("char_type" type nil nil nil)
+                                          ("traits_type" type nil nil nil))                                        
+                                      :type "class")
+                                      nil nil)
+                                :superclasses "basic_filebuf"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [18434 18496])
+                            ("__ostream_type" type
+                               (:typedef ("basic_ostream" type
+                                     (:template-specifier 
+                                        ( ("char_type" type nil nil nil)
+                                          ("traits_type" type nil nil nil))                                        
+                                      :type "class")
+                                      nil nil)
+                                :superclasses "basic_ostream"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [18503 18564])
+                            ("private" label nil (reparse-symbol classsubparts) [18570 18578])
+                            ("_M_filebuf" variable (:type ("__filebuf_type" type (:type "class") nil nil)) (reparse-symbol classsubparts) [18637 18691])
+                            ("public" label nil (reparse-symbol classsubparts) [18697 18704])
+                            ("basic_ofstream" function
+                               (:constructor-flag t
+                                :type ("basic_ofstream" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [18997 19080])
+                            ("basic_ofstream" function
+                               (:constructor-flag t
+                                :arguments 
+                                  ( ("__s" variable
+                                       (:pointer 1
+                                        :constant-flag t
+                                        :type "char")
+                                        (reparse-symbol arg-sub-list) [19568 19584])
+                                    ("__mode" variable (:type ("ios_base::openmode" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [19592 19619])
+                                    ("" variable (:type ("ios_base::out" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [19620 19634])
+                                    ("" variable (:type ("ios_base::trunc" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [19634 19650]))                                  
+                                :type ("basic_ofstream" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [19553 19757])
+                            ("basic_ofstream" function
+                               (:destructor-flag t
+                                :type "void")
+                                (reparse-symbol classsubparts) [19929 19956])
+                            ("rdbuf" function
+                               (:pointer 1
+                                :type ("__filebuf_type" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [20179 20273])
+                            ("is_open" function (:type "bool") (reparse-symbol classsubparts) [20393 20452])
+                            ("is_open" function (:type "bool") (reparse-symbol classsubparts) [20553 20618])
+                            ("open" function
+                               (:arguments 
+                                  ( ("__s" variable
+                                       (:pointer 1
+                                        :constant-flag t
+                                        :type "char")
+                                        (reparse-symbol arg-sub-list) [21086 21102])
+                                    ("__mode" variable (:type ("ios_base::openmode" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [21107 21134])
+                                    ("" variable (:type ("ios_base::out" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [21135 21150])
+                                    ("" variable (:type ("ios_base::trunc" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [21151 21167]))                                  
+                                :type "void")
+                                (reparse-symbol classsubparts) [21070 21387])
+                            ("close" function (:type "void") (reparse-symbol classsubparts) [21587 21685]))                          
+                        :superclasses 
+                          ( ("basic_ostream" type
+                               (:protection "public"
+                                :type "class")
+                                nil nil))                          )
+                        (reparse-symbol namespacesubparts) [18008 21692])
+                    ("basic_fstream" type
+                       (:template 
+                          ( ("_CharT" type (:type "class") nil nil)
+                            ("_Traits" type (:type "class") nil nil))                          
+                        :type "class"
+                        :members 
+                          ( ("public" label nil (reparse-symbol classsubparts) [22190 22197])
+                            ("char_type" type
+                               (:typedef ("_CharT" type (:type "class") nil nil)
+                                :superclasses "_CharT"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [22220 22250])
+                            ("traits_type" type
+                               (:typedef ("_Traits" type (:type "class") nil nil)
+                                :superclasses "_Traits"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [22257 22290])
+                            ("int_type" type
+                               (:typedef ("traits_type::int_type" type (:type "class") nil nil)
+                                :superclasses "traits_type::int_type"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [22297 22347])
+                            ("pos_type" type
+                               (:typedef ("traits_type::pos_type" type (:type "class") nil nil)
+                                :superclasses "traits_type::pos_type"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [22354 22404])
+                            ("off_type" type
+                               (:typedef ("traits_type::off_type" type (:type "class") nil nil)
+                                :superclasses "traits_type::off_type"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [22411 22461])
+                            ("__filebuf_type" type
+                               (:typedef ("basic_filebuf" type
+                                     (:template-specifier 
+                                        ( ("char_type" type nil nil nil)
+                                          ("traits_type" type nil nil nil))                                        
+                                      :type "class")
+                                      nil nil)
+                                :superclasses "basic_filebuf"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [22498 22560])
+                            ("__ios_type" type
+                               (:typedef ("basic_ios" type
+                                     (:template-specifier 
+                                        ( ("char_type" type nil nil nil)
+                                          ("traits_type" type nil nil nil))                                        
+                                      :type "class")
+                                      nil nil)
+                                :superclasses "basic_ios"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [22567 22621])
+                            ("__iostream_type" type
+                               (:typedef ("basic_iostream" type
+                                     (:template-specifier 
+                                        ( ("char_type" type nil nil nil)
+                                          ("traits_type" type nil nil nil))                                        
+                                      :type "class")
+                                      nil nil)
+                                :superclasses "basic_iostream"
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [22628 22691])
+                            ("private" label nil (reparse-symbol classsubparts) [22697 22705])
+                            ("_M_filebuf" variable (:type ("__filebuf_type" type (:type "class") nil nil)) (reparse-symbol classsubparts) [22712 22738])
+                            ("public" label nil (reparse-symbol classsubparts) [22744 22751])
+                            ("basic_fstream" function
+                               (:constructor-flag t
+                                :type ("basic_fstream" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [23055 23145])
+                            ("basic_fstream" function
+                               (:constructor-flag t
+                                :arguments 
+                                  ( ("__s" variable
+                                       (:pointer 1
+                                        :constant-flag t
+                                        :type "char")
+                                        (reparse-symbol arg-sub-list) [23538 23554])
+                                    ("__mode" variable (:type ("ios_base::openmode" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [23561 23588])
+                                    ("" variable (:type ("ios_base::in" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [23589 23603])
+                                    ("" variable (:type ("ios_base::out" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [23604 23618]))                                  
+                                :type ("basic_fstream" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [23524 23730])
+                            ("basic_fstream" function
+                               (:destructor-flag t
+                                :type "void")
+                                (reparse-symbol classsubparts) [23902 23928])
+                            ("rdbuf" function
+                               (:pointer 1
+                                :type ("__filebuf_type" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [24151 24245])
+                            ("is_open" function (:type "bool") (reparse-symbol classsubparts) [24365 24424])
+                            ("is_open" function (:type "bool") (reparse-symbol classsubparts) [24525 24590])
+                            ("open" function
+                               (:arguments 
+                                  ( ("__s" variable
+                                       (:pointer 1
+                                        :constant-flag t
+                                        :type "char")
+                                        (reparse-symbol arg-sub-list) [25048 25064])
+                                    ("__mode" variable (:type ("ios_base::openmode" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [25069 25096])
+                                    ("" variable (:type ("ios_base::in" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [25097 25111])
+                                    ("" variable (:type ("ios_base::out" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [25112 25126]))                                  
+                                :type "void")
+                                (reparse-symbol classsubparts) [25032 25330])
+                            ("close" function (:type "void") (reparse-symbol classsubparts) [25530 25628]))                          
+                        :superclasses 
+                          ( ("basic_iostream" type
+                               (:protection "public"
+                                :type "class")
+                                nil nil))                          )
+                        (reparse-symbol namespacesubparts) [22071 25635]))                  
+                :type "namespace")
+                nil [1877 25659])
+            ("bits/fstream.tcc" include (:system-flag t) nil [25694 25722]))          
+    :file "fstream"
+    :pointmax 25761
+    :fsize 25760
+    :lastmodtime '(20848 31126 0 0)
+    :unmatched-syntax '((punctuation 25110 . 25111) (punctuation 25095 . 25096) (punctuation 23602 . 23603) (punctuation 23587 . 23588) (EXPLICIT 23509 . 23517) (punctuation 21149 . 21150) (punctuation 21133 . 21134) (punctuation 19633 . 19634) (punctuation 19618 . 19619) (EXPLICIT 19538 . 19546) (punctuation 17117 . 17118) (punctuation 15630 . 15631) (EXPLICIT 15557 . 15565) (punctuation 12180 . 12181) (punctuation 12165 . 12166) (punctuation 12060 . 12061) (punctuation 12045 . 12046) (semantic-list 11251 . 11253) (punctuation 11237 . 11238) (semantic-list 10825 . 10827) (punctuation 10811 . 10812) (punctuation 3436 . 3437) (symbol 1665 . 1678) (symbol 1661 . 1664) (symbol 1654 . 1660) (punctuation 1653 . 1654))
+    :lexical-table 
+        '(("_GLIBCXX_FSTREAM" . ((number "1" 1650 . 1651)))
+          )
+
+    )
+   (semanticdb-table "queue"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("_GLIBCXX_QUEUE" variable (:constant-flag t) nil [2627 2641])
+            ("bits/c++config.h" include (:system-flag t) nil [2672 2699])
+            ("bits/functexcept.h" include (:system-flag t) nil [2700 2729])
+            ("bits/stl_algobase.h" include (:system-flag t) nil [2730 2760])
+            ("bits/allocator.h" include (:system-flag t) nil [2761 2788])
+            ("bits/stl_construct.h" include (:system-flag t) nil [2789 2820])
+            ("bits/stl_uninitialized.h" include (:system-flag t) nil [2821 2856])
+            ("bits/stl_heap.h" include (:system-flag t) nil [2857 2883])
+            ("bits/stl_function.h" include (:system-flag t) nil [2884 2914])
+            ("deque" include (:system-flag t) nil [2915 2931])
+            ("vector" include (:system-flag t) nil [2932 2949])
+            ("bits/stl_queue.h" include (:system-flag t) nil [2950 2977]))          
+    :file "queue"
+    :pointmax 3007
+    :fsize 3006
+    :lastmodtime '(20848 31126 0 0)
+    :unmatched-syntax '((symbol 2657 . 2670) (symbol 2653 . 2656) (symbol 2646 . 2652) (punctuation 2645 . 2646))
+    :lexical-table 
+        '(("_GLIBCXX_QUEUE" . ((number "1" 2642 . 2643)))
+          )
+
+    )
+   (semanticdb-table "stack"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("_GLIBCXX_STACK" variable (:constant-flag t) nil [2627 2641])
+            ("bits/stl_algobase.h" include (:system-flag t) nil [2672 2702])
+            ("bits/allocator.h" include (:system-flag t) nil [2703 2730])
+            ("bits/stl_construct.h" include (:system-flag t) nil [2731 2762])
+            ("bits/stl_uninitialized.h" include (:system-flag t) nil [2763 2798])
+            ("deque" include (:system-flag t) nil [2799 2815])
+            ("bits/stl_stack.h" include (:system-flag t) nil [2816 2843]))          
+    :file "stack"
+    :pointmax 2873
+    :fsize 2872
+    :lastmodtime '(20848 31126 0 0)
+    :unmatched-syntax '((symbol 2657 . 2670) (symbol 2653 . 2656) (symbol 2646 . 2652) (punctuation 2645 . 2646))
+    :lexical-table 
+        '(("_GLIBCXX_STACK" . ((number "1" 2642 . 2643)))
+          )
+
+    )
+   (semanticdb-table "deque"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("_GLIBCXX_DEQUE" variable (:constant-flag t) nil [2622 2636])
+            ("bits/functexcept.h" include (:system-flag t) nil [2667 2696])
+            ("bits/stl_algobase.h" include (:system-flag t) nil [2697 2727])
+            ("bits/allocator.h" include (:system-flag t) nil [2728 2755])
+            ("bits/stl_construct.h" include (:system-flag t) nil [2756 2787])
+            ("bits/stl_uninitialized.h" include (:system-flag t) nil [2788 2823])
+            ("bits/stl_deque.h" include (:system-flag t) nil [2824 2851])
+            ("bits/deque.tcc" include (:system-flag t) nil [2886 2912]))          
+    :file "deque"
+    :pointmax 3003
+    :fsize 3002
+    :lastmodtime '(20848 31126 0 0)
+    :unmatched-syntax '((symbol 2652 . 2665) (symbol 2648 . 2651) (symbol 2641 . 2647) (punctuation 2640 . 2641))
+    :lexical-table 
+        '(("_GLIBCXX_DEQUE" . ((number "1" 2637 . 2638)))
+          )
+
+    )
+   (semanticdb-table "cmath"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("_GLIBCXX_CMATH" variable (:constant-flag t) nil [1967 1981])
+            ("bits/c++config.h" include (:system-flag t) nil [2012 2039])
+            ("bits/cpp_type_traits.h" include (:system-flag t) nil [2040 2073])
+            ("ext/type_traits.h" include (:system-flag t) nil [2074 2102])
+            ("math.h" include (:system-flag t) nil [2104 2121])
+            ("std" type
+               (:members 
+                  ( ("__cmath_power" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type ("_Tp" type (:type "class") nil nil)
+                        :arguments 
+                          ( ("" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2667 2671])
+                            ("" variable (:type "unsigned int") (reparse-symbol arg-sub-list) [2672 2685]))                          
+                        :prototype-flag t)
+                        (reparse-symbol namespacesubparts) [2626 2686])
+                    ("abs" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "double") (reparse-symbol arg-sub-list) [2710 2721]))                          
+                        :type "double")
+                        (reparse-symbol namespacesubparts) [2690 2755])
+                    ("abs" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [2778 2788]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [2759 2823])
+                    ("abs" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [2852 2868]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [2827 2903])
+                    ("acos" variable (:type "int") (reparse-symbol namespacesubparts) [2915 2920])
+                    ("acos" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [2944 2954]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [2924 2989])
+                    ("acos" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [3019 3035]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [2993 3070])
+                    ("acos" function
+                       (:arguments 
+                          ( ("__x" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [3202 3210]))                          
+                        :type ("__type" type (:type "class") nil nil))
+                        (reparse-symbol namespacesubparts) [3186 3246])
+                    ("asin" variable (:type "int") (reparse-symbol namespacesubparts) [3258 3263])
+                    ("asin" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [3287 3297]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [3267 3332])
+                    ("asin" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [3362 3378]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [3336 3413])
+                    ("asin" function
+                       (:arguments 
+                          ( ("__x" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [3540 3548]))                          
+                        :type ("__type" type (:type "class") nil nil))
+                        (reparse-symbol namespacesubparts) [3524 3584])
+                    ("atan" variable (:type "int") (reparse-symbol namespacesubparts) [3596 3601])
+                    ("atan" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [3625 3635]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [3605 3670])
+                    ("atan" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [3700 3716]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [3674 3751])
+                    ("atan" function
+                       (:arguments 
+                          ( ("__x" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [3879 3887]))                          
+                        :type ("__type" type (:type "class") nil nil))
+                        (reparse-symbol namespacesubparts) [3863 3923])
+                    ("atan2" variable (:type "int") (reparse-symbol namespacesubparts) [3935 3941])
+                    ("atan2" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__y" variable (:type "float") (reparse-symbol arg-sub-list) [3966 3976])
+                            ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [3977 3987]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [3945 4028])
+                    ("atan2" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__y" variable (:type "long double") (reparse-symbol arg-sub-list) [4059 4075])
+                            ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [4076 4092]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [4032 4133])
+                    ("atan2" function
+                       (:arguments 
+                          ( ("__y" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4322 4330])
+                            ("__x" variable (:type ("_Up" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4331 4339]))                          
+                        :type ("__type" type (:type "class") nil nil))
+                        (reparse-symbol namespacesubparts) [4305 4381])
+                    ("ceil" variable (:type "int") (reparse-symbol namespacesubparts) [4393 4398])
+                    ("ceil" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [4422 4432]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [4402 4467])
+                    ("ceil" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [4497 4513]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [4471 4548])
+                    ("ceil" function
+                       (:arguments 
+                          ( ("__x" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4680 4688]))                          
+                        :type ("__type" type (:type "class") nil nil))
+                        (reparse-symbol namespacesubparts) [4664 4724])
+                    ("cos" variable (:type "int") (reparse-symbol namespacesubparts) [4736 4740])
+                    ("cos" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [4763 4773]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [4744 4807])
+                    ("cos" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [4836 4852]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [4811 4886])
+                    ("cos" function
+                       (:arguments 
+                          ( ("__x" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5017 5025]))                          
+                        :type ("__type" type (:type "class") nil nil))
+                        (reparse-symbol namespacesubparts) [5002 5060])
+                    ("cosh" variable (:type "int") (reparse-symbol namespacesubparts) [5072 5077])
+                    ("cosh" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [5101 5111]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [5081 5146])
+                    ("cosh" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [5176 5192]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [5150 5227])
+                    ("cosh" function
+                       (:arguments 
+                          ( ("__x" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5359 5367]))                          
+                        :type ("__type" type (:type "class") nil nil))
+                        (reparse-symbol namespacesubparts) [5343 5403])
+                    ("exp" variable (:type "int") (reparse-symbol namespacesubparts) [5415 5419])
+                    ("exp" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [5442 5452]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [5423 5486])
+                    ("exp" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [5515 5531]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [5490 5565])
+                    ("exp" function
+                       (:arguments 
+                          ( ("__x" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5696 5704]))                          
+                        :type ("__type" type (:type "class") nil nil))
+                        (reparse-symbol namespacesubparts) [5681 5739])
+                    ("fabs" variable (:type "int") (reparse-symbol namespacesubparts) [5751 5756])
+                    ("fabs" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [5780 5790]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [5760 5825])
+                    ("fabs" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [5855 5871]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [5829 5906])
+                    ("fabs" function
+                       (:arguments 
+                          ( ("__x" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6038 6046]))                          
+                        :type ("__type" type (:type "class") nil nil))
+                        (reparse-symbol namespacesubparts) [6022 6082])
+                    ("floor" variable (:type "int") (reparse-symbol namespacesubparts) [6094 6100])
+                    ("floor" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [6125 6135]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [6104 6171])
+                    ("floor" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [6202 6218]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [6175 6254])
+                    ("floor" function
+                       (:arguments 
+                          ( ("__x" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6387 6395]))                          
+                        :type ("__type" type (:type "class") nil nil))
+                        (reparse-symbol namespacesubparts) [6370 6432])
+                    ("fmod" variable (:type "int") (reparse-symbol namespacesubparts) [6444 6449])
+                    ("fmod" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [6473 6483])
+                            ("__y" variable (:type "float") (reparse-symbol arg-sub-list) [6484 6494]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [6453 6534])
+                    ("fmod" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [6564 6580])
+                            ("__y" variable (:type "long double") (reparse-symbol arg-sub-list) [6581 6597]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [6538 6637])
+                    ("frexp" variable (:type "int") (reparse-symbol namespacesubparts) [6649 6655])
+                    ("frexp" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [6680 6690])
+                            ("__exp" variable
+                               (:pointer 1
+                                :type "int")
+                                (reparse-symbol arg-sub-list) [6691 6702]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [6659 6745])
+                    ("frexp" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [6776 6792])
+                            ("__exp" variable
+                               (:pointer 1
+                                :type "int")
+                                (reparse-symbol arg-sub-list) [6793 6804]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [6749 6847])
+                    ("frexp" function
+                       (:arguments 
+                          ( ("__x" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6980 6988])
+                            ("__exp" variable
+                               (:pointer 1
+                                :type "int")
+                                (reparse-symbol arg-sub-list) [6989 7000]))                          
+                        :type ("__type" type (:type "class") nil nil))
+                        (reparse-symbol namespacesubparts) [6963 7044])
+                    ("ldexp" variable (:type "int") (reparse-symbol namespacesubparts) [7056 7062])
+                    ("ldexp" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [7087 7097])
+                            ("__exp" variable (:type "int") (reparse-symbol arg-sub-list) [7098 7108]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [7066 7151])
+                    ("ldexp" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [7182 7198])
+                            ("__exp" variable (:type "int") (reparse-symbol arg-sub-list) [7199 7209]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [7155 7252])
+                    ("ldexp" function
+                       (:arguments 
+                          ( ("__x" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7383 7391])
+                            ("__exp" variable (:type "int") (reparse-symbol arg-sub-list) [7392 7402]))                          
+                        :type ("__type" type (:type "class") nil nil))
+                        (reparse-symbol namespacesubparts) [7368 7444])
+                    ("log" variable (:type "int") (reparse-symbol namespacesubparts) [7456 7460])
+                    ("log" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [7483 7493]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [7464 7527])
+                    ("log" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [7556 7572]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [7531 7606])
+                    ("log" function
+                       (:arguments 
+                          ( ("__x" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7737 7745]))                          
+                        :type ("__type" type (:type "class") nil nil))
+                        (reparse-symbol namespacesubparts) [7722 7780])
+                    ("log10" variable (:type "int") (reparse-symbol namespacesubparts) [7792 7798])
+                    ("log10" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [7823 7833]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [7802 7869])
+                    ("log10" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [7900 7916]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [7873 7952])
+                    ("log10" function
+                       (:arguments 
+                          ( ("__x" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8085 8093]))                          
+                        :type ("__type" type (:type "class") nil nil))
+                        (reparse-symbol namespacesubparts) [8068 8130])
+                    ("modf" variable (:type "int") (reparse-symbol namespacesubparts) [8142 8147])
+                    ("modf" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [8171 8181])
+                            ("__iptr" variable
+                               (:pointer 1
+                                :type "float")
+                                (reparse-symbol arg-sub-list) [8182 8196]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [8151 8239])
+                    ("modf" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [8269 8285])
+                            ("__iptr" variable
+                               (:pointer 1
+                                :type "long double")
+                                (reparse-symbol arg-sub-list) [8286 8306]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [8243 8349])
+                    ("__pow_helper" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type ("_Tp" type (:type "class") nil nil)
+                        :arguments 
+                          ( ("__x" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8408 8416])
+                            ("__n" variable (:type "int") (reparse-symbol arg-sub-list) [8417 8425]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [8353 8535])
+                    ("pow" variable (:type "int") (reparse-symbol namespacesubparts) [8547 8551])
+                    ("pow" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [8574 8584])
+                            ("__y" variable (:type "float") (reparse-symbol arg-sub-list) [8585 8595]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [8555 8634])
+                    ("pow" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [8663 8679])
+                            ("__y" variable (:type "long double") (reparse-symbol arg-sub-list) [8680 8696]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [8638 8735])
+                    ("pow" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "double") (reparse-symbol arg-sub-list) [8759 8770])
+                            ("__i" variable (:type "int") (reparse-symbol arg-sub-list) [8771 8779]))                          
+                        :type "double")
+                        (reparse-symbol namespacesubparts) [8739 8818])
+                    ("pow" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [8841 8851])
+                            ("__n" variable (:type "int") (reparse-symbol arg-sub-list) [8852 8860]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [8822 8900])
+                    ("pow" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [8929 8945])
+                            ("__n" variable (:type "int") (reparse-symbol arg-sub-list) [8946 8954]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [8904 8994])
+                    ("sin" variable (:type "int") (reparse-symbol namespacesubparts) [9006 9010])
+                    ("sin" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [9033 9043]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [9014 9077])
+                    ("sin" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [9106 9122]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [9081 9156])
+                    ("sin" function
+                       (:arguments 
+                          ( ("__x" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9287 9295]))                          
+                        :type ("__type" type (:type "class") nil nil))
+                        (reparse-symbol namespacesubparts) [9272 9330])
+                    ("sinh" variable (:type "int") (reparse-symbol namespacesubparts) [9342 9347])
+                    ("sinh" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [9371 9381]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [9351 9416])
+                    ("sinh" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [9446 9462]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [9420 9497])
+                    ("sinh" function
+                       (:arguments 
+                          ( ("__x" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9629 9637]))                          
+                        :type ("__type" type (:type "class") nil nil))
+                        (reparse-symbol namespacesubparts) [9613 9673])
+                    ("sqrt" variable (:type "int") (reparse-symbol namespacesubparts) [9685 9690])
+                    ("sqrt" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [9714 9724]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [9694 9759])
+                    ("sqrt" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [9789 9805]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [9763 9840])
+                    ("sqrt" function
+                       (:arguments 
+                          ( ("__x" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9972 9980]))                          
+                        :type ("__type" type (:type "class") nil nil))
+                        (reparse-symbol namespacesubparts) [9956 10016])
+                    ("tan" variable (:type "int") (reparse-symbol namespacesubparts) [10028 10032])
+                    ("tan" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [10055 10065]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [10036 10099])
+                    ("tan" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [10128 10144]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [10103 10178])
+                    ("tan" function
+                       (:arguments 
+                          ( ("__x" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10309 10317]))                          
+                        :type ("__type" type (:type "class") nil nil))
+                        (reparse-symbol namespacesubparts) [10294 10352])
+                    ("tanh" variable (:type "int") (reparse-symbol namespacesubparts) [10364 10369])
+                    ("tanh" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "float") (reparse-symbol arg-sub-list) [10393 10403]))                          
+                        :type "float")
+                        (reparse-symbol namespacesubparts) [10373 10438])
+                    ("tanh" function
+                       (:typemodifiers ("inline")
+                        :arguments 
+                          ( ("__x" variable (:type "long double") (reparse-symbol arg-sub-list) [10468 10484]))                          
+                        :type "long double")
+                        (reparse-symbol namespacesubparts) [10442 10519])
+                    ("tanh" function
+                       (:arguments 
+                          ( ("__x" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10651 10659]))                          
+                        :type ("__type" type (:type "class") nil nil))
+                        (reparse-symbol namespacesubparts) [10635 10695]))                  
+                :type "namespace")
+                nil [2483 10719])
+            ("__gnu_cxx" type
+               (:members 
+                  ( ("__capture_fpclassify" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11092 11100]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [11029 11128])
+                    ("__capture_isfinite" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11193 11201]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [11132 11227])
+                    ("__capture_isinf" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11289 11297]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [11231 11320])
+                    ("__capture_isnan" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11382 11390]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [11324 11413])
+                    ("__capture_isnormal" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11478 11486]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [11417 11512])
+                    ("__capture_signbit" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11576 11584]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [11516 11609])
+                    ("__capture_isgreater" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f1" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11675 11684])
+                            ("__f2" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11685 11694]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [11613 11732])
+                    ("__capture_isgreaterequal" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f1" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11803 11812])
+                            ("__f2" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11813 11822]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [11736 11865])
+                    ("__capture_isless" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f1" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11928 11937])
+                            ("__f2" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11938 11947]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [11869 11978])
+                    ("__capture_islessequal" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f1" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12046 12055])
+                            ("__f2" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12056 12065]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [11982 12105])
+                    ("__capture_islessgreater" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f1" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12175 12184])
+                            ("__f2" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12185 12194]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [12109 12236])
+                    ("__capture_isunordered" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f1" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12304 12313])
+                            ("__f2" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12314 12323]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [12240 12363]))                  
+                :type "namespace")
+                nil [10990 12387])
+            ("std" type
+               (:members 
+                  ( ("fpclassify" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12759 12767]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [12706 12818])
+                    ("isfinite" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12873 12881]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [12822 12930])
+                    ("isinf" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12982 12990]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [12934 13036])
+                    ("isnan" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13088 13096]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [13040 13142])
+                    ("isnormal" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13197 13205]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [13146 13254])
+                    ("signbit" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13308 13316]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [13258 13364])
+                    ("isgreater" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f1" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13420 13429])
+                            ("__f2" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13430 13439]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [13368 13500])
+                    ("isgreaterequal" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f1" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13561 13570])
+                            ("__f2" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13571 13580]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [13504 13646])
+                    ("isless" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f1" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13699 13708])
+                            ("__f2" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13709 13718]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [13650 13776])
+                    ("islessequal" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f1" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13834 13843])
+                            ("__f2" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13844 13853]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [13780 13916])
+                    ("islessgreater" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f1" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13976 13985])
+                            ("__f2" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13986 13995]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [13920 14060])
+                    ("isunordered" function
+                       (:template 
+                          ( ("_Tp" type (:type "class") nil nil))                          
+                        :type "int"
+                        :arguments 
+                          ( ("__f1" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [14118 14127])
+                            ("__f2" variable (:type ("_Tp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [14128 14137]))                          
+                        :typemodifiers ("inline"))
+                        (reparse-symbol namespacesubparts) [14064 14200]))                  
+                :type "namespace")
+                nil [12673 14224])
+            ("bits/cmath.tcc" include (:system-flag t) nil [14315 14341]))          
+    :file "cmath"
+    :pointmax 14357
+    :fsize 14356
+    :lastmodtime '(20848 31125 0 0)
+    :unmatched-syntax '((punctuation 10634 . 10635) (punctuation 10633 . 10634) (punctuation 10632 . 10633) (DOUBLE 10626 . 10632) (punctuation 10615 . 10616) (symbol 10608 . 10615) (punctuation 10607 . 10608) (punctuation 10606 . 10607) (punctuation 10605 . 10606) (symbol 10602 . 10605) (punctuation 10601 . 10602) (symbol 10589 . 10601) (punctuation 10588 . 10589) (symbol 10577 . 10588) (punctuation 10576 . 10577) (punctuation 10575 . 10576) (symbol 10566 . 10575) (TYPENAME 10557 . 10565) (INLINE 10550 . 10556) (punctuation 10544 . 10545) (symbol 10541 . 10544) (TYPENAME 10532 . 10540) (punctuation 10531 . 10532) (TEMPLATE 10523 . 10531) (punctuation 10363 . 10364) (punctuation 10362 . 10363) (USING 10356 . 10361) (punctuation 10293 . 10294) (punctuation 10292 . 10293) (punctuation 10291 . 10292) (DOUBLE 10285 . 10291) (punctuation 10274 . 10275) (symbol 10267 . 10274) (punctuation 10266 . 10267) (punctuation 10265 . 10266) (punctuation 10264 . 10265) (symbol 10261 . 10264) (punctuation 10260 . 10261) (symbol 10248 . 10260) (punctuation 10247 . 10248) (symbol 10236 . 10247) (punctuation 10235 . 10236) (punctuation 10234 . 10235) (symbol 10225 . 10234) (TYPENAME 10216 . 10224) (INLINE 10209 . 10215) (punctuation 10203 . 10204) (symbol 10200 . 10203) (TYPENAME 10191 . 10199) (punctuation 10190 . 10191) (TEMPLATE 10182 . 10190) (punctuation 10027 . 10028) (punctuation 10026 . 10027) (USING 10020 . 10025) (punctuation 9955 . 9956) (punctuation 9954 . 9955) (punctuation 9953 . 9954) (DOUBLE 9947 . 9953) (punctuation 9936 . 9937) (symbol 9929 . 9936) (punctuation 9928 . 9929) (punctuation 9927 . 9928) (punctuation 9926 . 9927) (symbol 9923 . 9926) (punctuation 9922 . 9923) (symbol 9910 . 9922) (punctuation 9909 . 9910) (symbol 9898 . 9909) (punctuation 9897 . 9898) (punctuation 9896 . 9897) (symbol 9887 . 9896) (TYPENAME 9878 . 9886) (INLINE 9871 . 9877) (punctuation 9865 . 9866) (symbol 9862 . 9865) (TYPENAME 9853 . 9861) (punctuation 9852 . 9853) (TEMPLATE 9844 . 9852) (punctuation 9684 . 9685) (punctuation 9683 . 9684) (USING 9677 . 9682) (punctuation 9612 . 9613) (punctuation 9611 . 9612) (punctuation 9610 . 9611) (DOUBLE 9604 . 9610) (punctuation 9593 . 9594) (symbol 9586 . 9593) (punctuation 9585 . 9586) (punctuation 9584 . 9585) (punctuation 9583 . 9584) (symbol 9580 . 9583) (punctuation 9579 . 9580) (symbol 9567 . 9579) (punctuation 9566 . 9567) (symbol 9555 . 9566) (punctuation 9554 . 9555) (punctuation 9553 . 9554) (symbol 9544 . 9553) (TYPENAME 9535 . 9543) (INLINE 9528 . 9534) (punctuation 9522 . 9523) (symbol 9519 . 9522) (TYPENAME 9510 . 9518) (punctuation 9509 . 9510) (TEMPLATE 9501 . 9509) (punctuation 9341 . 9342) (punctuation 9340 . 9341) (USING 9334 . 9339) (punctuation 9271 . 9272) (punctuation 9270 . 9271) (punctuation 9269 . 9270) (DOUBLE 9263 . 9269) (punctuation 9252 . 9253) (symbol 9245 . 9252) (punctuation 9244 . 9245) (punctuation 9243 . 9244) (punctuation 9242 . 9243) (symbol 9239 . 9242) (punctuation 9238 . 9239) (symbol 9226 . 9238) (punctuation 9225 . 9226) (symbol 9214 . 9225) (punctuation 9213 . 9214) (punctuation 9212 . 9213) (symbol 9203 . 9212) (TYPENAME 9194 . 9202) (INLINE 9187 . 9193) (punctuation 9181 . 9182) (symbol 9178 . 9181) (TYPENAME 9169 . 9177) (punctuation 9168 . 9169) (TEMPLATE 9160 . 9168) (punctuation 9005 . 9006) (punctuation 9004 . 9005) (USING 8998 . 9003) (punctuation 8546 . 8547) (punctuation 8545 . 8546) (USING 8539 . 8544) (punctuation 8141 . 8142) (punctuation 8140 . 8141) (USING 8134 . 8139) (punctuation 8067 . 8068) (punctuation 8066 . 8067) (punctuation 8065 . 8066) (DOUBLE 8059 . 8065) (punctuation 8048 . 8049) (symbol 8041 . 8048) (punctuation 8040 . 8041) (punctuation 8039 . 8040) (punctuation 8038 . 8039) (symbol 8035 . 8038) (punctuation 8034 . 8035) (symbol 8022 . 8034) (punctuation 8021 . 8022) (symbol 8010 . 8021) (punctuation 8009 . 8010) (punctuation 8008 . 8009) (symbol 7999 . 8008) (TYPENAME 7990 . 7998) (INLINE 7983 . 7989) (punctuation 7977 . 7978) (symbol 7974 . 7977) (TYPENAME 7965 . 7973) (punctuation 7964 . 7965) (TEMPLATE 7956 . 7964) (punctuation 7791 . 7792) (punctuation 7790 . 7791) (USING 7784 . 7789) (punctuation 7721 . 7722) (punctuation 7720 . 7721) (punctuation 7719 . 7720) (DOUBLE 7713 . 7719) (punctuation 7702 . 7703) (symbol 7695 . 7702) (punctuation 7694 . 7695) (punctuation 7693 . 7694) (punctuation 7692 . 7693) (symbol 7689 . 7692) (punctuation 7688 . 7689) (symbol 7676 . 7688) (punctuation 7675 . 7676) (symbol 7664 . 7675) (punctuation 7663 . 7664) (punctuation 7662 . 7663) (symbol 7653 . 7662) (TYPENAME 7644 . 7652) (INLINE 7637 . 7643) (punctuation 7631 . 7632) (symbol 7628 . 7631) (TYPENAME 7619 . 7627) (punctuation 7618 . 7619) (TEMPLATE 7610 . 7618) (punctuation 7455 . 7456) (punctuation 7454 . 7455) (USING 7448 . 7453) (punctuation 7367 . 7368) (punctuation 7366 . 7367) (punctuation 7365 . 7366) (DOUBLE 7359 . 7365) (punctuation 7348 . 7349) (symbol 7341 . 7348) (punctuation 7340 . 7341) (punctuation 7339 . 7340) (punctuation 7338 . 7339) (symbol 7335 . 7338) (punctuation 7334 . 7335) (symbol 7322 . 7334) (punctuation 7321 . 7322) (symbol 7310 . 7321) (punctuation 7309 . 7310) (punctuation 7308 . 7309) (symbol 7299 . 7308) (TYPENAME 7290 . 7298) (INLINE 7283 . 7289) (punctuation 7277 . 7278) (symbol 7274 . 7277) (TYPENAME 7265 . 7273) (punctuation 7264 . 7265) (TEMPLATE 7256 . 7264) (punctuation 7055 . 7056) (punctuation 7054 . 7055) (USING 7048 . 7053) (punctuation 6962 . 6963) (punctuation 6961 . 6962) (punctuation 6960 . 6961) (DOUBLE 6954 . 6960) (punctuation 6943 . 6944) (symbol 6936 . 6943) (punctuation 6935 . 6936) (punctuation 6934 . 6935) (punctuation 6933 . 6934) (symbol 6930 . 6933) (punctuation 6929 . 6930) (symbol 6917 . 6929) (punctuation 6916 . 6917) (symbol 6905 . 6916) (punctuation 6904 . 6905) (punctuation 6903 . 6904) (symbol 6894 . 6903) (TYPENAME 6885 . 6893) (INLINE 6878 . 6884) (punctuation 6872 . 6873) (symbol 6869 . 6872) (TYPENAME 6860 . 6868) (punctuation 6859 . 6860) (TEMPLATE 6851 . 6859) (punctuation 6648 . 6649) (punctuation 6647 . 6648) (USING 6641 . 6646) (punctuation 6443 . 6444) (punctuation 6442 . 6443) (USING 6436 . 6441) (punctuation 6369 . 6370) (punctuation 6368 . 6369) (punctuation 6367 . 6368) (DOUBLE 6361 . 6367) (punctuation 6350 . 6351) (symbol 6343 . 6350) (punctuation 6342 . 6343) (punctuation 6341 . 6342) (punctuation 6340 . 6341) (symbol 6337 . 6340) (punctuation 6336 . 6337) (symbol 6324 . 6336) (punctuation 6323 . 6324) (symbol 6312 . 6323) (punctuation 6311 . 6312) (punctuation 6310 . 6311) (symbol 6301 . 6310) (TYPENAME 6292 . 6300) (INLINE 6285 . 6291) (punctuation 6279 . 6280) (symbol 6276 . 6279) (TYPENAME 6267 . 6275) (punctuation 6266 . 6267) (TEMPLATE 6258 . 6266) (punctuation 6093 . 6094) (punctuation 6092 . 6093) (USING 6086 . 6091) (punctuation 6021 . 6022) (punctuation 6020 . 6021) (punctuation 6019 . 6020) (DOUBLE 6013 . 6019) (punctuation 6002 . 6003) (symbol 5995 . 6002) (punctuation 5994 . 5995) (punctuation 5993 . 5994) (punctuation 5992 . 5993) (symbol 5989 . 5992) (punctuation 5988 . 5989) (symbol 5976 . 5988) (punctuation 5975 . 5976) (symbol 5964 . 5975) (punctuation 5963 . 5964) (punctuation 5962 . 5963) (symbol 5953 . 5962) (TYPENAME 5944 . 5952) (INLINE 5937 . 5943) (punctuation 5931 . 5932) (symbol 5928 . 5931) (TYPENAME 5919 . 5927) (punctuation 5918 . 5919) (TEMPLATE 5910 . 5918) (punctuation 5750 . 5751) (punctuation 5749 . 5750) (USING 5743 . 5748) (punctuation 5680 . 5681) (punctuation 5679 . 5680) (punctuation 5678 . 5679) (DOUBLE 5672 . 5678) (punctuation 5661 . 5662) (symbol 5654 . 5661) (punctuation 5653 . 5654) (punctuation 5652 . 5653) (punctuation 5651 . 5652) (symbol 5648 . 5651) (punctuation 5647 . 5648) (symbol 5635 . 5647) (punctuation 5634 . 5635) (symbol 5623 . 5634) (punctuation 5622 . 5623) (punctuation 5621 . 5622) (symbol 5612 . 5621) (TYPENAME 5603 . 5611) (INLINE 5596 . 5602) (punctuation 5590 . 5591) (symbol 5587 . 5590) (TYPENAME 5578 . 5586) (punctuation 5577 . 5578) (TEMPLATE 5569 . 5577) (punctuation 5414 . 5415) (punctuation 5413 . 5414) (USING 5407 . 5412) (punctuation 5342 . 5343) (punctuation 5341 . 5342) (punctuation 5340 . 5341) (DOUBLE 5334 . 5340) (punctuation 5323 . 5324) (symbol 5316 . 5323) (punctuation 5315 . 5316) (punctuation 5314 . 5315) (punctuation 5313 . 5314) (symbol 5310 . 5313) (punctuation 5309 . 5310) (symbol 5297 . 5309) (punctuation 5296 . 5297) (symbol 5285 . 5296) (punctuation 5284 . 5285) (punctuation 5283 . 5284) (symbol 5274 . 5283) (TYPENAME 5265 . 5273) (INLINE 5258 . 5264) (punctuation 5252 . 5253) (symbol 5249 . 5252) (TYPENAME 5240 . 5248) (punctuation 5239 . 5240) (TEMPLATE 5231 . 5239) (punctuation 5071 . 5072) (punctuation 5070 . 5071) (USING 5064 . 5069) (punctuation 5001 . 5002) (punctuation 5000 . 5001) (punctuation 4999 . 5000) (DOUBLE 4993 . 4999) (punctuation 4982 . 4983) (symbol 4975 . 4982) (punctuation 4974 . 4975) (punctuation 4973 . 4974) (punctuation 4972 . 4973) (symbol 4969 . 4972) (punctuation 4968 . 4969) (symbol 4956 . 4968) (punctuation 4955 . 4956) (symbol 4944 . 4955) (punctuation 4943 . 4944) (punctuation 4942 . 4943) (symbol 4933 . 4942) (TYPENAME 4924 . 4932) (INLINE 4917 . 4923) (punctuation 4911 . 4912) (symbol 4908 . 4911) (TYPENAME 4899 . 4907) (punctuation 4898 . 4899) (TEMPLATE 4890 . 4898) (punctuation 4735 . 4736) (punctuation 4734 . 4735) (USING 4728 . 4733) (punctuation 4663 . 4664) (punctuation 4662 . 4663) (punctuation 4661 . 4662) (DOUBLE 4655 . 4661) (punctuation 4644 . 4645) (symbol 4637 . 4644) (punctuation 4636 . 4637) (punctuation 4635 . 4636) (punctuation 4634 . 4635) (symbol 4631 . 4634) (punctuation 4630 . 4631) (symbol 4618 . 4630) (punctuation 4617 . 4618) (symbol 4606 . 4617) (punctuation 4605 . 4606) (punctuation 4604 . 4605) (symbol 4595 . 4604) (TYPENAME 4586 . 4594) (INLINE 4579 . 4585) (punctuation 4573 . 4574) (symbol 4570 . 4573) (TYPENAME 4561 . 4569) (punctuation 4560 . 4561) (TEMPLATE 4552 . 4560) (punctuation 4392 . 4393) (punctuation 4391 . 4392) (USING 4385 . 4390) (punctuation 4304 . 4305) (punctuation 4303 . 4304) (punctuation 4302 . 4303) (DOUBLE 4296 . 4302) (punctuation 4285 . 4286) (symbol 4278 . 4285) (punctuation 4277 . 4278) (punctuation 4276 . 4277) (punctuation 4275 . 4276) (symbol 4272 . 4275) (punctuation 4271 . 4272) (symbol 4259 . 4271) (punctuation 4257 . 4258) (punctuation 4256 . 4257) (symbol 4236 . 4243) (punctuation 4235 . 4236) (punctuation 4234 . 4235) (punctuation 4233 . 4234) (symbol 4230 . 4233) (punctuation 4229 . 4230) (symbol 4217 . 4229) (punctuation 4216 . 4217) (symbol 4205 . 4216) (punctuation 4204 . 4205) (punctuation 4203 . 4204) (symbol 4194 . 4203) (TYPENAME 4185 . 4193) (INLINE 4178 . 4184) (punctuation 4172 . 4173) (symbol 4169 . 4172) (TYPENAME 4160 . 4168) (punctuation 4158 . 4159) (symbol 4155 . 4158) (TYPENAME 4146 . 4154) (punctuation 4145 . 4146) (TEMPLATE 4137 . 4145) (punctuation 3934 . 3935) (punctuation 3933 . 3934) (USING 3927 . 3932) (punctuation 3862 . 3863) (punctuation 3861 . 3862) (punctuation 3860 . 3861) (DOUBLE 3854 . 3860) (punctuation 3845 . 3846) (symbol 3838 . 3845) (punctuation 3837 . 3838) (punctuation 3836 . 3837) (punctuation 3835 . 3836) (symbol 3832 . 3835) (punctuation 3831 . 3832) (symbol 3819 . 3831) (punctuation 3818 . 3819) (symbol 3807 . 3818) (punctuation 3806 . 3807) (punctuation 3805 . 3806) (symbol 3796 . 3805) (TYPENAME 3787 . 3795) (INLINE 3780 . 3786) (punctuation 3776 . 3777) (symbol 3773 . 3776) (TYPENAME 3764 . 3772) (punctuation 3763 . 3764) (TEMPLATE 3755 . 3763) (punctuation 3595 . 3596) (punctuation 3594 . 3595) (USING 3588 . 3593) (punctuation 3523 . 3524) (punctuation 3522 . 3523) (punctuation 3521 . 3522) (DOUBLE 3515 . 3521) (punctuation 3507 . 3508) (symbol 3500 . 3507) (punctuation 3499 . 3500) (punctuation 3498 . 3499) (punctuation 3497 . 3498) (symbol 3494 . 3497) (punctuation 3493 . 3494) (symbol 3481 . 3493) (punctuation 3480 . 3481) (symbol 3469 . 3480) (punctuation 3468 . 3469) (punctuation 3467 . 3468) (symbol 3458 . 3467) (TYPENAME 3449 . 3457) (INLINE 3442 . 3448) (punctuation 3438 . 3439) (symbol 3435 . 3438) (TYPENAME 3426 . 3434) (punctuation 3425 . 3426) (TEMPLATE 3417 . 3425) (punctuation 3257 . 3258) (punctuation 3256 . 3257) (USING 3250 . 3255) (punctuation 3185 . 3186) (punctuation 3184 . 3185) (punctuation 3183 . 3184) (DOUBLE 3177 . 3183) (punctuation 3166 . 3167) (symbol 3159 . 3166) (punctuation 3158 . 3159) (punctuation 3157 . 3158) (punctuation 3156 . 3157) (symbol 3153 . 3156) (punctuation 3152 . 3153) (symbol 3140 . 3152) (punctuation 3139 . 3140) (symbol 3128 . 3139) (punctuation 3127 . 3128) (punctuation 3126 . 3127) (symbol 3117 . 3126) (TYPENAME 3108 . 3116) (INLINE 3101 . 3107) (punctuation 3095 . 3096) (symbol 3092 . 3095) (TYPENAME 3083 . 3091) (punctuation 3082 . 3083) (TEMPLATE 3074 . 3082) (punctuation 2914 . 2915) (punctuation 2913 . 2914) (USING 2907 . 2912) (symbol 1997 . 2010) (symbol 1993 . 1996) (symbol 1986 . 1992) (punctuation 1985 . 1986))
+    :lexical-table 
+        '(("_GLIBCXX_CMATH" . ((number "1" 1982 . 1983)))
+          )
+
+    )
    )
   :file "!usr!include!c++!4.2.1!semantic.cache"
   :semantic-tag-version "2.0"

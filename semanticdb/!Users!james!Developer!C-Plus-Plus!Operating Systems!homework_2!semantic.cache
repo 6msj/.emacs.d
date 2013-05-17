@@ -1,0 +1,227 @@
+;; Object homework_2/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "homework_2/"
+  :tables (list 
+   (semanticdb-table "os.cpp"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("iostream" include (:system-flag t) nil [1 20])
+            ("deque" include (:system-flag t) nil [21 37])
+            ("stack" include (:system-flag t) nil [38 54])
+            ("fstream" include (:system-flag t) nil [55 73])
+            ("string" include (:system-flag t) nil [74 91])
+            ("cmath" include (:system-flag t) nil [92 108])
+            ("stdio.h" include (:system-flag t) nil [109 127])
+            ("time.h" include (:system-flag t) nil [128 145])
+            ("pthread.h" include (:system-flag t) nil [146 166])
+            ("word" type
+               (:typedef ("std::string" type (:type "class") nil nil)
+                :superclasses "std::string"
+                :type "typedef")
+                nil [168 193])
+            ("a_mutex" variable (:type ("pthread_mutex_t" type (:type "class") nil nil)) nil [206 230])
+            ("in" variable (:type ("std::ifstream" type (:type "class") nil nil)) nil [232 249])
+            ("out" variable (:type ("std::ofstream" type (:type "class") nil nil)) nil [282 300])
+            ("playDeque" variable (:type ("std::deque" type
+                 (:template-specifier 
+                    ( ("word" type nil nil nil))                    
+                  :type "class")
+                  nil nil)) nil [333 360])
+            ("rewindStack" variable (:type ("std::stack" type
+                 (:template-specifier 
+                    ( ("word" type nil nil nil))                    
+                  :type "class")
+                  nil nil)) nil [401 430])
+            ("currentlyPlaying" variable (:type "bool") nil [497 519])
+            ("playbackRate" variable (:type "float") nil [564 583])
+            ("controlOption" variable (:type "char") nil [630 649])
+            ("currentlyThreading" variable (:type "bool") nil [682 706])
+            ("loadWordsInDeque" function
+               (:prototype-flag t
+                :type "void")
+                nil [778 802])
+            ("askThenSeek" function
+               (:prototype-flag t
+                :type "void")
+                nil [803 822])
+            ("askThenLoad" function
+               (:prototype-flag t
+                :type "void")
+                nil [823 842])
+            ("askThenRate" function
+               (:prototype-flag t
+                :type "void")
+                nil [843 862])
+            ("stopPlaying" function
+               (:prototype-flag t
+                :type "void")
+                nil [863 882])
+            ("printPrompt" function
+               (:prototype-flag t
+                :type "void")
+                nil [883 902])
+            ("changeFunction" function
+               (:prototype-flag t
+                :type "void")
+                nil [931 953])
+            ("togglePlayer" function
+               (:prototype-flag t
+                :type "void")
+                nil [954 974])
+            ("LoadFile" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("filename" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [989 1010]))                  
+                :type "void")
+                nil [975 1011])
+            ("Stop" function
+               (:prototype-flag t
+                :type "void")
+                nil [1012 1024])
+            ("Start" function
+               (:prototype-flag t
+                :type "void")
+                nil [1025 1038])
+            ("Rewind" function
+               (:prototype-flag t
+                :type "void")
+                nil [1039 1053])
+            ("SeekTo" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("byteoffset" variable (:type "int") (reparse-symbol arg-sub-list) [1066 1081]))                  
+                :type "void")
+                nil [1054 1082])
+            ("SetRate" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("rate" variable (:type "float") (reparse-symbol arg-sub-list) [1096 1107]))                  
+                :type "void")
+                nil [1083 1108])
+            ("playMedia" function
+               (:prototype-flag t
+                :pointer 1
+                :arguments 
+                  ( ("data" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [1126 1137]))                  
+                :type "void")
+                nil [1109 1138])
+            ("determineSleep" function
+               (:prototype-flag t
+                :type "int")
+                nil [1171 1192])
+            ("stopSometimes" function
+               (:prototype-flag t
+                :pointer 1
+                :arguments 
+                  ( ("data" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [1214 1225]))                  
+                :type "void")
+                nil [1193 1226])
+            ("startSometimes" function
+               (:prototype-flag t
+                :pointer 1
+                :arguments 
+                  ( ("data" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [1249 1260]))                  
+                :type "void")
+                nil [1227 1261])
+            ("getKeys" function
+               (:prototype-flag t
+                :pointer 1
+                :arguments 
+                  ( ("data" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [1277 1288]))                  
+                :type "void")
+                nil [1262 1289])
+            ("main" function (:type "int") nil [1291 2379])
+            ("getKeys" function
+               (:pointer 1
+                :arguments 
+                  ( ("data" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [2397 2408]))                  
+                :type "void")
+                nil [2382 2696])
+            ("printPrompt" function (:type "void") nil [2698 2820])
+            ("stopSometimes" function
+               (:pointer 1
+                :arguments 
+                  ( ("data" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [2843 2854]))                  
+                :type "void")
+                nil [2822 3065])
+            ("startSometimes" function
+               (:pointer 1
+                :arguments 
+                  ( ("data" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [3089 3100]))                  
+                :type "void")
+                nil [3067 3295])
+            ("determineSleep" function (:type "int") nil [3297 3413])
+            ("changeFunction" function (:type "void") nil [3513 3888])
+            ("togglePlayer" function (:type "void") nil [3966 4121])
+            ("loadWordsInDeque" function (:type "void") nil [4287 4761])
+            ("askThenSeek" function (:type "void") nil [4837 5088])
+            ("askThenLoad" function (:type "void") nil [5165 5316])
+            ("askThenRate" function (:type "void") nil [5396 5546])
+            ("LoadFile" function
+               (:arguments 
+                  ( ("filename" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [5670 5691]))                  
+                :type "void")
+                nil [5656 6081])
+            ("Stop" function (:type "void") nil [6125 6275])
+            ("Start" function (:type "void") nil [6320 6472])
+            ("playMedia" function
+               (:pointer 1
+                :arguments 
+                  ( ("data" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [6491 6502]))                  
+                :type "void")
+                nil [6474 7727])
+            ("stopPlaying" function (:type "void") nil [7729 7856])
+            ("Rewind" function (:type "void") nil [7904 8225])
+            ("SeekTo" function
+               (:arguments 
+                  ( ("byteoffset" variable (:type "int") (reparse-symbol arg-sub-list) [8358 8373]))                  
+                :type "void")
+                nil [8346 8803])
+            ("SetRate" function
+               (:arguments 
+                  ( ("rate" variable (:type "float") (reparse-symbol arg-sub-list) [8928 8939]))                  
+                :type "void")
+                nil [8915 8968]))          
+    :file "os.cpp"
+    :pointmax 8973
+    :fsize 8972
+    :lastmodtime '(20885 58794 0 0)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!Users!james!Developer!C-Plus-Plus!Operating Systems!homework_2!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

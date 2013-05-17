@@ -1,0 +1,132 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/Users/" . "james/")
+ ("/Users/james/Developer/Python/" . "Algorithms/")
+ ("/Users/james/Developer/EBSideScroller/Project/" . "Driver/")
+ ("/Users/james/Developer/C-Plus-Plus/" . "Hangman/")
+ ("/Users/james/Developer/EBSideScroller/" . "Project/")
+ ("/Users/james/Developer/Java/OOP5/src/" . "ui/")
+ ("/Users/james/Developer/Java/OOP5/" . "src/")
+ ("/Users/james/Developer/C++/" . "Fun/")
+ ("/Users/james/Developer/Java/OOP2/src/" . "nethack/")
+ ("/Users/james/Developer/Java/OOP2/" . "src/")
+ ("/Users/james/Developer/Java/" . "OOP5/")
+ ("/Users/james/Developer/" . "EBSideScroller/")
+ ("/Users/james/" . "Developer/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/Users/james/Developer/C-Plus-Plus/Operating Systems/homework_2/"
+ "/Users/james/"
+ "/Users/james/Developer/EBSideScroller/Project/Driver/"
+ "/Users/james/Dropbox/ORG/"
+ "/Users/james/.emacs.d/"
+ "/Users/james/Dropbox/Computer Science/"
+ "/Users/james/Developer/C-Plus-Plus/Baccarat/"
+ "/"
+ "/Users/james/Developer/"
+ "/Users/james/Developer/EBSideScroller/"
+ "/Users/james/Developer/C-Plus-Plus/Hangman/"
+ "/Users/james/Developer/Python/Algorithms/"
+ "/Users/james/Developer/EBSideScroller/Project/ScreenManager/"
+ "/Users/james/Developer/C-Plus-Plus/"
+ "/Users/james/Developer/Java/OOP5/src/ui/"
+ "/Users/james/Developer/EBSideScroller/event_driven/"
+ "/Users/james/Developer/Java/OOP2/src/nethack/"
+ "/Users/james/Developer/C++/Fun/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "os.cpp"
+ ".init.el"
+ "text.txt"
+ "a.cpp"
+ "test.py"
+ "main.cpp"
+ "test.cpp"
+ "History.org"
+ "init.el"
+ "OS.org"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/Users/james/" (20885 60251 0 0) "SSHFS/" "Sites/" "PycharmProjects/" "Public/" "Pictures/" "pdf" "Music/" "mozilla-central/" "Movies/" "Library/" "Interview/" "elevatorspeech.txt" "Dropbox/" "Downloads/" "Documents/" "Developer/" "Desktop/" "crazy.py" "classNumbers.txt" "Applications/" "AndroidStudioProjects/" ".zshrc.save" ".zshrc" ".zsh_history" ".zsh-update" ".zprofile" ".zcompdump" ".weechat/" ".vimtags" ".vimrc" ".viminfx.tmp" ".viminfo.tmp" ".viminfo" ".vim/" ".Trash/" ".tramp_history" ".tmux.conf" ".swp" ".subversion/" ".ssh/" ".sh_history" ".rvm/" ".rsense" ".root" ".rnd" ".psql_history" ".pip/" ".pgpass" ".pgadmin_histoqueries" ".oh-my-zsh/" ".netrc" ".netbeans-derby/" ".neocomplcache/" ".mysql_history" ".m2/" ".lighttable/" ".lesshst" ".lein/" ".jedi/" ".irb-history" ".init.el" ".ido.last~" ".ido.last" ".heroku/" ".gvimrc" ".guard_history" ".gradle/" ".gitconfig" ".gem/" ".filezilla/" ".emacs.d/" ".eclim/" ".DS_Store" ".dropbox/" ".dotfiles/" ".config/" ".CFUserTextEncoding" ".cache/" ".bitrock/" ".bin/" ".bashrc" ".bash_profile" ".bash_history" ".argouml/" ".appletviewer" ".android/" ".adobe/" "../" "./")
+
+ ("/Users/james/.emacs.d/" (20885 42991 0 0) "themes/" "semanticdb/" "packages/" "init.el" "elpa/" "ede-projects.el" "backups/" "auto-save-list/" "ac-comphist.dat" ".git/" ".emacs~" ".DS_Store" "#init.el#" "../" "./")
+
+ ("/Users/james/Developer/C-Plus-Plus/Operating Systems/homework_2/" (20885 58794 0 0) "text.txt" "os.dSYM/" "os.cpp" "os" "media-playback.cpp" "extra" "alt.txt" "a.out" "../" "./")
+
+ ("/Users/james/Dropbox/Computer Science/" (20885 28675 0 0) "uml-Modified.zargo~" "uml-Modified.zargo" "Tasks.docx" "software2.txt" "software1.txt" "SE Project/" "Programming Interviews Exposed.PDF" "OS.org~" "OS.org" "OS (venkat sundaram's conflicted copy 2013-05-13).org" "OS (Ebad Saghar's conflicted copy 2013-05-13).org" "Operating System Concepts 9th Edition.pdf" "Operating System Concepts 8th Ed 2009 ISBN 9780470128725.pdf" "OOD.zargo" "MIPS Registers (Bao-Huy Tran's conflicted copy 2013-04-02).jpg" "MIPS Recursive Functions- 1 (Bao-Huy Tran's conflicted copy 2013-04-02).jpg" "MIPS Recursive Functions -2 (Bao-Huy Tran's conflicted copy 2013-04-02).jpg" "jdevstudio11123install.exe" "JDeveloper/" "Icon
+" "HospitalMySQL.docx" "Hospital System.docx" "emacsFILE" "databases_tables.txt" "Data Structure Design.png" "Compilers - Principles, Techniques, and Tools 2e.pdf" "ch6.pptx" "ch5.pptx" "ch4.pptx" "ch03.ppt" "ch02.ppt" "ch01.ppt" "ch01 (ronie mendoza's conflicted copy 2013-05-13).ppt" "Appointment_Schedule (JAMES - ADD TO THIS)/" ".DS_Store" ".dropbox" "#OS.org#" "../" "./")
+
+ ("/Users/james/Dropbox/ORG/" (20885 17341 0 0) "OS.org" "History.org" "Compilers.org" ".DS_Store" "../" "./")
+
+ ("/Users/james/Developer/EBSideScroller/Project/Driver/" (20885 28776 0 0) "makefile" "main.cpp" "main" "../" "./")
+
+ ("/Users/james/Developer/C-Plus-Plus/Combinations/" (20739 3973 0 0) "src/" "Debug/" "Combinations.suo" "Combinations.sln" "Combinations.ncb" "Combinations/" "../" "./")
+
+ ("/Users/james/Developer/C-Plus-Plus/Oblenglobish/" (20739 3973 0 0) "src/" "Obenglobish.suo" "Obenglobish.sln" "Obenglobish.ncb" "Obenglobish/" "Debug/" "../" "./")
+
+ ("/Users/james/Developer/Forks/" (20852 36073 0 0) "../" "./")
+
+ ("/Users/james/Developer/Openhatch/" (20791 60292 0 0) "oh-campus-foss/" "../" "./")
+
+ ("/Users/james/Developer/C-Plus-Plus/Operating Systems/" (20885 30831 0 0) "venkat.cpp" "thread-pool-server.c" "test.cpp" "test.c" "test" "homework_2/" "homework_1/" "employee-without-mutex.c" "employee-without-mutex" "employee-with-mutex.c" "employee-with-mutex" "basic_pthread.c" ".DS_Store" "../" "./")
+
+ ("/Users/james/Dropbox/Archived Code/" (20831 10719 0 0) "Ubuntu/" "SubsetSumProblem.cpp" "Stanford/" "regex/" "python/" "OOP3/" "OOP2.jar" "mips/" "java/" "html/" "Calculator/" "c++/" "C/" "Backup/" "Assignment 4 - Data Structures/" ".DS_Store" "../" "./")
+
+ ("/Users/james/Developer/C-Plus-Plus/Baccarat/" (20745 48586 0 0) "README" "Baccarat.cpp" "../" "./")
+
+ ("/Users/james/Desktop/" (20881 34724 0 0) "Thumbs.db" "desktop.ini" ".project" ".localized" ".DS_Store" ".classpath" "$RECYCLE.BIN/" "../" "./")
+
+ ("/Users/james/Developer/" (20880 27312 0 0) "Web/" "untitled.txt" "untitled.cpp" "untitled" "test.cpp" "Shell/" "Scripts/" "Scheme/" "sample_app/" "Rails/" "Python/" "puzzle_3.py" "PHP/" "Openhatch/" "Objective-C/" "Node.py" "Misc/" "log" "Java/" "Group/" "Forks/" "EBSideScroller/" "Database Architecture/" "C-Plus-Plus/" "Assembly/" "Android/" "a.py" "a.out" ".root" ".DS_Store" "#test.cpp#" "#add.cpp#" "../" "./")
+
+ ("/Users/james/Dropbox/" (20880 29973 0 0) "vimrc" "ShowList.txt" "School/" "Safari Bookmarks.html" "resumedoc.docx" "Resume.txt" "Record.txt" "Public/" "Programs/" "Programming/" "Pictures/" "ORG/" "Icon
+" "EBooks/" "dat sixmsj muzak/" "Cover Letter.doc" "config.cfg" "Computer Science/" "Archived Code/" "Apps/" "3500 Syllabus(2).doc" ".DS_Store" ".dropbox.cache/" "../" "./")
+
+ ("/Users/james/Developer/C-Plus-Plus/" (20879 17738 0 0) "WordLadder/" "ToDoList/" "test" "SudokuSolver.cpp" "SubsetSumProblem.cpp" "StanfordCPPLib/" "simul.cpp" "simul" "ShellSim/" "SDLTest/" "Scrabble-Calculator/" "schedule.txt" "reverseString.cpp" "reverseString" "Recursion 3/" "RandomWriter/" "PsuedoCodeSolver.cpp" "ProgrammingAbstractions/" "Operating Systems/" "Oblenglobish/" "NumericConversions/" "MiniPrograms/" "Implementations/" "Hangman/" "fibon.cpp" "ConsecutiveHeads/" "Compilers/" "Combinations/" "Blackjack/" "Basic C/" "Baccarat/" "Assignment3-xcode/" "abc.cpp" "ab3.cpp" "ab.c" ".git/" ".DS_Store" "#ab3.cpp#" "../" "./")
+
+ ("/Users/james/Developer/EBSideScroller/Project/ScreenManager/" (20878 33769 0 0) "ScreenManager.h" "ScreenManager.cpp" "Images/" ".DS_Store" "../" "./")
+
+ ("/Users/james/Developer/C-Plus-Plus/Hangman/" (20878 40271 0 0) "README" "Hangman.cpp" "#Hangman.cpp#" "../" "./")
+
+ ("/Users/Shared/" (20861 61946 0 0) "SC Info/" ".localized" ".DS_Store" "../" "./")
+
+ ("/Users/james/Developer/Python/Algorithms/" (20855 32659 0 0) "sorting_algorithms.py" "quicksort.pyc" "quicksort.py" "mergesort.py" "binarysearch.py" "__init__.py" "../" "./")
+
+ ("/Users/james/Developer/Python/" (20855 33144 0 0) "test.py" "Swift/" "QuickSort.py" "Python-GUI/" "Pygame/" "Node.py" "new/" "MiniPrograms/" "log.txt" "file" "Django Tutorial/" "Algorithms/" ":q!" ".git/" ".DS_Store" "../" "./")
+
+ ("/Users/james/Developer/Java/OOP2/src/nethack/" (20739 4920 0 0) "Weapon.java" "Weapon.class" "ScrollOfNothing.java" "ScrollOfNothing.class" "ScrollOfIdentify.java" "ScrollOfIdentify.class" "ScrollOfEnchantWeapon.java" "ScrollOfEnchantWeapon.class" "ScrollOfAmnesia.java" "ScrollOfAmnesia.class" "Scroll.java" "Scroll.class" "RingOfTelportation.java" "RingOfTeleportation.class" "RingOfIncreaseDamage.java" "RingOfIncreaseDamage.class" "Ring.java" "Ring.class" "NetHack.java" "NetHack.class" "LongSword.java" "LongSword.class" "Knowledge.java" "Knowledge.class" "Item.java" "Item.class" "Floor.java" "Floor.class" "Directions.java" "Directions.class" "Character.java" "Character.class" "BareHands.java" "BareHands.class" ".DS_Store" "../" "./")
+
+ ("/Users/james/Developer/EBSideScroller/event_driven/" (20866 45045 0 0) "x.png" "event_driven.cpp" "event_driven" "#event_driven.cpp#" "../" "./")
+
+ ("/Users/james/Developer/Java/OOP5/src/ui/" (20877 29944 0 0) "Driver.java" "../" "./")
+
+ ("/Users/james/Developer/Java/OOP5/src/" (20787 54049 0 0) "ui/" "META-INF/" "business/" "../" "./")
+
+ ("/Users/james/Developer/Java/OOP5/" (20795 47087 0 0) "src/" "org.eclipse.persistence.jpa.modelgen.processor-2.3.2.jar" "org.eclipse.persistence.jpa.jpql_1.0.1.jar" "nbproject/" "manifest.mf" "javax.persistence-2.0.3.jar" "eclipselink-2.3.2.jar" "build.xml" "build/" ".project" ".classpath" "../" "./")
+
+ ("/Users/james/Developer/Java/" (20867 13091 0 0) "Yahtzee/" "Tutorial/" "Test/" "Swing_Examples/" "SideScroller/" "README.md" "podcast-catcher/" "OOP5/" "OOP4/" "OOP2/" "OOP1/" "NumberAddition/" "MyFirstApp/" "Karel/" "eclimd.log" "Derby/" "ContactEditor/" "Breakout/" "Assorted/" "actionbarsherlock/" ".project" ".metadata/" ".gitignore" ".git/" ".DS_Store" ".classpath" "../" "./")
+
+ ("/Users/james/Developer/EBSideScroller/Project/" (20876 32202 0 0) "TimeManager/" "SoundManager/" "ScreenManager/" "Objects/" "Driver/" "../" "./")
+
+ ("/Users/james/Developer/EBSideScroller/" (20876 4670 0 0) "true_type/" "timing/" "surface_loading/" "start.cpp" "start" "sprite_sheets/" "Project/" "playing_sounds/" "per_pixel_collision/" "mouse_events/" "motion/" "makefile" "key_states/" "key_presses/" "image_extension/" "hello_world/" "frame_rate/" "event_driven/" "color_key/" "collision/" "circle_collision/" "adv_timing/" ".git/" ".DS_Store" ".clang_complete" "../" "./")
+
+ ("/Users/james/Developer/C++/Fun/" (20734 61313) "Permutations.cpp" "Permutations" "Merge_Sort_Failed.cpp" ".DS_Store" "../" "./")
+
+ ("/Users/james/Developer/C++/" (20727 249) "Test/" "ProgrammingAbstractionsAllMaterials.zip" "ProgrammingAbstractions/" "OOP/" "Fun/" "106B/" ".DS_Store" "../" "./")
+
+ ("/Users/james/Developer/Java/OOP2/src/" (20732 61720) "nethack/" ".DS_Store" "../" "./")
+
+ ("/Users/james/Developer/Java/OOP2/" (20732 61720) "src/" "bin/" ".settings/" ".project" ".DS_Store" ".classpath" "../" "./")
+
+ ("/Users/" (20717 64101) "Shared/" "james/" ".localized" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t
