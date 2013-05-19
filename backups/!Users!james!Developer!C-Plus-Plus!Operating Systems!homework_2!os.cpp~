@@ -1,6 +1,5 @@
 #include <iostream>
 #include <deque>
-#include <stack>
 #include <fstream>
 #include <string>
 #include <cmath>
@@ -16,8 +15,8 @@ pthread_mutex_t a_mutex;
 std::ifstream in; // object to read from the file
 std::ofstream out; // object to write to the file
 
-std::deque<word> playDeque; // deque pops to stack, reading forward
-std::stack<word> rewindStack; // stack inserts to deque, reading backwards
+std::deque<word> playDeque; // deque pops to deque, reading forward
+std::deque<word> rewindDeque; // stack inserts to deque, reading backwards
 
 // Shared variables
 bool currentlyPlaying; // boolean value to determine player status
@@ -30,6 +29,8 @@ void loadWordsInDeque();
 void askThenSeek();
 void askThenLoad();
 void askThenRate();
+void stopPlaying();
+void printPrompt();
 
 // Player Thread Functions
 void changeFunction();
@@ -40,7 +41,7 @@ void Start();
 void Rewind();
 void SeekTo(int byteoffset);
 void SetRate(float rate);
-void * PlayMedia(void *data);
+void * playMedia(void *data);
 
 // Controller Thread Functions
 int determineSleep();
@@ -72,7 +73,7 @@ int main() {
     autostopid = pthread_create(&auto_stop, NULL, stopSometimes, (void*)autostopid);
     autostartid = pthread_create(&auto_start, NULL, startSometimes, (void*)autostartid);
     keythreadid = pthread_create(&key_thread, NULL, getKeys, (void*)keythreadid);
-    playthreadid = pthread_create(&play_thread, NULL, PlayMedia, (void*)playthreadid);
+    playthreadid = pthread_create(&play_thread, NULL, playMedia, (void*)playthreadid);
     
     // wait for threads to finish
     pthread_join(auto_stop, NULL);
@@ -86,13 +87,19 @@ int main() {
 
 void * getKeys(void *data) {
     while(currentlyThreading) {
-        std::cout << "' ' - Toggle\n'r' - Rewind\n's' - Seek\n'l' - Load\n't' - Rate\n'x' - Quit\n||>";
+        printPrompt();
         std::cin.get(controlOption);
+        std::cin.ignore (std::numeric_limits<std::streamsize>::max(), '\n'); 
+
         std::cout << controlOption << ":" << std::endl;
         changeFunction();
     }
 
     pthread_exit(NULL);
+}
+
+void printPrompt() {
+    std::cout << "' ' - Toggle\n'r' - Rewind\n's' - Seek\n'l' - Load\n't' - Rate\n'x' - Quit\n||>";
 }
 
 void * stopSometimes(void *data) {
@@ -148,14 +155,14 @@ void togglePlayer() {
     }
 }
 
-// Get all the words from the file and load them in a deque. When the deque reads a word, it pops the word to the stack, which allows the player to read backwards.
+// Get all the words from the file and load them in a deque. When the deque reads a word, it pops the word to the deque, which allows the player to read backwards.
 void loadWordsInDeque() {
-    if(!playDeque.empty() || !rewindStack.empty()) {
-        // there's a chance a file was loaded before, so clear both the deque and stack before loading new words in
+    if(!playDeque.empty() || !rewindDeque.empty()) {
+        // there's a chance a file was loaded before, so clear both the deque and deque before loading new words in
         std::deque<word> _empty;
-        std::stack<word> empty_;
+        std::deque<word> empty_;
         std::swap(playDeque, _empty);
-        std::swap(rewindStack, empty_);
+        std::swap(rewindDeque, empty_);
     }
 
     word newWord;
@@ -171,6 +178,8 @@ void askThenSeek() {
     std::cout << "Seek to when? > ";
     int byteoffset;
     std::cin >> byteoffset;
+    //std::cin.ignore (std::numeric_limits<std::streamsize>::max(), '\n'); 
+
     std::cout << byteoffset << std::endl;
     SeekTo(byteoffset);
 
@@ -184,7 +193,7 @@ void askThenLoad() {
     LoadFile(filename.c_str());
 }
 
-//'t' -- prompts the user for a rate, then uses it to set the player's rate 
+// 't' -- prompts the user for a rate, then uses it to set the player's rate 
 void askThenRate() {
     std::cout << "What rate? >";
     float newRate;
@@ -193,7 +202,7 @@ void askThenRate() {
     //printf("%f",newRate);
 }
 
-// Prepares the player to playback the file whoe name is passed in. Stops the player if currently playing.
+// Prepares the player to playback the file whose name is passed in. Stops the player if currently playing.
 void LoadFile(const char *filename) {
     if(in.is_open()) {
         // if a file is already opened, close it before opening another
@@ -214,6 +223,7 @@ void LoadFile(const char *filename) {
 // Stops the player if currently playing.
 void Stop() {
     if(currentlyPlaying) {
+        std::cout << "\n---STOPPING---\n" << std::endl;
         currentlyPlaying = !currentlyPlaying;
     }
 }
@@ -221,67 +231,79 @@ void Stop() {
 // Starts the player if currently stopped.
 void Start() {
     if(!currentlyPlaying) {
-        currentlyPlaying = !currentlyPlaying;
+        if (playDeque.empty()) {
+            std::cout << "---TRIED TO START BUT NO MORE WORDS TO DISPLAY---" << std::endl;
+        } else {
+            std::cout << "\n---STARTING---\n" << std::endl;
+            currentlyPlaying = !currentlyPlaying;
+        }
+            
     }
 }
 
-void * PlayMedia(void *data) {
+void * playMedia(void *data) {
     while(currentlyThreading) {
         while(currentlyPlaying) {
             if(playbackRate < 0) {
                 // play in reverse
-                while(!rewindStack.empty()) {
-                    word playingWord = rewindStack.top();
-                    std::cout << playingWord << std::endl;
-                    sleep(std::abs(playbackRate));
+                while(!rewindDeque.empty() && currentlyPlaying) {
+
+                    pthread_mutex_lock(&a_mutex);
+                    word playingWord = rewindDeque.back();
+                    std::cout << "\n" << playingWord << std::endl;
                     playDeque.push_back(playingWord);
-                    rewindStack.pop();
-                    if(rewindStack.empty()) {
-                        pthread_mutex_lock(&a_mutex);
-                        currentlyPlaying = false;
-                        pthread_mutex_unlock(&a_mutex);
+                    rewindDeque.pop_back();
+                    pthread_mutex_unlock(&a_mutex);
+
+                    sleep(std::abs(playbackRate));
+                    if(rewindDeque.empty()) {
+                        stopPlaying();
                     }
                 }
-
-                pthread_mutex_lock(&a_mutex);
-                currentlyPlaying = false;
-                pthread_mutex_unlock(&a_mutex);
+                stopPlaying();
             } else {
                 // play forward
-                while(!playDeque.empty()) {
+                while(!playDeque.empty() && currentlyPlaying) {
+
+                    pthread_mutex_lock(&a_mutex);
                     word playingWord = playDeque.front();
-                    std::cout << playingWord << std::endl;
-                    sleep(playbackRate);
-                    rewindStack.push(playingWord);
+                    std::cout << "\n" << playingWord;
+                    rewindDeque.push_back(playingWord);
                     playDeque.pop_front();
+                    pthread_mutex_unlock(&a_mutex);
+
+                    sleep(playbackRate);
                     if(playDeque.empty()) {
-                        pthread_mutex_lock(&a_mutex);
-                        currentlyPlaying = false;
-                        pthread_mutex_unlock(&a_mutex);
+                        stopPlaying();
                     }
                 }
 
-                pthread_mutex_lock(&a_mutex);
-                currentlyPlaying = false;
-                pthread_mutex_unlock(&a_mutex);
-
+                stopPlaying();
             }
+            //printPrompt();
         }
     }
     pthread_exit(NULL);
 }
 
+void stopPlaying() {
+    pthread_mutex_lock(&a_mutex);
+    currentlyPlaying = false;
+    pthread_mutex_unlock(&a_mutex);
+    
+}
+
 // Sets the position of the player to time 0.
 void Rewind() {
 
-    // STACK INSERTS TO THE BEGINNING OF THE DEQUE
+    // DEQUE INSERTS TO THE BEGINNING OF THE DEQUE
     
-    if (rewindStack.empty()) {
+    if (rewindDeque.empty()) {
         //std::cout << "Already at the beginning." << std::endl;
     } else {
-        while(!rewindStack.empty()) {
-            playDeque.push_front(rewindStack.top());
-            rewindStack.pop();
+        while(!rewindDeque.empty()) {
+            playDeque.push_front(rewindDeque.back());
+            rewindDeque.pop_back();
         }
     }
 }
@@ -293,12 +315,12 @@ void SeekTo(int byteoffset) {
     while(movingOffset) {
         word dequeFront = playDeque.front();
         if(byteoffset < dequeFront.size()) {
-            rewindStack.push(dequeFront);
+            rewindDeque.push_back(dequeFront);
             playDeque.pop_front();
             movingOffset = false;
         } else {
             byteoffset -= dequeFront.size();
-            rewindStack.push(dequeFront);
+            rewindDeque.push_back(dequeFront);
             playDeque.pop_front();
         }
     }

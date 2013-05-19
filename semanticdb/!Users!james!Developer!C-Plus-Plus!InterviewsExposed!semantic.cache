@@ -1,0 +1,248 @@
+;; Object InterviewsExposed/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "InterviewsExposed/"
+  :tables (list 
+   (semanticdb-table "LinkedList.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("LINKED_LIST_H" variable (:constant-flag t) nil [31 44])
+            ("iostream" include (:system-flag t) nil [45 64])
+            ("Node" type
+               (:members 
+                  ( ("next" variable
+                       (:pointer 1
+                        :type ("Node" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [84 95])
+                    ("data" variable (:type "int") (reparse-symbol classsubparts) [100 109]))                  
+                :type "struct")
+                nil [66 112])
+            ("LinkedList" type
+               (:members 
+                  ( ("public" label nil (reparse-symbol classsubparts) [133 140])
+                    ("LinkedList" function
+                       (:prototype-flag t
+                        :constructor-flag t
+                        :type ("LinkedList" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [145 158])
+                    ("pop" function
+                       (:prototype-flag t
+                        :type "void")
+                        (reparse-symbol classsubparts) [163 174])
+                    ("push" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("data" variable (:type "int") (reparse-symbol arg-sub-list) [189 198]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [179 199])
+                    ("private" label nil (reparse-symbol classsubparts) [200 208])
+                    ("head" variable
+                       (:pointer 1
+                        :type ("Node" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [213 224]))                  
+                :type "class")
+                nil [114 227]))          
+    :file "LinkedList.h"
+    :pointmax 236
+    :fsize 235
+    :lastmodtime '(20888 10209 0 0)
+    :unmatched-syntax 'nil
+    :lexical-table 
+        '(("LINKED_LIST_H")
+          )
+
+    )
+   (semanticdb-table "Main.cpp"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("iostream" include (:system-flag t) nil [1 20])
+            ("LinkedList.h" include nil nil [21 44])
+            ("std" using (:type ("std" type
+                 (:prototype t
+                  :type "namespace")
+                  nil nil)) nil [45 65])
+            ("main" function (:type "int") nil [67 96]))          
+    :file "Main.cpp"
+    :pointmax 98
+    :fsize 97
+    :lastmodtime '(20888 10214 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "LinkedList.cpp"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("LinkedList.h" include nil nil [1 24])
+            ("LinkedList" function
+               (:constructor-flag t
+                :parent "LinkedList"
+                :type ("LinkedList" type (:type "class") nil nil))
+                nil [26 71])
+            ("pop" function
+               (:parent "LinkedList"
+                :type "void")
+                nil [73 104])
+            ("push" function
+               (:parent "LinkedList"
+                :arguments 
+                  ( ("data" variable (:type "int") (reparse-symbol arg-sub-list) [128 137]))                  
+                :type "void")
+                nil [106 246]))          
+    :file "LinkedList.cpp"
+    :pointmax 247
+    :fsize 171
+    :lastmodtime '(20888 10224 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "Stack.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("iostream" include (:system-flag t) nil [1 20])
+            ("Stack" type
+               (:members 
+                  ( ("public" label nil (reparse-symbol classsubparts) [36 43])
+                    ("Stack" function
+                       (:prototype-flag t
+                        :constructor-flag t
+                        :type ("Stack" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [48 56])
+                    ("Stack" function
+                       (:prototype-flag t
+                        :destructor-flag t
+                        :type "void")
+                        (reparse-symbol classsubparts) [61 70])
+                    ("push" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("data" variable
+                               (:pointer 1
+                                :type "void")
+                                (reparse-symbol arg-sub-list) [86 98]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [75 99])
+                    ("pop" function
+                       (:prototype-flag t
+                        :type "int")
+                        (reparse-symbol classsubparts) [104 114])
+                    ("protected" label nil (reparse-symbol classsubparts) [115 125])
+                    ("Element" type
+                       (:typedef ("Element" type (:type "struct") nil nil)
+                        :superclasses "Element"
+                        :type "typedef")
+                        (reparse-symbol classsubparts) [175 262])
+                    ("Element" type
+                       (:members 
+                          ( ("next" variable
+                               (:pointer 1
+                                :type ("Element" type
+                                     (:prototype t
+                                      :type "struct")
+                                      nil nil))
+                                (reparse-symbol classsubparts) [208 229])
+                            ("data" variable (:type "int") (reparse-symbol classsubparts) [238 247]))                          
+                        :type "struct")
+                        (reparse-symbol classsubparts) [175 262])
+                    ("head" variable
+                       (:pointer 1
+                        :type ("Element" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [267 281]))                  
+                :type "class")
+                nil [22 284])
+            ("Stack" function
+               (:constructor-flag t
+                :parent "Stack"
+                :type ("Stack" type (:type "class") nil nil))
+                nil [286 333])
+            ("Stack" function
+               (:destructor-flag t
+                :parent "Stack"
+                :type "void")
+                nil [335 470])
+            ("push" function
+               (:parent "Stack"
+                :arguments 
+                  ( ("data" variable (:type "int") (reparse-symbol arg-sub-list) [490 500]))                  
+                :type "void")
+                nil [472 669])
+            ("pop" function
+               (:parent "Stack"
+                :type "int")
+                nil [671 966]))          
+    :file "Stack.h"
+    :pointmax 967
+    :fsize 966
+    :lastmodtime '(20888 12614 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "ListFlattening.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("curNode" variable
+               (:pointer 1
+                :type ("Node" type (:type "class") nil nil))
+                nil [334 355])
+            ("curNode" variable
+               (:pointer 1
+                :type ("Node" type (:type "class") nil nil))
+                nil [591 605])
+            ("next" variable (:type "int") nil [666 679])
+            ("prev" variable (:type "int") nil [691 704])
+            ("tail" variable
+               (:pointer 1
+                :type "int")
+                nil [964 980]))          
+    :file "ListFlattening.h"
+    :pointmax 985
+    :fsize 984
+    :lastmodtime '(20888 14830 0 0)
+    :unmatched-syntax '((close-paren 981 . 982) (punctuation 893 . 894) (semantic-list 780 . 848) (FOR 777 . 780) (punctuation 690 . 691) (punctuation 689 . 690) (symbol 684 . 689) (punctuation 665 . 666) (punctuation 664 . 665) (semantic-list 657 . 664) (open-paren 585 . 586) (close-paren 583 . 584) (symbol 579 . 583) (punctuation 578 . 579) (punctuation 577 . 578) (symbol 572 . 576) (punctuation 570 . 571) (symbol 565 . 570) (punctuation 564 . 565) (symbol 559 . 563) (open-paren 557 . 558) (symbol 551 . 557) (VOID 546 . 550) (close-paren 543 . 544) (semantic-list 377 . 542) (semantic-list 365 . 376) (WHILE 360 . 365) (close-paren 543 . 544) (semantic-list 377 . 542) (semantic-list 365 . 376) (WHILE 360 . 365))
+    )
+   (semanticdb-table "ListUnflattening.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("unflatten" function
+               (:arguments 
+                  ( ("start" variable
+                       (:pointer 1
+                        :type ("Node" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [309 321])
+                    ("tail" variable
+                       (:pointer 1
+                        :type ("Node" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [322 334]))                  
+                :type "void")
+                nil [293 554])
+            ("exploreAndSeparate" function
+               (:arguments 
+                  ( ("childListStart" variable
+                       (:pointer 1
+                        :type ("Node" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [590 612]))                  
+                :type "void")
+                nil [565 1014]))          
+    :file "ListUnflattening.h"
+    :pointmax 1015
+    :fsize 1014
+    :lastmodtime '(20888 15089 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "AcyclicOrNot.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("determineTermination" function
+               (:arguments 
+                  ( ("head" variable
+                       (:pointer 1
+                        :type ("Node" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [519 531]))                  
+                :type "bool")
+                nil [492 841]))          
+    :file "AcyclicOrNot.h"
+    :pointmax 842
+    :fsize 841
+    :lastmodtime '(20888 16182 0 0)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!Users!james!Developer!C-Plus-Plus!InterviewsExposed!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

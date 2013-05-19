@@ -3,6 +3,8 @@
 (let ((default-directory "~/.emacs.d/"))
   (normal-top-level-add-subdirs-to-load-path))
 
+;;(setenv "ESHELL" (expand-file-name "~/.bin/eshell"))
+
 (add-to-list 'load-path "~/.emacs.d/packages/")
 
 ;; no startup message
@@ -12,18 +14,37 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
- '(custom-safe-themes (quote ("4325f9a9fb853d0116a1197ece0dc22027ae67ef798efa6e05e009fe41e2f899" "68769179097d800e415631967544f8b2001dae07972939446e21438b1010748c" "5ee12d8250b0952deefc88814cf0672327d7ee70b16344372db9460e9a0e3ffc" "1157a4055504672be1df1232bed784ba575c60ab44d8e6c7b3800ae76b42f8bd" "7f1263c969f04a8e58f9441f4ba4d7fb1302243355cb9faecb55aec878a06ee9" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default)))
+ '(custom-safe-themes (quote ("0a47a318b366c8d5bf2a4738ff4cea9988c60f4b3b7f7a31cff565a7889406a5" "4325f9a9fb853d0116a1197ece0dc22027ae67ef798efa6e05e009fe41e2f899" "68769179097d800e415631967544f8b2001dae07972939446e21438b1010748c" "5ee12d8250b0952deefc88814cf0672327d7ee70b16344372db9460e9a0e3ffc" "1157a4055504672be1df1232bed784ba575c60ab44d8e6c7b3800ae76b42f8bd" "7f1263c969f04a8e58f9441f4ba4d7fb1302243355cb9faecb55aec878a06ee9" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default)))
  '(inhibit-startup-screen t)
  '(show-paren-mode t))
 
 ;; package manager
+;;(require 'package)
+;;;; Add the original Emacs Lisp Package Archive
+;;(add-to-list 'package-archives
+;;             '("elpa" . "http://tromey.com/elpa/")
+;;             '("marma" . "http://marmalade-repo.org/packages/")
+;;             '("melpa" . "http://melpa.milkbox.net/") t)
+
 (require 'package)
-;; Add the original Emacs Lisp Package Archive
+(setq package-archives '(("ELPA" . "http://tromey.com/elpa/") 
+                          ("gnu" . "http://elpa.gnu.org/packages/")
+                          ("marmalade" . "http://marmalade-repo.org/packages/")))
+
+; Apparently needed for the package auto-complete (why?)
 (add-to-list 'package-archives
-             '("elpa" . "http://tromey.com/elpa/"))
-;; Add the user-contributed repository
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+(package-initialize)
+(setq url-http-attempt-keepalives nil)
+
+;; Marmalade
+;;(add-to-list 'package-archives
+;;             '("marmalade" . "http://marmalade-repo.org/packages/"))
+;; Melpa
+;;(add-to-list 'package-archives
+;;             '("melpa" . "http://melpa.milkbox.net/"))
+
 
 ;; Download and install packages if they aren't already installed.
 (require 'package)
@@ -35,10 +56,12 @@
                      evil-leader
                      evil-nerd-commenter
                      fuzzy
+                     helm
                      key-chord
                      rainbow-delimiters
                      org
                      smooth-scrolling
+                     sr-speedbar
                      surround
                      theme-changer
                      undo-tree
@@ -48,7 +71,6 @@
     (package-install package)))
 
 ;; ----------------- START -----------------------------------
-
 
 ;; ----------------- THEME ------------------------------------
 ;; color schemes
@@ -60,12 +82,14 @@
 (setq calendar-latitude 32.85)
 (setq calendar-longitude -96.85)
 (require 'theme-changer)
-(change-theme 'solarized-light 'solarized-dark)
+;;(change-theme 'solarized-light 'solarized-dark)
+(change-theme 'molokai 'molokai)
 
 ;; disable ui fluff
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(fringe-mode 0)
 
 ;; Mac Specific
 (when (eq system-type 'darwin)
@@ -76,12 +100,11 @@
   ;; mac needs the menu bar 
   (if window-system
       (menu-bar-mode 1))
-
 )
 
 ;; scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+;;(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 
@@ -93,7 +116,6 @@
 (require 'smooth-scrolling)
 (set-variable 'smooth-scroll-margin 5)
 (setq scroll-preserve-screen-position 1)
-
 
 ;; Colorful Delimiters.
 (require 'rainbow-delimiters)
@@ -108,6 +130,119 @@
 
 ;; Mute system sound.
 (setq ring-bell-function #'ignore)
+
+;; Mode line setup
+(setq-default
+ mode-line-format
+ '(; Position, including warning for 80 columns
+   (:propertize "%4l:" face mode-line-position-face)
+   (:eval (propertize "%3c" 'face
+                      (if (>= (current-column) 80)
+                          'mode-line-80col-face
+                        'mode-line-position-face)))
+   ; emacsclient [default -- keep?]
+   mode-line-client
+   "  "
+   ; read-only or modified status
+   (:eval
+    (cond (buffer-read-only
+           (propertize " RO " 'face 'mode-line-read-only-face))
+          ((buffer-modified-p)
+           (propertize " ** " 'face 'mode-line-modified-face))
+          (t "      ")))
+   "    "
+   ; directory and buffer/file name
+   (:propertize (:eval (shorten-directory default-directory 30))
+                face mode-line-folder-face)
+   (:propertize "%b"
+                face mode-line-filename-face)
+   ; narrow [default -- keep?]
+   " %n "
+   ; mode indicators: vc, recursive edit, major mode, minor modes, process, global
+   (vc-mode vc-mode)
+   "  %["
+   (:propertize mode-name
+                face mode-line-mode-face)
+   "%] "
+   (:eval (propertize (format-mode-line minor-mode-alist)
+                      'face 'mode-line-minor-mode-face))
+   (:propertize mode-line-process
+                face mode-line-process-face)
+   (global-mode-string global-mode-string)
+   "    "
+   ; nyan-mode uses nyan cat as an alternative to %p
+   (:eval (when nyan-mode (list (nyan-create))))
+   ))
+
+;; Helper function
+(defun shorten-directory (dir max-length)
+  "Show up to `max-length' characters of a directory name `dir'."
+  (let ((path (reverse (split-string (abbreviate-file-name dir) "/")))
+        (output ""))
+    (when (and path (equal "" (car path)))
+      (setq path (cdr path)))
+    (while (and path (< (length output) (- max-length 4)))
+      (setq output (concat (car path) "/" output))
+      (setq path (cdr path)))
+    (when path
+      (setq output (concat ".../" output)))
+    output))
+
+;; Extra mode line faces
+(make-face 'mode-line-read-only-face)
+(make-face 'mode-line-modified-face)
+(make-face 'mode-line-folder-face)
+(make-face 'mode-line-filename-face)
+(make-face 'mode-line-position-face)
+(make-face 'mode-line-mode-face)
+(make-face 'mode-line-minor-mode-face)
+(make-face 'mode-line-process-face)
+(make-face 'mode-line-80col-face)
+
+(set-face-attribute 'mode-line nil
+    :foreground "gray60" :background "gray20"
+    :inverse-video nil
+    :box '(:line-width 6 :color "gray20" :style nil))
+(set-face-attribute 'mode-line-inactive nil
+    :foreground "gray80" :background "gray40"
+    :inverse-video nil
+    :box '(:line-width 6 :color "gray40" :style nil))
+
+(set-face-attribute 'mode-line-read-only-face nil
+    :inherit 'mode-line-face
+    :foreground "#4271ae"
+    :box '(:line-width 2 :color "#4271ae"))
+(set-face-attribute 'mode-line-modified-face nil
+    :inherit 'mode-line-face
+    :foreground "#c82829"
+    :background "#ffffff"
+    :box '(:line-width 2 :color "#c82829"))
+(set-face-attribute 'mode-line-folder-face nil
+    :inherit 'mode-line-face
+    :foreground "gray60")
+(set-face-attribute 'mode-line-filename-face nil
+    :inherit 'mode-line-face
+    :foreground "#eab700"
+    :weight 'bold)
+(set-face-attribute 'mode-line-position-face nil
+    :inherit 'mode-line-face
+    :family "Menlo" :height 100)
+(set-face-attribute 'mode-line-mode-face nil
+    :inherit 'mode-line-face
+    :foreground "gray80")
+(set-face-attribute 'mode-line-minor-mode-face nil
+    :inherit 'mode-line-mode-face
+    :foreground "gray40"
+    :height 110)
+(set-face-attribute 'mode-line-process-face nil
+    :inherit 'mode-line-face
+    :foreground "#718c00")
+(set-face-attribute 'mode-line-80col-face nil
+    :inherit 'mode-line-position-face
+    :foreground "black" :background "#eab700")
+
+(require 'powerline)
+(powerline-default-theme)
 
 ;; ----------------- THEME ------------------------------------
 
@@ -125,7 +260,7 @@
 (global-set-key (kbd "<F2>") 'hs-toggle-hiding) ;; toggle folds
 (global-set-key (kbd "<F3>") 'hs-show-all) ;; open all folds
 (global-set-key (kbd "<F4>") 'hs-hide-all) ;; hides all folds
-(global-set-key (kbd "<F5>") 'gdb) ;; debugging
+(global-set-key (kbd "<F5>") 'gud-gdb) ;; debugging
 (global-set-key (kbd "<F6>") 'recompile) ;; recompile
 (global-set-key (kbd "<F7>") 'compile) ;; compiling
 (global-set-key (kbd "\C-c o") 'occur) ;; occur!!
@@ -195,6 +330,13 @@
 (require 'autopair)
 (autopair-global-mode)
 
+;; show speedbar in the same frame
+(require 'sr-speedbar)
+
+;; helm
+(require 'helm-config)
+(helm-mode 1)
+
 ;; ----------------- EDITING ----------------------------------
 
 ;; ----------------- FUNCTIONS --------------------------------
@@ -206,7 +348,7 @@
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 
-;; toggle window split
+;;toggle window split
 (defun toggle-window-split ()
   (interactive)
   (if (= (count-windows) 2)
@@ -329,16 +471,16 @@
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-completion-map [escape]
-            'minibuffer-keyboard-quit)
+          'minibuffer-keyboard-quit)
 (define-key minibuffer-local-must-match-map [escape]
-            'minibuffer-keyboard-quit)
+          'minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape]
-            'minibuffer-keyboard-quit)
+          'minibuffer-keyboard-quit)
 
 (define-key evil-normal-state-map [f2] 'hs-toggle-hiding)
 (define-key evil-normal-state-map [f3] 'hs-show-all)
 (define-key evil-normal-state-map [f4] 'hs-hide-all)
-(define-key evil-normal-state-map [f5] 'gdb)
+(define-key evil-normal-state-map [f5] 'gud-gdb)
 (define-key evil-normal-state-map [f6] 'recompile)
 (define-key evil-normal-state-map [f7] 'compile)
 (define-key evil-normal-state-map [f8] 'eval-last-sexp)
@@ -352,13 +494,13 @@
 (require 'evil-leader)
 (evil-leader/set-leader ",")
 (evil-leader/set-key
-  ;; evil nerd commenter
-  "ci" 'evilnc-comment-or-uncomment-lines
-  "cc" 'evilnc-comment-or-uncomment-to-the-line
-  "v"  (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
-  "wh" 'split-window-below
-  "wv" 'split-window-right
-  )
+;; evil nerd commenter
+    "ci" 'evilnc-comment-or-uncomment-lines
+    "cc" 'evilnc-comment-or-uncomment-to-the-line
+    "v"  (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
+    "wh" 'split-window-below
+    "wv" 'split-window-right
+)
 
 ;; fix black cursor
 (setq evil-default-cursor t)
@@ -385,16 +527,16 @@
 ;; ----------------- CEDET ------------------------------------
 
 ;; project management
-;(global-ede-mode 1)
+;;(global-ede-mode 1)
 
 ;; integration with imenu
 (defun my-semantic-hook ()
-  (imenu-add-to-menubar "Tags"))
+(imenu-add-to-menubar "Tags"))
 (add-hook 'semantic-init-hooks 'my-semantic-hook)
 
 (defun my-c-mode-cedet-hook ()
-  (add-to-list 'ac-sources 'ac-source-gtags)
-  (add-to-list 'ac-sources 'ac-source-semantic))
+(add-to-list 'ac-sources 'ac-source-gtags)
+(add-to-list 'ac-sources 'ac-source-semantic))
 (add-hook 'c-mode-common-hook 'my-c-mode-cedet-hook)
 
 ;; semantic
@@ -411,20 +553,20 @@
 
 ;; Write backup files to own directory
 (setq backup-directory-alist
-      `(("." . ,(expand-file-name
-                 (concat user-emacs-directory "backups")))))
+    `(("." . ,(expand-file-name
+               (concat user-emacs-directory "backups")))))
 
 ;; Make backups of files, even when they're in version control
 (setq vc-make-backup-files t)
 
 
-;; get the zsh path
+(if window-system
 (let ((path (shell-command-to-string ". ~/.zshrc; echo -n $PATH")))
-  (setenv "PATH" path)
-  (setq exec-path 
-        (append
-         (split-string-and-unquote path ":")
-         exec-path)))
+    (setenv "PATH" path)
+    (setq exec-path 
+          (append
+           (split-string-and-unquote path ":")
+           exec-path))))
 
 ;; ----------------- FILES ------------------------------------
 

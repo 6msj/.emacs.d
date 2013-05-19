@@ -1,8 +1,9 @@
-
 ;; ----------------- START -----------------------------------
 ;; loadpath
 (let ((default-directory "~/.emacs.d/"))
   (normal-top-level-add-subdirs-to-load-path))
+
+;;(setenv "ESHELL" (expand-file-name "~/.bin/eshell"))
 
 (add-to-list 'load-path "~/.emacs.d/packages/")
 
@@ -48,8 +49,19 @@
   (unless (package-installed-p package)
     (package-install package)))
 
-;; ----------------- START -----------------------------------
+(setq mode-line-format
+      (list
+       ;; value of `mode-name'
+       "%m: "
+       ;; value of current buffer name
+       "buffer %b, "
+       ;; value of current line number
+       "line %l "
+       "-- user: "
+       ;; value of user
+       (getenv "USER")))
 
+;; ----------------- START -----------------------------------
 
 ;; ----------------- THEME ------------------------------------
 ;; color schemes
@@ -77,17 +89,14 @@
   ;; mac needs the menu bar 
   (if window-system
       (menu-bar-mode 1))
-
 )
+
 
 ;; scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+;;(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 (setq scroll-step 1) ;; keyboard scroll one line at a time
-
-(setq scroll-step           1
-    scroll-conservatively 10000)
 
 ;; Autosave every 500 typed characters
 (setq auto-save-interval 500)
@@ -97,7 +106,6 @@
 (require 'smooth-scrolling)
 (set-variable 'smooth-scroll-margin 5)
 (setq scroll-preserve-screen-position 1)
-
 
 
 ;; Colorful Delimiters.
@@ -113,6 +121,18 @@
 
 ;; Mute system sound.
 (setq ring-bell-function #'ignore)
+
+(setq mode-line-format
+      (list
+       ;; value of `mode-name'
+       " -- %m: "
+       ;; value of current buffer name
+       "buffer %b, "
+       ;; value of current line number
+       "line %l "
+       "-- user: "
+       ;; value of user
+       (getenv "USER")))
 
 ;; ----------------- THEME ------------------------------------
 
@@ -130,7 +150,7 @@
 (global-set-key (kbd "<F2>") 'hs-toggle-hiding) ;; toggle folds
 (global-set-key (kbd "<F3>") 'hs-show-all) ;; open all folds
 (global-set-key (kbd "<F4>") 'hs-hide-all) ;; hides all folds
-(global-set-key (kbd "<F5>") 'gdb) ;; debugging
+(global-set-key (kbd "<F5>") 'gud-gdb) ;; debugging
 (global-set-key (kbd "<F6>") 'recompile) ;; recompile
 (global-set-key (kbd "<F7>") 'compile) ;; compiling
 (global-set-key (kbd "\C-c o") 'occur) ;; occur!!
@@ -211,7 +231,7 @@
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 
-;; toggle window split
+;;toggle window split
 (defun toggle-window-split ()
   (interactive)
   (if (= (count-windows) 2)
@@ -302,162 +322,162 @@
 
 ;; ----------------- NAVIGATION -------------------------------
 
-;; ----------------- EVIL -------------------------------------
-
-;; undo-true
-(require 'undo-tree)
-(global-undo-tree-mode)
-
-(require 'evil)
-(evil-mode 1)
-(define-key evil-normal-state-map "L" 'evil-end-of-line)
-(define-key evil-normal-state-map "H" 'evil-first-non-blank)
-(define-key evil-normal-state-map ";" 'evil-ex)
-(define-key evil-normal-state-map "\C-h" 'windmove-left) ;; move left around split
-(define-key evil-normal-state-map "\C-l" 'windmove-right) ;; move right around split
-(define-key evil-normal-state-map "\C-k" 'windmove-up) ;; move up a split
-(define-key evil-normal-state-map "\C-j" 'windmove-down) ;; move down a split
-(define-key evil-normal-state-map "\C-p" 'ff-find-other-file) ;; open .h or .cpp
-(define-key evil-visual-state-map "L" 'evil-end-of-line)
-(define-key evil-visual-state-map "H" 'evil-first-non-blank)
-(define-key evil-normal-state-map "Y" 'copy-to-end-of-line)
-(define-key evil-visual-state-map ";" 'evil-ex)
-
-(require 'key-chord)
-(key-chord-mode 1)
-(key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
-
-;; esc quits
-(define-key evil-normal-state-map [escape] 'keyboard-quit)
-(define-key evil-normal-state-map (kbd "C-u") 'keyboard-quit)
-(define-key evil-visual-state-map [escape] 'keyboard-quit)
-(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-completion-map [escape]
-            'minibuffer-keyboard-quit)
-(define-key minibuffer-local-must-match-map [escape]
-            'minibuffer-keyboard-quit)
-(define-key minibuffer-local-isearch-map [escape]
-            'minibuffer-keyboard-quit)
-
-(define-key evil-normal-state-map [f2] 'hs-toggle-hiding)
-(define-key evil-normal-state-map [f3] 'hs-show-all)
-(define-key evil-normal-state-map [f4] 'hs-hide-all)
-(define-key evil-normal-state-map [f5] 'gdb)
-(define-key evil-normal-state-map [f6] 'recompile)
-(define-key evil-normal-state-map [f7] 'compile)
-(define-key evil-normal-state-map [f8] 'eval-last-sexp)
-(define-key evil-motion-state-map [f8] 'eval-last-sexp)
-
-;; evil surround
-(require 'surround)
-(global-surround-mode 1)
-
-;; evil leader
-(require 'evil-leader)
-(evil-leader/set-leader ",")
-(evil-leader/set-key
-  ;; evil nerd commenter
-  "ci" 'evilnc-comment-or-uncomment-lines
-  "cc" 'evilnc-comment-or-uncomment-to-the-line
-  "v"  (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
-  "wh" 'split-window-below
-  "wv" 'split-window-right
-  )
-
-;; fix black cursor
-(setq evil-default-cursor t)
-
-;; ----------------- EVIL -------------------------------------
-
-;; ----------------- AUTO COMPLETE ----------------------------
-
-;; yasnippet
-(require 'yasnippet)
-(yas-global-mode 1)
-(setq ac-source-yasnippet nil)
-(setq yas/prompt-functions '(yas/x-prompt 'yas/ido-prompt))
-
-;; autocompletion
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/packages/auto-complete/ac-dict")
-(add-to-list 'ac-sources 'ac-source-yasnippet)
-(ac-config-default)
-
-
-;; ----------------- AUTO COMPLETE ----------------------------
-
-;; ----------------- CEDET ------------------------------------
-
-;; project management
-;(global-ede-mode 1)
-
-;; integration with imenu
-(defun my-semantic-hook ()
-  (imenu-add-to-menubar "Tags"))
-(add-hook 'semantic-init-hooks 'my-semantic-hook)
-
-(defun my-c-mode-cedet-hook ()
-  (add-to-list 'ac-sources 'ac-source-gtags)
-  (add-to-list 'ac-sources 'ac-source-semantic))
-(add-hook 'c-mode-common-hook 'my-c-mode-cedet-hook)
-
-;; semantic
-(semantic-mode 1)
-(add-hook 'c++-mode (lambda () (add-to-list 'ac-sources 'ac-source-semantic)))
-
-;; ----------------- CEDET ------------------------------------
-
-
-;; ----------------- FILES ------------------------------------
-
-;; No autosave
-(setq auto-save-default nil)
-
-;; Write backup files to own directory
-(setq backup-directory-alist
-      `(("." . ,(expand-file-name
-                 (concat user-emacs-directory "backups")))))
-
-;; Make backups of files, even when they're in version control
-(setq vc-make-backup-files t)
-
-
-;; get the zsh path
-(let ((path (shell-command-to-string ". ~/.zshrc; echo -n $PATH")))
-  (setenv "PATH" path)
-  (setq exec-path 
-        (append
-         (split-string-and-unquote path ":")
-         exec-path)))
-
-;; ----------------- FILES ------------------------------------
-
-;; ----------------- END --------------------------------------
-
-;; Enable transient mark mode.
-(transient-mark-mode 1)
-
-;; Load org-mode
-(require 'org)
-
-;; Associate .org files with org-mode inside of Emacs
-(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-
-;; Hotkeys for org-mode
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cb" 'org-iswitchb)
-
-;; Tips
-;; <M-x> ielm opens up the ELISP interpreter.
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
-;; ----------------- END --------------------------------------
+;;;; ----------------- EVIL -------------------------------------
+;;
+;;;; undo-true
+;;(require 'undo-tree)
+;;(global-undo-tree-mode)
+;;
+;;(require 'evil)
+;;(evil-mode 1)
+;;(define-key evil-normal-state-map "L" 'evil-end-of-line)
+;;(define-key evil-normal-state-map "H" 'evil-first-non-blank)
+;;(define-key evil-normal-state-map ";" 'evil-ex)
+;;(define-key evil-normal-state-map "\C-h" 'windmove-left) ;; move left around split
+;;(define-key evil-normal-state-map "\C-l" 'windmove-right) ;; move right around split
+;;(define-key evil-normal-state-map "\C-k" 'windmove-up) ;; move up a split
+;;(define-key evil-normal-state-map "\C-j" 'windmove-down) ;; move down a split
+;;(define-key evil-normal-state-map "\C-p" 'ff-find-other-file) ;; open .h or .cpp
+;;(define-key evil-visual-state-map "L" 'evil-end-of-line)
+;;(define-key evil-visual-state-map "H" 'evil-first-non-blank)
+;;(define-key evil-normal-state-map "Y" 'copy-to-end-of-line)
+;;(define-key evil-visual-state-map ";" 'evil-ex)
+;;
+;;(require 'key-chord)
+;;(key-chord-mode 1)
+;;(key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+;;
+;;;; esc quits
+;;(define-key evil-normal-state-map [escape] 'keyboard-quit)
+;;(define-key evil-normal-state-map (kbd "C-u") 'keyboard-quit)
+;;(define-key evil-visual-state-map [escape] 'keyboard-quit)
+;;(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+;;(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+;;(define-key minibuffer-local-completion-map [escape]
+            ;;'minibuffer-keyboard-quit)
+;;(define-key minibuffer-local-must-match-map [escape]
+            ;;'minibuffer-keyboard-quit)
+;;(define-key minibuffer-local-isearch-map [escape]
+            ;;'minibuffer-keyboard-quit)
+;;
+;;(define-key evil-normal-state-map [f2] 'hs-toggle-hiding)
+;;(define-key evil-normal-state-map [f3] 'hs-show-all)
+;;(define-key evil-normal-state-map [f4] 'hs-hide-all)
+;;(define-key evil-normal-state-map [f5] 'gud-gdb)
+;;(define-key evil-normal-state-map [f6] 'recompile)
+;;(define-key evil-normal-state-map [f7] 'compile)
+;;(define-key evil-normal-state-map [f8] 'eval-last-sexp)
+;;(define-key evil-motion-state-map [f8] 'eval-last-sexp)
+;;
+;;;; evil surround
+;;(require 'surround)
+;;(global-surround-mode 1)
+;;
+;;;; evil leader
+;;(require 'evil-leader)
+;;(evil-leader/set-leader ",")
+;;(evil-leader/set-key
+  ;;;; evil nerd commenter
+  ;;"ci" 'evilnc-comment-or-uncomment-lines
+  ;;"cc" 'evilnc-comment-or-uncomment-to-the-line
+  ;;"v"  (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
+  ;;"wh" 'split-window-below
+  ;;"wv" 'split-window-right
+  ;;)
+;;
+;;;; fix black cursor
+;;(setq evil-default-cursor t)
+;;
+;;;; ----------------- EVIL -------------------------------------
+;;
+;;;; ----------------- AUTO COMPLETE ----------------------------
+;;
+;;;; yasnippet
+;;(require 'yasnippet)
+;;(yas-global-mode 1)
+;;(setq ac-source-yasnippet nil)
+;;(setq yas/prompt-functions '(yas/x-prompt 'yas/ido-prompt))
+;;
+;;;; autocompletion
+;;(require 'auto-complete-config)
+;;(add-to-list 'ac-dictionary-directories "~/.emacs.d/packages/auto-complete/ac-dict")
+;;(add-to-list 'ac-sources 'ac-source-yasnippet)
+;;(ac-config-default)
+;;
+;;
+;;;; ----------------- AUTO COMPLETE ----------------------------
+;;
+;;;; ----------------- CEDET ------------------------------------
+;;
+;;;; project management
+;;;(global-ede-mode 1)
+;;
+;;;; integration with imenu
+;;(defun my-semantic-hook ()
+  ;;(imenu-add-to-menubar "Tags"))
+;;(add-hook 'semantic-init-hooks 'my-semantic-hook)
+;;
+;;(defun my-c-mode-cedet-hook ()
+  ;;(add-to-list 'ac-sources 'ac-source-gtags)
+  ;;(add-to-list 'ac-sources 'ac-source-semantic))
+;;(add-hook 'c-mode-common-hook 'my-c-mode-cedet-hook)
+;;
+;;;; semantic
+;;(semantic-mode 1)
+;;(add-hook 'c++-mode (lambda () (add-to-list 'ac-sources 'ac-source-semantic)))
+;;
+;;;; ----------------- CEDET ------------------------------------
+;;
+;;
+;;;; ----------------- FILES ------------------------------------
+;;
+;;;; No autosave
+;;(setq auto-save-default nil)
+;;
+;;;; Write backup files to own directory
+;;(setq backup-directory-alist
+      ;;`(("." . ,(expand-file-name
+                 ;;(concat user-emacs-directory "backups")))))
+;;
+;;;; Make backups of files, even when they're in version control
+;;(setq vc-make-backup-files t)
+;;
+;;
+;;(if window-system
+  ;;(let ((path (shell-command-to-string ". ~/.zshrc; echo -n $PATH")))
+      ;;(setenv "PATH" path)
+      ;;(setq exec-path 
+            ;;(append
+             ;;(split-string-and-unquote path ":")
+             ;;exec-path))))
+;;
+;;;; ----------------- FILES ------------------------------------
+;;
+;;;; ----------------- END --------------------------------------
+;;
+;;;; Enable transient mark mode.
+;;(transient-mark-mode 1)
+;;
+;;;; Load org-mode
+;;(require 'org)
+;;
+;;;; Associate .org files with org-mode inside of Emacs
+;;(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+;;
+;;;; Hotkeys for org-mode
+;;(global-set-key "\C-cl" 'org-store-link)
+;;(global-set-key "\C-cc" 'org-capture)
+;;(global-set-key "\C-ca" 'org-agenda)
+;;(global-set-key "\C-cb" 'org-iswitchb)
+;;
+;;;; Tips
+;;;; <M-x> ielm opens up the ELISP interpreter.
+;;
+;;(custom-set-faces
+ ;;;; custom-set-faces was added by Custom.
+ ;;;; If you edit it by hand, you could mess it up, so be careful.
+ ;;;; Your init file should contain only one such instance.
+ ;;;; If there is more than one, they won't work right.
+ ;;)
+;;
+;;;; ----------------- END --------------------------------------

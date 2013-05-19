@@ -20,14 +20,14 @@
 ;; ----- ido-work-directory-list -----
 (
  "/Users/james/Developer/C-Plus-Plus/Operating Systems/homework_2/"
+ "/Users/james/Dropbox/ORG/"
+ "/Users/james/Developer/"
  "/Users/james/"
  "/Users/james/Developer/EBSideScroller/Project/Driver/"
- "/Users/james/Dropbox/ORG/"
  "/Users/james/.emacs.d/"
  "/Users/james/Dropbox/Computer Science/"
  "/Users/james/Developer/C-Plus-Plus/Baccarat/"
  "/"
- "/Users/james/Developer/"
  "/Users/james/Developer/EBSideScroller/"
  "/Users/james/Developer/C-Plus-Plus/Hangman/"
  "/Users/james/Developer/Python/Algorithms/"
@@ -42,27 +42,32 @@
 ;; ----- ido-work-file-list -----
 (
  "os.cpp"
+ "History.org"
+ "Oper"
  ".init.el"
+ "test.json"
+ "test.cpp"
+ "test"
  "text.txt"
  "a.cpp"
  "test.py"
- "main.cpp"
- "test.cpp"
- "History.org"
- "init.el"
- "OS.org"
 )
 
 ;; ----- ido-dir-file-cache -----
 (
- ("/Users/james/" (20885 60251 0 0) "SSHFS/" "Sites/" "PycharmProjects/" "Public/" "Pictures/" "pdf" "Music/" "mozilla-central/" "Movies/" "Library/" "Interview/" "elevatorspeech.txt" "Dropbox/" "Downloads/" "Documents/" "Developer/" "Desktop/" "crazy.py" "classNumbers.txt" "Applications/" "AndroidStudioProjects/" ".zshrc.save" ".zshrc" ".zsh_history" ".zsh-update" ".zprofile" ".zcompdump" ".weechat/" ".vimtags" ".vimrc" ".viminfx.tmp" ".viminfo.tmp" ".viminfo" ".vim/" ".Trash/" ".tramp_history" ".tmux.conf" ".swp" ".subversion/" ".ssh/" ".sh_history" ".rvm/" ".rsense" ".root" ".rnd" ".psql_history" ".pip/" ".pgpass" ".pgadmin_histoqueries" ".oh-my-zsh/" ".netrc" ".netbeans-derby/" ".neocomplcache/" ".mysql_history" ".m2/" ".lighttable/" ".lesshst" ".lein/" ".jedi/" ".irb-history" ".init.el" ".ido.last~" ".ido.last" ".heroku/" ".gvimrc" ".guard_history" ".gradle/" ".gitconfig" ".gem/" ".filezilla/" ".emacs.d/" ".eclim/" ".DS_Store" ".dropbox/" ".dotfiles/" ".config/" ".CFUserTextEncoding" ".cache/" ".bitrock/" ".bin/" ".bashrc" ".bash_profile" ".bash_history" ".argouml/" ".appletviewer" ".android/" ".adobe/" "../" "./")
+ ("/Users/james/.emacs.d/" (20888 4630 0 0) "themes/" "semanticdb/" "packages/" "init.el" "elpa/" "ede-projects.el" "backups/" "back.init.el" "auto-save-list/" "ac-comphist.dat" ".git/" ".emacs~" ".DS_Store" "#init.el#" "../" "./")
 
- ("/Users/james/.emacs.d/" (20885 42991 0 0) "themes/" "semanticdb/" "packages/" "init.el" "elpa/" "ede-projects.el" "backups/" "auto-save-list/" "ac-comphist.dat" ".git/" ".emacs~" ".DS_Store" "#init.el#" "../" "./")
+ ("/Users/james/" (20888 4630 0 0) "test.dSYM/" "test.cpp" "test" "SSHFS/" "Sites/" "PycharmProjects/" "Public/" "Pictures/" "pdf" "Music/" "mozilla-central/" "Movies/" "Library/" "libarchive.rb" "Interview/" "elevatorspeech.txt" "Dropbox/" "Downloads/" "Documents/" "Developer/" "Desktop/" "crazy.py" "classNumbers.txt" "Caches_bak/" "Applications/" ".zshrc.save" ".zshrc" ".zsh_history" ".zsh-update" ".zprofile" ".zcompdump" ".weechat/" ".vimtags" ".vimrc" ".viminfx.tmp" ".viminfo.tmp" ".viminfo" ".vim/" ".Trash/" ".tramp_history" ".tmux.conf" ".swp" ".subversion/" ".ssh/" ".sh_history" ".rvm/" ".rsense" ".root" ".rnd" ".recentf" ".psql_history" ".pip/" ".pgpass" ".pgadmin_histoqueries" ".oh-my-zsh/" ".netrc" ".netbeans-derby/" ".neocomplcache/" ".mysql_history" ".m2/" ".lighttable/" ".lesshst" ".lein/" ".jedi/" ".irb-history" ".init.el" ".ido.last~" ".ido.last" ".heroku/" ".gvimrc" ".guard_history" ".gradle/" ".gitconfig" ".gem/" ".filezilla/" ".emacs.d/" ".eclim/" ".DS_Store" ".dropbox/" ".dotfiles/" ".config/" ".CFUserTextEncoding" ".cache/" ".bitrock/" ".bin/" ".bashrc" ".bash_profile" ".bash_history" ".argouml/" ".appletviewer" ".android/" ".adobe/" "../" "./")
 
- ("/Users/james/Developer/C-Plus-Plus/Operating Systems/homework_2/" (20885 58794 0 0) "text.txt" "os.dSYM/" "os.cpp" "os" "media-playback.cpp" "extra" "alt.txt" "a.out" "../" "./")
+ ("/Users/james/Dropbox/Computer Science/" (20886 39417 0 0) "uml-Modified.zargo~" "uml-Modified.zargo" "Tasks.docx" "software2.txt" "software1.txt" "SE Project/" "Programming Interviews Exposed.PDF" "OS.org~" "OS.org" "OS (venkat sundaram's conflicted copy 2013-05-13).org" "OS (Ebad Saghar's conflicted copy 2013-05-13).org" "Operating System Concepts 9th Edition.pdf" "Operating System Concepts 8th Ed 2009 ISBN 9780470128725.pdf" "OOD.zargo" "MIPS Registers (Bao-Huy Tran's conflicted copy 2013-04-02).jpg" "MIPS Recursive Functions- 1 (Bao-Huy Tran's conflicted copy 2013-04-02).jpg" "MIPS Recursive Functions -2 (Bao-Huy Tran's conflicted copy 2013-04-02).jpg" "jdevstudio11123install.exe" "JDeveloper/" "Icon
+" "HospitalMySQL.docx" "Hospital System.pdf" "Hospital System.docx" "emacsFILE" "databases_tables.txt" "Data Structure Design.png" "Compilers - Principles, Techniques, and Tools 2e.pdf" "ch6.pptx" "ch5.pptx" "ch4.pptx" "ch03.ppt" "ch02.ppt" "ch01.ppt" "ch01 (ronie mendoza's conflicted copy 2013-05-13).ppt" "Appointment_Schedule (JAMES - ADD TO THIS)/" ".DS_Store" ".dropbox" "#OS.org#" "../" "./")
 
- ("/Users/james/Dropbox/Computer Science/" (20885 28675 0 0) "uml-Modified.zargo~" "uml-Modified.zargo" "Tasks.docx" "software2.txt" "software1.txt" "SE Project/" "Programming Interviews Exposed.PDF" "OS.org~" "OS.org" "OS (venkat sundaram's conflicted copy 2013-05-13).org" "OS (Ebad Saghar's conflicted copy 2013-05-13).org" "Operating System Concepts 9th Edition.pdf" "Operating System Concepts 8th Ed 2009 ISBN 9780470128725.pdf" "OOD.zargo" "MIPS Registers (Bao-Huy Tran's conflicted copy 2013-04-02).jpg" "MIPS Recursive Functions- 1 (Bao-Huy Tran's conflicted copy 2013-04-02).jpg" "MIPS Recursive Functions -2 (Bao-Huy Tran's conflicted copy 2013-04-02).jpg" "jdevstudio11123install.exe" "JDeveloper/" "Icon
-" "HospitalMySQL.docx" "Hospital System.docx" "emacsFILE" "databases_tables.txt" "Data Structure Design.png" "Compilers - Principles, Techniques, and Tools 2e.pdf" "ch6.pptx" "ch5.pptx" "ch4.pptx" "ch03.ppt" "ch02.ppt" "ch01.ppt" "ch01 (ronie mendoza's conflicted copy 2013-05-13).ppt" "Appointment_Schedule (JAMES - ADD TO THIS)/" ".DS_Store" ".dropbox" "#OS.org#" "../" "./")
+ ("/Users/james/Dropbox/" (20886 54371 0 0) "vimrc" "ShowList.txt" "School/" "Safari Bookmarks.html" "resumedoc.docx" "Resume.txt" "Record.txt" "Public/" "Programs/" "Programming/" "Pictures/" "ORG/" "Icon
+" "EBooks/" "dat sixmsj muzak/" "Cover Letter.doc" "config.cfg" "Computer Science/" "cigarette-smoker.cpp" "Archived Code/" "Apps/" "3500 Syllabus(2).doc" ".DS_Store" ".dropbox.cache/" "../" "./")
+
+ ("/Users/james/Developer/C-Plus-Plus/Operating Systems/homework_2/" (20886 49708 0 0) "text.txt" "rece_os.cpp" "os_back.cpp" "os.dSYM/" "os.cpp" "os" "media-playback.cpp" "extra" "alt.txt" "a.out" "../" "./")
+
+ ("/Users/james/Developer/" (20886 36583 0 0) "Web/" "untitled.txt" "untitled.cpp" "untitled" "test.cpp" "Shell/" "Scripts/" "Scheme/" "sample_app/" "Rails/" "Python/" "puzzle_3.py" "Point-of-Sales/" "PHP/" "Openhatch/" "Objective-C/" "Node.py" "Misc/" "log" "Java/" "Group/" "Forks/" "EBSideScroller/" "Database Architecture/" "C-Plus-Plus/" "Assembly/" "Android/" "a.py" "a.out" ".root" ".DS_Store" "#test.cpp#" "#add.cpp#" "../" "./")
 
  ("/Users/james/Dropbox/ORG/" (20885 17341 0 0) "OS.org" "History.org" "Compilers.org" ".DS_Store" "../" "./")
 
@@ -83,11 +88,6 @@
  ("/Users/james/Developer/C-Plus-Plus/Baccarat/" (20745 48586 0 0) "README" "Baccarat.cpp" "../" "./")
 
  ("/Users/james/Desktop/" (20881 34724 0 0) "Thumbs.db" "desktop.ini" ".project" ".localized" ".DS_Store" ".classpath" "$RECYCLE.BIN/" "../" "./")
-
- ("/Users/james/Developer/" (20880 27312 0 0) "Web/" "untitled.txt" "untitled.cpp" "untitled" "test.cpp" "Shell/" "Scripts/" "Scheme/" "sample_app/" "Rails/" "Python/" "puzzle_3.py" "PHP/" "Openhatch/" "Objective-C/" "Node.py" "Misc/" "log" "Java/" "Group/" "Forks/" "EBSideScroller/" "Database Architecture/" "C-Plus-Plus/" "Assembly/" "Android/" "a.py" "a.out" ".root" ".DS_Store" "#test.cpp#" "#add.cpp#" "../" "./")
-
- ("/Users/james/Dropbox/" (20880 29973 0 0) "vimrc" "ShowList.txt" "School/" "Safari Bookmarks.html" "resumedoc.docx" "Resume.txt" "Record.txt" "Public/" "Programs/" "Programming/" "Pictures/" "ORG/" "Icon
-" "EBooks/" "dat sixmsj muzak/" "Cover Letter.doc" "config.cfg" "Computer Science/" "Archived Code/" "Apps/" "3500 Syllabus(2).doc" ".DS_Store" ".dropbox.cache/" "../" "./")
 
  ("/Users/james/Developer/C-Plus-Plus/" (20879 17738 0 0) "WordLadder/" "ToDoList/" "test" "SudokuSolver.cpp" "SubsetSumProblem.cpp" "StanfordCPPLib/" "simul.cpp" "simul" "ShellSim/" "SDLTest/" "Scrabble-Calculator/" "schedule.txt" "reverseString.cpp" "reverseString" "Recursion 3/" "RandomWriter/" "PsuedoCodeSolver.cpp" "ProgrammingAbstractions/" "Operating Systems/" "Oblenglobish/" "NumericConversions/" "MiniPrograms/" "Implementations/" "Hangman/" "fibon.cpp" "ConsecutiveHeads/" "Compilers/" "Combinations/" "Blackjack/" "Basic C/" "Baccarat/" "Assignment3-xcode/" "abc.cpp" "ab3.cpp" "ab.c" ".git/" ".DS_Store" "#ab3.cpp#" "../" "./")
 

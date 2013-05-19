@@ -1,93 +1,30 @@
-"Molokai"?  Like "Monokai"?
----------------------------
+# ir-black-theme.el for Emacs 24's `deftheme`
 
-Indeed.  This color theme is based on Tomas Restrepo's [Molokai color
-scheme for Vim](http://winterdom.com/2008/08/molokaiforvim), which is
-based on a darker variant by Hamish Stuart Macpherson of the [Monokai
-theme](http://www.monokai.nl/blog/2006/07/15/textmate-color-theme/) by
-[Wimer Hazenberg](http://www.molokai.nl) for TextMate.
+A light-on-dark color theme adapted from Todd Werth's [original Textmate theme](http://toddwerth.com/2007/03/29/ir_black-the-last-textmate-theme-youll-ever-need/).
 
+## Screenshot
 
-That means nothing to me.
--------------------------
+![Screenshot](https://github.com/jmdeldin/ir-black-theme.el/raw/master/screenshot.png)
 
-Pretty colors.
+## Installation
 
+The easiest way is to install it through [MELPA](http://melpa.milkbox.net/) with 
+`M-x package-install RET ir-black-theme`. Otherwise, see the commentary in 
+`ir-black-theme.el` for manual installation instructions.
 
-Will it make things look funny?
--------------------------------
+## Usage
 
-Probably not.  Maybe.  Keep reading.
+After installing it:
 
-Here are some things that *won't* look funny:
+1. `M-x load-theme RET ir-black`
+2. Don't like it? Type `M-x disable-theme RET ir-black` to restore your
+   previous theme.
 
- * Font-lock (or "syntax highlighting", to sane people).
- * The mode-line and minibuffer.
- * Isearch.
- * Icomplete.
- * MuMaMo.
- * Outline-mode.
- * [Markdown-mode](http://jblevins.org/projects/markdown-mode/).
- * `diff`s.
- * Rainbow delimiters (Emacs24 version)
+## Contributing
 
-Cool!  How do I use it?
------------------------
+Please feel free to file an issue for more face definitions -- I'd like this
+theme to be usable for the entire Emacs experience.
 
-Save the [color-theme-molokai.el](tip/color-theme-molokai.el) file to
-`YOUR_EMACS_PLUGIN_DIRECTORY`, then add the following to your `.emacs`:
+## If you enjoyed this theme...
 
-    (load "~/YOUR_EMACS_PLUGIN_DIRECTORY/color-theme-molokai.el")
-    (color-theme-molokai)
-
-Do I need anything special?
----------------------------
-
-Sure.  Emacs, of course (this was tested with GNU Emacs 23.1.1, but I
-imagine old version 22 releases would work, too).  You'll also need
-[color theme](http://www.emacswiki.org/emacs/ColorTheme) support.
-
-For Emacs24 users
------------------
-
-Use the `molokai-theme.el` file instead.  It will work with the new
-built-in theme system.
-
-
-This sucks!
------------
-
-My apologies!  If there's something you think should be better, please
-[report it](../issues/new).  In particular, I'm sure it doesn't cover
-all possible use cases: someone is bound to find something that isn't
-themed and looks atrocious.  If you are that someone, please let me
-know!
-
-If the cool, dark background doesn't suit you, you might try the
-warmer variant
-[almonst-monokai](http://github.com/lut4rp/almost-monokai/).
-
-
-Anything else you want to tell me?
-----------------------------------
-
-It doesn't support `C-x M-c M-butterfly`.
-
-
-Drat.  Can I fix that?
-----------------------
-
-Feel free!  In fact:
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-    
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+You might also like my [underwater-theme](https://github.com/jmdeldin/underwater-theme.el).
