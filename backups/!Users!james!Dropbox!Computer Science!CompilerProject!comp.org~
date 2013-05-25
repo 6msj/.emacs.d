@@ -1,0 +1,38 @@
+* TODO: Find out what makes an LL1 CFG.
+** We are making a recognizer. 
+** For our project, we will be using the LL(1) parsing algorithm.
+** 
+** 
+** 
+** 
+** 
+** 
+* DONE: Find out how to find a valid PA set for each rule.
+** For each token a in FIrst(@), add A -> @ to then entry M[A,a].
+** If # is in First(@), for each element a of FOllow(A) (where a is a token or a is $), add A -> @ to M[A,a]. 
+* TODO: Figure out what PL/H means.
+** Before we can recognize and translate PL/H, we need to define it. 
+** File 9, Page 7: Bottom of page, definition for PL/H. 
+* TODO: Construct an LL1 CFG.
+** Steps to construct an LL1 CFG.
+*** Not Left Recursive
+*** Unambiguous
+*** Valid PA set for each rule
+*** File 8, pg 9-13:
+*** TODO: Find Terminal Set
+*** TODO: Prove that the EBNF which is the definition of the PL/H is left recursive first, and thus not an LL1 CFG.
+*** TODO: After proving EBNF is not Left Recursive, convert CFG to be not left recursive by either left factoring or eliminating left recursion.
+*** TODO: Generate A valid PA set for each rule.
+**** TODO: Create First and Follow Sets for each rule.
+*** Import the CFG and PA sets into Parse.cpp so as to create a recognizer for PL/H.
+* TODO: Find a valid PA set for each rule.
+* TODO: Import both the CFG and PA set into Parse.cpp so as to create a recognizer for PL/H.
+* TODO: Test this recognizer by taking TokeFile.txt to be SelectionSortTokeFile.txt and running your recognizer with ParseTrace and SendOutputToFile both on.
+
+
+
+
+
+
+* TODO: FIGURE OUT HOW TO TAB IN ORG MODE IN EMACS TERMINAL
+

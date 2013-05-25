@@ -1,0 +1,46 @@
+* Virtual Machines
+** Construct the virtual machine simulator which will execute the intermediate language (IL) by the parser.
+** Designing the virtual machine is equivalent to specifying the IL.
+** Some popular structures are a 3-address machine, a 2-address machine, and a stack machine (ie. a 0-address machine)
+** Set of IL operators are virtual machine instructions.
+** Data memory segment, you create space for your code.
+** The Machine Cycle:
+*** running; = true
+*** pc: = 0
+*** WHILE running DO
+**** pc: pc+1
+**** Execute instructions in Code[pc]
+*** END WHITE
+*** stop
+* Strings
+** The following is machinery for formal reasoning about languages. It is simply a collection of useful definitions.
+** An alphabet is a finite set. Each element of an alphabet is a symbol.
+** TODO :Write Examples.
+** Def: A string over an alphabet is a finite sequence of symbols of the alphabet. The length of a string is the length of the sequence. If alpha is a string, then |alpha| denotes the length of the string.
+** Def: Let alpha and beta be strings (over some alphabet). Then the catenation (or concatenation) of alpha and beta, denoted alpha beta (i.e. by just placing the string adjacent), is the catenation of the sequences represented by alpha and beta.
+** Def: Let alpha be a string and i a non-negative integer. Then, we define the exponentiation of alpha to the i power, denoted alpha^i as: alpha^0 = e, alpha^n = alpha(alpha^(n-1) or all n>=1)
+
+* CFGS
+* Phrases
+* LL Parsing
+** The following machines of interest that are based on CFG's:
+*** Recognizer inputs a string over T. outputs 'accept' or 'reject' depending on whether the string is a sentence.
+*** Parser does the above, and also produces derivations for input strings that are sentences.
+*** Translator does the above, and also produces "translations" for input strings that are sentences.
+** There are a number of different algorithms that can be used to construct a parser. 
+** For Parse Action table, showing rule number for a given non terminal.
+** The Parse Action table shows us the parse action set for a given rule for a given nonterminal.
+** The numbers in a PA table is the rule number.
+** 
+** 
+* LL Tables 1
+* LL Tables 2
+* PLH Parser
+* Translation Schemes
+* PLH Constructs
+* Scanning
+* Bottom UP Parsing
+* Code Generation
+* Code optimization
+* Regular Languages
+* Slr Table Construction

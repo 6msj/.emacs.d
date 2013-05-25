@@ -18,4 +18,5 @@
 (setq mc/cmds-to-run-once
       '(
         evil-change
+        org-self-insert-command
         ))

@@ -103,19 +103,19 @@
 )
 
 ;; scroll one line at a time (less "jumpy" than defaults)
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-;;(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
-(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
-(setq scroll-step 1) ;; keyboard scroll one line at a time
+;;(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+;;;;(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+;;(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+;;(setq scroll-step 1) ;; keyboard scroll one line at a time
 
 ;; Autosave every 500 typed characters
 (setq auto-save-interval 500)
 ;; Scroll just one line when hitting bottom of window
 (setq scroll-conservatively 10000)
 
-(require 'smooth-scrolling)
-(set-variable 'smooth-scroll-margin 5)
-(setq scroll-preserve-screen-position 1)
+;;(require 'smooth-scrolling)
+;;(set-variable 'smooth-scroll-margin 5)
+;;(setq scroll-preserve-screen-position 1)
 
 ;; Colorful Delimiters.
 (require 'rainbow-delimiters)
@@ -241,8 +241,9 @@
     :inherit 'mode-line-position-face
     :foreground "black" :background "#eab700")
 
-(require 'powerline)
-(powerline-default-theme)
+;;(require 'powerline)
+;;(powerline-default-theme)
+
 
 ;; ----------------- THEME ------------------------------------
 
@@ -266,6 +267,8 @@
 (global-set-key (kbd "\C-c o") 'occur) ;; occur!!
 
 (global-set-key (kbd "C-x C-r") 'rename-current-buffer-file) ;; rename 
+
+(global-set-key (kbd "C-c C-s") 'sr-speedbar-toggle) ;; toggle speed bar in frame
 
 ;; ----------------- MAPPINGS ---------------------------------
 
@@ -332,10 +335,14 @@
 
 ;; show speedbar in the same frame
 (require 'sr-speedbar)
+(setq speedbar-use-images nil)
 
-;; helm
-(require 'helm-config)
-(helm-mode 1)
+;; multiple cursors
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; ----------------- EDITING ----------------------------------
 

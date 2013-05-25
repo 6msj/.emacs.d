@@ -97,21 +97,28 @@
   (set-face-attribute 'default nil :height 120)
   (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
 
-  ;; mac needs the menu bar 
+  ;; mac needs the menu bar
   (if window-system
       (menu-bar-mode 1))
 )
 
+;; scroll by 1 line at the end of the file
+(setq scroll-step 1
+      scroll-conservatively 10000)
+;; set mouse wheel to scroll one line at a time
+(setq mouse-wheel-progressive-speed nil)
 ;; scroll one line at a time (less "jumpy" than defaults)
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-;;(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
-(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
-(setq scroll-step 1) ;; keyboard scroll one line at a time
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+;; don't accelerate scrolling
+(setq mouse-wheel-progressive-speed nil)
+;; scroll window under mouse
+(setq mouse-wheel-follow-mouse 't)
 
-;; Autosave every 500 typed characters
-(setq auto-save-interval 500)
-;; Scroll just one line when hitting bottom of window
-(setq scroll-conservatively 10000)
+;; scroll one line at a time (less "jumpy" than defaults)
+;;(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+;;;;(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+;;(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+;;(setq scroll-step 1) ;; keyboard scroll one line at a time
 
 (require 'smooth-scrolling)
 (set-variable 'smooth-scroll-margin 5)
@@ -241,8 +248,9 @@
     :inherit 'mode-line-position-face
     :foreground "black" :background "#eab700")
 
-(require 'powerline)
-(powerline-default-theme)
+;;(require 'powerline)
+;;(powerline-default-theme)
+
 
 ;; ----------------- THEME ------------------------------------
 
@@ -335,10 +343,6 @@
 ;; show speedbar in the same frame
 (require 'sr-speedbar)
 (setq speedbar-use-images nil)
-
-;; helm
-(require 'helm-config)
-(helm-mode 1)
 
 ;; multiple cursors
 (require 'multiple-cursors)
