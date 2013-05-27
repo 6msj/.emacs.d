@@ -18,48 +18,27 @@
  '(inhibit-startup-screen t)
  '(show-paren-mode t))
 
-;; package manager
-;;(require 'package)
-;;;; Add the original Emacs Lisp Package Archive
-;;(add-to-list 'package-archives
-;;             '("elpa" . "http://tromey.com/elpa/")
-;;             '("marma" . "http://marmalade-repo.org/packages/")
-;;             '("melpa" . "http://melpa.milkbox.net/") t)
+; list the packages you want
+(setq package-list '(auto-complete autopair evil evil-leader evil-nerd-commenter fuzzy key-chord multiple-cursors rainbow-delimiters org smooth-scrolling sr-speedbar surround theme-changer undo-tree yasnippet))
 
-(require 'package)
-(setq package-archives '(("ELPA" . "http://tromey.com/elpa/") 
-                          ("gnu" . "http://elpa.gnu.org/packages/")
-                          ("marmalade" . "http://marmalade-repo.org/packages/")))
+; list the repositories containing them
+(setq package-archives '(("elpa" . "http://tromey.com/elpa/")
+                         ("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")))
 
-; Apparently needed for the package auto-complete (why?)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
+; activate all the packages (in particular autoloads)
 (package-initialize)
-(setq url-http-attempt-keepalives nil)
 
-;; Download and install packages if they aren't already installed.
-(require 'package)
-(package-initialize)
-(dolist (package '(
-                     auto-complete
-                     autopair
-                     evil
-                     evil-leader
-                     evil-nerd-commenter
-                     fuzzy
-                     helm
-                     key-chord
-                     rainbow-delimiters
-                     org
-                     smooth-scrolling
-                     sr-speedbar
-                     surround
-                     theme-changer
-                     undo-tree
-                     yasnippet
-                     ))
-  (unless (package-installed-p package)
+; fetch the list of packages available 
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+; install the missing packages
+(dolist (package package-list)
+  (when (not (package-installed-p package))
     (package-install package)))
 
 ;; ----------------- START -----------------------------------
@@ -160,6 +139,7 @@
 (global-set-key (kbd "C-x C-r") 'rename-current-buffer-file) ;; rename 
 
 (global-set-key (kbd "C-c C-s") 'sr-speedbar-toggle) ;; toggle speed bar in frame
+
 
 ;; ----------------- MAPPINGS ---------------------------------
 
@@ -357,7 +337,7 @@
 (define-key evil-visual-state-map "H" 'evil-first-non-blank)
 (define-key evil-normal-state-map "Y" 'copy-to-end-of-line)
 (define-key evil-visual-state-map ";" 'evil-ex)
-(evil-define-key 'normal org-mode-map (kbd "C-i") 'org-cycle)
+(evil-define-key 'normal org-mode-map (kbd "C-i") 'org-cycle) ;; cycle org mode in terminal
 
 (require 'key-chord)
 (key-chord-mode 1)
@@ -391,6 +371,7 @@
 
 ;; evil leader
 (require 'evil-leader)
+(global-evil-leader-mode)
 (evil-leader/set-leader ",")
 (evil-leader/set-key
 ;; evil nerd commenter

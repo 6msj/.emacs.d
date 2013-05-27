@@ -18,56 +18,64 @@
  '(inhibit-startup-screen t)
  '(show-paren-mode t))
 
-;; package manager
-;;(require 'package)
-;;;; Add the original Emacs Lisp Package Archive
-;;(add-to-list 'package-archives
-;;             '("elpa" . "http://tromey.com/elpa/")
-;;             '("marma" . "http://marmalade-repo.org/packages/")
-;;             '("melpa" . "http://melpa.milkbox.net/") t)
+;; (require 'package)
+;; (setq package-archives '(("ELPA" . "http://tromey.com/elpa/") 
+;;                           ("gnu" . "http://elpa.gnu.org/packages/")
+;;                           ("marmalade" . "http://marmalade-repo.org/packages/")))
 
-(require 'package)
-(setq package-archives '(("ELPA" . "http://tromey.com/elpa/") 
-                          ("gnu" . "http://elpa.gnu.org/packages/")
-                          ("marmalade" . "http://marmalade-repo.org/packages/")))
+;; ; Apparently needed for the package auto-complete (why?)
+;; (add-to-list 'package-archives
+;;              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
-; Apparently needed for the package auto-complete (why?)
+;; (package-initialize)
+;; (setq url-http-attempt-keepalives nil)
+
+;; ;; Download and install packages if they aren't already installed.
+;; (require 'package)
+;; (package-initialize)
+;; (dolist (package '(
+;;                      auto-complete
+;;                      autopair
+;;                      evil
+;;                      evil-leader
+;;                      evil-nerd-commenter
+;;                      fuzzy
+;;                      helm
+;;                      key-chord
+;;                      rainbow-delimiters
+;;                      org
+;;                      smooth-scrolling
+;;                      sr-speedbar
+;;                      surround
+;;                      theme-changer
+;;                      undo-tree
+;;                      yasnippet
+;;                      ))
+;;   (unless (package-installed-p package)
+;;     (package-install package)))
+
+
+; list the packages you want
+(setq package-list '(auto-complete autopair evil evil-leader evil-nerd-commenter fuzzy key-chord multiple-cursors rainbow-delimiters org smooth-scrolling sr-speedbar surround theme-changer undo-tree yasnippet))
+
+; list the repositories containing them
+(setq package-archives '(("elpa" . "http://tromey.com/elpa/")
+                         ("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")))
+
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
+; activate all the packages (in particular autoloads)
 (package-initialize)
-(setq url-http-attempt-keepalives nil)
 
-;; Marmalade
-;;(add-to-list 'package-archives
-;;             '("marmalade" . "http://marmalade-repo.org/packages/"))
-;; Melpa
-;;(add-to-list 'package-archives
-;;             '("melpa" . "http://melpa.milkbox.net/"))
+; fetch the list of packages available 
+(when (not package-archive-contents)
+  (package-refresh-contents))
 
-
-;; Download and install packages if they aren't already installed.
-(require 'package)
-(package-initialize)
-(dolist (package '(
-                     auto-complete
-                     autopair
-                     evil
-                     evil-leader
-                     evil-nerd-commenter
-                     fuzzy
-                     helm
-                     key-chord
-                     rainbow-delimiters
-                     org
-                     smooth-scrolling
-                     sr-speedbar
-                     surround
-                     theme-changer
-                     undo-tree
-                     yasnippet
-                     ))
-  (unless (package-installed-p package)
+; install the missing packages
+(dolist (package package-list)
+  (when (not (package-installed-p package))
     (package-install package)))
 
 ;; ----------------- START -----------------------------------
@@ -84,16 +92,6 @@
 (require 'theme-changer)
 ;;(change-theme 'solarized-light 'solarized-dark)
 (change-theme 'molokai 'molokai)
-
-(setq powerline-color1 "#657b83")
-(setq powerline-color2 "#839496")
-
-(set-face-attribute 'mode-line nil
-                    :foreground "#fdf6e3"
-                    :background "#859900"
-                    :box nil)
-(set-face-attribute 'mode-line-inactive nil
-                    :box nil)
 
 ;; disable ui fluff
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -131,12 +129,6 @@
 ;; scroll window under mouse
 (setq mouse-wheel-follow-mouse 't)
 
-;; scroll one line at a time (less "jumpy" than defaults)
-;;(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-;;;;(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
-;;(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
-;;(setq scroll-step 1) ;; keyboard scroll one line at a time
-
 (require 'smooth-scrolling)
 (set-variable 'smooth-scroll-margin 5)
 (setq scroll-preserve-screen-position 1)
@@ -156,7 +148,6 @@
 (setq ring-bell-function #'ignore)
 
 (require 'powerline)
-;;(powerline-default-theme)
 
 (add-to-list 'load-path "~/.emacs.d/packages/emacs-powerline")
 (require 'powerline)
@@ -185,6 +176,7 @@
 (global-set-key (kbd "C-x C-r") 'rename-current-buffer-file) ;; rename 
 
 (global-set-key (kbd "C-c C-s") 'sr-speedbar-toggle) ;; toggle speed bar in frame
+
 
 ;; ----------------- MAPPINGS ---------------------------------
 
@@ -382,7 +374,7 @@
 (define-key evil-visual-state-map "H" 'evil-first-non-blank)
 (define-key evil-normal-state-map "Y" 'copy-to-end-of-line)
 (define-key evil-visual-state-map ";" 'evil-ex)
-(evil-define-key 'normal org-mode-map (kbd "C-i") 'org-cycle)
+(evil-define-key 'normal org-mode-map (kbd "C-i") 'org-cycle) ;; cycle org mode in terminal
 
 (require 'key-chord)
 (key-chord-mode 1)
@@ -416,6 +408,7 @@
 
 ;; evil leader
 (require 'evil-leader)
+(global-evil-leader-mode)
 (evil-leader/set-leader ",")
 (evil-leader/set-key
 ;; evil nerd commenter

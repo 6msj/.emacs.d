@@ -40,33 +40,60 @@
 **** idlist -> ['$id' '('  '$int'  ')' ] melist
 **** melist -> ',' ['$id' '('  '$int'  ')' ] melist
 **** melist -> #
-**** 
-**** 
-**** 
-**** 
-**** 
-**** 
-**** 
-**** 
-**** 
-**** 
-**** 
-**** 
-**** 
-**** 
-**** 
-**** 
-**** 
-**** 
-**** 
-**** 
-**** 
-**** 
+**** state -> labelsub ustate
+**** labelsub -> label
+**** labelsub -> #
+**** label -> ':' '$id' ':' 
+**** ustate -> assign  
+**** ustate -> put 
+**** ustate -> get 
+**** ustate -> stop 
+**** ustate -> goto 
+**** ustate -> if 
+**** ustate -> group 
+**** assign -> var '=' expr ';' 
+**** put -> '$put' exprlist ';'
+**** exprlist -> expr mexprs 
+**** mexprs -> ',' expr mexprs
+**** mexprs -> # 
+**** get -> '$get' varlist ';' 
+**** varlist -> var mvar
+**** mvar -> ',' var mvar 
+**** mvar -> # 
+**** stop -> '$stop' ';' 
+**** goto -> '$goto' '$id' ';' 
+**** if -> '$if' logexpr '$then' state 
+**** group -> '$do' ';' states '$end' ';'
+**** logexpr -> expr relop expr  
+**** relop ->  '<'
+**** relop -> '>'  
+**** relop -> '=' 
+**** relop -> '<' '=' 
+**** relop -> '>' '=' 
+**** relop -> '<' '>' 
+**** expr -> plusminsub term plusminterms
+**** plusminterms ->  '+' term plusminterms
+**** plusminterms -> '-' term plusminterms
+**** plusminterms -> # 
+**** newsub -> '+' term 
+**** newsub -> '-' term 
+**** newsub -> # 
+**** term -> fact muldiv 
+**** muldiv -> '+' term muldiv
+**** muldiv -> '-' term muldiv 
+**** muldiv -> # 
+**** fact -> var 
+**** fact -> '$int' 
+**** fact -> '(' expr ')' 
+**** var -> '$id'  sub
+**** sub -> '(' expr ')'  
+**** sub -> # 
 *** TODO After proving EBNF is not Left Recursive, convert CFG to be not left recursive by either left factoring or eliminating left recursion.
 *** TODO Generate A valid PA set for each rule.
 **** TODO: Create First and Follow Sets for each rule.
 *** TODO Import the CFG and PA sets into Parse.cpp so as to create a recognizer for PL/H.
 *** TODO Test this recognizer by taking TokeFile.txt to be SelectionSortTokeFile.txt and running your recognizer with ParseTrace and SendOutputToFile both on.
+
 
 
 
