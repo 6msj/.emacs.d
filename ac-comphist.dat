@@ -7,7 +7,7 @@
   ("sr-speedbar-toggle" .
    [0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
   ("kbd" .
-   [1 0 0])
+   [2 0 0])
   ("pink-bliss" .
    [1 0 0 0 0 0 0 0 0 0])
   ("fringe-mode" .
@@ -127,7 +127,7 @@
   ("longVerible" .
    [0 0 0 0 1 0 0 0 0 0 0])
   ("evil-normal-state-map" .
-   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2])
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3])
   ("set_state" .
    [1 0 0 0 0 0 0 0 0])
   ("setNumber" .
@@ -309,7 +309,7 @@
   ("global-set-key" .
    [0 0 0 0 0 0 0 0 0 0 0 0 0 2])
   ("define-key" .
-   [1 0 0 0 0 0 0 0 0 1])
+   [1 0 0 0 0 0 0 0 0 2])
   ("evil-normal-state" .
    [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
   ("ff-find-other-file" .

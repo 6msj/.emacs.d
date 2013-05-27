@@ -112,6 +112,19 @@
 
 (require 'powerline)
 
+;; change mode-line color by evil state
+(lexical-let ((default-color (cons (face-background 'mode-line)
+                                   (face-foreground 'mode-line))))
+  (add-hook 'post-command-hook
+    (lambda ()
+      (let ((color (cond ((minibufferp) default-color)
+                         ((evil-insert-state-p) '("#e80000" . "#ffffff"))
+                         ((evil-emacs-state-p)  '("#444488" . "#ffffff"))
+                         ((buffer-modified-p)   '("#006fa0" . "#ffffff"))
+                         (t default-color))))
+        (set-face-background 'mode-line (car color))
+        (set-face-foreground 'mode-line (cdr color))))))
+
 ;; ----------------- THEME ------------------------------------
 
 ;; ----------------- MAPPINGS ---------------------------------
@@ -335,6 +348,11 @@
 (define-key evil-normal-state-map "Y" 'copy-to-end-of-line)
 (define-key evil-visual-state-map ";" 'evil-ex)
 (evil-define-key 'normal org-mode-map (kbd "C-i") 'org-cycle) ;; cycle org mode in terminal
+(define-key evil-normal-state-map "J" (kbd "10j"))
+(define-key evil-visual-state-map "J" (kbd "10j"))
+(define-key evil-normal-state-map "K" (kbd "10k"))
+(define-key evil-visual-state-map "K" (kbd "10k"))
+;;(define-key some-relevant-keymap (kbd "J") (kbd "10j"))
 
 (require 'key-chord)
 (key-chord-mode 1)
