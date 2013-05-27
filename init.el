@@ -98,12 +98,6 @@
   (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
 )
 
-;; Linux Specific
-(when (eq system-type 'linux)
-  (set-face-attribute 'default nil :family "Inconsolata For Powerline")
-  (set-face-attribute 'default nil :height 130)
-  (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
-)
 
 ;; mac needs the menu bar
 (if window-system
