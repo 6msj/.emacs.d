@@ -1471,7 +1471,7 @@
 	      (1 2 0)))
 	    "a mustache templating library in emacs lisp [github]" tar])
  (multiple-cursors .
-		   [(20130518 816)
+		   [(20130527 551)
 		    nil "Multiple cursors for Emacs. [github]" tar])
  (multifiles .
 	     [(20121114 2059)
@@ -3216,6 +3216,9 @@
  (dart-mode .
 	    [(20121218 1449)
 	     nil "Major mode for editing Dart files [github]" single])
+ (darcsum .
+	  [(20120115 1513)
+	   nil "a pcl-cvs like interface for managing darcs patches [darcs]" tar])
  (d-mode .
 	 [(20121224 146)
 	  nil "D Programming Language mode for (X)Emacs [github]" single])
@@ -3740,8 +3743,5 @@
 	      nil "auto-complete.el source for dabbrev [wiki]" single])
  (abl-mode .
 	   [(20120718 1655)
-	    nil "Python TDD minor mode [github]" single])
- (darcsum .
-	  [(20120115 1513)
-	   nil "a pcl-cvs like interface for managing darcs patches [darcs]" tar]))
+	    nil "Python TDD minor mode [github]" single]))
 

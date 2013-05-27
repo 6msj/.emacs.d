@@ -19,7 +19,7 @@
  '(show-paren-mode t))
 
 ; list the packages you want
-(setq package-list '(auto-complete autopair evil evil-leader evil-nerd-commenter fuzzy key-chord multiple-cursors rainbow-delimiters org smooth-scrolling sr-speedbar surround theme-changer undo-tree yasnippet))
+(setq package-list '(auto-complete autopair evil evil-leader evil-nerd-commenter fuzzy key-chord multiple-cursors rainbow-delimiters org smooth-scrolling sr-speedbar surround theme-changer undo-tree xclip yasnippet))
 
 ; list the repositories containing them
 (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
@@ -68,6 +68,8 @@
   (set-face-attribute 'default nil :height 120)
   (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
 )
+
+
 
 (when (eq system-type 'linux)
   (set-face-attribute 'default nil :family "Inconsolata For Powerline")
@@ -208,7 +210,7 @@
 (global-auto-revert-mode t)
 
 ;; ctrn-n starts new lines
-(setq next-line-add-newlines t)
+;; (setq next-line-add-newlines t)
 
 ;; autopairs
 (require 'autopair)
@@ -224,6 +226,17 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+;; sync clipboards
+(when (eq system-type 'linux)
+  (require 'xclip)
+  (xclip-mode 1)
+)
+
+(when (eq system-type 'darwin)
+  (require 'pbcopy)
+  (turn-on-pbcopy)
+)
 
 ;; ----------------- EDITING ----------------------------------
 
@@ -303,7 +316,6 @@
 (setq buffer-face-mode-face '(:family "Consolas" :height 120))
 (buffer-face-mode))
 
-
 ;; ----------------- FUNCTIONS --------------------------------
 
 ;; ----------------- NAVIGATION -------------------------------
@@ -348,11 +360,15 @@
 (define-key evil-normal-state-map "Y" 'copy-to-end-of-line)
 (define-key evil-visual-state-map ";" 'evil-ex)
 (evil-define-key 'normal org-mode-map (kbd "C-i") 'org-cycle) ;; cycle org mode in terminal
-(define-key evil-normal-state-map "J" (kbd "10j"))
-(define-key evil-visual-state-map "J" (kbd "10j"))
-(define-key evil-normal-state-map "K" (kbd "10k"))
-(define-key evil-visual-state-map "K" (kbd "10k"))
+;;(define-key evil-normal-state-map "J" (kbd "10j"))
+;;(define-key evil-visual-state-map "J" (kbd "10j"))
+;;(define-key evil-normal-state-map "K" (kbd "10k"))
+;;(define-key evil-visual-state-map "K" (kbd "10k"))
 ;;(define-key some-relevant-keymap (kbd "J") (kbd "10j"))
+(define-key evil-normal-state-map "J" (lambda () (interactive) (forward-line 10)))
+(define-key evil-visual-state-map "J" (lambda () (interactive) (forward-line 10)))
+(define-key evil-normal-state-map "K" (lambda () (interactive) (forward-line -10)))
+(define-key evil-visual-state-map "K" (lambda () (interactive) (forward-line -10)))
 
 (require 'key-chord)
 (key-chord-mode 1)
@@ -360,16 +376,12 @@
 
 ;; esc quits
 (define-key evil-normal-state-map [escape] 'keyboard-quit)
-(define-key evil-normal-state-map (kbd "C-u") 'keyboard-quit)
 (define-key evil-visual-state-map [escape] 'keyboard-quit)
-(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-completion-map [escape]
-          'minibuffer-keyboard-quit)
-(define-key minibuffer-local-must-match-map [escape]
-          'minibuffer-keyboard-quit)
-(define-key minibuffer-local-isearch-map [escape]
-          'minibuffer-keyboard-quit)
+(define-key minibuffer-local-map [escape] 'abort-recursive-edit)
+(define-key minibuffer-local-ns-map [escape] 'abort-recursive-edit)
+(define-key minibuffer-local-completion-map [escape] 'abort-recursive-edit)
+(define-key minibuffer-local-must-match-map [escape] 'abort-recursive-edit)
+(define-key minibuffer-local-isearch-map [escape] 'abort-recursive-edit)
 
 (define-key evil-normal-state-map [f2] 'hs-toggle-hiding)
 (define-key evil-normal-state-map [f3] 'hs-show-all)
