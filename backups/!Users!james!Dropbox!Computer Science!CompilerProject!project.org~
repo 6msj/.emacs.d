@@ -30,6 +30,38 @@
 ***** [] followed by *+&! followed by catenation followed by | 
 
 *** DONE Prove that the EBNF which is the definition of the PL/H is left recursive first, and thus not an LL1 CFG.
+*** TODO Change EBNF To a CFG.
+**** program -> decls states
+**** decls -> decl decls 
+**** decls -> # 
+**** states -> state states
+**** states -> # 
+**** decl -> '$declare' idlist ';'
+**** idlist -> ['$id' '('  '$int'  ')' ] melist
+**** melist -> ',' ['$id' '('  '$int'  ')' ] melist
+**** melist -> #
+**** 
+**** 
+**** 
+**** 
+**** 
+**** 
+**** 
+**** 
+**** 
+**** 
+**** 
+**** 
+**** 
+**** 
+**** 
+**** 
+**** 
+**** 
+**** 
+**** 
+**** 
+**** 
 *** TODO After proving EBNF is not Left Recursive, convert CFG to be not left recursive by either left factoring or eliminating left recursion.
 *** TODO Generate A valid PA set for each rule.
 **** TODO: Create First and Follow Sets for each rule.
