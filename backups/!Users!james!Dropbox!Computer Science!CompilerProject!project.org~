@@ -15,7 +15,7 @@
 *** Valid PA set for each rule
 *** File 8, pg 9-13:
 *** DONE Find Terminal Set
-**** T = { * , $declare, [, $id, (, $int, ), ], &, ;, !, :, =, , $put, $get, $stop, $goto, $if, $do, $end, <, >, +, -, /,  }
+**** T = { * , $declare, $id, (, $int, ), ;, !, :, =, , $put, $get, $stop, $goto, $if, $do, $end, <, >,  -, /,  }
 **** N = { program, decl, state, label, ustate, assign, put, get, stop, goto, if, group, logexpr, relop, expr, term, fact, var }
 *** EBNF Metasymbols
 **** -> - "is"

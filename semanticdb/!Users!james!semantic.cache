@@ -10,11 +10,11 @@
                  (:prototype t
                   :type "namespace")
                   nil nil)) nil [21 41])
-            ("main" function (:type "int") nil [43 164]))          
+            ("main" function (:type "int") nil [44 72]))          
     :file "test.cpp"
-    :pointmax 165
-    :fsize 192
-    :lastmodtime '(20888 27118 0 0)
+    :pointmax 83
+    :fsize 0
+    :lastmodtime '(20891 3039 0 0)
     :unmatched-syntax 'nil
     )
    (semanticdb-table "play.cpp"
@@ -261,18 +261,11 @@
                 nil [9198 9251]))          
     :file "play.cpp"
     :pointmax 9256
-    :fsize 9255
-    :lastmodtime '(20888 6358 0 0)
+    :fsize 9256
+    :lastmodtime '(20888 38890 0 0)
     :unmatched-syntax 'nil
     )
-   (semanticdb-table ".ycm_extra_conf.py"
-    :major-mode 'python-mode
-    :tags nil
-    :file ".ycm_extra_conf.py"
-    :pointmax 5200
-    :unmatched-syntax 'nil
     )
-   )
   :file "!Users!james!semantic.cache"
   :semantic-tag-version "2.0"
   :semanticdb-version "2.2"

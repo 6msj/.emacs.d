@@ -96,11 +96,12 @@
   (set-face-attribute 'default nil :family "Consolas")
   (set-face-attribute 'default nil :height 120)
   (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
-
-  ;; mac needs the menu bar
-  (if window-system
-      (menu-bar-mode 1))
 )
+
+;; mac needs the menu bar
+(if window-system
+  (menu-bar-mode 1))
+
 
 ;; scroll by 1 line at the end of the file
 (setq scroll-step 1
@@ -473,6 +474,7 @@
 (define-key evil-visual-state-map "H" 'evil-first-non-blank)
 (define-key evil-normal-state-map "Y" 'copy-to-end-of-line)
 (define-key evil-visual-state-map ";" 'evil-ex)
+(evil-define-key 'normal org-mode-map (kbd "C-i") 'org-cycle)
 
 (require 'key-chord)
 (key-chord-mode 1)
