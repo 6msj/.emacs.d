@@ -387,6 +387,9 @@
 ;; evil leader
 (require 'evil-leader)
 (global-evil-leader-mode)
+(add-hook 'text-mode-hook 'evil-leader-mode)
+(add-hook 'prog-mode-hook 'evil-leader-mode)
+
 (evil-leader/set-leader ",")
 (evil-leader/set-key
 ;; evil nerd commenter
