@@ -85,6 +85,16 @@
 ;;(change-theme 'solarized-light 'solarized-dark)
 (change-theme 'molokai 'molokai)
 
+(setq powerline-color1 "#657b83")
+(setq powerline-color2 "#839496")
+
+(set-face-attribute 'mode-line nil
+                    :foreground "#fdf6e3"
+                    :background "#859900"
+                    :box nil)
+(set-face-attribute 'mode-line-inactive nil
+                    :box nil)
+
 ;; disable ui fluff
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -96,11 +106,30 @@
   (set-face-attribute 'default nil :family "Consolas")
   (set-face-attribute 'default nil :height 120)
   (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
-
-  ;; mac needs the menu bar 
-  (if window-system
-      (menu-bar-mode 1))
 )
+
+(when (eq system-type 'linux)
+  (set-face-attribute 'default nil :family "Inconsolata For Powerline")
+  (set-face-attribute 'default nil :height 130)
+  (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
+)
+
+;; mac needs the menu bar
+(if window-system
+  (menu-bar-mode 1))
+
+
+;; scroll by 1 line at the end of the file
+(setq scroll-step 1
+      scroll-conservatively 10000)
+;; set mouse wheel to scroll one line at a time
+(setq mouse-wheel-progressive-speed nil)
+;; scroll one line at a time (less "jumpy" than defaults)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+;; don't accelerate scrolling
+(setq mouse-wheel-progressive-speed nil)
+;; scroll window under mouse
+(setq mouse-wheel-follow-mouse 't)
 
 ;; scroll one line at a time (less "jumpy" than defaults)
 ;;(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
@@ -108,14 +137,9 @@
 ;;(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 ;;(setq scroll-step 1) ;; keyboard scroll one line at a time
 
-;; Autosave every 500 typed characters
-(setq auto-save-interval 500)
-;; Scroll just one line when hitting bottom of window
-(setq scroll-conservatively 10000)
-
-;;(require 'smooth-scrolling)
-;;(set-variable 'smooth-scroll-margin 5)
-;;(setq scroll-preserve-screen-position 1)
+(require 'smooth-scrolling)
+(set-variable 'smooth-scroll-margin 5)
+(setq scroll-preserve-screen-position 1)
 
 ;; Colorful Delimiters.
 (require 'rainbow-delimiters)
@@ -131,119 +155,11 @@
 ;; Mute system sound.
 (setq ring-bell-function #'ignore)
 
-;; Mode line setup
-(setq-default
- mode-line-format
- '(; Position, including warning for 80 columns
-   (:propertize "%4l:" face mode-line-position-face)
-   (:eval (propertize "%3c" 'face
-                      (if (>= (current-column) 80)
-                          'mode-line-80col-face
-                        'mode-line-position-face)))
-   ; emacsclient [default -- keep?]
-   mode-line-client
-   "  "
-   ; read-only or modified status
-   (:eval
-    (cond (buffer-read-only
-           (propertize " RO " 'face 'mode-line-read-only-face))
-          ((buffer-modified-p)
-           (propertize " ** " 'face 'mode-line-modified-face))
-          (t "      ")))
-   "    "
-   ; directory and buffer/file name
-   (:propertize (:eval (shorten-directory default-directory 30))
-                face mode-line-folder-face)
-   (:propertize "%b"
-                face mode-line-filename-face)
-   ; narrow [default -- keep?]
-   " %n "
-   ; mode indicators: vc, recursive edit, major mode, minor modes, process, global
-   (vc-mode vc-mode)
-   "  %["
-   (:propertize mode-name
-                face mode-line-mode-face)
-   "%] "
-   (:eval (propertize (format-mode-line minor-mode-alist)
-                      'face 'mode-line-minor-mode-face))
-   (:propertize mode-line-process
-                face mode-line-process-face)
-   (global-mode-string global-mode-string)
-   "    "
-   ; nyan-mode uses nyan cat as an alternative to %p
-   (:eval (when nyan-mode (list (nyan-create))))
-   ))
-
-;; Helper function
-(defun shorten-directory (dir max-length)
-  "Show up to `max-length' characters of a directory name `dir'."
-  (let ((path (reverse (split-string (abbreviate-file-name dir) "/")))
-        (output ""))
-    (when (and path (equal "" (car path)))
-      (setq path (cdr path)))
-    (while (and path (< (length output) (- max-length 4)))
-      (setq output (concat (car path) "/" output))
-      (setq path (cdr path)))
-    (when path
-      (setq output (concat ".../" output)))
-    output))
-
-;; Extra mode line faces
-(make-face 'mode-line-read-only-face)
-(make-face 'mode-line-modified-face)
-(make-face 'mode-line-folder-face)
-(make-face 'mode-line-filename-face)
-(make-face 'mode-line-position-face)
-(make-face 'mode-line-mode-face)
-(make-face 'mode-line-minor-mode-face)
-(make-face 'mode-line-process-face)
-(make-face 'mode-line-80col-face)
-
-(set-face-attribute 'mode-line nil
-    :foreground "gray60" :background "gray20"
-    :inverse-video nil
-    :box '(:line-width 6 :color "gray20" :style nil))
-(set-face-attribute 'mode-line-inactive nil
-    :foreground "gray80" :background "gray40"
-    :inverse-video nil
-    :box '(:line-width 6 :color "gray40" :style nil))
-
-(set-face-attribute 'mode-line-read-only-face nil
-    :inherit 'mode-line-face
-    :foreground "#4271ae"
-    :box '(:line-width 2 :color "#4271ae"))
-(set-face-attribute 'mode-line-modified-face nil
-    :inherit 'mode-line-face
-    :foreground "#c82829"
-    :background "#ffffff"
-    :box '(:line-width 2 :color "#c82829"))
-(set-face-attribute 'mode-line-folder-face nil
-    :inherit 'mode-line-face
-    :foreground "gray60")
-(set-face-attribute 'mode-line-filename-face nil
-    :inherit 'mode-line-face
-    :foreground "#eab700"
-    :weight 'bold)
-(set-face-attribute 'mode-line-position-face nil
-    :inherit 'mode-line-face
-    :family "Menlo" :height 100)
-(set-face-attribute 'mode-line-mode-face nil
-    :inherit 'mode-line-face
-    :foreground "gray80")
-(set-face-attribute 'mode-line-minor-mode-face nil
-    :inherit 'mode-line-mode-face
-    :foreground "gray40"
-    :height 110)
-(set-face-attribute 'mode-line-process-face nil
-    :inherit 'mode-line-face
-    :foreground "#718c00")
-(set-face-attribute 'mode-line-80col-face nil
-    :inherit 'mode-line-position-face
-    :foreground "black" :background "#eab700")
-
-;;(require 'powerline)
+(require 'powerline)
 ;;(powerline-default-theme)
 
+(add-to-list 'load-path "~/.emacs.d/packages/emacs-powerline")
+(require 'powerline)
 
 ;; ----------------- THEME ------------------------------------
 
@@ -466,6 +382,7 @@
 (define-key evil-visual-state-map "H" 'evil-first-non-blank)
 (define-key evil-normal-state-map "Y" 'copy-to-end-of-line)
 (define-key evil-visual-state-map ";" 'evil-ex)
+(evil-define-key 'normal org-mode-map (kbd "C-i") 'org-cycle)
 
 (require 'key-chord)
 (key-chord-mode 1)

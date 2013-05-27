@@ -38,14 +38,6 @@
 (package-initialize)
 (setq url-http-attempt-keepalives nil)
 
-;; Marmalade
-;;(add-to-list 'package-archives
-;;             '("marmalade" . "http://marmalade-repo.org/packages/"))
-;; Melpa
-;;(add-to-list 'package-archives
-;;             '("melpa" . "http://melpa.milkbox.net/"))
-
-
 ;; Download and install packages if they aren't already installed.
 (require 'package)
 (package-initialize)
@@ -121,12 +113,6 @@
 ;; scroll window under mouse
 (setq mouse-wheel-follow-mouse 't)
 
-;; scroll one line at a time (less "jumpy" than defaults)
-;;(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-;;;;(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
-;;(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
-;;(setq scroll-step 1) ;; keyboard scroll one line at a time
-
 (require 'smooth-scrolling)
 (set-variable 'smooth-scroll-margin 5)
 (setq scroll-preserve-screen-position 1)
@@ -146,8 +132,9 @@
 (setq ring-bell-function #'ignore)
 
 (require 'powerline)
-(powerline-default-theme)
 
+(add-to-list 'load-path "~/.emacs.d/packages/emacs-powerline")
+(require 'powerline)
 
 ;; ----------------- THEME ------------------------------------
 
