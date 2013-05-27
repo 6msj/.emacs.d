@@ -112,9 +112,6 @@
 
 (require 'powerline)
 
-(add-to-list 'load-path "~/.emacs.d/packages/emacs-powerline")
-(require 'powerline)
-
 ;; ----------------- THEME ------------------------------------
 
 ;; ----------------- MAPPINGS ---------------------------------
