@@ -214,7 +214,7 @@
 
 ;; autopairs
 (require 'autopair)
-(autopair-global-mode)
+(autopair-global-mode 1)
 
 ;; show speedbar in the same frame
 (require 'sr-speedbar)

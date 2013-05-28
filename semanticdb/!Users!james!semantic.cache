@@ -4,18 +4,12 @@
   :tables (list 
    (semanticdb-table "test.cpp"
     :major-mode 'c++-mode
-    :tags 
-        '( ("iostream" include (:system-flag t) nil [1 20])
-            ("std" using (:type ("std" type
-                 (:prototype t
-                  :type "namespace")
-                  nil nil)) nil [21 41])
-            ("main" function (:type "int") nil [43 84]))          
+    :tags nil
     :file "test.cpp"
-    :pointmax 93
+    :pointmax 1
     :unmatched-syntax 'nil
     )
-    )
+   )
   :file "!Users!james!semantic.cache"
   :semantic-tag-version "2.0"
   :semanticdb-version "2.2"

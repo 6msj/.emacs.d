@@ -1,0 +1,233 @@
+* TODO Find out what makes an LL1 CFG.
+** We are making a recognizer. 
+** For our project, we will be using the LL(1) parsing algorithm.
+** 
+* DONE Find out how to find a valid PA set for each rule.
+** For each token a in FIrst(@), add A -> @ to then entry M[A,a].
+** If # is in First(@), for each element a of FOllow(A) (where a is a token or a is $), add A -> @ to M[A,a]. 
+* DONE Figure out what PL/H means.
+** Before we can recognize and translate PL/H, we need to define it. 
+** File 9, Page 7: Bottom of page, definition for PL/H. 
+* TODO Construct an LL1 CFG.
+** Steps to construct an LL1 CFG.
+*** Not Left Recursive
+*** Unambiguous
+*** Valid PA set for each rule
+*** File 8, pg 9-13:
+*** DONE Find Terminal Set
+**** T = { * , $declare, $id, (, $int, ), ;, !, :, =, , $put, $get, $stop, $goto, $if, $do, $end, <, >,  -, /,  }
+**** N = { program, decl, state, label, ustate, assign, put, get, stop, goto, if, group, logexpr, relop, expr, term, fact, var }
+*** EBNF Metasymbols
+**** -> - "is"
+**** * - 0 or more preceding
+**** + - 1 or more preceding
+**** & - 1 or more preceding separated by commas
+**** ! - optional occurence of preceding
+**** | - alternation (i.e. "or")
+**** ws (whitespace) - catenation (i.e. placing adjacent with no operator)
+**** [] - grouping symbols for above
+**** Precedence of Metasymbols
+***** [] followed by *+&! followed by catenation followed by | 
+
+*** DONE Prove that the EBNF which is the definition of the PL/H is left recursive first, and thus not an LL1 CFG.
+*** DONE Change EBNF To a CFG.
+**** program -> decls states
+**** decls -> decl decls 
+**** decls -> # 
+**** states -> state states
+**** states -> #
+**** decl -> '$declare' idlist
+**** idlist -> '$id' '('  '$int'  ')' melist
+**** melist -> ',' '$id' '('  '$int'  ')'  melist
+**** melist -> #
+**** state -> labelsub ustate
+**** labelsub -> label
+**** labelsub -> #
+**** label -> ':' '$id' ':' 
+**** ustate -> assign  
+**** ustate -> put 
+**** ustate -> get 
+**** ustate -> stop 
+**** ustate -> goto 
+**** ustate -> if 
+**** ustate -> group 
+**** assign -> var '=' expr ';' 
+**** put -> '$put' exprlist ';'
+**** exprlist -> expr mexprs 
+**** mexprs -> ',' expr mexprs
+**** mexprs -> # 
+**** get -> '$get' varlist ';' 
+**** varlist -> var mvar
+**** mvar -> ',' var mvar 
+**** mvar -> # 
+**** stop -> '$stop' ';' 
+**** goto -> '$goto' '$id' ';' 
+**** if -> '$if' logexpr '$then' state 
+**** group -> '$do' ';' states '$end' ';'
+**** logexpr -> expr relop expr  
+**** relop ->  '<'
+**** relop -> '>'  
+**** relop -> '=' 
+**** relop -> '<' '=' 
+**** relop -> '>' '=' 
+**** relop -> '<' '>' 
+**** expr -> plusminsub term plusminterms
+**** plusminsub -> '+'
+**** plusminsub -> '-'
+**** plusminsub -> #
+**** plusminterms ->  '+' term plusminterms
+**** plusminterms -> '-' term plusminterms
+**** plusminterms -> # 
+**** term -> fact muldiv 
+**** muldiv -> '*' fact muldiv
+**** muldiv -> '/' fact muldiv 
+**** muldiv -> # 
+**** fact -> var 
+**** fact -> '$int' 
+**** fact -> '(' expr ')' 
+**** var -> '$id'  sub
+**** sub -> '(' expr ')'  
+**** sub -> # 
+*** DONE Get First sets for all the rules
+**** First(program) ={ '$declare', # }
+**** First(decls) = { '$declare', # }
+**** First(states) = { ':', # } 
+**** First(decl) = { '$declare' } 
+**** First(idlist) = { '$id' } 
+**** First(melist) = { ' , ' , # }  
+**** First(state) = { ' : ', #  }
+**** First(labelsub) = { ' : ' , # }   
+**** First(label) = { ' : ' }
+**** First(ustate) = { '$id', '$put', '$get', '$stop', '$goto', '$if', '$do' } 
+**** First(assign) = { '$id' } 
+**** First(put) = { '$put' }
+**** First(exprlist) = { '+', '-', # } 
+**** First(mexprs) = { ' , ' , # } 
+**** First(get) = { '$get' }
+**** First(varlist) = { '$id' }  
+**** First(mvar) = { ' , ' , # }   
+**** First(stop) = { '$stop' } 
+**** First(goto) = { '$goto' }  
+**** First(if) = { '$if ' } 
+**** First(group) = { '$do' }  
+**** First(logexpr) = { '+', '-', # } 
+**** First(relop) = { '<', '>', '<' '='', '>' '=', '<' '>' }
+**** First(expr) = { '+', '-', # }
+**** First(plusminsub) = { '+', '-', # } 
+**** First(plusminterms) = { '+', '-', # }
+**** First(term) = { '$id' } 
+**** First(muldiv) = { ' * ', '/ ' , # } 
+**** First(fact) = { '$id', $int, '(' }  
+**** First(var) = {'$id'} 
+**** First(sub) = { '(', # } 
+*** TODO Get Follow sets for all the rules
+**** Follow(program) = { # }
+**** Follow(decls) = 
+**** Follow(states) = 
+**** Follow(decl) =
+**** Follow(idlist) =
+**** Follow(melist) =
+**** Follow(state) = 
+**** Follow(labelsub) =
+**** Follow(ustate) = 
+**** Follow(assign) =
+**** Follow(put) = 
+**** Follow(exprlist) =
+**** Follow(mexprs) = 
+**** Follow(get) =
+**** Follow(varlist) =
+**** Follow(mvar) =
+**** Follow(stop) =
+**** Follow(if) = 
+**** Follow(group) =
+**** Follow(logexpr) =
+**** Follow(relop) =
+**** Follow(expr) =
+**** Follow(plusminsub) =
+**** Follow(pluminterms) =
+**** Follow(term) =
+**** Follow(muldiv) =
+**** Follow(fact) =
+**** Follow(var) =
+**** Follow(sub) =
+**** Follow(
+     
+*** TODO Get Selection sets for all the rules
+*** TODO After proving EBNF is not Left Recursive, convert CFG to be not left recursive by either left factoring or eliminating left recursion.
+*** TODO Generate A valid PA set for each rule.
+**** TODO: Create First and Follow Sets for each rule.
+*** TODO Import the CFG and PA sets into Parse.cpp so as to create a recognizer for PL/H.
+*** TODO Test this recognizer by taking TokeFile.txt to be SelectionSortTokeFile.txt and running your recognizer with ParseTrace and SendOutputToFile both on.
+
+
+* List of Rules
+** program
+*** # in Fol(Program) - 1
+*** Fol(program) in Fol(states) - 3
+** decls
+*** Fol(decls) in Fol(decls) - 3
+** states
+*** Fol(states) in Fol(states) - 3
+** decl
+*** Fol(decl) in Fol(idlist) - 3
+** idlist
+*** Fol(idlist) in Fol(melist) - 3
+** melist
+*** Fol(melist) in Fol(melist) - 3
+** state
+*** Fol(state) in Fol(ustate) - 3
+** labelsub
+*** Empty
+** label
+*** Empty
+** ustate
+*** Empty
+** assign
+*** Empty
+** put 
+*** Fol(put) in Fol(exprlist) - 4
+** exprlist
+*** Fol(exprlist) in Fol(mexprs) - 3
+** mexprs
+*** Fol(mexprs) in Fol(expr) - 4
+** get
+*** Fol(get) in Fol(varlist) - 4
+** varlist
+*** Fol(varlist) in Fol(mvar) - 3
+** mvar 
+*** Fir(mvar) in Fol(var) except for # - 2
+** stop 
+*** Empty
+** goto
+*** Empty
+** if
+*** Empty
+** group
+*** Empty
+** logexpr 
+*** Fol(logexpr) in Fol(relop) - 4
+** relop 
+*** Empty
+** expr 
+*** Fir(expr) in Fol(relop) except for # - 2
+** plusminsub 
+*** Empty
+** plusminterms 
+*** Fir(plusminterms) in Fol(term) except for # - 2
+** term 
+*** Fol(term) in Fol(muldiv) - 3
+** muldiv 
+*** Fir(muldiv) in Fol(fact) except for # - 4
+** fact
+*** Empty
+** var
+*** Fol(var) in Fol(sub) - 3
+** sub
+*** Empty 
+
+    
+
+
+
+
+
