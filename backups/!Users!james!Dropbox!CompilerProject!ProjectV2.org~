@@ -1,0 +1,464 @@
+* DONE Find out what makes an LL1 CFG.
+** We are making a recognizer. 
+** For our project, we will be using the LL(1) parsing algorithm.
+* DONE Find out how to find a valid PA set for each rule.
+** For each token a in FIrst(@), add A -> @ to then entry M[A,a].
+** If # is in First(@), for each element a of FOllow(A) (where a is a token or a is $), add A -> @ to M[A,a]. 
+* DONE Figure out what PL/H means.
+** Before we can recognize and translate PL/H, we need to define it. 
+** File 9, Page 7: Bottom of page, definition for PL/H. 
+* TODO Construct an LL1 CFG.
+** Steps to construct an LL1 CFG.
+*** Not Left Recursive
+*** Unambiguous
+*** Valid PA set for each rule
+*** File 8, pg 9-13:
+*** DONE Find Terminal Set
+**** T = { * , $declare, $id, (, $int, ), ;, !, :, =, , $put, $get, $stop, $goto, $if, $do, $end, <, >,  -, /,  }
+**** N = { program, decl, state, label, ustate, assign, put, get, stop, goto, if, group, logexpr, relop, expr, term, fact, var }
+*** EBNF Metasymbols
+**** -> - "is"
+**** * - 0 or more preceding
+**** + - 1 or more preceding
+**** & - 1 or more preceding separated by commas
+**** ! - optional occurence of preceding
+**** | - alternation (i.e. "or")
+**** ws (whitespace) - catenation (i.e. placing adjacent with no operator)
+**** [] - grouping symbols for above
+**** Precedence of Metasymbols
+***** [] followed by *+&! followed by catenation followed by | 
+
+*** DONE Prove that the EBNF which is the definition of the PL/H is left recursive first, and thus not an LL1 CFG.
+*** DONE Change EBNF To a CFG.
+**** program -> decls states
+**** decls -> decl decls 
+**** decls -> $ 
+**** states -> state states
+**** states ->  $
+**** decl -> '$declare' idlist
+**** idlist -> '$id' '('  '$int'  ')' melist
+**** melist -> ',' '$id' '('  '$int'  ')'  melist
+**** melist ->  $
+**** state -> labelsub ustate
+**** labelsub -> label
+**** labelsub -> $
+**** label -> ':' '$id' ':' 
+**** ustate -> assign  
+**** ustate -> put 
+**** ustate -> get 
+**** ustate -> stop 
+**** ustate -> goto 
+**** ustate -> if 
+**** ustate -> group 
+**** assign -> var '=' expr ';' 
+**** put -> '$put' exprlist ';'
+**** exprlist -> expr mexprs 
+**** mexprs -> ',' expr mexprs
+**** mexprs ->  $ 
+**** get -> '$get' varlist ';' 
+**** varlist -> var mvar
+**** mvar -> ',' var mvar 
+**** mvar -> $ 
+**** stop -> '$stop' ';' 
+**** goto -> '$goto' '$id' ';' 
+**** if -> '$if' logexpr '$then' state 
+**** group -> '$do' ';' states '$end' ';'
+**** logexpr -> expr relop expr  
+**** relop ->  '<'
+**** relop -> '>'  
+**** relop -> '=' 
+**** relop -> '<' '=' 
+**** relop -> '>' '=' 
+**** relop -> '<' '>' 
+**** expr -> plusminsub term plusminterms
+**** plusminsub -> '+'
+**** plusminsub -> '-'
+**** plusminsub -> $ 
+**** plusminterms ->  '+' term plusminterms
+**** plusminterms -> '-' term plusminterms
+**** plusminterms -> $
+**** term -> fact muldiv 
+**** muldiv -> '*' fact muldiv
+**** muldiv -> '/' fact muldiv 
+**** muldiv -> $ 
+**** fact -> var 
+**** fact -> '$int' 
+**** fact -> '(' expr ')' 
+**** var -> '$id'  sub
+**** sub -> '(' expr ')'  
+**** sub -> $
+*** DONE Get First sets for all the rules
+**** First(program) ={ '$declare', ' : ', ' ; ', '$id' , $put, $get, $stop, $goto, $if, $do,'` # }
+**** First(decls) = { '$declare',  $ }
+**** First(states) = { ':', $ , '$id' , $put, $get, $stop, $goto, $if, $do,' }
+**** First(decl) = { '$declare' } 
+**** First(idlist) = { '$id' } 
+**** First(melist) = { ' , ' , $ }  
+**** First(state) = { ' : ', $ , '$id' , $put, $get, $stop, $goto, $if, $do,'`}
+**** First(labelsub) = { ' : ' , $ }   
+**** First(label) = { ' : ' }
+**** First(ustate) = { '$id', '$put', '$get', '$stop', '$goto', '$if', '$do' } 
+**** First(assign) = { '$id' } 
+**** First(put) = { '$put' }
+**** First(exprlist) = { '+', '-', $, $id, $int, ( }
+**** First(mexprs) = { ' , ' , $  } 
+**** First(get) = { '$get' }
+**** First(varlist) = { '$id' }  
+**** First(mvar) = { ' , ' , $ }   
+**** First(stop) = { '$stop' } 
+**** First(goto) = { '$goto' }  
+**** First(if) = { '$if ' } 
+**** First(group) = { '$do' }  
+**** First(logexpr) = { '+', '-', $, $int, $id, (  }
+**** First(relop) = { '<', '>', '<' '='', '>' '=', '<' '>' }
+**** First(expr) = { '+', '-', $ , $int, $id, ( }
+**** First(plusminsub) = { '+', '-', $ } 
+**** First(plusminterms) = { '+', '-', $ }
+**** First(term) = { '$id', (, $int } 
+**** First(muldiv) = { ' * ', '/ ' , $ } 
+**** First(fact) = { '$id', $int, '(' }  
+**** First(var) = {'$id'} 
+**** First(sub) = { '(', $ } 
+*** DONE Get Follow sets for all the rules
+**** Follow(program) = { # }
+**** Follow(decls) = { ':', '$id' , $put, $get, $stop, $goto, $if, $do,' }
+**** Follow(states) =  { '$end', ';' , # }
+**** Follow(decl) = { '$declare' }
+**** Follow(idlist) = { '$declare' }
+**** Follow(melist) = { '$declare '}
+**** Follow(state) = { ':', '$id' , $put, $get, $stop, $goto, $if, $do,' }
+**** Follow(labelsub) = { '$id', '$put', '$get', '$stop', '$goto', '$if', '$do' } 
+**** Fol(label) =  { '$id', '$put', '$get', '$stop', '$goto', '$if', '$do' } 
+**** Follow(ustate) =  { ':', '$id' , $put, $get, $stop, $goto, $if, $do,' }
+**** Follow(assign) =  { ':', '$id' , $put, $get, $stop, $goto, $if, $do,' }
+**** Follow(put) =  { ':', '$id' , $put, $get, $stop, $goto, $if, $do,' }
+**** Follow(exprlist) = { ' ; '}
+**** Follow(mexprs) = { ' ; ' } 
+**** Follow(get) =  { ':', '$id' , $put, $get, $stop, $goto, $if, $do,' }
+**** Follow(varlist) = { ' ; '}
+**** Follow(mvar) = { ' ; ' }
+**** Follow(stop) =  { ':', '$id' , $put, $get, $stop, $goto, $if, $do,' }
+**** Follow(goto) =  { ':', '$id' , $put, $get, $stop, $goto, $if, $do,' }
+**** Follow(if) = { ':', '$id' , $put, $get, $stop, $goto, $if, $do,' }
+**** Follow(group) =  { ':', '$id' , $put, $get, $stop, $goto, $if, $do,' }
+**** Follow(logexpr) = { '$then', ' ' : ',  '$id' , $put, $get, $stop, $goto, $if, $do,'}
+**** Follow(relop) = { '+', '-',  $int, $id, ( , '$then', ' : ', '$id', '$put', '$get', '$stop', '$goto', '$if', '$do'  }
+**** Follow(expr) = { ' , ', ' ; ' }
+**** Follow(plusminsub) = { '+, '-' , #}
+**** Follow(pluminterms) = { # }
+**** Follow(term) =  { '+', '-', #  }
+**** Follow(muldiv) = { '+', '-' }
+**** Follow(fact) =  { ' * ', '/ ' , '+', '-'  } 
+**** Follow(var) = { ' , ' }
+**** Follow(sub) = { ' , ' }
+**** Follow(
+     
+*** DONE Get Selection Sets for all the rules
+**** s(program -> decls states) = { $declare, $, #}
+***** fir(decls) + fol(program)
+**** s(decls -> decl decls) - { $declare} 
+***** fir(decl)
+**** s(decls -> # ) - { $,  ' : ', $id, $put, $get, $stop, $goto, $if, $do }
+***** fir(emptystring) + fol(decls)
+**** s(states -> state states) = { ' : ', $, $id, $put, $get, $stop, $goto, $if, $do, $end, ' ; ', # }
+***** fir(state) + fol(states)
+**** s(states -> #) = ( $, #, $end, ' ; ' )
+***** fir(empty) + fol(states)
+**** s(decl -> '$declare' idlist) = { $declare}
+***** fir($declare)
+**** s(idlist -> '$id' '('  '$int'  ')' melist) = { $id}
+***** fir($id)
+**** s(melist -> ',' '$id' '('  '$int'  ')'  melist) = { , }
+***** fir(,)
+**** s(melist -> #) = { $, $declare }
+***** fir(empty) + fol(melist)
+**** s(state -> labelsub ustate) = { ' : ', $ }
+***** fir(labelsub)
+**** s(labelsub -> label) = { ' : ' }
+***** fir(label)
+**** s(labelsub -> #) = { $,  $id, $put, $get, $stop, $goto, $if, $do  }
+***** fir(empty) + fol(labelsub)
+**** s(label -> ':' '$id' ':' ) = { : }
+***** fir(:)
+**** s(ustate -> assign ) = { $id }
+***** fir(assign)
+**** s(ustate -> put ) = { $put }
+***** fir(put)
+**** s(ustate -> get ) = { $get }
+***** fir(get)
+**** s(ustate -> stop ) = { $stop }
+***** fir(stop)
+**** s(ustate -> goto) = { $goto }
+***** fir(goto)
+**** s(ustate -> if ) = { $if }
+***** fir(if)
+**** s(ustate -> group) = { $do }
+***** fir(group)
+**** s(assign -> var '=' expr ';') = { $id }
+***** fir(var)
+**** s(put -> '$put' exprlist ';') = { $put }
+***** fir($put)
+**** s(exprlist -> expr mexprs ) = { '+', '-', $, $int, $id, ' ( ' , ' ; ' }
+***** fir(expr) + fol(exprlist)
+**** s(mexprs -> ',' expr mexprs) = { , }
+***** fir(,)
+**** s(mexprs -> #) = { $,  ' ; ' } 
+***** fir(empty) + fol(mexprs)
+**** s(get -> '$get' varlist ';' ) = { $get }
+***** fir($get)
+**** s(varlist -> var mvar) = { $id }
+***** fir(var)
+**** s(mvar -> ',' var mvar ) { , }
+***** fir(,)
+**** s(mvar -> # ) = { $, ' ; ' }
+***** fir(empty) + fol(mvar)
+**** s(stop -> '$stop' ';' ) = { $stop }
+***** fir($stop)
+**** s(goto -> '$goto' '$id' ';' ) = { $goto }
+***** fir($goto)
+**** s(if -> '$if' logexpr '$then' state ) = { $if }
+***** fir($if)
+**** s(group -> '$do' ';' states '$end' ';') = { $do }
+***** fir($do)
+**** s(logexpr -> expr relop expr  ) = { '+', '-'. $, $int, $id, ' ( ' }
+***** fir(expr)
+**** s(relop ->  '<') = { < }
+***** fir(<) 
+**** s(relop -> '>'  ) = { > } 
+***** fir(>) 
+**** s(relop -> '=' ) = { = }
+***** fir(=) 
+**** s(relop -> '<' '=' ) = { < }
+***** fir(<) 
+**** s(relop -> '>' '=' ) = { > }
+***** fir(>) 
+**** s(relop -> '<' '>' ) = { < }
+***** fir(<) 
+**** s(expr -> plusminsub term plusminterms) = { '+', '-', $ }
+***** fir(plusminsub)
+**** s(plusminsub -> '+') = { '+' }
+***** fir(+) 
+**** s(plusminsub -> '-') = { '-' }
+***** fir(-) 
+**** s(plusminsub -> #) = { $, +. - , #  }
+***** fir(empty) + fol(plusminsub)
+**** s(plusminterms ->  '+' term plusminterms) = { + }
+***** fir(+)
+**** s(plusminterms -> '-' term plusminterms) = { - }
+***** fir(-)
+**** s(plusminterms -> # ) = { $, # }
+***** fir(empty) + fol(plusminterms)
+**** s(term -> fact muldiv ) = { $id, $int, ' ( ' }
+***** fir(fact)
+**** s(muldiv -> '*' fact muldiv) = { * }
+***** fir(*)
+**** s(muldiv -> '/' fact muldiv ) = { / }
+***** fir(/)
+**** s(muldiv -> # ) = { $, '+', '-' }
+***** fir(empty) + fol(muldiv)
+**** s(fact -> var ) = { $id }
+***** fir(var)
+**** s(fact -> '$int' ) = { $int }
+***** fir($int)   
+**** s(fact -> '(' expr ')' ) = { ' ( ' }
+***** fir(' ( ')
+**** s(var -> '$id'  sub) = { $id }
+***** fir($id)
+**** s(sub -> '(' expr ')'  ) = { ' ( ' }
+***** fir( ' ( ' )
+**** s(sub -> # ) = { $, ' , ' }
+***** fir(empty) + fol(sub)
+*** TODO After proving EBNF is not Left Recursive, convert CFG to be not left recursive by either left factoring or eliminating left recursion.
+*** TODO Generate A valid PA set for each rule.
+**** TODO: Create First and Follow Sets for each rule.
+*** TODO Import the CFG and PA sets into Parse.cpp so as to create a recognizer for PL/H.
+*** TODO Test this recognizer by taking TokeFile.txt to be SelectionSortTokeFile.txt and running your recognizer with ParseTrace and SendOutputToFile both on.
+
+
+* List of Rules
+** DONE program
+*** { # }
+** DONE decls
+*** fir(states) in fol(decls)
+** DONE states
+*** folprogram) in fol(states)
+*** fir('$end' ';') in fol(states)
+** DONE decl
+*** fir('$declare') in fol(decl)
+** DONE idlist
+*** fol(decl) in fol(idlist)
+** DONE melist
+*** fol(idlist) in fol(melist)
+** DONE state
+*** fir(states) in fol(state)
+** DONE labelsub
+*** fir(ustate) in fol(labelsub)
+** DONE label
+*** fol(labelsub) in fol(label)
+** DONE ustate
+*** fol(state) in fol(ustate)
+** DONE assign
+*** fol(ustate) in fol(assign)
+** DONE put 
+*** fol(ustate) in fol(put)
+** DONE exprlist
+*** fir(;) in fol(exprlist)
+** DONE mexprs
+*** fol(exprlist) in fol(mexprs)
+** DONE get
+*** fol(ustate) in fol(get)
+** DONE varlist
+*** fir(;) in fol(varlist)
+** DONE mvar 
+*** fol(varlist) in fol(mvar)
+** DONE stop 
+*** fol(ustate) in fol(stop)
+** DONE goto
+*** fol(ustate) in fol(goto)
+** DONE if
+*** fol(ustate) in fol(if
+** DONE group
+*** fol(ustate) in fol(group)
+** DONE logexpr 
+*** fir('$then') in fol(logexpr)
+*** fir(state) in fol(logexpr)
+** DONE  relop 
+*** DONE fir(expr) in fol(relop)
+*** DONE fir(plusminsub) in fol(relop)
+*** DONE fol(logexpr) in fol(relop)
+** DONE expr 
+*** DONE fir(mexprs) in fol(expr)
+*** fol(mexprs) in fol(expr)
+** DONE plusminsub 
+*** DONE fol(term) in fol(plusminsub)
+*** fol(plusminterms) in fol(plusminsub) 
+** DONE plusminterms 
+*** end of input marker in fol(plusminterms) 
+** DONE term 
+*** DONE fir(plusminterms) in fol(term) 
+*** fol(plusminterms) in fol(term)
+** DONE muldiv 
+*** fol(term) in fol(mudliv)  
+** DONE fact
+*** DONE fir(muldiv) in fol(fact)  
+*** fol(muldiv) in fol(fact)
+** DONE  var
+*** fir(mvar) in fol(var)
+** DONE sub
+*** fol(var) in fol(sub)  
+
+*** TODO Get Selection Sets for all the rules
+**** s(program -> decls states) = { $declare, $, #}
+***** fir(decls) + fol(program)
+**** s(decls -> decl decls) - { $declare} 
+***** fir(decl)
+**** s(decls -> # ) - { $,  ' : ', $id, $put, $get, $stop, $goto, $if, $do }
+***** fir(emptystring) + fol(decls)
+**** s(states -> state states) = { ' : ', $, $id, $put, $get, $stop, $goto, $if, $do, $end, ' ; ', # }
+***** fir(state) + fol(states)
+**** s(states -> #) = ( $, #, $end, ' ; ', # )
+***** fir(empty) + fol(states)
+**** s(decl -> '$declare' idlist) = { $declare}
+***** fir($declare)
+**** s(idlist -> '$id' '('  '$int'  ')' melist) = { $id}
+***** fir($id)
+**** s(melist -> ',' '$id' '('  '$int'  ')'  melist) = { , }
+***** fir(,)
+**** s(melist -> #) = { $, ' , ' , #}
+***** fir(empty) + fol(melist)
+**** s(state -> labelsub ustate) = { ' : ', $ }
+***** fir(labelsub)
+**** s(labelsub -> label) = { ' : ' }
+***** fir(label)
+**** s(labelsub -> #) = { $,  ' : ', # }
+***** fir(empty) + fol(labelsub)
+**** s(label -> ':' '$id' ':' ) = { : }
+***** fir(:)
+**** s(ustate -> assign ) = { $id }
+***** fir(assign)
+**** s(ustate -> put ) = { $put }
+***** fir(put)
+**** s(ustate -> get ) = { $get }
+***** fir(get)
+**** s(ustate -> stop ) = { $stop }
+***** fir(stop)
+**** s(ustate -> goto) = { $goto }
+***** fir(goto)
+**** s(ustate -> if ) = { $if }
+***** fir(if)
+**** s(ustate -> group) = { $do }
+***** fir(group)
+**** s(assign -> var '=' expr ';') = { $id }
+***** fir(var)
+**** s(put -> '$put' exprlist ';') = { $put }
+***** fir($put)
+**** s(exprlist -> expr mexprs ) = { '+', '-', $, $int, $id, ' ( ' , ' ; ' }
+***** fir(expr) + fol(exprlist)
+**** s(mexprs -> ',' expr mexprs) = { , }
+***** fir(,)
+**** s(mexprs -> #) = { $,  ' ; ' } 
+***** fir(empty) + fol(mexprs)
+**** s(get -> '$get' varlist ';' ) = { $get }
+***** fir($get)
+**** s(varlist -> var mvar) = { $id }
+***** fir(var)
+**** s(mvar -> ',' var mvar ) { , }
+***** fir(,)
+**** s(mvar -> # ) = { $, ' ; ' }
+***** fir(empty) + fol(mvar)
+**** s(stop -> '$stop' ';' ) = { $stop }
+***** fir($stop)
+**** s(goto -> '$goto' '$id' ';' ) = { $goto }
+***** fir($goto)
+**** s(if -> '$if' logexpr '$then' state ) = { $if }
+***** fir($if)
+**** s(group -> '$do' ';' states '$end' ';') = { $do }
+***** fir($do)
+**** s(logexpr -> expr relop expr  ) = { '+', '-'. $, $int, $id, ' ( ' }
+***** fir(expr)
+**** s(relop ->  '<') = { < }
+***** fir(<) 
+**** s(relop -> '>'  ) = { > } 
+***** fir(>) 
+**** s(relop -> '=' ) = { = }
+***** fir(=) 
+**** s(relop -> '<' '=' ) = { < }
+***** fir(<) 
+**** s(relop -> '>' '=' ) = { > }
+***** fir(>) 
+**** s(relop -> '<' '>' ) = { < }
+***** fir(<) 
+**** s(expr -> plusminsub term plusminterms) = { '+', '-', $ }
+***** fir(plusminsub)
+**** s(plusminsub -> '+') = { '+' }
+***** fir(+) 
+**** s(plusminsub -> '-') = { '-' }
+***** fir(-) 
+**** s(plusminsub -> #) = { $, +. - , #  }
+***** fir(empty) + fol(plusminsub)
+**** s(plusminterms ->  '+' term plusminterms) = { + }
+***** fir(+)
+**** s(plusminterms -> '-' term plusminterms) = { - }
+***** fir(-)
+**** s(plusminterms -> # ) = { $, # }
+***** fir(empty) + fol(plusminterms)
+**** s(term -> fact muldiv ) = { $id, $int, ' ( ' }
+***** fir(fact)
+**** s(muldiv -> '*' fact muldiv) = { * }
+***** fir(*)
+**** s(muldiv -> '/' fact muldiv ) = { / }
+***** fir(/)
+**** s(muldiv -> # ) = { $, '+', '-' }
+***** fir(empty) + fol(muldiv)
+**** s(fact -> var ) = { $id }
+***** fir(var)
+**** s(fact -> '$int' ) = { $int }
+***** fir($int)   
+**** s(fact -> '(' expr ')' ) = { ' ( ' }
+***** fir(' ( ')
+**** s(var -> '$id'  sub) = { $id }
+***** fir($id)
+**** s(sub -> '(' expr ')'  ) = { ' ( ' }
+***** fir( ' ( ' )
+**** s(sub -> # ) = { $, ' , ' }
+***** fir(empty) + fol(sub)

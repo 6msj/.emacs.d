@@ -4,7 +4,6 @@
   (normal-top-level-add-subdirs-to-load-path))
 
 ;;(setenv "ESHELL" (expand-file-name "~/.bin/eshell"))
-
 (add-to-list 'load-path "~/.emacs.d/packages/")
 
 ;; no startup message
@@ -64,12 +63,12 @@
 
 ;; Mac Specific
 (when (eq system-type 'darwin)
-  (set-face-attribute 'default nil :family "Consolas")
-  (set-face-attribute 'default nil :height 120)
+  ;;(set-face-attribute 'default nil :family "Consolas")
+  ;;(set-face-attribute 'default nil :height 120)
+  (set-face-attribute 'default nil :family "Inconsolata For Powerline")
+  (set-face-attribute 'default nil :height 130)
   (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
 )
-
-
 
 (when (eq system-type 'linux)
   (set-face-attribute 'default nil :family "Inconsolata For Powerline")
@@ -107,25 +106,26 @@
 
 ;; Set default fonts for programming and for regular text mode.
 (add-hook 'text-mode-hook 'my-buffer-face-mode-variable)
-(add-hook 'prog-mode-hook 'my-buffer-face-mode-fixed)
+;;(add-hook 'prog-mode-hook 'my-buffer-face-mode-fixed)
 
 ;; Mute system sound.
 (setq ring-bell-function #'ignore)
 
 (require 'powerline)
+(setq powerline-arrow-shape 'arrow14)
 
 ;; change mode-line color by evil state
 (lexical-let ((default-color (cons (face-background 'mode-line)
-                                   (face-foreground 'mode-line))))
-  (add-hook 'post-command-hook
-    (lambda ()
-      (let ((color (cond ((minibufferp) default-color)
-                         ((evil-insert-state-p) '("#e80000" . "#ffffff"))
-                         ((evil-emacs-state-p)  '("#444488" . "#ffffff"))
-                         ((buffer-modified-p)   '("#006fa0" . "#ffffff"))
-                         (t default-color))))
-        (set-face-background 'mode-line (car color))
-        (set-face-foreground 'mode-line (cdr color))))))
+                                  (face-foreground 'mode-line))))
+ (add-hook 'post-command-hook
+   (lambda ()
+     (let ((color (cond ((minibufferp) default-color)
+                        ((evil-insert-state-p) '("#e80000" . "#ffffff"))
+                        ((evil-emacs-state-p)  '("#444488" . "#ffffff"))
+                        ((buffer-modified-p)   '("#006fa0" . "#ffffff"))
+                        (t default-color))))
+       (set-face-background 'mode-line (car color))
+       (set-face-foreground 'mode-line (cdr color))))))
 
 ;; ----------------- THEME ------------------------------------
 
@@ -233,10 +233,17 @@
   (xclip-mode 1)
 )
 
-(when (eq system-type 'darwin)
-  (require 'pbcopy)
-  (turn-on-pbcopy)
-)
+;; (if window-system
+;;     (when (eq system-type 'darwin)
+;;       (require 'pbcopy)
+;;       (turn-on-pbcopy)))
+
+(if (window-system)
+    (progn)
+  (when (eq system-type 'darwin)
+    (require 'pbcopy)
+    (turn-on-pbcopy)))
+
 
 ;; ----------------- EDITING ----------------------------------
 

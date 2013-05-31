@@ -1,7 +1,6 @@
-* TODO Find out what makes an LL1 CFG.
+* DONE Find out what makes an LL1 CFG.
 ** We are making a recognizer. 
 ** For our project, we will be using the LL(1) parsing algorithm.
-** 
 * DONE Find out how to find a valid PA set for each rule.
 ** For each token a in FIrst(@), add A -> @ to then entry M[A,a].
 ** If # is in First(@), for each element a of FOllow(A) (where a is a token or a is $), add A -> @ to M[A,a]. 
@@ -122,35 +121,34 @@
 **** First(sub) = { '(', # } 
 *** TODO Get Follow sets for all the rules
 **** Follow(program) = { # }
-**** Follow(decls) = 
-**** Follow(states) = 
-**** Follow(decl) =
-**** Follow(idlist) =
-**** Follow(melist) =
-**** Follow(state) = 
-**** Follow(labelsub) =
-**** Follow(ustate) = 
-**** Follow(assign) =
-**** Follow(put) = 
-**** Follow(exprlist) =
-**** Follow(mexprs) = 
-**** Follow(get) =
-**** Follow(varlist) =
-**** Follow(mvar) =
-**** Follow(stop) =
-**** Follow(if) = 
+**** Follow(decls) = {} 
+**** Follow(states) =  { # }
+**** Follow(decl) = { }
+**** Follow(idlist) = { }
+**** Follow(melist) = { }
+**** Follow(state) =  { }
+**** Follow(labelsub) = { }
+**** Follow(ustate) =  { }
+**** Follow(assign) = { }
+**** Follow(put) = { } 
+**** Follow(exprlist) = { }
+**** Follow(mexprs) = { } 
+**** Follow(get) = { }
+**** Follow(varlist) = { }
+**** Follow(mvar) = { } 
+**** Follow(stop) = { }
+**** Follow(if) ={ } 
 **** Follow(group) =
-**** Follow(logexpr) =
-**** Follow(relop) =
-**** Follow(expr) =
-**** Follow(plusminsub) =
-**** Follow(pluminterms) =
-**** Follow(term) =
-**** Follow(muldiv) =
-**** Follow(fact) =
-**** Follow(var) =
-**** Follow(sub) =
-**** Follow(
+**** Follow(logexpr) = { }
+**** Follow(relop) = { '+', '-'  }
+**** Follow(expr) = { }
+**** Follow(plusminsub) = { j}
+**** Follow(pluminterms) = { }
+**** Follow(term) = { '+' , '-' }
+**** Follow(muldiv) = { '+', '-' }
+**** Follow(fact) = { ' * ', '/' }
+**** Follow(var) = { ' , '  }
+**** Follow(sub) = { ' , '}
      
 *** TODO Get Selection sets for all the rules
 *** TODO After proving EBNF is not Left Recursive, convert CFG to be not left recursive by either left factoring or eliminating left recursion.
@@ -162,68 +160,68 @@
 
 * List of Rules
 ** program
-*** # in Fol(Program) - 1
-*** Fol(program) in Fol(states) - 3
+*** DONE # in Fol(Program) - 1
+*** DONE Fol(program) in Fol(states) - 3
 ** decls
-*** Fol(decls) in Fol(decls) - 3
+*** DONE Fol(decls) in Fol(decls) - 3
 ** states
-*** Fol(states) in Fol(states) - 3
+*** DONE Fol(states) in Fol(states) - 3
 ** decl
-*** Fol(decl) in Fol(idlist) - 3
+*** DONE Fol(decl) in Fol(idlist) - 3
 ** idlist
-*** Fol(idlist) in Fol(melist) - 3
+*** DONE Fol(idlist) in Fol(melist) - 3
 ** melist
-*** Fol(melist) in Fol(melist) - 3
+*** DONE Fol(melist) in Fol(melist) - 3
 ** state
-*** Fol(state) in Fol(ustate) - 3
+*** DONE Fol(state) in Fol(ustate) - 3
 ** labelsub
-*** Empty
+*** DONE Empty
 ** label
-*** Empty
+*** DONE Empty
 ** ustate
-*** Empty
+*** DONE Empty
 ** assign
-*** Empty
+*** DONE Empty
 ** put 
-*** Fol(put) in Fol(exprlist) - 4
+*** DONE Fol(put) in Fol(exprlist) - 4
 ** exprlist
-*** Fol(exprlist) in Fol(mexprs) - 3
+*** DONE Fol(exprlist) in Fol(mexprs) - 3
 ** mexprs
-*** Fol(mexprs) in Fol(expr) - 4
+*** DONE Fol(mexprs) in Fol(expr) - 4
 ** get
-*** Fol(get) in Fol(varlist) - 4
+*** DONE Fol(get) in Fol(varlist) - 4
 ** varlist
-*** Fol(varlist) in Fol(mvar) - 3
+*** DONE Fol(varlist) in Fol(mvar) - 3
 ** mvar 
-*** Fir(mvar) in Fol(var) except for # - 2
+*** DONE Fir(mvar) in Fol(var) except for # - 2
 ** stop 
-*** Empty
+*** DONE Empty
 ** goto
-*** Empty
+*** DONE Empty
 ** if
-*** Empty
+*** DONE Empty
 ** group
-*** Empty
+*** DONE Empty
 ** logexpr 
-*** Fol(logexpr) in Fol(relop) - 4
+*** DONE Fol(logexpr) in Fol(relop) - 4
 ** relop 
-*** Empty
+*** DONE Empty
 ** expr 
-*** Fir(expr) in Fol(relop) except for # - 2
+*** DONE Fir(expr) in Fol(relop) except for # - 2
 ** plusminsub 
-*** Empty
+*** DONE Empty
 ** plusminterms 
-*** Fir(plusminterms) in Fol(term) except for # - 2
+*** DONE Fir(plusminterms) in Fol(term) except for # - 2
 ** term 
-*** Fol(term) in Fol(muldiv) - 3
+*** DONE Fol(term) in Fol(muldiv) - 3
 ** muldiv 
-*** Fir(muldiv) in Fol(fact) except for # - 4
+*** DONE Fir(muldiv) in Fol(fact) except for # - 4
 ** fact
-*** Empty
+*** DONE Empty
 ** var
-*** Fol(var) in Fol(sub) - 3
+*** TODO Fol(var) in Fol(sub) - 3
 ** sub
-*** Empty 
+*** TODO Empty 
 
     
 

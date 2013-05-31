@@ -1,4 +1,8 @@
-((("paste-from-xclip" .
+((("powerline-nano-theme" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0])
+  ("powerline-center-theme" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0])
+  ("paste-from-xclip" .
    [0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
   ("mac-key-mode" .
    [0 0 0 0 0 0 0 0 1 0 0 0])
@@ -103,7 +107,7 @@
   ("print" .
    [1 0 0 0 0])
   ("solarized-light" .
-   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+   [1 0 0 0 0 0 1 0 0 0 0 0 0 0 0])
   ("auto-save-default" .
    [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
   ("make-backup-files" .
@@ -345,7 +349,7 @@
   ("change-theme" .
    [1 0 0 0 0 0 0 0 0 0 0 0])
   ("adwaita" .
-   [1 0 0 0 0 1 0])
+   [1 0 0 0 0 1 1])
   ("monokai" .
    [1 0 0 0 0 0 0])
   ("apply_surface" .
@@ -357,7 +361,7 @@
   ("screen" .
    [1 0 0 0 0 0])
   ("require" .
-   [8 0 1 1 0 0 0])
+   [9 0 1 1 0 0 0])
   ("key-chord" .
    [0 0 0 0 0 0 1 0 0])
   ("key-chord-mode" .
@@ -419,7 +423,7 @@
   ("ede-minor-mode" .
    [0 0 0 0 0 1 0 0 0 0 0 0 0 0])
   ("molokai" .
-   [2 0 0 0 0 0 0])
+   [2 0 0 0 0 1 0])
   ("split-window-below" .
    [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
   ("split-window-right" .
@@ -467,4 +471,26 @@
   ("shuffle_deck" .
    [0 0 0 0 0 0 0 0 0 0 0 1])
   ("xclip" .
-   [1 0 0 1 0])))
+   [1 0 0 1 0])
+  ("powerline-center-evil-theme" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("powerline-vim-theme" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0])
+  ("i" .
+   [1])
+  ("window-system" .
+   [0 0 0 0 0 0 0 0 0 1 0 0 0])
+  ("progn" .
+   [1 0 0 0 0])
+  ("when" .
+   [1 0 0 0])
+  ("eq" .
+   [1 0])
+  ("system-type" .
+   [0 0 0 0 0 0 0 0 0 1 0])
+  ("darwin" .
+   [1 0 0 0 0 0])
+  ("pbcopy" .
+   [0 0 0 1 0 0])
+  ("turn-on-pbcopy" .
+   [0 0 0 0 0 0 0 0 0 0 0 1 0 0])))
