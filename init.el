@@ -520,7 +520,9 @@
 (global-set-key "\C-cb" 'org-iswitchb)
 
 ;; Tips
-;; <M-x> ielm opens up the ELISP interpreter.
+;; <M-x> ielm : Is the ELISP interpreter.
+;; C-h k : Is the describe-key function.
+;; C-h f : Is the describe-function function. 
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
