@@ -19,9 +19,9 @@
 
 ;; ----- ido-work-directory-list -----
 (
+ "/Users/james/Dropbox/ORG/"
  "/Users/james/"
  "/Users/james/Developer/SE Project/Project Code/src/t5_domain_logic/"
- "/Users/james/Dropbox/ORG/"
  "/Users/james/Dropbox/CompilerProject/"
  "/Users/james/Developer/C-Plus-Plus/Op-Systems/homework_2/"
  "/Users/james/BTSync/CompilerProject/"
@@ -47,9 +47,9 @@
 
 ;; ----- ido-work-file-list -----
 (
+ "History.org"
  ".init.el"
  "Hospital.java"
- "History.org"
  "Compilers.org"
  "ProjectV2.org"
  "os.cpp"
@@ -61,9 +61,9 @@
 
 ;; ----- ido-dir-file-cache -----
 (
- ("/Users/james/.emacs.d/" (20907 36694 0 0) "themes/" "semanticdb/" "packages/" "init.el" "elpa/" "ede-projects.el" "backups/" "back.init.el" "auto-save-list/" "ac-comphist.dat" ".mc-lists.el" ".gitignore" ".git/" ".emacs~" ".DS_Store" "../" "./")
+ ("/Users/james/" (20907 37628 0 0) "SSHFS/" "Sites/" "Public/" "Pictures/" "Music/" "mozilla-central/" "Movies/" "Library/" "Dropbox/" "Downloads/" "Documents/" "Developer/" "Desktop/" "BTSync/" "Applications/" ".zshrc.save" ".zshrc" ".zsh_history" ".zsh-update" ".zprofile" ".zcompdump" ".ycm_extra_conf.pyc" ".weechat/" ".vimtags" ".vimshell/" ".vimrc" ".viminfx.tmp" ".viminfv.tmp" ".viminfo.tmp" ".viminfo" ".vimfiler/" ".vim_bak/" ".vim/" ".unite/" ".Trash/" ".tramp_history" ".tmux.conf" ".swp" ".subversion/" ".ssh/" ".sh_history" ".rvm/" ".rsense" ".root" ".rnd" ".recentf" ".pylint.d/" ".psql_history" ".pip/" ".pgpass" ".pgadmin_histoqueries" ".oh-my-zsh/" ".netrc" ".netbeans-derby/" ".neocomplcache/" ".mysql_history" ".m2/" ".lighttable/" ".lesshst" ".lein/" ".jedi/" ".irssi/" ".irb-history" ".init.el" ".ido.last~" ".ido.last" ".heroku/" ".gvimrc" ".guard_history" ".gradle/" ".gitconfig" ".gem/" ".filezilla/" ".emacs.d/" ".eclim/" ".DS_Store" ".dropbox/" ".dotfiles/" ".config/" ".CFUserTextEncoding" ".cache/" ".bitrock/" ".bin/" ".bashrc" ".bash_profile" ".bash_history" ".argouml/" ".appletviewer" ".android/" ".adobe/" "../" "./")
 
- ("/Users/james/" (20907 37160 0 0) "SSHFS/" "Sites/" "Public/" "Pictures/" "Music/" "mozilla-central/" "Movies/" "Library/" "Dropbox/" "Downloads/" "Documents/" "Developer/" "Desktop/" "BTSync/" "Applications/" ".zshrc.save" ".zshrc" ".zsh_history" ".zsh-update" ".zprofile" ".zcompdump" ".ycm_extra_conf.pyc" ".weechat/" ".vimtags" ".vimshell/" ".vimrc" ".viminfx.tmp" ".viminfv.tmp" ".viminfo.tmp" ".viminfo" ".vimfiler/" ".vim_bak/" ".vim/" ".unite/" ".Trash/" ".tramp_history" ".tmux.conf" ".swp" ".subversion/" ".ssh/" ".sh_history" ".rvm/" ".rsense" ".root" ".rnd" ".recentf" ".pylint.d/" ".psql_history" ".pip/" ".pgpass" ".pgadmin_histoqueries" ".oh-my-zsh/" ".netrc" ".netbeans-derby/" ".neocomplcache/" ".mysql_history" ".m2/" ".lighttable/" ".lesshst" ".lein/" ".jedi/" ".irssi/" ".irb-history" ".init.el" ".ido.last~" ".ido.last" ".heroku/" ".gvimrc" ".guard_history" ".gradle/" ".gitconfig" ".gem/" ".filezilla/" ".emacs.d/" ".eclim/" ".DS_Store" ".dropbox/" ".dotfiles/" ".config/" ".CFUserTextEncoding" ".cache/" ".bitrock/" ".bin/" ".bashrc" ".bash_profile" ".bash_history" ".argouml/" ".appletviewer" ".android/" ".adobe/" "../" "./")
+ ("/Users/james/.emacs.d/" (20907 36694 0 0) "themes/" "semanticdb/" "packages/" "init.el" "elpa/" "ede-projects.el" "backups/" "back.init.el" "auto-save-list/" "ac-comphist.dat" ".mc-lists.el" ".gitignore" ".git/" ".emacs~" ".DS_Store" "../" "./")
 
  ("/Users/james/Dropbox/CompilerProject/" (20906 29526 0 0) "userule.txt" "userule (venkat sundaram's conflicted copy 2013-05-30).txt" "SelectionSortTokenFile.txt" "selectionsetpage11.pdf" "Screen Shot 2013-05-30 at 5.55.41 PM.png" "ProjectV2.org" "project.org" "parse.cpp" "outline.org" "l7_2010.pdf" "Icon
 " "CFGFirstFollowSets.odt" "CFGFirstFollowSets.doc" "27 Sample 4110 final exam questions v2.doc" "26 Multiple_Choice_Instructions v2.doc" "25 Final Exam Highlights v2.doc" "18.1 SLR Table Const for GSE1 v02.pdf" "18 SLR Table Construction v03b.doc" "16_RegularLanguages v02.doc" "15_CodeOptimization v01b.doc" "14_CodeGeneration v01c.doc" "13_BottomUpParsing v02.doc" "12_Scanning.doc" "11_PLHConstructs v02.doc" "10_TranslationSchemes v02.doc" "09_PLHParser.doc" "08_LLTables2.doc" "07_LLTables1 v02.doc" "06_LLParsing v02b.doc" "05_Phrases.doc" "04_CFG's v03.doc" "03_Strings v02.doc" "02_VirtualMachine v01b.doc" "01_Overview v03.doc" ".DS_Store" ".dropbox" "../" "./")
