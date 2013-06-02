@@ -1,0 +1,229 @@
+;; Object t5_domain_logic/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "t5_domain_logic/"
+  :tables (list 
+   (semanticdb-table "Hospital.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("t5_domain_logic" package nil nil [1 25])
+            ("com.sun.deploy.config.VerboseDefaultConfig" include nil nil [27 77])
+            ("t5_domain_objects.*" include nil nil [78 105])
+            ("java.util.HashMap" include nil nil [107 132])
+            ("java.util.Vector" include nil nil [133 157])
+            ("java.util.Date" include nil nil [158 180])
+            ("Hospital" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("NUM_SURGEONS" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1261 1291])
+                    ("NUM_DOCTORS" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1296 1325])
+                    ("NUM_HEADS" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1330 1357])
+                    ("NUM_NURSES" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1362 1390])
+                    ("NUM_INSURANCE_POLICY" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1395 1432])
+                    ("NUM_INSURANCE" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1437 1467])
+                    ("NUM_SKILLS" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1472 1500])
+                    ("NUM_DEPARTMENTS" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1505 1537])
+                    ("NUM_OPERATING_ROOMS" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1542 1578])
+                    ("NUM_OFFICES" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1583 1611])
+                    ("NUM_BEDS" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1616 1642])
+                    ("NUM_EXAM_ROOMS" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1647 1678])
+                    ("Hospital" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [1799 2167])
+                    ("generate_users" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2173 3944])
+                    ("getUniqueUserID" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [3952 4239])
+                    ("hire_surgeons" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [4246 4477])
+                    ("hire_doctors" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [4483 4769])
+                    ("hire_heads" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [4775 5031])
+                    ("hire_nurses" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [5037 5231])
+                    ("build_insurance_policy" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [5237 5527])
+                    ("build_insurance" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [5533 5921])
+                    ("hire_skills" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [5927 6117])
+                    ("build_departments" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [6123 6425])
+                    ("build_operating_rooms" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [6431 6658])
+                    ("build_offices" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [6664 6868])
+                    ("build_beds" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [6874 7063])
+                    ("build_exam_rooms" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [7069 7311])
+                    ("getAllUsers" function (:constructor-flag t) (reparse-symbol class_member_declaration) [7348 7394])
+                    ("setAllUsers" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("" variable (:type "String") (reparse-symbol formal_parameters) [7432 7438])
+                            ("" variable (:type "allUsers") (reparse-symbol formal_parameters) [7448 7456]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [7400 7499])
+                    ("getAllBeds" function (:constructor-flag t) (reparse-symbol class_member_declaration) [7524 7568])
+                    ("setAllBeds" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("" variable (:type "allBeds") (reparse-symbol formal_parameters) [7609 7616]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [7574 7657])
+                    ("getAllExamRooms" function (:constructor-flag t) (reparse-symbol class_member_declaration) [7694 7748])
+                    ("setAllExamRooms" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("" variable (:type "allExamRooms") (reparse-symbol formal_parameters) [7806 7818]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [7754 7869])
+                    ("getAllOffices" function (:constructor-flag t) (reparse-symbol class_member_declaration) [7897 7947])
+                    ("setAllOffices" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("" variable (:type "allOffices") (reparse-symbol formal_parameters) [7994 8004]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [7953 8051])
+                    ("getAllOperatingRooms" function (:constructor-flag t) (reparse-symbol class_member_declaration) [8086 8150])
+                    ("setAllOperatingRooms" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("" variable (:type "allOperatingRooms") (reparse-symbol formal_parameters) [8211 8228]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [8156 8289])
+                    ("getAllDepartments" function (:constructor-flag t) (reparse-symbol class_member_declaration) [8321 8379])
+                    ("setAllDepartments" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("" variable (:type "allDepartments") (reparse-symbol formal_parameters) [8434 8448]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [8385 8503])
+                    ("getAllSkills" function (:constructor-flag t) (reparse-symbol class_member_declaration) [8531 8579])
+                    ("setAllSkills" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("" variable (:type "allSkills") (reparse-symbol formal_parameters) [8625 8634]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [8585 8679])
+                    ("getAllInsurancePolicy" function (:constructor-flag t) (reparse-symbol class_member_declaration) [8716 8782])
+                    ("setAllInsurancePolicy" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("" variable (:type "allInsurancePolicy") (reparse-symbol formal_parameters) [8846 8864]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [8788 8927])
+                    ("getAllInsurance" function (:constructor-flag t) (reparse-symbol class_member_declaration) [8958 9012])
+                    ("setAllInsurance" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("" variable (:type "allInsurance") (reparse-symbol formal_parameters) [9064 9076]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [9018 9127])
+                    ("getAllSurgeons" function (:constructor-flag t) (reparse-symbol class_member_declaration) [9156 9208])
+                    ("setAllSurgeons" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("" variable (:type "allSurgeons") (reparse-symbol formal_parameters) [9257 9268]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [9214 9317])
+                    ("getAllDoctors" function (:constructor-flag t) (reparse-symbol class_member_declaration) [9345 9395])
+                    ("setAllDoctors" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("" variable (:type "allDoctors") (reparse-symbol formal_parameters) [9442 9452]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [9401 9499])
+                    ("getAllHeads" function (:constructor-flag t) (reparse-symbol class_member_declaration) [9525 9571])
+                    ("setAllHeads" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("" variable (:type "allHeads") (reparse-symbol formal_parameters) [9614 9622]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [9577 9665])
+                    ("getAllNurses" function (:constructor-flag t) (reparse-symbol class_member_declaration) [9692 9740])
+                    ("setAllNurses" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("" variable (:type "allNurses") (reparse-symbol formal_parameters) [9785 9794]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [9746 9839]))                  
+                :type "class")
+                nil [335 9841]))          
+    :file "Hospital.java"
+    :pointmax 9841
+    :fsize 9841
+    :lastmodtime '(20907 36909 0 0)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!Users!james!Developer!SE Project!Project Code!src!t5_domain_logic!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

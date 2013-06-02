@@ -1,4 +1,8 @@
-((("powerline-nano-theme" .
+((("git-gutter" .
+   [1 0 0 0 0 0 0 0 0 0])
+  ("magit-status" .
+   [1 0 0 0 0 0 0 0 0 0 0 0])
+  ("powerline-nano-theme" .
    [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0])
   ("powerline-center-theme" .
    [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0])
@@ -13,7 +17,7 @@
   ("sr-speedbar-toggle" .
    [0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
   ("kbd" .
-   [2 0 0])
+   [4 0 0])
   ("pink-bliss" .
    [1 0 0 0 0 0 0 0 0 0])
   ("fringe-mode" .
@@ -313,7 +317,7 @@
   ("my-c-mode-auto-hook" .
    [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
   ("global-set-key" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 2])
+   [0 0 0 0 0 0 0 0 0 1 0 0 0 3])
   ("define-key" .
    [1 0 0 0 0 0 0 0 0 2])
   ("evil-normal-state" .
@@ -361,7 +365,7 @@
   ("screen" .
    [1 0 0 0 0 0])
   ("require" .
-   [9 0 1 1 0 0 0])
+   [10 0 1 1 0 0 0])
   ("key-chord" .
    [0 0 0 0 0 0 1 0 0])
   ("key-chord-mode" .
@@ -493,4 +497,6 @@
   ("pbcopy" .
    [0 0 0 1 0 0])
   ("turn-on-pbcopy" .
-   [0 0 0 0 0 0 0 0 0 0 0 1 0 0])))
+   [0 0 0 0 0 0 0 0 0 0 0 1 0 0])
+  ("git-gutter-fringe" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])))

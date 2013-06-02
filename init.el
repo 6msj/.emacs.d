@@ -18,7 +18,10 @@
  '(show-paren-mode t))
 
 ; list the packages you want
-(setq package-list '(auto-complete autopair evil evil-leader evil-nerd-commenter fuzzy key-chord multiple-cursors rainbow-delimiters org smooth-scrolling sr-speedbar surround theme-changer undo-tree xclip yasnippet))
+(setq package-list '(auto-complete autopair evil evil-leader
+                     evil-nerd-commenter fuzzy key-chord git-gutter-fringe
+                     magit multiple-cursors rainbow-delimiters org smooth-scrolling
+                     sr-speedbar surround theme-changer undo-tree xclip yasnippet))
 
 ; list the repositories containing them
 (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
@@ -59,7 +62,7 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(fringe-mode 0)
+;;(fringe-mode 0)
 
 ;; Mac Specific
 (when (eq system-type 'darwin)
@@ -105,11 +108,18 @@
 (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
 
 ;; Set default fonts for programming and for regular text mode.
-(add-hook 'text-mode-hook 'my-buffer-face-mode-variable)
+;;(add-hook 'text-mode-hook 'my-buffer-face-mode-variable)
 ;;(add-hook 'prog-mode-hook 'my-buffer-face-mode-fixed)
 
 ;; Mute system sound.
 (setq ring-bell-function #'ignore)
+
+;; Git Gutter
+(require 'git-gutter-fringe)
+(set-face-foreground 'git-gutter-fr:modified "yellow")
+(set-face-foreground 'git-gutter-fr:added    "blue")
+(set-face-foreground 'git-gutter-fr:deleted  "white")
+(add-hook 'prog-mode-hook 'git-gutter)
 
 (require 'powerline)
 (setq powerline-arrow-shape 'arrow14)
@@ -146,11 +156,13 @@
 (global-set-key (kbd "<F5>") 'gud-gdb) ;; debugging
 (global-set-key (kbd "<F6>") 'recompile) ;; recompile
 (global-set-key (kbd "<F7>") 'compile) ;; compiling
-(global-set-key (kbd "\C-c o") 'occur) ;; occur!!
+(global-set-key (kbd "C-c o") 'occur) ;; occur!!
 
 (global-set-key (kbd "C-x C-r") 'rename-current-buffer-file) ;; rename 
 
 (global-set-key (kbd "C-c C-s") 'sr-speedbar-toggle) ;; toggle speed bar in frame
+(global-set-key (kbd "C-c C-g") 'magit-status) ;; git!!
+(global-set-key (kbd "C-c g") 'magit-status) ;; git!!
 
 
 ;; ----------------- MAPPINGS ---------------------------------
@@ -380,10 +392,13 @@
 (require 'key-chord)
 (key-chord-mode 1)
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+(key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
+(key-chord-define evil-insert-state-map "kk" 'evil-normal-state)
+(key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
 
 ;; esc quits
-(define-key evil-normal-state-map [escape] 'keyboard-quit)
-(define-key evil-visual-state-map [escape] 'keyboard-quit)
+;;(define-key evil-normal-state-map [escape] 'keyboard-quit)
+;;(define-key evil-visual-state-map [escape] 'keyboard-quit)
 (define-key minibuffer-local-map [escape] 'abort-recursive-edit)
 (define-key minibuffer-local-ns-map [escape] 'abort-recursive-edit)
 (define-key minibuffer-local-completion-map [escape] 'abort-recursive-edit)
