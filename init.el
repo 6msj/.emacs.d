@@ -18,9 +18,10 @@
  '(show-paren-mode t))
 
 ; list the packages you want
-(setq package-list '(auto-complete autopair evil evil-leader
-                     evil-nerd-commenter fuzzy key-chord git-gutter-fringe
-                     magit multiple-cursors rainbow-delimiters org smooth-scrolling
+(setq package-list '(auto-complete autopair diminish evil evil-leader
+                     evil-nerd-commenter fuzzy key-chord
+                     git-gutter-fringe jedi magit multiple-cursors
+                     rainbow-delimiters org projectile smooth-scrolling
                      sr-speedbar surround theme-changer undo-tree xclip yasnippet))
 
 ; list the repositories containing them
@@ -71,6 +72,18 @@
   (set-face-attribute 'default nil :family "Inconsolata For Powerline")
   (set-face-attribute 'default nil :height 130)
   (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
+
+  (setenv "PATH" (concat (getenv "HOME") ".bin:"
+                         "/usr/local/bin:"
+                         "/usr/local/rsense-0.3:"
+                         "/usr/local/share/python:"
+                         "/usr/local/heroku/bin:"
+                         "/Users/james/Developer/Android/sdk/tools:"
+                         "/Library/PostgreSQL/9.2/bin"
+                         "/opt/local/bin:"
+                         "/opt/local/sbin:"
+                         "/Applications/xampp/xamppfiles/bin:"
+                         (getenv "PATH")))
 )
 
 (when (eq system-type 'linux)
@@ -119,7 +132,8 @@
 (set-face-foreground 'git-gutter-fr:modified "yellow")
 (set-face-foreground 'git-gutter-fr:added    "blue")
 (set-face-foreground 'git-gutter-fr:deleted  "white")
-(add-hook 'prog-mode-hook 'git-gutter)
+;;(add-hook 'prog-mode-hook 'git-gutter)
+(global-git-gutter-mode t)
 
 (require 'powerline)
 (setq powerline-arrow-shape 'arrow14)
@@ -245,10 +259,6 @@
   (xclip-mode 1)
 )
 
-;; (if window-system
-;;     (when (eq system-type 'darwin)
-;;       (require 'pbcopy)
-;;       (turn-on-pbcopy)))
 
 (if (window-system)
     (progn)
@@ -335,6 +345,17 @@
 (setq buffer-face-mode-face '(:family "Consolas" :height 120))
 (buffer-face-mode))
 
+;; Close compilation window on successful compile.
+ (setq compilation-finish-functions 'compile-autoclose)
+ (defun compile-autoclose (buffer string)
+   (cond ((string-match "finished" string)
+          (message "Build maybe successful: closing window.")
+          (run-with-timer 1 nil                      
+                          'delete-window              
+                          (get-buffer-window buffer t)))
+         (t                                                                    
+          (message "Compilation exited abnormally: %s" string))))
+
 ;; ----------------- FUNCTIONS --------------------------------
 
 ;; ----------------- NAVIGATION -------------------------------
@@ -355,6 +376,9 @@
 
 ;; switch between header and implementation
 (add-hook 'c-mode-common-hook (lambda() (local-set-key (kbd "C-c p") 'ff-find-other-file)))
+
+;; Projectile
+(projectile-global-mode)
 
 ;; ----------------- NAVIGATION -------------------------------
 
@@ -434,6 +458,11 @@
     "wv" 'split-window-right
 )
 
+;; Occur Mode
+(evil-set-initial-state 'occur-mode 'motion)
+(evil-define-key 'motion occur-mode-map (kbd "RET") 'occur-mode-goto-occurrence)
+(evil-define-key 'motion occur-mode-map (kbd "q")   'quit-window)
+
 ;; fix black cursor
 (setq evil-default-cursor t)
 
@@ -452,6 +481,11 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/packages/auto-complete/ac-dict")
 (add-to-list 'ac-sources 'ac-source-yasnippet)
 (ac-config-default)
+
+;; Python Completion with Jedi.
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:setup-keys t)
+(setq jedi:complete-on-dot t)
 
 
 ;; ----------------- AUTO COMPLETE ----------------------------
@@ -492,17 +526,19 @@
 (setq vc-make-backup-files t)
 
 
-(if window-system
-(let ((path (shell-command-to-string ". ~/.zshrc; echo -n $PATH")))
-    (setenv "PATH" path)
-    (setq exec-path 
-          (append
-           (split-string-and-unquote path ":")
-           exec-path))))
+;; (if window-system
+;; (let ((path (shell-command-to-string ". ~/.zshrc; echo -n $PATH")))
+;;     (setenv "PATH" path)
+;;     (setq exec-path 
+;;           (append
+;;            (split-string-and-unquote path ":")
+;;            exec-path))))
 
 ;; ----------------- FILES ------------------------------------
 
 ;; ----------------- END --------------------------------------
+;; Diminish modeline clutter
+(require 'diminish)
 
 ;; Enable transient mark mode.
 (transient-mark-mode 1)
@@ -522,7 +558,8 @@
 ;; Tips
 ;; <M-x> ielm : Is the ELISP interpreter.
 ;; C-h k : Is the describe-key function.
-;; C-h f : Is the describe-function function. 
+;; C-h f : Is the describe-function function.
+;; C-c p C-h : List Projectile Keybindings.
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

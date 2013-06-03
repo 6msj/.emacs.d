@@ -12,25 +12,25 @@
             ("print" code nil nil [383 404]))          
     :file "quicksort.py"
     :pointmax 405
-    :fsize 404
-    :lastmodtime '(20832 52977 0 0)
+    :fsize 413
+    :lastmodtime '(20901 11191 0 0)
     :unmatched-syntax 'nil
     )
    (semanticdb-table "mergesort.py"
     :major-mode 'python-mode
     :tags 
-        '( ("list" variable nil nil [1 32])
+        '( ("list" variable nil nil [1 39])
             ("mergesort" function (:arguments 
-              ( ("list" variable nil (reparse-symbol function_parameters) [48 52]))              ) nil [34 313])
+              ( ("list" variable nil (reparse-symbol function_parameters) [56 60]))              ) nil [42 325])
             ("mergelist" function (:arguments 
-              ( ("list" variable nil (reparse-symbol function_parameters) [328 332])
-                ("left" variable nil (reparse-symbol function_parameters) [334 338])
-                ("right" variable nil (reparse-symbol function_parameters) [340 345]))              ) nil [314 950])
-            ("print" code nil nil [951 972]))          
+              ( ("list" variable nil (reparse-symbol function_parameters) [341 345])
+                ("left" variable nil (reparse-symbol function_parameters) [347 351])
+                ("right" variable nil (reparse-symbol function_parameters) [353 358]))              ) nil [327 961])
+            ("print" code nil nil [962 983]))          
     :file "mergesort.py"
-    :pointmax 994
-    :fsize 993
-    :lastmodtime '(20832 61461 0 0)
+    :pointmax 984
+    :fsize 983
+    :lastmodtime '(20901 11402 0 0)
     :unmatched-syntax 'nil
     )
    )

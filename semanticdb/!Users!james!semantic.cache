@@ -2,11 +2,19 @@
 ;; SEMANTICDB Tags save file
 (semanticdb-project-database-file "james/"
   :tables (list 
-   (semanticdb-table "test.cpp"
+    (semanticdb-table "test.cpp"
     :major-mode 'c++-mode
-    :tags nil
+    :tags 
+        '( ("iostream" include (:system-flag t) nil [1 20])
+            ("std" using (:type ("std" type
+                 (:prototype t
+                  :type "namespace")
+                  nil nil)) nil [21 41])
+            ("main" function (:type "int") nil [43 99]))          
     :file "test.cpp"
-    :pointmax 1
+    :pointmax 100
+    :fsize 99
+    :lastmodtime '(20908 14550 0 0)
     :unmatched-syntax 'nil
     )
    )

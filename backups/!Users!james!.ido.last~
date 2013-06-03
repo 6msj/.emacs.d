@@ -19,9 +19,10 @@
 
 ;; ----- ido-work-directory-list -----
 (
- "/Users/james/Dropbox/ORG/"
  "/Users/james/"
  "/Users/james/Developer/SE Project/Project Code/src/t5_domain_logic/"
+ "/Users/james/Developer/Python/Algorithms/"
+ "/Users/james/Dropbox/ORG/"
  "/Users/james/Dropbox/CompilerProject/"
  "/Users/james/Developer/C-Plus-Plus/Op-Systems/homework_2/"
  "/Users/james/BTSync/CompilerProject/"
@@ -36,7 +37,6 @@
  "/"
  "/Users/james/Developer/EBSideScroller/"
  "/Users/james/Developer/C-Plus-Plus/Hangman/"
- "/Users/james/Developer/Python/Algorithms/"
  "/Users/james/Developer/EBSideScroller/Project/ScreenManager/"
  "/Users/james/Developer/C-Plus-Plus/"
  "/Users/james/Developer/Java/OOP5/src/ui/"
@@ -47,34 +47,41 @@
 
 ;; ----- ido-work-file-list -----
 (
- "History.org"
- ".init.el"
+ "test.cpp"
  "Hospital.java"
+ "mergesort.py"
+ "test.py"
+ ".init.el"
+ "History.org"
  "Compilers.org"
  "ProjectV2.org"
  "os.cpp"
  "project (venkat sundaram's conflicted copy 2013-05-27).org"
- "project.org"
- "test.org"
- "test.cpp"
 )
 
 ;; ----- ido-dir-file-cache -----
 (
- ("/Users/james/" (20907 37628 0 0) "SSHFS/" "Sites/" "Public/" "Pictures/" "Music/" "mozilla-central/" "Movies/" "Library/" "Dropbox/" "Downloads/" "Documents/" "Developer/" "Desktop/" "BTSync/" "Applications/" ".zshrc.save" ".zshrc" ".zsh_history" ".zsh-update" ".zprofile" ".zcompdump" ".ycm_extra_conf.pyc" ".weechat/" ".vimtags" ".vimshell/" ".vimrc" ".viminfx.tmp" ".viminfv.tmp" ".viminfo.tmp" ".viminfo" ".vimfiler/" ".vim_bak/" ".vim/" ".unite/" ".Trash/" ".tramp_history" ".tmux.conf" ".swp" ".subversion/" ".ssh/" ".sh_history" ".rvm/" ".rsense" ".root" ".rnd" ".recentf" ".pylint.d/" ".psql_history" ".pip/" ".pgpass" ".pgadmin_histoqueries" ".oh-my-zsh/" ".netrc" ".netbeans-derby/" ".neocomplcache/" ".mysql_history" ".m2/" ".lighttable/" ".lesshst" ".lein/" ".jedi/" ".irssi/" ".irb-history" ".init.el" ".ido.last~" ".ido.last" ".heroku/" ".gvimrc" ".guard_history" ".gradle/" ".gitconfig" ".gem/" ".filezilla/" ".emacs.d/" ".eclim/" ".DS_Store" ".dropbox/" ".dotfiles/" ".config/" ".CFUserTextEncoding" ".cache/" ".bitrock/" ".bin/" ".bashrc" ".bash_profile" ".bash_history" ".argouml/" ".appletviewer" ".android/" ".adobe/" "../" "./")
+ ("/Users/james/Dropbox/Computer Science/" (20908 9633 0 0) "uml-Modified.zargo~" "uml-Modified.zargo" "Tasks.docx" "software2.txt" "software1.txt" "SE Project/" "Pseudocode.txt" "Programming Interviews Exposed.PDF" "OS.org~" "OS.org" "OS (venkat sundaram's conflicted copy 2013-05-13).org" "OS (Ebad Saghar's conflicted copy 2013-05-13).org" "Operating System Concepts 9th Edition.pdf" "Operating System Concepts 8th Ed 2009 ISBN 9780470128725.pdf" "OOD.zargo" "OOD.txt" "MIPS Registers (Bao-Huy Tran's conflicted copy 2013-04-02).jpg" "MIPS Recursive Functions- 1 (Bao-Huy Tran's conflicted copy 2013-04-02).jpg" "MIPS Recursive Functions -2 (Bao-Huy Tran's conflicted copy 2013-04-02).jpg" "jdevstudio11123install.exe" "JDeveloper/" "Introduction to Algorithms, Third Edition.pdf" "Icon
+" "HospitalMySQL.docx" "Hospital System.pdf" "Hospital System.docx" "databases_tables.txt" "Data Structure Design.png" "Compilers.org" "Compilers - Principles, Techniques, and Tools 2e.pdf" "ch6.pptx" "ch5.pptx" "ch4.pptx" "ch03.ppt" "ch02.ppt" "ch01.ppt" "ch01 (ronie mendoza's conflicted copy 2013-05-13).ppt" "Appointment_Schedule (JAMES - ADD TO THIS)/" ".idea_root/" ".idea_project_code/" ".DS_Store" ".dropbox" "#OS.org#" "../" "./")
 
- ("/Users/james/.emacs.d/" (20907 36694 0 0) "themes/" "semanticdb/" "packages/" "init.el" "elpa/" "ede-projects.el" "backups/" "back.init.el" "auto-save-list/" "ac-comphist.dat" ".mc-lists.el" ".gitignore" ".git/" ".emacs~" ".DS_Store" "../" "./")
+ ("/Users/james/.emacs.d/" (20908 14506 0 0) "themes/" "semanticdb/" "projectile-bookmarks.eld" "packages/" "init.el" "elpa/" "ede-projects.el" "backups/" "back.init.el" "auto-save-list/" "ac-comphist.dat" ".mc-lists.el" ".gitignore" ".git/" ".emacs~" ".DS_Store" "../" "./")
 
- ("/Users/james/Dropbox/CompilerProject/" (20906 29526 0 0) "userule.txt" "userule (venkat sundaram's conflicted copy 2013-05-30).txt" "SelectionSortTokenFile.txt" "selectionsetpage11.pdf" "Screen Shot 2013-05-30 at 5.55.41 PM.png" "ProjectV2.org" "project.org" "parse.cpp" "outline.org" "l7_2010.pdf" "Icon
+ ("/Users/james/Dropbox/CompilerProject/" (20907 59455 0 0) "userule.txt" "userule (venkat sundaram's conflicted copy 2013-05-30).txt" "SelectionSortTokenFile.txt" "selectionsetpage11.pdf" "Screen Shot 2013-05-30 at 5.55.41 PM.png" "ProjectV2.org" "project.org" "parse.cpp" "outline.org" "l7_2010.pdf" "Icon
 " "CFGFirstFollowSets.odt" "CFGFirstFollowSets.doc" "27 Sample 4110 final exam questions v2.doc" "26 Multiple_Choice_Instructions v2.doc" "25 Final Exam Highlights v2.doc" "18.1 SLR Table Const for GSE1 v02.pdf" "18 SLR Table Construction v03b.doc" "16_RegularLanguages v02.doc" "15_CodeOptimization v01b.doc" "14_CodeGeneration v01c.doc" "13_BottomUpParsing v02.doc" "12_Scanning.doc" "11_PLHConstructs v02.doc" "10_TranslationSchemes v02.doc" "09_PLHParser.doc" "08_LLTables2.doc" "07_LLTables1 v02.doc" "06_LLParsing v02b.doc" "05_Phrases.doc" "04_CFG's v03.doc" "03_Strings v02.doc" "02_VirtualMachine v01b.doc" "01_Overview v03.doc" ".DS_Store" ".dropbox" "../" "./")
 
- ("/Users/james/Developer/SE Project/Project Code/src/t5_domain_logic/" (20907 36909 0 0) "Hospital.java" ".DS_Store" "../" "./")
+ ("/Users/james/Developer/Python/Algorithms/" (20908 12478 0 0) "sorting_algorithms.py" "quicksort.pyc" "quicksort.py" "mergesort.py" "insertionsort.py" "binarysearch.py" "__init__.py" "../" "./")
 
- ("/Users/james/Developer/SE Project/Project Code/src/" (20906 34584 0 0) "t5_storage/" "t5_relations/" "t5_presentation_layer/" "t5_domain_objects/" "t5_domain_logic/" "hospital.html" ".DS_Store" "../" "./")
+ ("/Users/james/" (20908 14506 0 0) "test/" "SSHFS/" "Sites/" "Public/" "Pictures/" "Music/" "mozilla-central/" "Movies/" "log" "Library/" "Dropbox/" "Downloads/" "Documents/" "Developer/" "Desktop/" "BTSync/" "Applications/" ".zshrc.save" ".zshrc" ".zsh_history" ".zsh-update" ".zprofile" ".zcompdump" ".ycm_extra_conf.pyc" ".weechat/" ".vimtags" ".vimshell/" ".vimrc" ".viminfx.tmp" ".viminfv.tmp" ".viminfo.tmp" ".viminfo" ".vimfiler/" ".vim_bak/" ".vim/" ".unite/" ".Trash/" ".tramp_history" ".tmux.conf" ".swp" ".subversion/" ".ssh/" ".sh_history" ".rvm/" ".rsense" ".root" ".rnd" ".recentf" ".pylint.d/" ".psql_history" ".pip/" ".pgpass" ".pgadmin_histoqueries" ".oh-my-zsh/" ".netrc" ".netbeans-derby/" ".neocomplcache/" ".mysql_history" ".m2/" ".lighttable/" ".lesshst" ".lein/" ".jedi/" ".irssi/" ".irb-history" ".init.el" ".ido.last~" ".ido.last" ".idea/" ".heroku/" ".gvimrc" ".guard_history" ".gradle/" ".gitconfig" ".gem/" ".filezilla/" ".emacs.d/" ".eclim/" ".DS_Store" ".dropbox/" ".dotfiles/" ".config/" ".CFUserTextEncoding" ".cache/" ".bitrock/" ".bin/" ".bashrc" ".bash_profile" ".bash_history" ".argouml/" ".appletviewer" ".android/" ".adobe/" "../" "./")
 
- ("/Users/james/Developer/SE Project/Project Code/" (20906 35238 0 0) "src/" "Project Code.iml" "out/" "jgoodies-forms-1.7.1/" "jgoodies-common-1.6.0/" ".idea/" ".DS_Store" "../" "./")
+ ("/Users/james/Developer/Python/" (20901 10733 0 0) "test.py" "Swift/" "QuickSort.py" "Python-GUI/" "Pygame/" "puzzle_3.py" "Node.py" "new/" "MiniPrograms/" "log.txt" "file" "Django Tutorial/" "BinaryTree.py" "Algorithms/" ".git/" ".DS_Store" "../" "./")
 
- ("/Users/james/Developer/SE Project/" (20906 57166 0 0) "uml.zargo" "Three-Tier Design.pdf" "Requirements Input Values.xlsx" "records.png" "Project Code/" "out/" "OOD.txt" "objects" "Mockup PNG's/" "login.png" "Hospital System.docx" ".idea/" ".git/" ".DS_Store" "../" "./")
+ ("/Users/james/Developer/SE Project/Project Code/src/t5_domain_logic/" (20908 8403 0 0) "Hospital.java" "../" "./")
+
+ ("/Users/james/Developer/SE Project/Project Code/src/" (20908 8403 0 0) "t5_relations/" "t5_presentation_layer/" "t5_domain_objects/" "t5_domain_logic/" "hospital.html" "../" "./")
+
+ ("/Users/james/Developer/SE Project/Project Code/" (20908 8403 0 0) "src/" "Project Code.iml" "out/" "jgoodies-forms-1.7.1/" "jgoodies-common-1.6.0/" ".idea/" ".gitignore" "../" "./")
+
+ ("/Users/james/Developer/SE Project/" (20908 8403 0 0) "Project Code/" "out/" "Mockup PNG's/" ".idea/" ".gitignore" ".git/" "../" "./")
 
  ("/Users/james/Developer/" (20906 54085 0 0) "Web/" "Shell/" "SE Project/" "Scripts/" "Scheme/" "Rails/" "Python/" "Point-of-Sales/" "PHP/" "Openhatch/" "Objective-C/" "Misc/" "Java/" "Group/" "Forks/" "EBSideScroller/" "Database Architecture/" "C-Plus-Plus/" "Assembly/" ".root" ".DS_Store" "../" "./")
 
@@ -86,11 +93,6 @@
  ("/Users/james/Developer/C-Plus-Plus/Op-Systems/homework_2/" (20891 64936 0 0) "text.txt" "os.dSYM/" "os.cpp" "os" "makefile" "alt.txt" "../" "./")
 
  ("/Users/james/Developer/C-Plus-Plus/Op-Systems/" (20889 14578 0 0) "thread-pool-server.c" "test.cpp" "test.c" "test" "homework_2/" "homework_1/" "employee-without-mutex.c" "employee-without-mutex" "employee-with-mutex.c" "employee-with-mutex" "basic_pthread.c" ".DS_Store" "../" "./")
-
- ("/Users/james/Developer/Python/Algorithms/" (20901 12889 0 0) "sorting_algorithms.py" "quicksort.pyc" "quicksort.py" "mergesort.py" "insertionsort.py" "binarysearch.py" "__init__.py" "../" "./")
-
- ("/Users/james/Dropbox/Computer Science/" (20899 58037 0 0) "uml-Modified.zargo~" "uml-Modified.zargo" "Tasks.docx" "software2.txt" "software1.txt" "SE Project/" "Pseudocode.txt" "Programming Interviews Exposed.PDF" "OS.org~" "OS.org" "OS (venkat sundaram's conflicted copy 2013-05-13).org" "OS (Ebad Saghar's conflicted copy 2013-05-13).org" "Operating System Concepts 9th Edition.pdf" "Operating System Concepts 8th Ed 2009 ISBN 9780470128725.pdf" "OOD.zargo" "OOD.txt" "MIPS Registers (Bao-Huy Tran's conflicted copy 2013-04-02).jpg" "MIPS Recursive Functions- 1 (Bao-Huy Tran's conflicted copy 2013-04-02).jpg" "MIPS Recursive Functions -2 (Bao-Huy Tran's conflicted copy 2013-04-02).jpg" "jdevstudio11123install.exe" "JDeveloper/" "Introduction to Algorithms, Third Edition.pdf" "Icon
-" "HospitalMySQL.docx" "Hospital System.pdf" "Hospital System.docx" "databases_tables.txt" "Data Structure Design.png" "Compilers.org" "Compilers - Principles, Techniques, and Tools 2e.pdf" "ch6.pptx" "ch5.pptx" "ch4.pptx" "ch03.ppt" "ch02.ppt" "ch01.ppt" "ch01 (ronie mendoza's conflicted copy 2013-05-13).ppt" "Appointment_Schedule (JAMES - ADD TO THIS)/" ".DS_Store" ".dropbox" "#OS.org#" "../" "./")
 
  ("/Users/james/BTSync/CompilerProject/" (20899 57871 0 0) "SelectionSortTokfile.txt" "SelectionSortTokfile" "selectionsetpage11.pdf" "project.org" "outline.org" "l7_2010.pdf" "27 Sample 4110 final exam questions v2.doc" "26 Multiple_Choice_Instructions v2.doc" "25 Final Exam Highlights v2.doc" "18.1 SLR Table Const for GSE1 v02.pdf" "18 SLR Table Construction v03b.doc" "16_RegularLanguages v02.doc" "15_CodeOptimization v01b.doc" "14_CodeGeneration v01c.doc" "13_BottomUpParsing v02.doc" "12_Scanning.doc" "11_PLHConstructs v02.doc" "10_TranslationSchemes v02.doc" "09_PLHParser.doc" "08_LLTables2.doc" "07_LLTables1 v02.doc" "06_LLParsing v02b.doc" "05_Phrases.doc" "04_CFG's v03.doc" "03_Strings v02.doc" "02_VirtualMachine v01b.doc" "01_Overview v03.doc" ".SyncTrash/" ".SyncIgnore" ".SyncID" ".DS_Store" "../" "./")
 
@@ -129,8 +131,6 @@
  ("/Users/james/Developer/C-Plus-Plus/Hangman/" (20878 40271 0 0) "README" "Hangman.cpp" "#Hangman.cpp#" "../" "./")
 
  ("/Users/Shared/" (20861 61946 0 0) "SC Info/" ".localized" ".DS_Store" "../" "./")
-
- ("/Users/james/Developer/Python/" (20855 33144 0 0) "test.py" "Swift/" "QuickSort.py" "Python-GUI/" "Pygame/" "Node.py" "new/" "MiniPrograms/" "log.txt" "file" "Django Tutorial/" "Algorithms/" ":q!" ".git/" ".DS_Store" "../" "./")
 
  ("/Users/james/Developer/Java/OOP2/src/nethack/" (20739 4920 0 0) "Weapon.java" "Weapon.class" "ScrollOfNothing.java" "ScrollOfNothing.class" "ScrollOfIdentify.java" "ScrollOfIdentify.class" "ScrollOfEnchantWeapon.java" "ScrollOfEnchantWeapon.class" "ScrollOfAmnesia.java" "ScrollOfAmnesia.class" "Scroll.java" "Scroll.class" "RingOfTelportation.java" "RingOfTeleportation.class" "RingOfIncreaseDamage.java" "RingOfIncreaseDamage.class" "Ring.java" "Ring.class" "NetHack.java" "NetHack.class" "LongSword.java" "LongSword.class" "Knowledge.java" "Knowledge.class" "Item.java" "Item.class" "Floor.java" "Floor.class" "Directions.java" "Directions.class" "Character.java" "Character.class" "BareHands.java" "BareHands.class" ".DS_Store" "../" "./")
 
