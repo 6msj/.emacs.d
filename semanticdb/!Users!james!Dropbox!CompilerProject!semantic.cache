@@ -1,0 +1,263 @@
+;; Object CompilerProject/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "CompilerProject/"
+  :tables (list 
+   (semanticdb-table "parse.cpp"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("stdio.h" include (:system-flag t) nil [21 39])
+            ("curses.h" include (:system-flag t) nil [40 59])
+            ("ctype.h" include (:system-flag t) nil [60 78])
+            ("string.h" include (:system-flag t) nil [79 98])
+            ("stdlib.h" include (:system-flag t) nil [99 118])
+            ("CODE_SIZE" variable (:constant-flag t) nil [145 154])
+            ("DATA_SIZE" variable (:constant-flag t) nil [170 179])
+            ("STACK_SIZE" variable (:constant-flag t) nil [195 205])
+            ("STR_SIZE" variable (:constant-flag t) nil [221 229])
+            ("strfield" variable
+               (:dereference 1
+                :type "char")
+                nil [338 359])
+            ("emptystr" variable
+               (:dereference 1
+                :type "char")
+                nil [463 492])
+            ("fw" variable (:type "int") nil [493 502])
+            ("parse_error" variable (:type "int") nil [542 560])
+            ("str" type
+               (:typedef ("char")
+                :superclasses "char"
+                :type "typedef")
+                nil [624 653])
+            ("strparam" type
+               (:typedef ("char")
+                :superclasses "char"
+                :type "typedef")
+                nil [735 759])
+            ("stack" variable
+               (:dereference 1
+                :type ("str" type (:type "class") nil nil))
+                nil [894 916])
+            ("top" variable (:type "int") nil [937 945])
+            ("tokfilep" variable
+               (:pointer 1
+                :type ("FILE" type (:type "class") nil nil))
+                nil [1013 1028])
+            ("tokvalue" variable (:type ("str" type (:type "class") nil nil)) nil [1137 1158])
+            ("tokname" variable (:type ("str" type (:type "class") nil nil)) nil [1137 1158])
+            ("code" variable
+               (:dereference 1
+                :type ("str" type (:type "class") nil nil))
+                nil [1232 1252])
+            ("pc" variable (:type "int") nil [1307 1314])
+            ("data" variable
+               (:dereference 1
+                :type "int")
+                nil [1365 1385])
+            ("dc" variable (:type "int") nil [1441 1448])
+            ("datafilep" variable
+               (:pointer 1
+                :type ("FILE" type (:type "class") nil nil))
+                nil [1499 1527])
+            ("codefilep" variable
+               (:pointer 1
+                :type ("FILE" type (:type "class") nil nil))
+                nil [1499 1527])
+            ("parsetrace" variable (:type "bool") nil [1659 1680])
+            ("SendOutputToFile" variable (:type "bool") nil [1734 1762])
+            ("outfilep" variable
+               (:pointer 1
+                :type ("FILE" type (:type "class") nil nil))
+                nil [1821 1836])
+            ("cycle" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [1913 1918]))                  
+                :type "void")
+                nil [1902 1919])
+            ("userule" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("successp" variable
+                       (:pointer 1
+                        :type "bool")
+                        (reparse-symbol arg-sub-list) [1933 1948]))                  
+                :type "void")
+                nil [1920 1949])
+            ("doaction" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [1964 1969]))                  
+                :type "void")
+                nil [1950 1970])
+            ("emit" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("s" variable (:type ("strparam" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [1981 1992]))                  
+                :type "void")
+                nil [1971 1993])
+            ("initialize" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [2010 2015]))                  
+                :type "void")
+                nil [1994 2016])
+            ("cleanup" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [2030 2035]))                  
+                :type "void")
+                nil [2017 2036])
+            ("parsepic" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [2051 2056]))                  
+                :type "void")
+                nil [2037 2057])
+            ("replace" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("rightpart" variable (:type ("strparam" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2071 2090]))                  
+                :type "void")
+                nil [2058 2091])
+            ("pushstring" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("rightpart" variable (:type ("strparam" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2108 2127]))                  
+                :type "void")
+                nil [2092 2128])
+            ("pop" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [2138 2143]))                  
+                :type "void")
+                nil [2129 2144])
+            ("push_substring_as_one_element" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("s" variable (:type ("strparam" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2180 2191])
+                    ("l" variable (:type "int") (reparse-symbol arg-sub-list) [2192 2198])
+                    ("r" variable (:type "int") (reparse-symbol arg-sub-list) [2199 2205]))                  
+                :type "void")
+                nil [2145 2206])
+            ("smaller_int_of" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("n" variable (:type "int") (reparse-symbol arg-sub-list) [2226 2232])
+                    ("m" variable (:type "int") (reparse-symbol arg-sub-list) [2233 2239]))                  
+                :type "int")
+                nil [2207 2240])
+            ("push" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("s" variable (:type ("strparam" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2251 2262]))                  
+                :type "void")
+                nil [2241 2263])
+            ("ontop" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("s" variable (:type ("strparam" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2275 2286]))                  
+                :type "bool")
+                nil [2264 2287])
+            ("topstack" function
+               (:prototype-flag t
+                :pointer 1
+                :arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [2303 2308]))                  
+                :type "char")
+                nil [2288 2309])
+            ("gettok" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [2322 2327]))                  
+                :type "void")
+                nil [2310 2328])
+            ("athead" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("s" variable (:type ("strparam" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2341 2352]))                  
+                :type "bool")
+                nil [2329 2353])
+            ("nextinput" function
+               (:prototype-flag t
+                :pointer 1
+                :arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [2370 2375]))                  
+                :type "char")
+                nil [2354 2376])
+            ("is_action" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("s" variable (:type ("strparam" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2392 2403]))                  
+                :type "bool")
+                nil [2377 2404])
+            ("is_nonterm" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("s" variable (:type ("strparam" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2421 2432]))                  
+                :type "bool")
+                nil [2405 2433])
+            ("eqstr" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("s1" variable (:type ("strparam" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2445 2457])
+                    ("s2" variable (:type ("strparam" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2458 2470]))                  
+                :type "bool")
+                nil [2434 2471])
+            ("increment_num_lines_printed" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("extra_lines" variable (:type "int") (reparse-symbol arg-sub-list) [2505 2521]))                  
+                :type "void")
+                nil [2472 2522])
+            ("main" function
+               (:arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [2777 2782]))                  
+                :type "int")
+                nil [2768 3055])
+            ("cycle" function
+               (:arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [3159 3164]))                  
+                :type "void")
+                nil [3148 4508])
+            ("userule" function
+               (:arguments 
+                  ( ("successp" variable
+                       (:pointer 1
+                        :type "bool")
+                        (reparse-symbol arg-sub-list) [4615 4630]))                  
+                :type "void")
+                nil [4602 11556])
+            ("doaction" function
+               (:arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [11671 11676]))                  
+                :type "void")
+                nil [11657 12323])
+            ("emit" function
+               (:arguments 
+                  ( ("s" variable (:type ("strparam" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12478 12489]))                  
+                :type "void")
+                nil [12468 12905])
+            ("initialize" function
+               (:arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [13073 13078]))                  
+                :type "void")
+                nil [13057 14392]))          
+    :file "parse.cpp"
+    :pointmax 14541
+    :fsize 14540
+    :lastmodtime '(20909 17942 0 0)
+    :unmatched-syntax 'nil
+    :lexical-table 
+        '(("STR_SIZE" . ((number "80" 231 . 233)))
+          ("DATA_SIZE" . ((number "1000" 181 . 185)))
+          ("CODE_SIZE" . ((number "1000" 156 . 160)))
+          ("STACK_SIZE" . ((number "1000" 207 . 211)))
+          )
+
+    )
+   )
+  :file "!Users!james!Dropbox!CompilerProject!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )
