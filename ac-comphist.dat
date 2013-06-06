@@ -1,4 +1,16 @@
-((("git-gutter" .
+((("success" .
+   [0 0 0 0 1 0 0])
+  ("printf" .
+   [12 0 0 0 0 0])
+  ("h" .
+   [1])
+  ("list-buffers" .
+   [0 0 0 0 0 0 0 0 0 0 0 1])
+  ("ido-switch-buffer" .
+   [0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0])
+  ("ido-find-file" .
+   [0 0 0 0 0 0 0 0 1 0 0 0 0])
+  ("git-gutter" .
    [1 0 0 0 0 0 0 0 0 0])
   ("magit-status" .
    [1 0 0 0 0 0 0 0 0 0 0 0])
@@ -227,7 +239,7 @@
   ("index" .
    [3 0 0 1 1])
   ("include" .
-   [12 0 0 0 0 0 0])
+   [13 0 0 0 0 0 0])
   ("getline" .
    [1 0 0 0 0 0 0])
   ("blackjack_hit" .

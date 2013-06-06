@@ -456,6 +456,8 @@
     "v"  (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
     "wh" 'split-window-below
     "wv" 'split-window-right
+    "f"  'ido-find-file
+    "b"  'ido-switch-buffer
 )
 
 ;; Occur Mode

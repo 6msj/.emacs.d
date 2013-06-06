@@ -1,0 +1,361 @@
+/* scanner - Dev-CPP 5 version */
+
+/* Read characters from textfile 'srcfile' and output tokens to textfile
+'tokfile'.  Each token is a pair of lines in this file. */
+
+/* include files */
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/* constants */
+int lastcharcode=255;
+#define  STR_SIZE  80
+   /* maximum number of characters, not including NULL, in strings of
+   our standard string type 'str'
+   */
+char strfield[]="%s";  /* for input into variables of type str */
+//int true=1;  //uncomment for a C compiler
+//int false=0;
+char emptystr[]="";
+char fwd[]="%5d"; 
+   /* control string for output of integers in a standard field width */
+char fws[]="5s";
+   /* control string ... strings ... */
+
+/* types */
+typedef char str[STR_SIZE+1];
+   /* our standard string type.  allocates storage */
+typedef char strparam[];
+   /* type for formal parameter strings.  doesn't allocate storage */
+//typedef int bool;  //uncomment for a C compiler
+
+/* variables */
+bool scantrace=true;
+   /* determines whether a scanner trace will be produced */
+bool SendOutputToFile=false;
+   /* when true, standard output is redirected to a text file */
+FILE *srcfilep;
+   /* pointer to srcfile, the file of characters to be read by scanner. */
+FILE *outfilep;  /* file pointer for redirected output */
+int ch;
+   /* logical head of input queue.  procedure get_ch reads into ch from
+      *srcfilep.  get_ch translates an eof into a # and an eol into @
+   */
+FILE *tokfilep;
+   /* pointer to tokfile, the output file of scanner.  each token
+      produced is two lines of this file
+   */
+int state;  /* state variable of scanner DFA */
+str packstr;  /* multi-character token values are constructed here */
+int packcur;  /* indexes last character, before '\0', in packstr */
+enum {letter, digit, specchar, invalidchar, blank, atsign, poundsign}
+   charclass[256];
+      /* used to quickly determine character class of a character */
+str resword[] =
+   {"declare", "stop", "put", "get", "goto", "if", "then", "do", "end"};
+   /* table of identifiers that will produce reserved word tokens */
+int numreswords = sizeof(resword)/sizeof(str);
+int num_lines=0;  /* number of trace lines printed since last prompt */
+
+/* function prototypes */
+void cycle(void);
+void get_ch(void);
+void emit(strparam s1, strparam s2);
+void pack_ch(void);
+void start_pack_ch(void);
+void search_reswords(strparam s, bool *foundp);
+void initialize(void);
+void scanpic(void);
+void assign_ch(int ch, strparam s);
+bool eqstr(strparam s1, strparam s2);
+
+/*************************************************************************/
+int main(void)
+{
+scantrace=true;
+SendOutputToFile=true;
+initialize();
+cycle();
+end: puts("scanner done");
+if (!SendOutputToFile)
+   {
+      puts("push Enter to leave User Window");  /* for Turbo C++ */
+      getchar();
+   }
+exit(0);
+}  /* end main */
+/*************************************************************************/
+void cycle(void)
+/*
+Main loop of scanner.  Hides definition of lexical structure of source
+language expressed as a deterministic finite automation.  Inputs characters
+through get_ch(), which in turn hides definition of input medium, and
+outputs token through emit(), which in turn hides definition of output
+medium.
+*/
+{
+bool scanning, found;
+str tempstr;
+
+state='s';
+get_ch();  /* initialize ch with first character of srcfile */
+
+scanning=true;
+do /* while scanning */
+   {
+   if (scantrace) scanpic();
+
+   switch (state)
+   {
+   case 's':
+      switch(charclass[ch])
+      {
+      case blank:
+      case atsign:  /* returned by get_ch to signify eol */
+      case invalidchar:
+         get_ch();  /* get next source character into ch */
+         break;
+      case poundsign:  /* returned by get_ch to signify eof */
+         puts("eof read by scanner");
+         scanning=false;
+         break;
+      case digit:
+         start_pack_ch();
+         get_ch();
+         state='d';
+         break;
+      case letter:
+         start_pack_ch();
+         get_ch();
+         state='l';
+         break;
+      case specchar:
+         assign_ch(ch,tempstr);
+         emit(tempstr,emptystr);
+         get_ch();
+         break;
+      }   /*  end switch  */
+      break;  /* end case 's' */
+ 
+   case 'd':
+      switch(charclass[ch])
+      {
+      case digit:
+         pack_ch();
+         get_ch();
+         break;
+      default:
+         emit("$int",packstr);
+         state='s';
+         break;
+      }  /* end switch */
+      break;  /* end case 'd' */
+
+   case 'l':
+      switch(charclass[ch])
+      {
+      case letter:
+      case digit:
+         pack_ch();
+         get_ch();
+         break;
+      default:
+         search_reswords(packstr, (&found));
+         if (found)
+            {
+            strcpy(tempstr,"$");
+            strcat(tempstr,packstr);
+            emit(tempstr,emptystr);
+               /* token name is $ followed by contents of packstr */
+            }
+         else
+            emit("$id",packstr);
+         state='s';
+         break;
+      }  /* end switch */
+      break;  /* end state 'l' */
+
+   }  /* end switch(state)  */
+
+   }
+while(scanning);
+}  /* end cycle */
+/*************************************************************************/
+void get_ch(void)
+/*
+Get next character of srcfile into ch.  For eol char, instead return the
+sentinel '@' so it can be displayed in diagnostics.  If no characters
+remain, return the sentinel '#'.  Don't call get_ch after '#' has been
+returned.  Hide definition of source medium.
+*/
+{
+/* get next character into ch (may be EOF or EOL) */
+ch=getc(srcfilep);
+
+/* convert EOF or EOL into sentinel character */
+if (feof(srcfilep))
+   ch='#';
+else if (ch=='\n')
+   ch='@';
+}  /* end get_ch */
+/*************************************************************************/
+void emit(strparam s1, strparam s2)
+/*
+Emit s1 and s2 into tokfile as next token.
+*/
+{
+if (scantrace)
+   {
+   printf(">>>>>>>>>>>emitting token.    name=%s    value=%s\n",s1,s2);
+   num_lines+=1;
+   }
+fprintf(tokfilep,"%s\n",s1);
+fprintf(tokfilep,"%s\n",s2);
+}  /* end emit */
+/*************************************************************************/
+void pack_ch(void)
+/*
+Append ch to packstrg.  If packstr is already full, then do nothing.
+Maintain packcur valid.
+*/
+{
+if (packcur<STR_SIZE)
+   {
+   ++packcur;
+   packstr[packcur]=ch;
+   packstr[packcur+1]='\0';
+   }
+}  /* end pack_ch */
+/*************************************************************************/
+void start_pack_ch(void)
+/*
+packstr <- ch.  Keep packcur valid.
+*/
+{
+packcur=0;
+assign_ch(ch,packstr);
+}  /* end start_pack_ch */
+/*************************************************************************/
+void search_reswords(strparam s, bool *foundp)
+/*
+*foundp <- true iff s is in the array resword.
+*/
+{
+int j;
+
+*foundp=false;
+j=0;
+while ((j<=numreswords) && (!(*foundp)))
+   if (eqstr(s,resword[j]))
+      *foundp=true;
+   else
+      ++j;
+}  /* end search_reswords */
+/*************************************************************************/
+void initialize(void)
+/*
+Initialize scanner.
+*/
+{
+int ch,j;
+
+/* initialize input and output files */
+srcfilep=fopen("srcfile","r");
+if (srcfilep==NULL)
+   {
+   puts("error in trying to open srcfile");
+   puts("push Enter to leave User Window");
+   getchar();
+   exit(1);
+   }
+
+tokfilep=fopen("tokfile","w");
+if (tokfilep==NULL)
+   {
+   puts("error in trying to open tokfile");
+   puts("push Enter to leave User Window");
+   getchar();
+   exit(1);
+   }
+
+/* from now on, send output to a text file rather than screen, if flag set */
+if(SendOutputToFile)
+   {
+      outfilep=freopen("scanout.txt", "wt", stdout);
+      if(outfilep==NULL)
+         printf("error in redirecting stdout to file scanout.txt");
+   }
+
+/* initialize charclass array */
+/* first set all to invalidchar */
+for (j=0; j<=lastcharcode; ++j)
+   charclass[j]=invalidchar;
+
+/* now change non-invalid ones */
+for (j='a'; j<='z'; ++j)
+   charclass[j]=letter;
+for (j='A'; j<='Z'; ++j)
+   charclass[j]=letter;
+for (j='0'; j<='9'; ++j)
+   charclass[j]=digit;
+charclass['+']=specchar;
+charclass['-']=specchar;
+charclass['*']=specchar;
+charclass['/']=specchar;
+charclass['(']=specchar;
+charclass[')']=specchar;
+charclass['<']=specchar;
+charclass['>']=specchar;
+charclass['=']=specchar;
+charclass[',']=specchar;
+charclass[';']=specchar;
+charclass[':']=specchar;
+charclass[' ']=blank;
+charclass['@']=atsign;
+charclass['#']=poundsign;
+}  /* end initialize */
+/*************************************************************************/
+void scanpic(void)
+/*
+Write a one line picture showing the scanner configuration.
+*/
+{
+printf("state=%c    ch=%c\n",state,ch);
+
+num_lines+=1;
+
+/* possibly prompt user to continue */
+if (SendOutputToFile)
+   return;  /* no need for any prompts */
+
+if (num_lines>=10)
+   {
+   printf("push Enter to continue");
+   getchar();
+   printf("----------------------------------------");
+   printf("---------------------------------------\n");
+   num_lines=0;
+   }
+}  /* end scanpic */
+/*************************************************************************/
+void assign_ch(int ch, strparam s)
+/*
+s <- ch
+*/
+{
+s[0]=ch;
+s[1]='\0';
+}  /* end assign_ch */
+/*************************************************************************/
+bool eqstr(strparam s1, strparam s2)
+/*
+eqstr <- true iff s1=s2
+*/
+{
+return(!strcmp(s1,s2));
+}  /* end eqstr */
+/*************************************************************************/
+
+

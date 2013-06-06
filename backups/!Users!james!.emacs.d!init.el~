@@ -73,7 +73,7 @@
   (set-face-attribute 'default nil :height 130)
   (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
 
-  (setenv "PATH" (concat (getenv "HOME") "~/.bin:"
+  (setenv "PATH" (concat (getenv "HOME") ".bin:"
                          "/usr/local/bin:"
                          "/usr/local/rsense-0.3:"
                          "/usr/local/share/python:"
@@ -346,15 +346,15 @@
 (buffer-face-mode))
 
 ;; Close compilation window on successful compile.
- (setq compilation-finish-functions 'compile-autoclose)
- (defun compile-autoclose (buffer string)
-   (cond ((string-match "finished" string)
-          (message "Build maybe successful: closing window.")
-          (run-with-timer 1 nil                      
-                          'delete-window              
-                          (get-buffer-window buffer t)))
-         (t                                                                    
-          (message "Compilation exited abnormally: %s" string))))
+(setq compilation-finish-functions 'compile-autoclose)
+(defun compile-autoclose (buffer string)
+  (cond ((string-match "finished" string)
+         (message "Build maybe successful: closing window.")
+         (run-with-timer 1 nil                      
+                         'delete-window              
+                         (get-buffer-window buffer t)))
+        (t                                                                    
+         (message "Compilation exited abnormally: %s" string))))
 
 ;; ----------------- FUNCTIONS --------------------------------
 

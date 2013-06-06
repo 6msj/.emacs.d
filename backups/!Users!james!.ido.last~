@@ -19,12 +19,13 @@
 
 ;; ----- ido-work-directory-list -----
 (
+ "/Users/james/Dropbox/CompilerProject/PROJECT V22/"
+ "/Users/james/Dropbox/ORG/"
+ "/Users/james/Dropbox/CompilerProject/"
  "/Users/james/.emacs.d/"
  "/Users/james/"
  "/Users/james/Developer/SE Project/Project Code/src/t5_domain_logic/"
  "/Users/james/Developer/Python/Algorithms/"
- "/Users/james/Dropbox/ORG/"
- "/Users/james/Dropbox/CompilerProject/"
  "/Users/james/Developer/C-Plus-Plus/Op-Systems/homework_2/"
  "/Users/james/BTSync/CompilerProject/"
  "/Users/james/Dropbox/Computer Science/CompilerProject/"
@@ -47,37 +48,46 @@
 
 ;; ----- ido-work-file-list -----
 (
+ "SelectionSortTokenFile.txt"
+ "History.org"
+ "parse.cpp"
  ".gitignore"
  "test.cpp"
  "Hospital.java"
  "mergesort.py"
  "test.py"
  ".init.el"
- "History.org"
  "Compilers.org"
- "ProjectV2.org"
- "os.cpp"
 )
 
 ;; ----- ido-dir-file-cache -----
 (
- ("/" (20908 16946 0 0) "ftp:" "rcp:" "remcp:" "scp:" "scp1:" "scp2:" "scpc:" "scpx:" "sftp:" "rsync:" "rsyncc:" "rsh:" "remsh:" "ssh:" "ssh1:" "ssh2:" "sshx:" "telnet:" "su:" "sudo:" "ksu:" "krlogin:" "plink:" "plink1:" "plinkx:" "pscp:" "psftp:" "fcp:" "smb:" "134.154.160.147:" "134.154.11.230:" "jamesarch:" "10.0.0.22:" "10.15.140.52:" "204.232.175.90:" "algebra.sci.csueastbay.edu:" "50.19.85.156:" "50.19.85.154:" "heroku.com:" "localhost:" "jameswindoze:" "134.154.57.216:" "192.168.1.99:" "192.168.1.5:" "192.168.1.248:" "10.0.0.7:" "trig.sci.csueastbay.edu:" "github.com:" "Volumes/" "var/" "usr/" "Users/" "tmp/" "System/" "sbin/" "private/" "opt/" "Network/" "net/" "mach_kernel" "Library/" "home/" "etc/" "dev/" "cores/" "bin/" "Applications/" ".vol/" ".Trashes/" ".Spotlight-V100/" ".MobileBackups/" ".fseventsd/" ".file" ".DS_Store" ".DocumentRevisions-V100/" ".dbfseventsd" "../" "./")
+ ("/Users/james/Dropbox/CompilerProject/PROJECT V22/" (20910 26217 0 0) "SelectionSortTokenFile.txt" ".DS_Store" "../" "./")
 
- ("/Users/james/" (20908 17748 0 0) "test.dSYM/" "test.cpp" "test" "SSHFS/" "Sites/" "Public/" "Pictures/" "Music/" "mozilla-central/" "Movies/" "log" "Library/" "Dropbox/" "Downloads/" "Documents/" "Developer/" "Desktop/" "BTSync/" "Applications/" ".zshrc.save" ".zshrc" ".zsh_history" ".zsh-update" ".zprofile" ".zcompdump" ".ycm_extra_conf.pyc" ".weechat/" ".vimtags" ".vimshell/" ".vimrc" ".viminfx.tmp" ".viminfv.tmp" ".viminfo.tmp" ".viminfo" ".vimfiler/" ".vim_bak/" ".vim/" ".unite/" ".Trash/" ".tramp_history" ".tmux.conf" ".swp" ".subversion/" ".ssh/" ".sh_history" ".rvm/" ".rsense" ".root" ".rnd" ".recentf" ".pylint.d/" ".psql_history" ".pip/" ".pgpass" ".pgadmin_histoqueries" ".oh-my-zsh/" ".netrc" ".netbeans-derby/" ".neocomplcache/" ".mysql_history" ".m2/" ".lighttable/" ".lesshst" ".lein/" ".jedi/" ".irssi/" ".irb-history" ".init.el" ".ido.last~" ".ido.last" ".idea/" ".heroku/" ".gvimrc" ".guard_history" ".gradle/" ".gitconfig" ".gem/" ".filezilla/" ".emacs.d/" ".eclim/" ".DS_Store" ".dropbox/" ".dotfiles/" ".config/" ".CFUserTextEncoding" ".cache/" ".bitrock/" ".bin/" ".bashrc" ".bash_profile" ".bash_history" ".argouml/" ".appletviewer" ".android/" ".adobe/" "../" "./")
+ ("/Users/james/Dropbox/" (20910 18141 0 0) "vimrc" "ShowList.txt" "School/" "Safari Bookmarks.html" "resumedoc.docx" "Resume.txt" "Record.txt" "Public/" "Programs/" "Programming/" "Pictures/" "ORG/" "Introduction to Algorithms, Third Edition.pdf" "Icon
+" "EBooks/" "dat sixmsj muzak/" "Cover Letter.doc" "config.cfg" "Computer Science/" "CompilerProject/" "Archived Code/" "Apps/" "3500 Syllabus(2).doc" ".SyncTrash/" ".SyncIgnore" ".SyncID" ".DS_Store" ".dropbox.cache/" "../" "./")
 
- ("/Users/james/.emacs.d/" (20908 17815 0 0) "themes/" "semanticdb/" "projectile-bookmarks.eld" "packages/" "init.el" "elpa/" "ede-projects.el" "backups/" "back.init.el" "auto-save-list/" "ac-comphist.dat" ".mc-lists.el" ".gitignore" ".git/" ".emacs~" ".DS_Store" "../" "./")
+ ("/Users/james/Developer/C-Plus-Plus/Hangman/" (20910 4184 0 0) "README" "Hangman.cpp" "../" "./")
+
+ ("/" (20909 17872 0 0) "ftp:" "rcp:" "remcp:" "scp:" "scp1:" "scp2:" "scpc:" "scpx:" "sftp:" "rsync:" "rsyncc:" "rsh:" "remsh:" "ssh:" "ssh1:" "ssh2:" "sshx:" "telnet:" "su:" "sudo:" "ksu:" "krlogin:" "plink:" "plink1:" "plinkx:" "pscp:" "psftp:" "fcp:" "smb:" "134.154.160.147:" "134.154.11.230:" "jamesarch:" "10.0.0.22:" "10.15.140.52:" "204.232.175.90:" "algebra.sci.csueastbay.edu:" "50.19.85.156:" "50.19.85.154:" "heroku.com:" "localhost:" "jameswindoze:" "134.154.57.216:" "192.168.1.99:" "192.168.1.5:" "192.168.1.248:" "10.0.0.7:" "trig.sci.csueastbay.edu:" "github.com:" "Volumes/" "var/" "usr/" "Users/" "tmp/" "System/" "sbin/" "private/" "opt/" "Network/" "net/" "mach_kernel" "Library/" "home/" "etc/" "dev/" "cores/" "bin/" "Applications/" ".vol/" ".Trashes/" ".Spotlight-V100/" ".MobileBackups/" ".fseventsd/" ".file" ".DS_Store" ".DocumentRevisions-V100/" ".dbfseventsd" "../" "./")
+
+ ("/Users/james/Developer/Python/Algorithms/" (20910 4903 0 0) "sorting_algorithms.py" "quicksort.pyc" "quicksort.py" "mergesort.py" "insertionsort.py" "binarysearch.py" "__init__.py" "../" "./")
+
+ ("/Users/james/Developer/SE Project/Project Code/src/t5_domain_logic/" (20910 25065 0 0) "Hospital.java" "../" "./")
+
+ ("/Users/james/" (20910 26052 0 0) "SSHFS/" "Sites/" "Public/" "Pictures/" "pgadmin.log" "Person.java" "Person.class" "Patient.java" "Patient.class" "Music/" "mozilla-central/" "Movies/" "log" "Library/" "Dropbox/" "Downloads/" "Documents/" "Developer/" "Desktop/" "BTSync/" "Applications/" ".zshrc.save" ".zshrc" ".zsh_history" ".zsh-update" ".zprofile" ".zcompdump" ".ycm_extra_conf.pyc" ".weechat/" ".vimtags" ".vimshell/" ".vimrc" ".viminfx.tmp" ".viminfv.tmp" ".viminfo.tmp" ".viminfo" ".vimfiler/" ".vim_bak/" ".vim/" ".unite/" ".Trash/" ".tramp_history" ".tmux.conf" ".swp" ".subversion/" ".ssh/" ".sh_history" ".rvm/" ".rsense" ".root" ".rnd" ".recentf" ".pylint.d/" ".psql_history" ".pip/" ".pgpass" ".pgadmin_histoqueries" ".oh-my-zsh/" ".netrc" ".netbeans-derby/" ".neocomplcache/" ".mysql_history" ".m2/" ".lighttable/" ".lesshst" ".lein/" ".jedi/" ".irssi/" ".irb-history" ".init.el" ".ido.last~" ".ido.last" ".idea/" ".heroku/" ".gvimrc" ".guard_history" ".gradle/" ".gitconfig" ".gem/" ".filezilla/" ".emacs.d/" ".eclim/" ".DS_Store" ".dropbox/" ".dotfiles/" ".config/" ".CFUserTextEncoding" ".cache/" ".bitrock/" ".bin/" ".bashrc" ".bash_profile" ".bash_history" ".argouml/" ".appletviewer" ".android/" ".adobe/" "../" "./")
+
+ ("/Users/james/.emacs.d/" (20910 17826 0 0) "themes/" "semanticdb/" "projectile-bookmarks.eld" "packages/" "init.el" "elpa/" "ede-projects.el" "backups/" "back.init.el" "auto-save-list/" "ac-comphist.dat" ".mc-lists.el" ".gitignore" ".git/" ".DS_Store" "../" "./")
+
+ ("/Users/james/Dropbox/CompilerProject/" (20910 26217 0 0) "userule.txt" "userule (venkat sundaram's conflicted copy 2013-05-30).txt" "selectionsetpage11.pdf" "ProjectV2.org" "project.org" "PROJECT V22/" "parseout.txt" "parse.cpp" "outline.org" "l7_2010.pdf" "Icon
+" "datafile" "codefile" "CFGFirstFollowSets.odt" "CFGFirstFollowSets.doc" "a.out" "27 Sample 4110 final exam questions v2.doc" "26 Multiple_Choice_Instructions v2.doc" "25 Final Exam Highlights v2.doc" "18.1 SLR Table Const for GSE1 v02.pdf" "18 SLR Table Construction v03b.doc" "16_RegularLanguages v02.doc" "15_CodeOptimization v01b.doc" "14_CodeGeneration v01c.doc" "13_BottomUpParsing v02.doc" "12_Scanning.doc" "11_PLHConstructs v02.doc" "10_TranslationSchemes v02.doc" "09_PLHParser.odt" "09_PLHParser.doc" "08_LLTables2.doc" "07_LLTables1 v02.doc" "06_LLParsing v02b.doc" "05_Phrases.doc" "04_CFG's v03.doc" "03_Strings v02.doc" "02_VirtualMachine v01b.doc" "01_Overview v03.doc" ".DS_Store" ".dropbox" "../" "./")
+
+ ("/Users/james/Dropbox/ORG/" (20910 20272 0 0) "OS.org" "History.org" "Compilers.org" ".DS_Store" "../" "./")
 
  ("/Users/james/Dropbox/Computer Science/" (20908 9633 0 0) "uml-Modified.zargo~" "uml-Modified.zargo" "Tasks.docx" "software2.txt" "software1.txt" "SE Project/" "Pseudocode.txt" "Programming Interviews Exposed.PDF" "OS.org~" "OS.org" "OS (venkat sundaram's conflicted copy 2013-05-13).org" "OS (Ebad Saghar's conflicted copy 2013-05-13).org" "Operating System Concepts 9th Edition.pdf" "Operating System Concepts 8th Ed 2009 ISBN 9780470128725.pdf" "OOD.zargo" "OOD.txt" "MIPS Registers (Bao-Huy Tran's conflicted copy 2013-04-02).jpg" "MIPS Recursive Functions- 1 (Bao-Huy Tran's conflicted copy 2013-04-02).jpg" "MIPS Recursive Functions -2 (Bao-Huy Tran's conflicted copy 2013-04-02).jpg" "jdevstudio11123install.exe" "JDeveloper/" "Introduction to Algorithms, Third Edition.pdf" "Icon
 " "HospitalMySQL.docx" "Hospital System.pdf" "Hospital System.docx" "databases_tables.txt" "Data Structure Design.png" "Compilers.org" "Compilers - Principles, Techniques, and Tools 2e.pdf" "ch6.pptx" "ch5.pptx" "ch4.pptx" "ch03.ppt" "ch02.ppt" "ch01.ppt" "ch01 (ronie mendoza's conflicted copy 2013-05-13).ppt" "Appointment_Schedule (JAMES - ADD TO THIS)/" ".idea_root/" ".idea_project_code/" ".DS_Store" ".dropbox" "#OS.org#" "../" "./")
 
- ("/Users/james/Dropbox/CompilerProject/" (20907 59455 0 0) "userule.txt" "userule (venkat sundaram's conflicted copy 2013-05-30).txt" "SelectionSortTokenFile.txt" "selectionsetpage11.pdf" "Screen Shot 2013-05-30 at 5.55.41 PM.png" "ProjectV2.org" "project.org" "parse.cpp" "outline.org" "l7_2010.pdf" "Icon
-" "CFGFirstFollowSets.odt" "CFGFirstFollowSets.doc" "27 Sample 4110 final exam questions v2.doc" "26 Multiple_Choice_Instructions v2.doc" "25 Final Exam Highlights v2.doc" "18.1 SLR Table Const for GSE1 v02.pdf" "18 SLR Table Construction v03b.doc" "16_RegularLanguages v02.doc" "15_CodeOptimization v01b.doc" "14_CodeGeneration v01c.doc" "13_BottomUpParsing v02.doc" "12_Scanning.doc" "11_PLHConstructs v02.doc" "10_TranslationSchemes v02.doc" "09_PLHParser.doc" "08_LLTables2.doc" "07_LLTables1 v02.doc" "06_LLParsing v02b.doc" "05_Phrases.doc" "04_CFG's v03.doc" "03_Strings v02.doc" "02_VirtualMachine v01b.doc" "01_Overview v03.doc" ".DS_Store" ".dropbox" "../" "./")
-
- ("/Users/james/Developer/Python/Algorithms/" (20908 12478 0 0) "sorting_algorithms.py" "quicksort.pyc" "quicksort.py" "mergesort.py" "insertionsort.py" "binarysearch.py" "__init__.py" "../" "./")
-
  ("/Users/james/Developer/Python/" (20901 10733 0 0) "test.py" "Swift/" "QuickSort.py" "Python-GUI/" "Pygame/" "puzzle_3.py" "Node.py" "new/" "MiniPrograms/" "log.txt" "file" "Django Tutorial/" "BinaryTree.py" "Algorithms/" ".git/" ".DS_Store" "../" "./")
-
- ("/Users/james/Developer/SE Project/Project Code/src/t5_domain_logic/" (20908 8403 0 0) "Hospital.java" "../" "./")
 
  ("/Users/james/Developer/SE Project/Project Code/src/" (20908 8403 0 0) "t5_relations/" "t5_presentation_layer/" "t5_domain_objects/" "t5_domain_logic/" "hospital.html" "../" "./")
 
@@ -86,11 +96,6 @@
  ("/Users/james/Developer/SE Project/" (20908 8403 0 0) "Project Code/" "out/" "Mockup PNG's/" ".idea/" ".gitignore" ".git/" "../" "./")
 
  ("/Users/james/Developer/" (20906 54085 0 0) "Web/" "Shell/" "SE Project/" "Scripts/" "Scheme/" "Rails/" "Python/" "Point-of-Sales/" "PHP/" "Openhatch/" "Objective-C/" "Misc/" "Java/" "Group/" "Forks/" "EBSideScroller/" "Database Architecture/" "C-Plus-Plus/" "Assembly/" ".root" ".DS_Store" "../" "./")
-
- ("/Users/james/Dropbox/" (20905 8577 0 0) "vimrc" "ShowList.txt" "School/" "Safari Bookmarks.html" "resumedoc.docx" "Resume.txt" "Record.txt" "Public/" "Programs/" "Programming/" "Pictures/" "ORG/" "Introduction to Algorithms, Third Edition.pdf" "Icon
-" "EBooks/" "dat sixmsj muzak/" "Cover Letter.doc" "config.cfg" "Computer Science/" "CompilerProject/" "Archived Code/" "3500 Syllabus(2).doc" ".SyncTrash/" ".SyncIgnore" ".SyncID" ".DS_Store" ".dropbox.cache/" "../" "./")
-
- ("/Users/james/Dropbox/ORG/" (20906 35721 0 0) "OS.org" "History.org" "Compilers.org" ".DS_Store" "../" "./")
 
  ("/Users/james/Developer/C-Plus-Plus/Op-Systems/homework_2/" (20891 64936 0 0) "text.txt" "os.dSYM/" "os.cpp" "os" "makefile" "alt.txt" "../" "./")
 
@@ -129,8 +134,6 @@
  ("/Users/james/Desktop/" (20881 34724 0 0) "Thumbs.db" "desktop.ini" ".project" ".localized" ".DS_Store" ".classpath" "$RECYCLE.BIN/" "../" "./")
 
  ("/Users/james/Developer/EBSideScroller/Project/ScreenManager/" (20878 33769 0 0) "ScreenManager.h" "ScreenManager.cpp" "Images/" ".DS_Store" "../" "./")
-
- ("/Users/james/Developer/C-Plus-Plus/Hangman/" (20878 40271 0 0) "README" "Hangman.cpp" "#Hangman.cpp#" "../" "./")
 
  ("/Users/Shared/" (20861 61946 0 0) "SC Info/" ".localized" ".DS_Store" "../" "./")
 
