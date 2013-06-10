@@ -356,17 +356,6 @@
         (t                                                                    
          (message "Compilation exited abnormally: %s" string))))
 
-(defun google ()
-  "Googles a query or region if any."
-  (interactive)
-  (browse-url
-   (concat
-    "http://www.google.com/search?ie=utf-8&oe=utf-8&q="
-    (if mark-active
-        (buffer-substring (region-beginning) (region-end))
-      (read-string "Google: ")))))
-
-
 ;; ----------------- FUNCTIONS --------------------------------
 
 ;; ----------------- NAVIGATION -------------------------------
@@ -419,10 +408,10 @@
 ;;(define-key evil-normal-state-map "K" (kbd "10k"))
 ;;(define-key evil-visual-state-map "K" (kbd "10k"))
 ;;(define-key some-relevant-keymap (kbd "J") (kbd "10j"))
-;;(define-key evil-normal-state-map "J" (lambda () (interactive) (forward-line 10)))
-;;(define-key evil-visual-state-map "J" (lambda () (interactive) (forward-line 10)))
-;;(define-key evil-normal-state-map "K" (lambda () (interactive) (forward-line -10)))
-;;(define-key evil-visual-state-map "K" (lambda () (interactive) (forward-line -10)))
+(define-key evil-normal-state-map "J" (lambda () (interactive) (forward-line 10)))
+(define-key evil-visual-state-map "J" (lambda () (interactive) (forward-line 10)))
+(define-key evil-normal-state-map "K" (lambda () (interactive) (forward-line -10)))
+(define-key evil-visual-state-map "K" (lambda () (interactive) (forward-line -10)))
 
 (require 'key-chord)
 (key-chord-mode 1)
@@ -506,7 +495,7 @@
 ;; ----------------- CEDET ------------------------------------
 
 ;; project management
-;; (global-ede-mode 1)
+(global-ede-mode 1)
 
 ;; integration with imenu
 (defun my-semantic-hook ()
@@ -521,6 +510,9 @@
 ;; semantic
 (semantic-mode 1)
 (add-hook 'c++-mode (lambda () (add-to-list 'ac-sources 'ac-source-semantic)))
+
+;; ecb
+(require 'ecb)
 
 ;; ----------------- CEDET ------------------------------------
 
@@ -543,7 +535,6 @@
 
 ;; ----------------- LANGUAGES --------------------------------
 
-;; Haskell 
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 (add-to-list 'completion-ignored-extensions ".hi")

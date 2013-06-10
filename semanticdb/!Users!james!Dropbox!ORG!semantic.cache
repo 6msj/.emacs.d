@@ -1,0 +1,363 @@
+;; Object ORG/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "ORG/"
+  :tables (list 
+   (semanticdb-table "OS2.html"
+    :major-mode 'html-mode
+    :tags 
+        '( ("OS2" section nil nil [240 2247])
+            ("/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = \"code-highlighted\";
+     elem.className   = \"code-highlighted\";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->" section nil nil [2247 3867])
+            ("OS2" section (:members 
+              ( ("OS2" section (:members 
+                  ( ("Table of Contents" section (:members 
+                      ( ("1 synchronization mechanisms - know the semantics and uses of semaphores, monitors and pthread mutex+condition variables" anchor nil nil [4051 4054])
+                        ("1.1 Semantics + Uses Of Semaphores" anchor nil nil [4202 4205])
+                        ("1.1.1 Definition: \"A semaphore S is an integer variable that, apart from initialization, is accessed only through two sandard atomic operations: wait() and signal(). The wait() operation was originall termed P; signal() was originally called V." anchor nil nil [4269 4272])
+                        ("1.1.2 Definition Of wait()" anchor nil nil [4548 4551])
+                        ("1.1.3 Definition Of signaL()" anchor nil nil [4609 4612])
+                        ("1.1.4 All modifications tO the integer value of the semaphore in the wait() and signal() operations must be executed indivisibly. That is, when one process modifies the semaphore value, no other process can simultaneously modify that same semaphore value." anchor nil nil [4672 4675])
+                        ("1.1.5 Semaphore Usage" anchor nil nil [4962 4965])
+                        ("1.1.6 ImplementatIon" anchor nil nil [5018 5021])
+                        ("1.2 Semantics + Uses Of Monitors" anchor nil nil [5085 5088])
+                        ("1.2.1 Definition:" anchor nil nil [5150 5153])
+                        ("1.2.2 The ConditiOn" anchor nil nil [5202 5205])
+                        ("1.2.3 PossibilitiEs" anchor nil nil [5256 5259])
+                        ("1.2.4 Code" anchor nil nil [5310 5313])
+                        ("1.3 Semantics + Uses Of Pthread mutex + condition variables" anchor nil nil [5367 5370])
+                        ("1.3.1 The simplest of the synch mechanism tools is the pthread mutex lock. We use the mutex lock to protect critical regions and to prevent race conditions. A process needs to acquire the lock before entering a critical section; it releases the lock when it exits the critical section." anchor nil nil [5459 5462])
+                        ("1.3.2 The pthread<sub>mutex" anchor nil nil [5779 5782])
+                        ("1.3.3 A process must acquire the lock before entering a critical section; it releases the lock when it exits the critical section." anchor nil nil [6091 6094])
+                        ("1.3.4 Calls to either acquire() or release() must be performed atomically." anchor nil nil [6256 6259])
+                        ("1.3.5 Spinlocks" anchor nil nil [6365 6368])
+                        ("1.3.6 Implementation" anchor nil nil [6415 6418])
+                        ("1.4 Extra:" anchor nil nil [6482 6485])
+                        ("1.4.1 Implementing a Monitor using Semaphores" anchor nil nil [6525 6528])
+                        ("1.4.2 Resuming processes within a Monitor" anchor nil nil [6605 6608])
+                        ("2 synchronization problems - know solutions using semaphores, monitors, pthread mutex+condition variables" anchor nil nil [6704 6707])
+                        ("2.1 Bounded Buffer Producer/Consumer" anchor nil nil [6840 6843])
+                        ("2.1.1 Semaphores" anchor nil nil [6909 6912])
+                        ("2.1.2 Monitors" anchor nil nil [6960 6963])
+                        ("2.1.3 Pthread mutex + Condition Variables" anchor nil nil [7009 7012])
+                        ("2.2 Reader/Writers" anchor nil nil [7097 7100])
+                        ("2.2.1 Problem:" anchor nil nil [7148 7151])
+                        ("2.2.2 Solutions:" anchor nil nil [7197 7200])
+                        ("2.2.3 Semaphores" anchor nil nil [7248 7251])
+                        ("2.2.4 Monitors" anchor nil nil [7299 7302])
+                        ("2.2.5 Pthread Mutex + Condition Variables" anchor nil nil [7348 7351])
+                        ("2.3 Dining Philosophers" anchor nil nil [7436 7439])
+                        ("2.3.1 Problem:" anchor nil nil [7492 7495])
+                        ("2.3.2 Solution Using Monitors:" anchor nil nil [7541 7544])
+                        ("2.3.3 Semaphores" anchor nil nil [7606 7609])
+                        ("2.3.4 Monitors" anchor nil nil [7657 7660])
+                        ("2.3.5 Pthread Mutex + Condition Variables" anchor nil nil [7706 7709])
+                        ("3 Deadlocks - definition, prevention (4 neccessary conditions), avoidance, detection, resource allocation graphs" anchor nil nil [7805 7808])
+                        ("3.1 Four Necessary Conditions:" anchor nil nil [7948 7951])
+                        ("3.1.1 A deadlock situation can arise if the following four conditions hold simultaneously in a system. In other words, if even one of the below conditions cannot hold in the system, a deadlock is impossible." anchor nil nil [8011 8014])
+                        ("3.1.2 Mutual exclusion:" anchor nil nil [8253 8256])
+                        ("3.1.3 Hold and wait:" anchor nil nil [8311 8314])
+                        ("3.1.4 No preemption:" anchor nil nil [8366 8369])
+                        ("3.1.5 Circular wait:" anchor nil nil [8421 8424])
+                        ("3.2 Definition:" anchor nil nil [8488 8491])
+                        ("3.2.1 \"We say that a set of processes is in a deadlocked state when every process in the set is waiting for an event that can be caused only by another process in the set." anchor nil nil [8536 8539])
+                        ("3.2.2 When a process requests resources but those resources aren’t available at the time, the requesting process goes into waiting state. Sometimes the resources requested never become available because of other processes holding those resources up. This situation is called deadlock." anchor nil nil [8742 8745])
+                        ("3.3 Prevention (4 neccessary conditions):" anchor nil nil [9073 9076])
+                        ("3.3.1 A deadlock situation can arise if the following four conditions hold simultaneously in a system. In other words, if even one of the below conditions cannot hold in the system, a deadlock is impossible." anchor nil nil [9147 9150])
+                        ("3.3.2 Deadlock prevention:" anchor nil nil [9389 9392])
+                        ("3.4 Avoidance" anchor nil nil [9462 9465])
+                        ("3.4.1 Be sure to test allocation requests made by the processes before assigning even if the resources are available. The first method is resource allocation graphs visually show which resources are required by which process and make sure that no process will be waiting for an excess amount of time. The second method is Banker’s algorithm. When a new process enters the system, it must declare the maximum number of instances of each resource type that it may need. This number may not exceed the total number of resources in the system. When a user requests a set of resources, the system must determine whether the allocation of these resources will leave the system in a safe state. If it will, the resources are allocated; otherwise, the process must wait until some other process releases enough resources." anchor nil nil [9508 9511])
+                        ("3.5 Detection:" anchor nil nil [10368 10371])
+                        ("3.5.1 When a deadlock situation does occur, the system may provide an algorithm that examines the state of the system to determine whether a deadlock has occurred and/or an algorithm to recover from the deadlock." anchor nil nil [10415 10418])
+                        ("4 Relocation - static and dynamic (base + limit regs)" anchor nil nil [10685 10688])
+                        ("4.1 static:" anchor nil nil [10769 10772])
+                        ("4.1.1" anchor nil nil [10813 10816])
+                        ("4.2 dynamic (base + limit reg):" anchor nil nil [10866 10869])
+                        ("4.2.1" anchor nil nil [10930 10933])
+                        ("5 Fixed and variable-size partitions (MFT and MVT) - issues (holes) and solutions (compaction)" anchor nil nil [10994 10997])
+                        ("5.1 MFT:" anchor nil nil [11119 11122])
+                        ("5.1.1" anchor nil nil [11160 11163])
+                        ("5.2 MVT:" anchor nil nil [11213 11216])
+                        ("5.2.1" anchor nil nil [11254 11257])
+                        ("5.3 issues (holes):" anchor nil nil [11307 11310])
+                        ("5.3.1" anchor nil nil [11359 11362])
+                        ("5.4 solutions (compaction):" anchor nil nil [11412 11415])
+                        ("5.4.1" anchor nil nil [11472 11475])
+                        ("6 Swapping - what is it and why it's done" anchor nil nil [11536 11539])
+                        ("6.1 A process must be in memory to be executed. A process, however, can be swapped temporarily out of memory to a backing store and then brought back into memory for continued execution. Swapping makes it possible for the total physical address space of all processes to exceed the real physical memory of the system, thus increasing the degree of multiprogramming in a system." anchor nil nil [11608 11611])
+                        ("7 Paging" anchor nil nil [12030 12033])
+                        ("7.1 Intro to Paging:" anchor nil nil [12069 12072])
+                        ("7.1.1 One of the memory-management schemes by which a computer can store and retrieve data from secondary storage for use in main memory. It allows for the physical address space of a process to be non-contiguous. It avoids external fragmentation (when free memory is separated into small blocks and is interspersed by allocated memory) and the need for compaction." anchor nil nil [12122 12125])
+                        ("7.2 Address translation (pages and frames with page table)" anchor nil nil [12534 12537])
+                        ("7.2.1 Every address generated by the CPU is divided into two parts: a page number (p) and a page offset (d). The page number is used as an index into a page table. The page table contains the base address of each page in physical memory. This base address is combined with the page offset to deﬁne the physical memory address that is sent to the memory unit. The size of a page is a power of 2. If the size of the logical address space is 2m, and a page size is 2n bytes, then the high-order m−n bits of a logical address designate the page number, and the n low-order bits designate the page offset." anchor nil nil [12625 12628])
+                        ("7.3 Relationships between page size, logical address (pointer) size, page table size, physical address size" anchor nil nil [13272 13275])
+                        ("8 Implementing paging -" anchor nil nil [13424 13427])
+                        ("8.1 Using associative registers:" anchor nil nil [13478 13481])
+                        ("8.1.1" anchor nil nil [13543 13546])
+                        ("8.2 Address translation with TLB:" anchor nil nil [13596 13599])
+                        ("8.2.1" anchor nil nil [13662 13665])
+                        ("8.3 Hierarchical paging (2-level paging):" anchor nil nil [13715 13718])
+                        ("8.3.1" anchor nil nil [13789 13792])
+                        ("8.4 Hashed page tables:" anchor nil nil [13842 13845])
+                        ("8.4.1" anchor nil nil [13898 13901])
+                        ("8.5 Inverted page table:" anchor nil nil [13951 13954])
+                        ("8.5.1" anchor nil nil [14008 14011])
+                        ("8.6 Segmented paging" anchor nil nil [14061 14064])
+                        ("8.6.1" anchor nil nil [14114 14117])
+                        ("9 Segmentation -" anchor nil nil [14178 14181])
+                        ("9.1 View of Logical Address Space:" anchor nil nil [14225 14228])
+                        ("9.1.1" anchor nil nil [14292 14295])
+                        ("9.2 Use of Segment Table For Address Translation (with/without TLB):" anchor nil nil [14345 14348])
+                        ("9.2.1" anchor nil nil [14446 14449])
+                        ("10 Memory Hierachy" anchor nil nil [14510 14513])
+                        ("10.1 There are 4 major storage levels:" anchor nil nil [14560 14563])
+                        ("10.1.1 Internal – Processor registers and cache" anchor nil nil [14632 14635])
+                        ("10.1.2 Main – the system RAM and controller cards" anchor nil nil [14715 14718])
+                        ("10.1.3 On-line mass storage – secondary storage (auxiliary storage)" anchor nil nil [14800 14803])
+                        ("10.1.4 Off-line bulk storage – tertiary and off-line storage" anchor nil nil [14903 14906])
+                        ("11 Virtual Memory:" anchor nil nil [15022 15025])
+                        ("11.1 Definition:" anchor nil nil [15072 15075])
+                        ("11.1.1 Virtual memory is a system by which the machine or operating system fools processes running on the machine into thinking that they have a lot more memory to work with than the capacity of RAM would indicate. It does this by storing the most recently used items in RAM, and storing the lesser used items in the slower disk memory, and interchanging data between the two whenever a disk is made. In this way, memory appears to programs to be a full 32 bit address space, when in fact memory space is probably only a mere fraction of that" anchor nil nil [15122 15125])
+                        ("11.2 Demand paging:" anchor nil nil [15712 15715])
+                        ("11.2.1 Demand paging is a method of virtual memory management. In a system that uses demand paging, the operating system copies a disk page into physical memory only if an attempt is made to access it. It follows that a process begins execution with non of its pages in physical memory, and many page faults will occur until most of a process’s working set of pages is located in physical memory. Demand paging follows that pages should only be brought into memory if the executing process demands them." anchor nil nil [15765 15768])
+                        ("11.3 Valid bit:" anchor nil nil [16316 16319])
+                        ("11.3.1 The valid bit tells us if the memory is currently in main memory or if it must be retrieved from secondary memory. When a page is taken from disk and put into main memory, the valid bit is set to 1. When a page is overwritten in main memory once the system feels we no longer need it, the valid bit is set to 0." anchor nil nil [16365 16368])
+                        ("12 Page Replacement" anchor nil nil [16742 16745])
+                        ("12.1 Dirty bit:" anchor nil nil [16793 16796])
+                        ("12.1.1" anchor nil nil [16842 16845])
+                        ("12.2 Reference Bit:" anchor nil nil [16897 16900])
+                        ("12.2.1" anchor nil nil [16950 16953])
+                        ("12.3 Algorithms" anchor nil nil [17005 17008])
+                        ("12.3.1 FIFO:" anchor nil nil [17054 17057])
+                        ("12.3.2 OPT:" anchor nil nil [17102 17105])
+                        ("12.3.3 LRU:" anchor nil nil [17149 17152])
+                        ("13 Frame allocation:" anchor nil nil [17219 17222])
+                        ("13.1 Problem:" anchor nil nil [17271 17274])
+                        ("13.1.1 We turn next to the issue of allocation. How do we allocate the fixed amount of free memory among the various processes? If we have 93 free frames and two processes, how many frames does each process get?" anchor nil nil [17318 17321])
+                        ("13.2 Solution:" anchor nil nil [17577 17580])
+                        ("13.2.1 The simplest case is the single-user system. Consider a single-user system with 128 KB of memory composed of pages 1 KB in size. This system has 128 frames. The operating system may take 35 KB, leaving 93 frames for the user process. Under pure demand paging, all 93 frames would initially be put on the free-frame list. When a user process started execution, it would generate a sequence of page faults. The first 93 page faults would all get free frames from the free-frame list. When the free-frame list was exhausted, a page-replacement algorithm would be used to select one of the 93 in-memory pages to be replaced with the 94th, and so on. When the process terminated, the 93 frames would once again be placed on the free-frame list." anchor nil nil [17625 17628])
+                        ("13.3 Variations to Solution:" anchor nil nil [18419 18422])
+                        ("13.3.1 There are many variations on this simple strategy. We can require that the operating system allocate all its buffer and table space from the free-frame list. When this space is not in use by the operating system, it can be used to support user paging. We can try to keep three free frames reserved on the free-frame list at all times. Thus, when a page fault occurs, there is a free frame available to page into. While the page swap is taking place, a replacement can be selected, which is then written to the disk as the user process continues to execute. Other variants are also possible, but the basic strategy is clear: the user process is allocated any free frame." anchor nil nil [18481 18484])
+                        ("13.4 Useful Snippets to Know:" anchor nil nil [19205 19208])
+                        ("13.4.1 Allocation Algorithms:" anchor nil nil [19268 19271])
+                        ("13.4.2 Our strategies for the allocation of frames are constrained in various ways. We cannot, for example, allocate more than the total number of available frames (unless there is page sharing). We must also allocate at least a minimum number of frames." anchor nil nil [19333 19336])
+                        ("13.5 Relationship to Page Fault Rate" anchor nil nil [19635 19638])
+                        ("13.5.1" anchor nil nil [19705 19708])
+                        ("13.6 Relationship to Working Sets" anchor nil nil [19760 19763])
+                        ("13.6.1" anchor nil nil [19827 19830])
+                        ("13.7 Relationship to Equal or Proportional Allocation" anchor nil nil [19882 19885])
+                        ("13.7.1" anchor nil nil [19969 19972])
+                        ("13.8 Relationship to Thrashing" anchor nil nil [20024 20027])
+                        ("13.8.1 Explain Thrashing:" anchor nil nil [20088 20091])
+                        ("13.8.2 Cause of Thrashing:" anchor nil nil [20149 20152])
+                        ("13.8.3 Limiting the effects of Thrashing:" anchor nil nil [20211 20214])
+                        ("14 Important Definitions" anchor nil nil [20311 20314])
+                        ("14.1 Race Condition:" anchor nil nil [20367 20370])
+                        ("14.1.1 \"A situation like this, where several processes access and manipulate the variable counter concurrently. A situation like this, where several processes access and manipulate the same data concurrently and the outcome of the execution depends on the aprticular order in which the access takes place, is called a race condition.\"" anchor nil nil [20421 20424])
+                        ("14.2 Critical Section Problem:" anchor nil nil [20803 20806])
+                        ("14.2.1 \"is to design a protocol that the processes can use to cooperate. Each process must request permission to enter its critical section. The section of code implementing this may be folloewd by an exit section. The reamining code is the remainder section.\"" anchor nil nil [20867 20870])
+                        ("14.2.2 A solution to the critical-section problem must satisfy the following three requirements." anchor nil nil [21163 21166])
+                        ("14.3 General Approaches to Critical Sections in Operating Systems:" anchor nil nil [21307 21310])
+                        ("14.3.1 Two general approaches are used to handle critical sections in operating systems: preemptive kernels and nonpreemptive kernels. A preemptive kernel allows a process to be preempted while it is running in kernel mode. A nonpreemptive kernel does not allow a process running in kernel mode to be preempted; a kernel-mode process will run until it exits kernel mode, blocks, or voluntarily yields control of the CPU." anchor nil nil [21407 21410]))                      ) nil [3981 21953])
+                    ("1" section (:members 
+                      ( ("1.1" section (:members 
+                          ( ("1.1.1" section nil nil [22471 22893])
+                            ("1.1.2" section nil nil [22893 23187])
+                            ("1.1.3" section nil nil [23187 23448])
+                            ("1.1.4" section nil nil [23448 23881])
+                            ("1.1.5" section nil nil [23881 24846])
+                            ("1.1.6" section nil nil [24846 25988]))                          ) nil [22270 25988])
+                        ("1.2" section (:members 
+                          ( ("1.2.1" section nil nil [26187 27552])
+                            ("1.2.2" section nil nil [27552 28768])
+                            ("1.2.3" section nil nil [28768 30088])
+                            ("1.2.4" section nil nil [30088 30562]))                          ) nil [25988 30562])
+                        ("1.3" section (:members 
+                          ( ("1.3.1" section nil nil [30788 31251])
+                            ("1.3.2" section nil nil [31251 31706])
+                            ("1.3.3" section nil nil [31706 32014])
+                            ("1.3.4" section nil nil [32014 32266])
+                            ("1.3.5" section nil nil [32266 32789])
+                            ("1.3.6" section nil nil [32789 33300]))                          ) nil [30562 33300])
+                        ("1.4" section (:members 
+                          ( ("1.4.1" section nil nil [33477 34876])
+                            ("1.4.2" section nil nil [34876 35106]))                          ) nil [33300 35106]))                      ) nil [21953 35106])
+                    ("2" section (:members 
+                      ( ("2.1" section (:members 
+                          ( ("2.1.1" section nil nil [35647 35911])
+                            ("2.1.2" section nil nil [35911 36173])
+                            ("2.1.3" section nil nil [36173 36819]))                          ) nil [35408 36819])
+                        ("2.2" section (:members 
+                          ( ("2.2.1" section nil nil [37040 37734])
+                            ("2.2.2" section nil nil [37734 39296])
+                            ("2.2.3" section nil nil [39296 39560])
+                            ("2.2.4" section nil nil [39560 39822])
+                            ("2.2.5" section nil nil [39822 41058]))                          ) nil [36819 41058])
+                        ("2.3" section (:members 
+                          ( ("2.3.1" section nil nil [41284 42833])
+                            ("2.3.2" section nil nil [42833 43679])
+                            ("2.3.3" section nil nil [43679 43943])
+                            ("2.3.4" section nil nil [43943 45111])
+                            ("2.3.5" section nil nil [45111 45410]))                          ) nil [41058 45410]))                      ) nil [35106 45410])
+                    ("3" section (:members 
+                      ( ("3.1" section (:members 
+                          ( ("3.1.1" section nil nil [45916 46301])
+                            ("3.1.2" section nil nil [46301 46584])
+                            ("3.1.3" section nil nil [46584 46967])
+                            ("3.1.4" section nil nil [46967 47362])
+                            ("3.1.5" section nil nil [47362 47756]))                          ) nil [45719 47756])
+                        ("3.2" section (:members 
+                          ( ("3.2.1" section nil nil [47938 48287])
+                            ("3.2.2" section nil nil [48287 48754]))                          ) nil [47756 48754])
+                        ("3.3" section (:members 
+                          ( ("3.3.1" section nil nil [48962 49347])
+                            ("3.3.2" section nil nil [49347 50493]))                          ) nil [48754 50493])
+                        ("3.4" section (:members 
+                          ( ("3.4.1" section nil nil [50673 51669]))                          ) nil [50493 51669])
+                        ("3.5" section (:members 
+                          ( ("3.5.1" section nil nil [51850 52250]))                          ) nil [51669 52250]))                      ) nil [45410 52250])
+                    ("4" section (:members 
+                      ( ("4.1" section (:members 
+                          ( ("4.1.1" section nil nil [52714 52903]))                          ) nil [52500 52903])
+                        ("4.2" section (:members 
+                          ( ("4.2.1" section nil nil [53137 53331]))                          ) nil [52903 53331]))                      ) nil [52250 53331])
+                    ("5" section (:members 
+                      ( ("5.1" section (:members 
+                          ( ("5.1.1" section nil nil [53833 54022]))                          ) nil [53622 54022])
+                        ("5.2" section (:members 
+                          ( ("5.2.1" section nil nil [54233 54422]))                          ) nil [54022 54422])
+                        ("5.3" section (:members 
+                          ( ("5.3.1" section nil nil [54644 54833]))                          ) nil [54422 54833])
+                        ("5.4" section (:members 
+                          ( ("5.4.1" section nil nil [55063 55257]))                          ) nil [54833 55257]))                      ) nil [53331 55257])
+                    ("6" section (:members 
+                      ( ("6.1" section nil nil [55495 56049]))                      ) nil [55257 56049])
+                    ("7" section (:members 
+                      ( ("7.1" section (:members 
+                          ( ("7.1.1" section nil nil [56441 56989]))                          ) nil [56254 56989])
+                        ("7.2" section (:members 
+                          ( ("7.2.1" section nil nil [57250 58033]))                          ) nil [56989 58033])
+                        ("7.3" section nil nil [58033 58353]))                      ) nil [56049 58353])
+                    ("8" section (:members 
+                      ( ("8.1" section (:members 
+                          ( ("8.1.1" section nil nil [58772 58961]))                          ) nil [58573 58961])
+                        ("8.2" section (:members 
+                          ( ("8.2.1" section nil nil [59161 59350]))                          ) nil [58961 59350])
+                        ("8.3" section (:members 
+                          ( ("8.3.1" section nil nil [59558 59747]))                          ) nil [59350 59747])
+                        ("8.4" section (:members 
+                          ( ("8.4.1" section nil nil [59937 60126]))                          ) nil [59747 60126])
+                        ("8.5" section (:members 
+                          ( ("8.5.1" section nil nil [60317 60506]))                          ) nil [60126 60506])
+                        ("8.6" section (:members 
+                          ( ("8.6.1" section nil nil [60693 60887]))                          ) nil [60506 60887]))                      ) nil [58353 60887])
+                    ("9" section (:members 
+                      ( ("9.1" section (:members 
+                          ( ("9.1.1" section nil nil [61301 61490]))                          ) nil [61100 61490])
+                        ("9.2" section (:members 
+                          ( ("9.2.1" section nil nil [61725 61920]))                          ) nil [61490 61920]))                      ) nil [60887 61920])
+                    ("10" section (:members 
+                      ( ("10.1" section (:members 
+                          ( ("10.1.1" section nil nil [62346 62574])
+                            ("10.1.2" section nil nil [62574 62804])
+                            ("10.1.3" section nil nil [62804 63052])
+                            ("10.1.4" section nil nil [63052 63303]))                          ) nil [62138 63303]))                      ) nil [61920 63303])
+                    ("11" section (:members 
+                      ( ("11.1" section (:members 
+                          ( ("11.1.1" section nil nil [63707 64435]))                          ) nil [63521 64435])
+                        ("11.2" section (:members 
+                          ( ("11.2.1" section nil nil [64624 65313]))                          ) nil [64435 65313])
+                        ("11.3" section (:members 
+                          ( ("11.3.1" section nil nil [65498 66007]))                          ) nil [65313 66007]))                      ) nil [63303 66007])
+                    ("12" section (:members 
+                      ( ("12.1" section (:members 
+                          ( ("12.1.1" section nil nil [66411 66604]))                          ) nil [66226 66604])
+                        ("12.2" section (:members 
+                          ( ("12.2.1" section nil nil [66793 66986]))                          ) nil [66604 66986])
+                        ("12.3" section (:members 
+                          ( ("12.3.1" section nil nil [67171 67391])
+                            ("12.3.2" section nil nil [67391 67610])
+                            ("12.3.3" section nil nil [67610 68065]))                          ) nil [66986 68065]))                      ) nil [66007 68065])
+                    ("13" section (:members 
+                      ( ("13.1" section (:members 
+                          ( ("13.1.1" section nil nil [68468 68865]))                          ) nil [68285 68865])
+                        ("13.2" section (:members 
+                          ( ("13.2.1" section nil nil [69049 69981]))                          ) nil [68865 69981])
+                        ("13.3" section (:members 
+                          ( ("13.3.1" section nil nil [70179 71041]))                          ) nil [69981 71041])
+                        ("13.4" section (:members 
+                          ( ("13.4.1" section nil nil [71240 72339])
+                            ("13.4.2" section nil nil [72339 73286]))                          ) nil [71041 73286])
+                        ("13.5" section (:members 
+                          ( ("13.5.1" section nil nil [73492 73685]))                          ) nil [73286 73685])
+                        ("13.6" section (:members 
+                          ( ("13.6.1" section nil nil [73888 74081]))                          ) nil [73685 74081])
+                        ("13.7" section (:members 
+                          ( ("13.7.1" section nil nil [74304 74497]))                          ) nil [74081 74497])
+                        ("13.8" section (:members 
+                          ( ("13.8.1" section nil nil [74697 75943])
+                            ("13.8.2" section nil nil [75943 77804])
+                            ("13.8.3" section nil nil [77804 78721]))                          ) nil [74497 78721]))                      ) nil [68065 78721])
+                    ("14" section (:members 
+                      ( ("14.1" section (:members 
+                          ( ("14.1.1" section nil nil [79135 79655]))                          ) nil [78945 79655])
+                        ("14.2" section (:members 
+                          ( ("14.2.1" section nil nil [79855 80296])
+                            ("14.2.2" section nil nil [80296 81412]))                          ) nil [79655 81412])
+                        ("14.3" section (:members 
+                          ( ("14.3.1" section (:members 
+                              ( ("Org" anchor nil nil [82346 82349])
+                                ("Emacs" anchor nil nil [82403 82406])
+                                ("Validate XHTML 1.0" anchor nil nil [82473 82476]))                              ) nil [81648 82572]))                          ) nil [81412 82572]))                      ) nil [78721 82572]))                  ) nil [3923 82572]))              ) nil [3867 82572]))          
+    :file "OS2.html"
+    :pointmax 82572
+    :fsize 82631
+    :lastmodtime '(20917 33628 0 0)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!Users!james!Dropbox!ORG!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )
