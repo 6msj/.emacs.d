@@ -115,6 +115,7 @@
 (set-variable 'smooth-scroll-margin 5)
 (setq scroll-preserve-screen-position 1)
 
+
 ;; Colorful Delimiters.
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
@@ -548,6 +549,7 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 (add-to-list 'completion-ignored-extensions ".hi")
 (add-hook 'haskell-mode-hook 'auto-complete-mode)
+(add-hook 'haskell-mode-hook 'auto-revert-mode)
 
 ;; ----------------- LANGUAGES --------------------------------
 
