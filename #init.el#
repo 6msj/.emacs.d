@@ -255,7 +255,6 @@
 ;; show speedbar in the same frame
 (require 'sr-speedbar)
 (setq speedbar-use-images nil)
-(setq sr-speedbar-right-side nil)
 
 ;; multiple cursors
 (require 'multiple-cursors)
@@ -468,7 +467,6 @@
 (global-evil-leader-mode)
 (add-hook 'text-mode-hook 'evil-leader-mode)
 (add-hook 'prog-mode-hook 'evil-leader-mode)
-(add-hook 'speed-bar-mode-hook 'evil-leader-mode)
 
 (evil-leader/set-leader ",")
 (evil-leader/set-key
@@ -480,8 +478,6 @@
     "wv" 'split-window-right
     "f"  'ido-find-file
     "b"  'ido-switch-buffer
-    "n"  'sr-speedbar-toggle
-    "="  'iwb
 )
 
 ;; Occur Mode
@@ -537,6 +533,7 @@
 
 ;; ----------------- CEDET ------------------------------------
 
+
 ;; ----------------- FILES ------------------------------------
 
 ;; No autosave
@@ -561,7 +558,6 @@
 (add-to-list 'completion-ignored-extensions ".hi")
 (add-hook 'haskell-mode-hook 'auto-complete-mode)
 (add-hook 'haskell-mode-hook 'auto-revert-mode)
-(add-hook 'haskell-mode-hook 'fold-dwim-org/minor-mode)
 
 ;; ----------------- LANGUAGES --------------------------------
 

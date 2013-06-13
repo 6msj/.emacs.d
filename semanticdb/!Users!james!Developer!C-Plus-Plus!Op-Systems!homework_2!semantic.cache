@@ -179,45 +179,45 @@
                   ( ("data" variable
                        (:pointer 1
                         :type "void")
-                        (reparse-symbol arg-sub-list) [2547 2558]))                  
+                        (reparse-symbol arg-sub-list) [2546 2557]))                  
                 :type "void")
-                nil [2532 3212])
+                nil [2531 3211])
             ("stopSometimes" function
                (:pointer 1
                 :arguments 
                   ( ("data" variable
                        (:pointer 1
                         :type "void")
-                        (reparse-symbol arg-sub-list) [3236 3247]))                  
+                        (reparse-symbol arg-sub-list) [3234 3245]))                  
                 :type "void")
-                nil [3215 3363])
+                nil [3213 3361])
             ("startSometimes" function
                (:pointer 1
                 :arguments 
                   ( ("data" variable
                        (:pointer 1
                         :type "void")
-                        (reparse-symbol arg-sub-list) [3387 3398]))                  
+                        (reparse-symbol arg-sub-list) [3385 3396]))                  
                 :type "void")
-                nil [3365 3515])
-            ("determineSleep" function (:type "int") nil [3517 3633])
-            ("changeFunction" function (:type "void") nil [3733 4038])
-            ("togglePlayer" function (:type "void") nil [4116 4271])
-            ("loadWordsInDeque" function (:type "void") nil [4437 4969])
-            ("askThenSeek" function (:type "void") nil [5045 5317])
-            ("askThenLoad" function (:type "void") nil [5394 5545])
-            ("askThenRate" function (:type "void") nil [5625 5923])
+                nil [3363 3513])
+            ("determineSleep" function (:type "int") nil [3515 3631])
+            ("changeFunction" function (:type "void") nil [3731 4036])
+            ("togglePlayer" function (:type "void") nil [4114 4269])
+            ("loadWordsInDeque" function (:type "void") nil [4435 4967])
+            ("askThenSeek" function (:type "void") nil [5043 5315])
+            ("askThenLoad" function (:type "void") nil [5392 5543])
+            ("askThenRate" function (:type "void") nil [5623 5921])
             ("LoadFile" function
                (:arguments 
                   ( ("filename" variable
                        (:pointer 1
                         :constant-flag t
                         :type "char")
-                        (reparse-symbol arg-sub-list) [6047 6068]))                  
+                        (reparse-symbol arg-sub-list) [6045 6066]))                  
                 :type "void")
-                nil [6033 6458])
-            ("Stop" function (:type "void") nil [6502 6744])
-            ("Start" function (:type "void") nil [6789 7082])
+                nil [6031 6456])
+            ("Stop" function (:type "void") nil [6500 6742])
+            ("Start" function (:type "void") nil [6787 7080])
             ("attemptStart" function
                (:arguments 
                   ( ("dequeToCheck" variable
@@ -227,18 +227,18 @@
                                 ( ("word" type nil nil nil))                                
                               :type "class")
                               nil nil))
-                        (reparse-symbol arg-sub-list) [7102 7133]))                  
+                        (reparse-symbol arg-sub-list) [7100 7131]))                  
                 :type "void")
-                nil [7084 7560])
+                nil [7082 7558])
             ("playMedia" function
                (:pointer 1
                 :arguments 
                   ( ("data" variable
                        (:pointer 1
                         :type "void")
-                        (reparse-symbol arg-sub-list) [7579 7590]))                  
+                        (reparse-symbol arg-sub-list) [7577 7588]))                  
                 :type "void")
-                nil [7562 8093])
+                nil [7560 8091])
             ("playWordFromMedia" function
                (:arguments 
                   ( ("playFrom" variable
@@ -248,7 +248,7 @@
                                 ( ("word" type nil nil nil))                                
                               :type "class")
                               nil nil))
-                        (reparse-symbol arg-sub-list) [8118 8145])
+                        (reparse-symbol arg-sub-list) [8116 8143])
                     ("addTo" variable
                        (:reference 1
                         :type ("std::deque" type
@@ -256,24 +256,24 @@
                                 ( ("word" type nil nil nil))                                
                               :type "class")
                               nil nil))
-                        (reparse-symbol arg-sub-list) [8146 8170]))                  
+                        (reparse-symbol arg-sub-list) [8144 8168]))                  
                 :type "void")
-                nil [8095 8982])
-            ("Rewind" function (:type "void") nil [9031 9240])
+                nil [8093 8980])
+            ("Rewind" function (:type "void") nil [9029 9238])
             ("SeekTo" function
                (:arguments 
-                  ( ("byteoffset" variable (:type "int") (reparse-symbol arg-sub-list) [9373 9388]))                  
+                  ( ("byteoffset" variable (:type "int") (reparse-symbol arg-sub-list) [9371 9386]))                  
                 :type "void")
-                nil [9361 9906])
+                nil [9359 9904])
             ("SetRate" function
                (:arguments 
-                  ( ("rate" variable (:type "float") (reparse-symbol arg-sub-list) [10031 10042]))                  
+                  ( ("rate" variable (:type "float") (reparse-symbol arg-sub-list) [10029 10040]))                  
                 :type "void")
-                nil [10018 10141]))          
+                nil [10016 10139]))          
     :file "os.cpp"
-    :pointmax 10146
-    :fsize 10145
-    :lastmodtime '(20891 40278 0 0)
+    :pointmax 10144
+    :fsize 10143
+    :lastmodtime '(20921 14430 0 0)
     :unmatched-syntax 'nil
     )
    )
