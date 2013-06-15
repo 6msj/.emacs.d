@@ -69,8 +69,10 @@
 (when (eq system-type 'darwin)
   ;;(set-face-attribute 'default nil :family "Consolas")
   ;;(set-face-attribute 'default nil :height 120)
-  (set-face-attribute 'default nil :family "Inconsolata For Powerline")
-  (set-face-attribute 'default nil :height 130)
+  ;;(set-face-attribute 'default nil :family "Inconsolata For Powerline")
+  ;;(set-face-attribute 'default nil :height 130)
+  (set-face-attribute 'default nil :family "DejaVu Sans Mono")
+  (set-face-attribute 'default nil :height 110)
   (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
 
   (setenv "PATH" (concat (getenv "HOME") ".bin:"
@@ -376,10 +378,34 @@
         (buffer-substring (region-beginning) (region-end))
       (read-string "Google: ")))))
 
+(defun recentf-ido-find-file ()
+  "Find a recent file using Ido."
+  (interactive)
+  (let* ((file-assoc-list
+	  (mapcar (lambda (x)
+		    (cons (file-name-nondirectory x)
+			  x))
+		  recentf-list))
+	 (filename-list
+	  (remove-duplicates (mapcar #'car file-assoc-list)
+			     :test #'string=))
+	 (filename (ido-completing-read "Choose recent file: "
+					filename-list
+					nil
+					t)))
+    (when filename
+      (find-file (cdr (assoc filename
+			     file-assoc-list))))))
 
 ;; ----------------- FUNCTIONS --------------------------------
 
 ;; ----------------- NAVIGATION -------------------------------
+
+;; Most Recently Used Files.
+(require 'recentf)
+    (setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
+    (recentf-mode 1)
+(setq recentf-max-menu-items 25)
 
 ;; windmove & framemove
 (when (fboundp 'windmove-default-keybindings)
@@ -411,8 +437,8 @@
 
 (require 'evil)
 (evil-mode 1)
-(define-key evil-normal-state-map "L" 'evil-end-of-line)
-(define-key evil-normal-state-map "H" 'evil-first-non-blank)
+;;(define-key evil-normal-state-map "L" 'evil-end-of-line)
+;;(define-key evil-normal-state-map "H" 'evil-first-non-blank)
 (define-key evil-normal-state-map ";" 'evil-ex)
 (define-key evil-normal-state-map "\C-h" 'windmove-left) ;; move left around split
 (define-key evil-normal-state-map "\C-l" 'windmove-right) ;; move right around split
@@ -482,6 +508,7 @@
     "b"  'ido-switch-buffer
     "n"  'sr-speedbar-toggle
     "="  'iwb
+    "r"  'recentf-ido-find-file
 )
 
 ;; Occur Mode
