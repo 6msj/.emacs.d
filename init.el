@@ -56,8 +56,8 @@
 (setq calendar-latitude 32.85)
 (setq calendar-longitude -96.85)
 (require 'theme-changer)
-;;(change-theme 'solarized-light 'solarized-dark)
-(change-theme 'molokai 'molokai)
+(change-theme 'solarized-light 'solarized-dark)
+;;(change-theme 'molokai 'molokai)
 
 ;; disable ui fluff
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -140,8 +140,8 @@
 ;;(add-hook 'prog-mode-hook 'git-gutter)
 (global-git-gutter-mode t)
 
-(require 'powerline)
-(setq powerline-arrow-shape 'arrow)
+;;(require 'powerline)
+;;(setq powerline-arrow-shape 'arrow)
 
 ;; change mode-line color by evil state
 (lexical-let ((default-color (cons (face-background 'mode-line)
