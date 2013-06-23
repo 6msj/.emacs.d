@@ -71,9 +71,18 @@
   ;;(set-face-attribute 'default nil :height 120)
   ;;(set-face-attribute 'default nil :family "Inconsolata For Powerline")
   ;;(set-face-attribute 'default nil :height 130)
-  (set-face-attribute 'default nil :family "DejaVu Sans Mono")
-  (set-face-attribute 'default nil :height 110)
-  (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
+  ;;(set-face-attribute 'default nil :family "DejaVu Sans Mono")
+  ;;(set-face-attribute 'default nil :height 110)
+  ;;(set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
+
+  (defun find-and-set-font (&rest candidates)
+  "Set the first font found in CANDIDATES."
+  (let ((font (cl-find-if (lambda (f) (find-font (font-spec :name f)))
+                          candidates)))
+    (when font
+      (set-face-attribute 'default nil :font font))
+    font))
+    (find-and-set-font "Envy Code R-12" "Consolas-12" "DejaVu Sans Mono-11"  "Menlo-12")
 
   (setenv "PATH" (concat (getenv "HOME") ".bin:"
                          "/usr/local/bin:"
@@ -622,12 +631,5 @@
 ;; C-h k : Is the describe-key function.
 ;; C-h f : Is the describe-function function.
 ;; C-c p C-h : List Projectile Keybindings.
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
 ;; ----------------- END --------------------------------------
