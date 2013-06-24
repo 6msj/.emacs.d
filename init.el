@@ -217,6 +217,9 @@
 (column-number-mode 1) ;; makes the column number show up
 (define-key global-map (kbd "RET") 'newline-and-indent) ;; autoindent
 
+;; add auto indent to all programming modes
+(add-hook 'prog-mode-hook 'set-newline-and-indent)
+
 ;; folding 
 (add-hook 'c-mode-common-hook   'hs-minor-mode)
 (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
@@ -406,6 +409,11 @@
       (find-file (cdr (assoc filename
 			     file-assoc-list))))))
 
+
+;; auto indent function using return
+(defun set-newline-and-indent ()
+  (local-set-key (kbd "RET") 'newline-and-indent))
+
 ;; ----------------- FUNCTIONS --------------------------------
 
 ;; ----------------- NAVIGATION -------------------------------
@@ -443,6 +451,12 @@
 ;; undo-true
 (require 'undo-tree)
 (global-undo-tree-mode)
+
+;; regain scroll up with c-u
+(setq evil-want-C-u-scroll t)
+
+;; C-i jumps forward in jumplist
+(setq evil-want-C-i-jump t)
 
 (require 'evil)
 (evil-mode 1)
@@ -501,6 +515,7 @@
 ;; evil leader
 (require 'evil-leader)
 (global-evil-leader-mode)
+(add-hook 'fundamental-mode 'evil-leader-mode)
 (add-hook 'text-mode-hook 'evil-leader-mode)
 (add-hook 'prog-mode-hook 'evil-leader-mode)
 (add-hook 'speed-bar-mode-hook 'evil-leader-mode)
@@ -511,6 +526,7 @@
     "ci" 'evilnc-comment-or-uncomment-lines
     "cc" 'evilnc-comment-or-uncomment-to-the-line
     "v"  (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
+    "z"  (lambda() (interactive)(find-file "~/Dropbox/Notes.org"))
     "wh" 'split-window-below
     "wv" 'split-window-right
     "f"  'ido-find-file
@@ -598,6 +614,7 @@
 (add-hook 'haskell-mode-hook 'auto-complete-mode)
 (add-hook 'haskell-mode-hook 'auto-revert-mode)
 (add-hook 'haskell-mode-hook 'fold-dwim-org/minor-mode)
+(add-hook 'haskell-mode-hook 'set-newline-and-indent)
 
 ;; ----------------- LANGUAGES --------------------------------
 
@@ -625,11 +642,5 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
 (setq org-src-fontify-natively t)
-
-;; Tips
-;; <M-x> ielm : Is the ELISP interpreter.
-;; C-h k : Is the describe-key function.
-;; C-h f : Is the describe-function function.
-;; C-c p C-h : List Projectile Keybindings.
 
 ;; ----------------- END --------------------------------------
