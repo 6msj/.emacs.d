@@ -620,6 +620,10 @@
 
 ;; ----------------- END --------------------------------------
 
+;; TRAMP for remote editing.
+(require 'tramp)
+(setq tramp-default-method "scp")
+
 ;; Folding like Org Mode in all modes.
 (add-hook 'prog-mode-hook 'fold-dwim-org/minor-mode)
 (add-hook 'text-mode-hook 'fold-dwim-org/minor-mode)
