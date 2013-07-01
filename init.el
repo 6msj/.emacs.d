@@ -20,7 +20,7 @@
 ; list the packages you want
 (setq package-list '(auto-complete autopair diminish evil evil-leader
                      evil-nerd-commenter fold-dwim fold-dwim-org fuzzy key-chord
-                     git-gutter-fringe haskell-mode jedi magit multiple-cursors
+                     git-gutter-fringe haskell-mode htmlize jedi magit multiple-cursors
                      rainbow-delimiters org projectile smooth-scrolling
                      sr-speedbar surround theme-changer undo-tree xclip yasnippet))
 
@@ -82,7 +82,7 @@
     (when font
       (set-face-attribute 'default nil :font font))
     font))
-    (find-and-set-font "Envy Code R-12" "Consolas-12" "DejaVu Sans Mono-11"  "Menlo-12")
+    (find-and-set-font "Consolas-12" "Envy Code R-12" "DejaVu Sans Mono-11"  "Menlo-12")
 
   (setenv "PATH" (concat (getenv "HOME") ".bin:"
                          "/usr/local/bin:"
