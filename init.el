@@ -13,7 +13,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
- '(custom-safe-themes (quote ("0a47a318b366c8d5bf2a4738ff4cea9988c60f4b3b7f7a31cff565a7889406a5" "4325f9a9fb853d0116a1197ece0dc22027ae67ef798efa6e05e009fe41e2f899" "68769179097d800e415631967544f8b2001dae07972939446e21438b1010748c" "5ee12d8250b0952deefc88814cf0672327d7ee70b16344372db9460e9a0e3ffc" "1157a4055504672be1df1232bed784ba575c60ab44d8e6c7b3800ae76b42f8bd" "7f1263c969f04a8e58f9441f4ba4d7fb1302243355cb9faecb55aec878a06ee9" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default)))
+ '(custom-safe-themes (quote ("73abbe794b6467bbf6a9f04867da0befa604a072b38012039e8c1ba730e5f7a5" "8eaa3bce3c618cd81a318fcf2d28c1cd21278531f028feb53186f6387547dfb4" "0a47a318b366c8d5bf2a4738ff4cea9988c60f4b3b7f7a31cff565a7889406a5" "4325f9a9fb853d0116a1197ece0dc22027ae67ef798efa6e05e009fe41e2f899" "68769179097d800e415631967544f8b2001dae07972939446e21438b1010748c" "5ee12d8250b0952deefc88814cf0672327d7ee70b16344372db9460e9a0e3ffc" "1157a4055504672be1df1232bed784ba575c60ab44d8e6c7b3800ae76b42f8bd" "7f1263c969f04a8e58f9441f4ba4d7fb1302243355cb9faecb55aec878a06ee9" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default)))
  '(inhibit-startup-screen t)
  '(show-paren-mode t))
 
@@ -67,14 +67,6 @@
 
 ;; Mac Specific
 (when (eq system-type 'darwin)
-  ;;(set-face-attribute 'default nil :family "Consolas")
-  ;;(set-face-attribute 'default nil :height 120)
-  ;;(set-face-attribute 'default nil :family "Inconsolata For Powerline")
-  ;;(set-face-attribute 'default nil :height 130)
-  ;;(set-face-attribute 'default nil :family "DejaVu Sans Mono")
-  ;;(set-face-attribute 'default nil :height 110)
-  ;;(set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
-
   (defun find-and-set-font (&rest candidates)
   "Set the first font found in CANDIDATES."
   (let ((font (cl-find-if (lambda (f) (find-font (font-spec :name f)))
@@ -648,3 +640,9 @@
 (setq org-src-fontify-natively t)
 
 ;; ----------------- END --------------------------------------
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
