@@ -19,8 +19,8 @@
 
 ; list the packages you want
 (setq package-list '(auto-complete autopair diminish evil evil-leader
-                     evil-nerd-commenter fold-dwim fold-dwim-org fuzzy key-chord
-                     git-gutter-fringe haskell-mode htmlize jedi magit multiple-cursors
+                     evil-nerd-commenter flx fold-dwim fold-dwim-org fuzzy key-chord
+                     git-gutter-fringe grizzl haskell-mode htmlize jedi magit multiple-cursors
                      rainbow-delimiters org projectile smooth-scrolling
                      sr-speedbar surround theme-changer undo-tree xclip yasnippet))
 
@@ -241,6 +241,12 @@
 (setq ido-confirm-unique-completion nil) ;; wait for RET, even for unique?
 (setq ido-use-filename-at-point t) ;; prefer file names near point
 
+;; flx matching
+(require 'flx-ido)
+(ido-everywhere 1)
+(flx-ido-mode 1)
+(setq ido-use-faces nil)
+
 ;; same filenames get the directory name inserted also
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'reverse)
@@ -435,6 +441,7 @@
 
 ;; Projectile
 (projectile-global-mode)
+(setq projectile-completion-system 'grizzl)
 
 ;; ----------------- NAVIGATION -------------------------------
 
