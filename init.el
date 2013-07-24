@@ -19,7 +19,7 @@
 
 ; list the packages you want
 (setq package-list '(auto-complete autopair diminish evil evil-leader
-                     evil-nerd-commenter flx fold-dwim fold-dwim-org fuzzy key-chord
+                     evil-nerd-commenter flx-ido fold-dwim fold-dwim-org fuzzy key-chord
                      git-gutter-fringe grizzl haskell-mode htmlize jedi magit multiple-cursors
                      rainbow-delimiters org projectile smooth-scrolling
                      sr-speedbar surround theme-changer undo-tree xclip yasnippet))
