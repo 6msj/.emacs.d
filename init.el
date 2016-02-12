@@ -109,9 +109,9 @@
                    '(diminish 'hs-minor-mode))
   )
 
-;; End Theme
+;; - End Theme - ;;
 
-;; Begin Platform
+;; - Begin Platform - ;;
 
 ;; Mac Specific
 ;; https://github.com/adobe-fonts/source-code-pro
@@ -148,7 +148,7 @@
 (if window-system
   (menu-bar-mode 1))
 
-;; End Platform
+;; - End Platform - ;;
 
 ;; Begin Experience 
 
