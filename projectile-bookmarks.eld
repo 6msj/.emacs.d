@@ -1,1 +1,0 @@
-("/Users/james/.emacs.d/" "/Users/james/Developer/Rails/sample_app/" "/Users/james/Developer/C-Plus-Plus/" "/Users/james/.vim/" "/Users/james/Developer/SE Project/")
