@@ -3,7 +3,6 @@
 (let ((default-directory "~/.emacs.d/"))
   (normal-top-level-add-subdirs-to-load-path))
 
-;;(setenv "ESHELL" (expand-file-name "~/.bin/eshell"))
 (add-to-list 'load-path "~/.emacs.d/packages/")
 
 ;; no startup message
@@ -20,9 +19,9 @@
 ; list the packages you want
 (setq package-list '(auto-complete autopair diminish evil evil-leader
                      evil-nerd-commenter flx-ido fold-dwim fold-dwim-org fuzzy key-chord
-                     git-gutter-fringe grizzl haskell-mode htmlize jedi magit multiple-cursors
+                     git-gutter-fringe grizzl haskell-mode htmlize jedi magit 
                      rainbow-delimiters org projectile smooth-scrolling
-                     sr-speedbar surround theme-changer undo-tree xclip yasnippet))
+                     surround theme-changer undo-tree xclip yasnippet powerline spacemacs-theme))
 
 ; list the repositories containing them
 (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
@@ -57,7 +56,6 @@
 (setq calendar-longitude -96.85)
 (require 'theme-changer)
 (change-theme 'solarized-light 'solarized-dark)
-;;(change-theme 'molokai 'molokai)
 
 ;; disable ui fluff
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -114,10 +112,12 @@
 ;; scroll window under mouse
 (setq mouse-wheel-follow-mouse 't)
 
+(require 'powerline)
+(powerline-center-evil-theme)
+
 (require 'smooth-scrolling)
 (set-variable 'smooth-scroll-margin 5)
 (setq scroll-preserve-screen-position 1)
-
 
 ;; Colorful Delimiters.
 (require 'rainbow-delimiters)
@@ -140,9 +140,6 @@
 (set-face-foreground 'git-gutter-fr:deleted  "white")
 ;;(add-hook 'prog-mode-hook 'git-gutter)
 (global-git-gutter-mode t)
-
-;;(require 'powerline)
-;;(setq powerline-arrow-shape 'arrow)
 
 ;; change mode-line color by evil state
 (lexical-let ((default-color (cons (face-background 'mode-line)
@@ -178,19 +175,10 @@
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
 
-(global-set-key (kbd "<F2>") 'hs-toggle-hiding) ;; toggle folds
-(global-set-key (kbd "<F3>") 'hs-show-all) ;; open all folds
-(global-set-key (kbd "<F4>") 'hs-hide-all) ;; hides all folds
-(global-set-key (kbd "<F5>") 'gud-gdb) ;; debugging
-(global-set-key (kbd "<F6>") 'recompile) ;; recompile
-(global-set-key (kbd "<F7>") 'compile) ;; compiling
 (global-set-key (kbd "C-c o") 'occur) ;; occur!!
-
 (global-set-key (kbd "C-x C-r") 'rename-current-buffer-file) ;; rename 
-(global-set-key (kbd "C-c C-s") 'sr-speedbar-toggle) ;; toggle speed bar in frame
 (global-set-key (kbd "C-c C-g") 'magit-status) ;; git!!
 (global-set-key (kbd "C-c g") 'magit-status) ;; git!!
-
 
 ;; ----------------- MAPPINGS ---------------------------------
 
@@ -264,18 +252,6 @@
 (require 'autopair)
 (autopair-global-mode 1)
 
-;; show speedbar in the same frame
-(require 'sr-speedbar)
-(setq speedbar-use-images nil)
-(setq sr-speedbar-right-side nil)
-
-;; multiple cursors
-(require 'multiple-cursors)
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-
 ;; sync clipboards
 (when (eq system-type 'linux)
   (require 'xclip)
@@ -287,7 +263,6 @@
   (when (eq system-type 'darwin)
     (require 'pbcopy)
     (turn-on-pbcopy)))
-
 
 ;; ----------------- EDITING ----------------------------------
 
@@ -427,17 +402,14 @@
       (windmove-default-keybindings 'meta))
 
 ;; navigating splits in emacs mode
-(global-set-key (kbd "C-c h") 'windmove-left)
-(global-set-key (kbd "C-c l") 'windmove-right)
-(global-set-key (kbd "C-c k") 'windmove-up)
-(global-set-key (kbd "C-c j") 'windmove-down) 
+;;(global-set-key (kbd "C-c h") 'windmove-left)
+;;(global-set-key (kbd "C-c l") 'windmove-right)
+;;(global-set-key (kbd "C-c k") 'windmove-up)
+;;(global-set-key (kbd "C-c j") 'windmove-down) 
 
 (require 'framemove)
 (windmove-default-keybindings)
 (setq framemove-hook-into-windmove t)
-
-;; switch between header and implementation
-(add-hook 'c-mode-common-hook (lambda() (local-set-key (kbd "C-c p") 'ff-find-other-file)))
 
 ;; Projectile
 (projectile-global-mode)
@@ -466,21 +438,9 @@
 (define-key evil-normal-state-map "\C-l" 'windmove-right) ;; move right around split
 (define-key evil-normal-state-map "\C-k" 'windmove-up) ;; move up a split
 (define-key evil-normal-state-map "\C-j" 'windmove-down) ;; move down a split
-(define-key evil-normal-state-map "\C-p" 'ff-find-other-file) ;; open .h or .cpp
-(define-key evil-visual-state-map "L" 'evil-end-of-line)
-(define-key evil-visual-state-map "H" 'evil-first-non-blank)
 (define-key evil-normal-state-map "Y" 'copy-to-end-of-line)
 (define-key evil-visual-state-map ";" 'evil-ex)
 (evil-define-key 'normal org-mode-map (kbd "C-i") 'org-cycle) ;; cycle org mode in terminal
-;;(define-key evil-normal-state-map "J" (kbd "10j"))
-;;(define-key evil-visual-state-map "J" (kbd "10j"))
-;;(define-key evil-normal-state-map "K" (kbd "10k"))
-;;(define-key evil-visual-state-map "K" (kbd "10k"))
-;;(define-key some-relevant-keymap (kbd "J") (kbd "10j"))
-;;(define-key evil-normal-state-map "J" (lambda () (interactive) (forward-line 10)))
-;;(define-key evil-visual-state-map "J" (lambda () (interactive) (forward-line 10)))
-;;(define-key evil-normal-state-map "K" (lambda () (interactive) (forward-line -10)))
-;;(define-key evil-visual-state-map "K" (lambda () (interactive) (forward-line -10)))
 
 (require 'key-chord)
 (key-chord-mode 1)
@@ -498,15 +458,6 @@
 (define-key minibuffer-local-must-match-map [escape] 'abort-recursive-edit)
 (define-key minibuffer-local-isearch-map [escape] 'abort-recursive-edit)
 
-(define-key evil-normal-state-map [f2] 'hs-toggle-hiding)
-(define-key evil-normal-state-map [f3] 'hs-show-all)
-(define-key evil-normal-state-map [f4] 'hs-hide-all)
-(define-key evil-normal-state-map [f5] 'gud-gdb)
-(define-key evil-normal-state-map [f6] 'recompile)
-(define-key evil-normal-state-map [f7] 'compile)
-(define-key evil-normal-state-map [f8] 'eval-last-sexp)
-(define-key evil-motion-state-map [f8] 'eval-last-sexp)
-
 ;; evil surround
 (require 'surround)
 (global-surround-mode 1)
@@ -519,18 +470,13 @@
 (add-hook 'prog-mode-hook 'evil-leader-mode)
 (add-hook 'speed-bar-mode-hook 'evil-leader-mode)
 
-(evil-leader/set-leader ",")
+(evil-leader/set-leader "<SPC>")
 (evil-leader/set-key
 ;; evil nerd commenter
-    "ci" 'evilnc-comment-or-uncomment-lines
-    "cc" 'evilnc-comment-or-uncomment-to-the-line
-    "v"  (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
-    "z"  (lambda() (interactive)(find-file "~/Dropbox/Notes.org"))
     "wh" 'split-window-below
     "wv" 'split-window-right
     "f"  'ido-find-file
     "b"  'ido-switch-buffer
-    "n"  'sr-speedbar-toggle
     "="  'iwb
     "r"  'recentf-ido-find-file
 )
@@ -566,27 +512,6 @@
 
 
 ;; ----------------- AUTO COMPLETE ----------------------------
-
-;; ----------------- CEDET ------------------------------------
-
-;; project management
-;; (global-ede-mode 1)
-
-;; integration with imenu
-(defun my-semantic-hook ()
-(imenu-add-to-menubar "Tags"))
-(add-hook 'semantic-init-hooks 'my-semantic-hook)
-
-(defun my-c-mode-cedet-hook ()
-(add-to-list 'ac-sources 'ac-source-gtags)
-(add-to-list 'ac-sources 'ac-source-semantic))
-(add-hook 'c-mode-common-hook 'my-c-mode-cedet-hook)
-
-;; semantic
-(semantic-mode 1)
-(add-hook 'c++-mode (lambda () (add-to-list 'ac-sources 'ac-source-semantic)))
-
-;; ----------------- CEDET ------------------------------------
 
 ;; ----------------- FILES ------------------------------------
 
