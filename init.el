@@ -79,7 +79,7 @@
 (setq calendar-latitude 32.85)
 (setq calendar-longitude -96.85)
 (require 'theme-changer)
-(change-theme 'spacesmacs-light 'spacemacs-dark)
+(change-theme 'spacemacs-light 'spacemacs-dark)
 
 (require 'spaceline-config)
 (spaceline-spacemacs-theme)
