@@ -26,7 +26,7 @@
                      ; file management
                      flx-ido projectile helm helm-projectile
                      ; evil
-                     evil evil-leader evil-matchit evil-nerd-commenter surround undo-tree key-chord neotree
+                     evil evil-leader evil-matchit evil-nerd-commenter surround undo-tree key-chord neotree evil-magit
                      ; languages
                      haskell-mode csharp-mode
                      ; extras
@@ -386,6 +386,9 @@
 ;;(define-key minibuffer-local-must-match-map [escape] 'abort-recursive-edit)
 ;;(define-key minibuffer-local-isearch-map [escape] 'abort-recursive-edit)
 
+;; magit integration
+(require 'evil-magit)
+
 ;; esc quits
 (defun minibuffer-keyboard-quit ()
   "Abort recursive edit.
@@ -435,6 +438,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     "="  'iwb
     "r"  'helm-for-files
     "n"  'neotree-toggle
+    "p"  'helm-projectile-switch-project
 
     ;; evil-nerd-commenter
     "ci" 'evilnc-comment-or-uncomment-lines
@@ -445,6 +449,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     "cr" 'comment-or-uncomment-region
     "cv" 'evilnc-toggle-invert-comment-line-by-line
     "\\" 'evilnc-comment-operator
+
+    ;; magit
+    "gs" 'magit-status
+    "gb" 'magit-blame
+    "gl" 'magit-log
 )
 
 ;; occur mode
