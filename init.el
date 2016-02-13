@@ -28,7 +28,7 @@
                      ; evil
                      evil evil-leader evil-nerd-commenter surround undo-tree key-chord neotree
                      ; languages
-                     haskell-mode
+                     haskell-mode csharp-mode
                      ; extras
                      org
                     ))
@@ -84,6 +84,7 @@
 (require 'spaceline-config)
 (spaceline-spacemacs-theme)
 (setq powerline-default-separator 'wave)
+(setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
 
 ;; disable ui fluff
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -152,21 +153,21 @@
 
 ;; Begin Experience 
 
-;;;; scroll by 1 line at the end of the file
-;;(setq scroll-step 1
-;;      scroll-conservatively 10000)
-;;;; set mouse wheel to scroll one line at a time
-;;(setq mouse-wheel-progressive-speed nil)
-;;;; scroll one line at a time (less "jumpy" than defaults)
-;;(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
-;;;; don't accelerate scrolling
-;;(setq mouse-wheel-progressive-speed nil)
-;;;; scroll window under mouse
-;;(setq mouse-wheel-follow-mouse 't)
-;;
-;;(require 'smooth-scrolling)
-;;(set-variable 'smooth-scroll-margin 5)
-;;(setq scroll-preserve-screen-position 1)
+;; scroll by 1 line at the end of the file
+(setq scroll-step 1
+      scroll-conservatively 10000)
+;; set mouse wheel to scroll one line at a time
+(setq mouse-wheel-progressive-speed nil)
+;; scroll one line at a time (less "jumpy" than defaults)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+;; don't accelerate scrolling
+(setq mouse-wheel-progressive-speed nil)
+;; scroll window under mouse
+(setq mouse-wheel-follow-mouse 't)
+
+(require 'smooth-scrolling)
+(set-variable 'smooth-scroll-margin 5)
+(setq scroll-preserve-screen-position 1)
 
 ;; wraps line visually when it reaches the end
 (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
