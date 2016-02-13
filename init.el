@@ -13,24 +13,24 @@
 
 ;;auto-complete 
 ;;fuzzy 
-;;grizzl htmlize jedi 
-;;projectile 
+;;htmlize
+;;jedi 
 ;;yasnippet 
 
 ;; packages to be installed
 (setq package-list '(
                      ; theme
-                     spacemacs-theme theme-changer spaceline rainbow-delimiters git-gutter-fringe diminish
+                     spacemacs-theme theme-changer spaceline rainbow-delimiters git-gutter+ git-gutter-fringe diminish
                      ; experience
                      smooth-scrolling fold-dwim fold-dwim-org magit autopair framemove xclip pbcopy
                      ; file management
-                     flx-ido s dash; file management
+                     flx-ido projectile helm helm-projectile
                      ; evil
-                     evil evil-leader evil-nerd-commenter surround undo-tree key-chord neotree
+                     evil evil-leader evil-matchit evil-nerd-commenter surround undo-tree key-chord neotree
                      ; languages
                      haskell-mode csharp-mode
                      ; extras
-                     org
+                     org s dash exec-path-from-shell
                     ))
 
 ;; list the repositories containing them
@@ -52,6 +52,10 @@
 (dolist (package package-list)
   (when (not (package-installed-p package))
     (package-install package)))
+
+;; set the shell environment properly
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 ;; - End Init - ;;
 
@@ -108,7 +112,22 @@
                    '(diminish 'autopair-mode))
   (eval-after-load "hideshow"
                    '(diminish 'hs-minor-mode))
+  (eval-after-load "git-gutter+"
+                   '(diminish 'git-gutter+-mode))
+  (eval-after-load "projectile"
+                   '(diminish 'projectile-mode))
   )
+
+;;(after 'autopair (diminish 'autopair-mode))
+;;(after 'undo-tree (diminish 'undo-tree-mode))
+;;(after 'auto-complete (diminish 'auto-complete-mode))
+;;(after 'yasnippet (diminish 'yas-minor-mode))
+;;(after 'guide-key (diminish 'guide-key-mode))
+;;(after 'eldoc (diminish 'eldoc-mode))
+;;(after 'smartparens (diminish 'smartparens-mode))
+;;(after 'company (diminish 'company-mode))
+;;(after 'elisp-slime-nav (diminish 'elisp-slime-nav-mode))
+;;(after 'magit (diminish 'magit-auto-revert-mode))
 
 ;; - End Theme - ;;
 
@@ -125,18 +144,6 @@
       (set-face-attribute 'default nil :font font))
     font))
     (find-and-set-font "Source Code Pro-12" "Consolas-12" "Envy Code R-12" "DejaVu Sans Mono-11" "Menlo-12")
-
-  (setenv "PATH" (concat (getenv "HOME") ".bin:"
-                         "/usr/local/bin:"
-                         "/usr/local/rsense-0.3:"
-                         "/usr/local/share/python:"
-                         "/usr/local/heroku/bin:"
-                         "/Users/james/Developer/Android/sdk/tools:"
-                         "/Library/PostgreSQL/9.2/bin"
-                         "/opt/local/bin:"
-                         "/opt/local/sbin:"
-                         "/Applications/xampp/xamppfiles/bin:"
-                         (getenv "PATH")))
 )
 
 (when (eq system-type 'linux)
@@ -177,8 +184,7 @@
 (set-face-foreground 'git-gutter-fr:modified "yellow")
 (set-face-foreground 'git-gutter-fr:added    "blue")
 (set-face-foreground 'git-gutter-fr:deleted  "white")
-;;(add-hook 'prog-mode-hook 'git-gutter)
-(global-git-gutter-mode t)
+(global-git-gutter+-mode)
 
 (require 'fold-dwim-org)
 ;; hide the comments too when you do a 'hs-hide-all'
@@ -220,7 +226,7 @@
 
 ;; tramp for remote editing
 (require 'tramp)
-(setq tramp-default-method "scp")
+(setq tramp-default-method "ssh")
 
 ;; enable transient mark mode
 (transient-mark-mode 1)
@@ -288,13 +294,14 @@
 (windmove-default-keybindings)
 (setq framemove-hook-into-windmove t)
 
-;; Projectile
-;;(projectile-global-mode)
-;;(setq projectile-completion-system 'grizzl)
-
 ;; - End Navigation - ;;
 
 ;; - Begin File Management - ;; 
+
+;; projectile
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
 
 ;; no autosave
 (setq auto-save-default nil)
@@ -362,6 +369,8 @@
 (define-key evil-visual-state-map ";" 'evil-ex)
 (evil-define-key 'normal org-mode-map (kbd "C-i") 'org-cycle) ;; cycle org mode in terminal
 
+(require 'evil-matchit)
+(global-evil-matchit-mode 1)
 
 (require 'key-chord)
 (key-chord-mode 1)
@@ -371,17 +380,43 @@
 (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
 
 ;; esc quits
-(define-key minibuffer-local-map [escape] 'abort-recursive-edit)
-(define-key minibuffer-local-ns-map [escape] 'abort-recursive-edit)
-(define-key minibuffer-local-completion-map [escape] 'abort-recursive-edit)
-(define-key minibuffer-local-must-match-map [escape] 'abort-recursive-edit)
-(define-key minibuffer-local-isearch-map [escape] 'abort-recursive-edit)
+;;(define-key minibuffer-local-map [escape] 'abort-recursive-edit)
+;;(define-key minibuffer-local-ns-map [escape] 'abort-recursive-edit)
+;;(define-key minibuffer-local-completion-map [escape] 'abort-recursive-edit)
+;;(define-key minibuffer-local-must-match-map [escape] 'abort-recursive-edit)
+;;(define-key minibuffer-local-isearch-map [escape] 'abort-recursive-edit)
+
+;; esc quits
+(defun minibuffer-keyboard-quit ()
+  "Abort recursive edit.
+In Delete Selection mode, if the mark is active, just deactivate it;
+then it takes a second \\[keyboard-quit] to abort the minibuffer."
+  (interactive)
+  (if (and delete-selection-mode transient-mark-mode mark-active)
+      (setq deactivate-mark  t)
+    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+    (abort-recursive-edit)))
+(define-key evil-normal-state-map [escape] 'keyboard-quit)
+(define-key evil-visual-state-map [escape] 'keyboard-quit)
+(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+(global-set-key [escape] 'evil-exit-emacs-state)
 
 ;; evil surround
 (require 'surround)
 (global-surround-mode 1)
 
+;; tree like vim
 (require 'neotree)
+(add-hook 'neotree-mode-hook
+        (lambda ()
+            (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
+            (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
+            (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+            (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
 
 ;; evil leader
 (require 'evil-leader)
@@ -393,14 +428,23 @@
 
 (evil-leader/set-leader "<SPC>")
 (evil-leader/set-key
-;; evil nerd commenter
     "wh" 'split-window-below
     "wv" 'split-window-right
-    "f"  'ido-find-file
-    "b"  'ido-switch-buffer
+    "f"  'helm-projectile-find-file
+    "b"  'helm-buffers-list
     "="  'iwb
-    "r"  'recentf-ido-find-file
+    "r"  'helm-for-files
     "n"  'neotree-toggle
+
+    ;; evil-nerd-commenter
+    "ci" 'evilnc-comment-or-uncomment-lines
+    "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
+    "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
+    "cc" 'evilnc-copy-and-comment-lines
+    "cp" 'evilnc-comment-or-uncomment-paragraphs
+    "cr" 'comment-or-uncomment-region
+    "cv" 'evilnc-toggle-invert-comment-line-by-line
+    "\\" 'evilnc-comment-operator
 )
 
 ;; occur mode
