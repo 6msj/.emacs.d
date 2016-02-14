@@ -246,7 +246,7 @@
 (fset 'yes-or-no-p 'y-or-n-p) ; yes or no to y or n
 (column-number-mode 1) ; makes the column number show up
 
-(define-key global-map (kbd "RET") 'newline-and-indent) ; autoindent
+;(define-key global-map (kbd "RET") 'newline-and-indent) ; autoindent
 
 ;; add auto indent to all programming modes
 (add-hook 'prog-mode-hook 'set-newline-and-indent)
