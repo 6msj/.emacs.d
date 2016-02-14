@@ -2,3 +2,7 @@ elpa/
 auto-save-list/
 backups/
 ac-comphist.dat
+projectile-bookmarks.eld
+tramp
+eshell/
+
