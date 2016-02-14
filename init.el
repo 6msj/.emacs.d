@@ -246,8 +246,6 @@
 (fset 'yes-or-no-p 'y-or-n-p) ; yes or no to y or n
 (column-number-mode 1) ; makes the column number show up
 
-;(define-key global-map (kbd "RET") 'newline-and-indent) ; autoindent
-
 ;; add auto indent to all programming modes
 (add-hook 'prog-mode-hook 'set-newline-and-indent)
 
@@ -467,7 +465,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 (add-to-list 'completion-ignored-extensions ".hi")
-(add-hook 'haskell-mode-hook 'auto-complete-mode)
 (add-hook 'haskell-mode-hook 'auto-revert-mode)
 (add-hook 'haskell-mode-hook 'fold-dwim-org/minor-mode)
 (add-hook 'haskell-mode-hook 'set-newline-and-indent)
