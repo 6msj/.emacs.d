@@ -292,6 +292,9 @@
 (setq c-default-style "k&r"
       c-basic-offset 4)
 
+(defvaralias 'c-basic-offset 'tab-width)
+(defvaralias 'cperl-indent-level 'tab-width)
+
 ;;; folding
 (add-hook 'c-mode-common-hook   'hs-minor-mode)
 (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
@@ -492,6 +495,17 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (evil-define-key 'motion occur-mode-map (kbd "q")   'quit-window)
 
 (setq evil-default-cursor t) ; fix black cursor
+
+;; indenting related to evil
+(add-hook 'python-mode-hook
+          (function (lambda ()
+                      (setq evil-shift-width python-indent))))
+(add-hook 'ruby-mode-hook
+          (function (lambda ()
+                      (setq evil-shift-width ruby-indent-level))))
+(add-hook 'emacs-lisp-mode-hook
+          (function (lambda ()
+                      (setq evil-shift-width lisp-body-indent))))
 
 ;;;; End Evil
 
