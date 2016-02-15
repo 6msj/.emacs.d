@@ -47,7 +47,6 @@
     (package-install package)))
 
 ;; set the shell environment properly
-
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
@@ -191,6 +190,11 @@
 ;;;; End Platform
 
 ;;;; Begin Experience
+
+;; prefer vertical splits
+;; https://stackoverflow.com/questions/2081577/setting-emacs-split-to-horizontal
+(setq split-height-threshold nil)
+(setq split-width-threshold 0)
 
 ;; scroll by 1 line at the end of the file
 ;;(setq scroll-step 1
