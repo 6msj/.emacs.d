@@ -144,6 +144,39 @@
         (set-face-attribute 'default nil :font font))
       font))
   (find-and-set-font "Source Code Pro-12" "Consolas-12" "Envy Code R-12" "DejaVu Sans Mono-11" "Menlo-12")
+
+  ;; use the osx emoji font for emoticons
+  (when (fboundp 'set-fontset-font)
+    (set-fontset-font "fontset-default"
+                      '(#x1F600 . #x1F64F)
+                      (font-spec :name "Apple Color Emoji") nil 'prepend))
+
+  (defvar osx-use-option-as-meta t) ; flag to disable meta
+
+  ;; command key is super
+  (setq mac-command-key-is-meta nil)
+  (setq mac-command-modifier 'super)
+
+  ;; treat option key as meta
+  (when osx-use-option-as-meta
+    (setq mac-option-key-is-meta t)
+    (setq mac-option-modifier 'meta))
+
+  ;; some key bindings to match osx
+  (global-set-key (kbd "s-q") 'save-buffers-kill-terminal)
+  (global-set-key (kbd "s-v") 'yank)
+  (global-set-key (kbd "s-c") 'evil-yank)
+  (global-set-key (kbd "s-a") 'mark-whole-buffer)
+  (global-set-key (kbd "s-x") 'kill-region)
+  (global-set-key (kbd "s-w") 'delete-window)
+  (global-set-key (kbd "s-W") 'delete-frame)
+  (global-set-key (kbd "s-n") 'make-frame)
+  (global-set-key (kbd "s-z") 'undo-tree-undo)
+  (global-set-key (kbd "s-Z") 'undo-tree-redo)
+  (global-set-key (kbd "s-s")
+                  (lambda ()
+                    (interactive)
+                    (call-interactively (key-binding "\C-x\C-s"))))
   )
 
 (when (eq system-type 'linux)
