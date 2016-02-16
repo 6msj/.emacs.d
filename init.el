@@ -1,5 +1,8 @@
 ;;;; Begin Init
 
+;; increase memory
+(setq gc-cons-threshold 100000000) ; 100 mb
+
 ;;; loadpath
 (let ((default-directory "~/.emacs.d/"))
   (normal-top-level-add-subdirs-to-load-path))
@@ -24,7 +27,7 @@
                                      evil evil-leader evil-matchit evil-nerd-commenter ; evil
                                      surround undo-tree key-chord neotree evil-magit ; evil
                                      haskell-mode csharp-mode ; languages
-                                     org s dash exec-path-from-shell ; extras
+                                     org s dash exec-path-from-shell multi-term; extras
                                      ))
 
 ;;; repositories
@@ -49,6 +52,10 @@
 ;; set the shell environment properly
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
+
+;; multi-term
+(require 'multi-term)
+(setq multi-term-program "/bin/zsh")
 
 ;;;; End Init
 
