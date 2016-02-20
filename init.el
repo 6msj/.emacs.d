@@ -281,11 +281,11 @@
 
 ;;;; Begin Mappings
 
-;; Another way to use Meta.
+;; another way to use meta
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-c\C-m" 'execute-extended-command)
 
-;; Ways to delete word backwards.
+;; ways to delete word backwards
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
@@ -298,7 +298,6 @@
 ;;;; Begin Editing
 
 ;;; tramp for remote editing
-
 (use-package tramp
   :config
   (setq tramp-default-method "ssh"))
@@ -402,7 +401,7 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
-(ido-mode 'both) ;; for buffers and files
+(ido-mode 'both) ; for buffers and files
 
 ;; do not confirm a new file or buffer
 (setq confirm-nonexistent-file-or-buffer nil)
@@ -414,7 +413,6 @@
 (setq ido-use-filename-at-point t) ; prefer file names near point
 
 ;;; flx matching
-
 (use-package flx-ido
   :init
   (ido-everywhere 1)
