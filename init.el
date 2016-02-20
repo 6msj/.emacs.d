@@ -403,8 +403,7 @@
 (ido-mode 1)
 (ido-mode 'both) ; for buffers and files
 
-;; do not confirm a new file or buffer
-(setq confirm-nonexistent-file-or-buffer nil)
+(setq confirm-nonexistent-file-or-buffer nil) ; do not confirm a new file or buffer
 (setq ido-enable-flex-matching t)
 (setq ido-create-new-buffer 'always)
 (setq ido-enable-tramp-completion nil)
