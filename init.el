@@ -211,10 +211,6 @@
 ;;;; scroll window under mouse
 ;;(setq mouse-wheel-follow-mouse 't)
 
-;;(require 'smooth-scrolling)
-;;(set-variable 'smooth-scroll-margin 5)
-;;(setq scroll-preserve-screen-position 1)
-
 (use-package smooth-scrolling
   :config
   (set-variable 'smooth-scroll-margin 5)
