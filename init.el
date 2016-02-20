@@ -12,23 +12,14 @@
 (setq inhibit-startup-screen t) ; disable startup screen
 (setq ring-bell-function #'ignore) ; mute system sound
 
-;;fuzzy
 ;;htmlize
 ;;jedi
 ;;yasnippet
 
 ;;; packages
-(setq package-list '(spacemacs-theme theme-changer spaceline ; theme
-                                     rainbow-delimiters git-gutter+ git-gutter-fringe diminish ; theme
-                                     smooth-scrolling fold-dwim fold-dwim-org ; experience
-                                     magit autopair framemove xclip pbcopy ; experience
-                                     company omnisharp ; completion
-                                     flx-ido projectile helm helm-projectile ; files
-                                     evil evil-leader evil-matchit evil-nerd-commenter ; evil
-                                     surround undo-tree key-chord neotree evil-magit ; evil
-                                     haskell-mode csharp-mode ; languages
-                                     org s dash exec-path-from-shell multi-term; extras
-                                     ))
+(setq package-list '(diminish)) 
+
+(setq package-enable-at-startup nil)
 
 ;;; repositories
 (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
@@ -39,6 +30,18 @@
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 (package-initialize) ; activate all packages (in particular autoloads)
+
+;; bootstrap `use-package'
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(eval-when-compile
+  (require 'use-package))
+(require 'diminish) ; if you use :diminish
+(require 'bind-key) ; if you use any :bind variant
+
+(setq use-package-always-ensure t) ; install package if not existing
 
 ;; fetch the list of packages available
 (when (not package-archive-contents)
@@ -51,23 +54,28 @@
 
 ;; set the shell environment properly
 (when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
+  (use-package exec-path-from-shell
+    :config
+    (exec-path-from-shell-initialize)))
 
-;; multi-term
-(require 'multi-term)
-(setq multi-term-program "/bin/zsh")
+(use-package multi-term
+  :commands (multi-term)
+  :config
+  (setq multi-term-program "/bin/zsh"))
+
+(use-package dash)
+(use-package s)
 
 ;;;; End Init
 
 ;;;; Begin Theme
 
+(use-package spacemacs-theme)
+
 (setq frame-title-format '("%b")) ; set the title to be the current file
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/packages/solarized")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-
-(require 'dash)
-(require 's)
 
 ;; https://stackoverflow.com/questions/9840558/why-cant-emacs-24-find-a-custom-theme-i-added
 ;; adds wildcard matching to themes in elpa folder.
@@ -81,18 +89,20 @@
   (lambda (item)
     (add-to-list 'custom-theme-load-path item)))
 
-;; theme changer based on time
-(setq calendar-location-name "Dallas, TX")
-(setq calendar-latitude 32.85)
-(setq calendar-longitude -96.85)
-(require 'theme-changer)
-(change-theme 'spacemacs-light 'spacemacs-dark)
+(use-package theme-changer
+  :init
+  (setq calendar-location-name "Dallas, TX")
+  (setq calendar-latitude 32.85)
+  (setq calendar-longitude -96.85)
+  :config
+  (change-theme 'spacemacs-light 'spacemacs-dark))
 
-;; status bar at the bottom
-(require 'spaceline-config)
-(spaceline-spacemacs-theme)
-(setq powerline-default-separator 'wave)
-(setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+(use-package spaceline-config
+  :ensure spaceline
+  :config
+  (spaceline-emacs-theme)
+  (setq powerline-default-separator 'wave)
+  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
 
 ;; disable ui fluff
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -103,37 +113,16 @@
 ;;(global-hl-line-mode 1)
 
 ;; colorful delimiters
-(require 'rainbow-delimiters)
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(use-package rainbow-delimiters
+  :init
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 ;; diminish modeline clutter
-(require 'diminish)
-
 (when (require 'diminish nil 'noerror)
-  (eval-after-load "undo-tree"
-    '(diminish 'undo-tree-mode))
-  (eval-after-load "autopair"
-    '(diminish 'autopair-mode))
   (eval-after-load "hideshow"
     '(diminish 'hs-minor-mode))
-  (eval-after-load "git-gutter+"
-    '(diminish 'git-gutter+-mode))
-  (eval-after-load "projectile"
-    '(diminish 'projectile-mode))
-  (eval-after-load "company"
-    '(diminish 'company-mode))
   (eval-after-load "autorevert"
-    '(diminish 'auto-revert-mode))
-  )
-
-;;(after 'undo-tree (diminish 'undo-tree-mode))
-;;(after 'auto-complete (diminish 'auto-complete-mode))
-;;(after 'yasnippet (diminish 'yas-minor-mode))
-;;(after 'guide-key (diminish 'guide-key-mode))
-;;(after 'eldoc (diminish 'eldoc-mode))
-;;(after 'smartparens (diminish 'smartparens-mode))
-;;(after 'elisp-slime-nav (diminish 'elisp-slime-nav-mode))
-;;(after 'magit (diminish 'magit-auto-revert-mode))
+    '(diminish 'auto-revert-mode)))
 
 ;;;; End Theme
 
@@ -169,6 +158,8 @@
     (setq mac-option-modifier 'meta))
 
   ;; some key bindings to match osx
+  (global-set-key (kbd "s-f") 'evil-search-forward)
+  (global-set-key (kbd "s-F") 'evil-search-backward)
   (global-set-key (kbd "s-q") 'save-buffers-kill-terminal)
   (global-set-key (kbd "s-v") 'yank)
   (global-set-key (kbd "s-c") 'evil-yank)
@@ -183,13 +174,16 @@
                   (lambda ()
                     (interactive)
                     (call-interactively (key-binding "\C-x\C-s"))))
-  )
+
+  ;; reveal in finder
+  (use-package reveal-in-osx-finder
+    :config
+    (global-set-key (kbd "s-r") 'reveal-in-osx-finder)))
 
 (when (eq system-type 'linux)
   (set-face-attribute 'default nil :family "Inconsolata For Powerline")
   (set-face-attribute 'default nil :height 130)
-  (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
-  )
+  (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding")))
 
 (if window-system
     (menu-bar-mode 1)) ; mac needs a menu bar
@@ -197,6 +191,8 @@
 ;;;; End Platform
 
 ;;;; Begin Experience
+
+(use-package magit)
 
 ;; prefer vertical splits
 ;; https://stackoverflow.com/questions/2081577/setting-emacs-split-to-horizontal
@@ -215,21 +211,31 @@
 ;;;; scroll window under mouse
 ;;(setq mouse-wheel-follow-mouse 't)
 
-(require 'smooth-scrolling)
-(set-variable 'smooth-scroll-margin 5)
-(setq scroll-preserve-screen-position 1)
+;;(require 'smooth-scrolling)
+;;(set-variable 'smooth-scroll-margin 5)
+;;(setq scroll-preserve-screen-position 1)
+
+(use-package smooth-scrolling
+  :config
+  (set-variable 'smooth-scroll-margin 5)
+  (setq scroll-preserve-screen-position 1))
 
 (add-hook 'text-mode-hook 'turn-on-visual-line-mode) ; wraps line when it reaches end
 
-;;; git gutter
-(require 'git-gutter-fringe)
-(set-face-foreground 'git-gutter-fr:modified "yellow")
-(set-face-foreground 'git-gutter-fr:added    "blue")
-(set-face-foreground 'git-gutter-fr:deleted  "white")
-(global-git-gutter+-mode)
+(use-package git-gutter+
+  :diminish git-gutter+-mode
+  :config
+  (global-git-gutter+-mode))
+
+(use-package git-gutter-fringe
+  :config
+  (set-face-foreground 'git-gutter-fr:modified "yellow")
+  (set-face-foreground 'git-gutter-fr:added    "blue")
+  (set-face-foreground 'git-gutter-fr:deleted  "white"))
 
 ;;; folding
-(require 'fold-dwim-org)
+(use-package fold-dwim-org)
+
 ;; hide the comments too when you do a 'hs-hide-all'
 (setq hs-hide-comments nil)
 ;; Set whether isearch opens folded comments, code, or both
@@ -237,34 +243,43 @@
 (setq hs-isearch-open 'x)
 
 ;;; line numbers
-(require 'linum)
-(global-linum-mode 1)
+(use-package linum
+  :config
+  (global-linum-mode 1))
 ;;(require 'linum-relative)
 
 ;;; highlight parentheses
-(require 'paren)
-(show-paren-mode t)
+(use-package paren
+  :config
+  (show-paren-mode t))
 
 ;;;; End Experience
 
 ;;;; Begin Completion
 
 ;;; company
-(add-hook 'after-init-hook 'global-company-mode)
-(setq company-idle-delay .1)
-(setq company-minimum-prefix-length 2)
+(use-package company
+  :diminish company-mode
+  :init
+  (add-hook 'after-init-hook 'global-company-mode)
+
+  ;; ios
+  (add-hook 'objc-mode-hook
+            (lambda ()
+              (set (make-local-variable 'company-backends) '(company-xcode))))
+  :config
+  (setq company-idle-delay .1)
+  (setq company-minimum-prefix-length 2))
 
 ;;; omnisharp
-(eval-after-load 'company
-  '(add-to-list 'company-backends 'company-omnisharp))
-(add-hook 'csharp-mode-hook 'omnisharp-mode)
-;; https://stackoverflow.com/questions/29382137/omnisharp-on-emacs-speed
-(setq omnisharp-eldoc-support nil) ; disable for speed
-
-;; ios
-(add-hook 'objc-mode-hook
-          (lambda ()
-            (set (make-local-variable 'company-backends) '(company-xcode))))
+(use-package omnisharp
+  :init
+  (add-hook 'csharp-mode-hook 'omnisharp-mode)
+  :config
+  (eval-after-load 'company
+    '(add-to-list 'company-backends 'company-omnisharp))
+  ;; https://stackoverflow.com/questions/29382137/omnisharp-on-emacs-speed
+  (setq omnisharp-eldoc-support nil)) ; disable for speed
 
 ;;;; End Completion
 
@@ -281,16 +296,16 @@
 
 (global-set-key (kbd "C-c o") 'occur) ;; occur!!
 (global-set-key (kbd "C-x C-r") 'rename-current-buffer-file) ;; rename
-(global-set-key (kbd "C-c C-g") 'magit-status) ;; git!!
-(global-set-key (kbd "C-c g") 'magit-status) ;; git!!
 
 ;;;; End Mappings
 
 ;;;; Begin Editing
 
 ;;; tramp for remote editing
-(require 'tramp)
-(setq tramp-default-method "ssh")
+
+(use-package tramp
+  :config
+  (setq tramp-default-method "ssh"))
 
 (transient-mark-mode 1) ; enable transient mark mode
 
@@ -299,7 +314,10 @@
 (column-number-mode 1) ; makes the column number show up
 
 ;; add auto indent to all programming modes
-(add-hook 'prog-mode-hook 'set-newline-and-indent)
+;; doing this after init for the first install
+(add-hook 'after-init-hook
+          (function (lambda ()
+                      (add-hook 'prog-mode-hook 'set-newline-and-indent))))
 
 ;;; indenting
 (setq-default indent-tabs-mode nil)
@@ -321,24 +339,26 @@
 
 (global-auto-revert-mode t) ; automatically reload buffers on change
 
-;;; autopairs
-(require 'autopair)
-(autopair-global-mode 1)
+(use-package autopair
+  :diminish autopair-mode
+  :config
+  (autopair-global-mode 1))
 
 ;;; clipboards
 
 ;; for linux
 (when (eq system-type 'linux)
-  (require 'xclip)
-  (xclip-mode 1)
-  )
+  (use-package xclip
+    :config
+    (xclip-mode 1)))
 
 ;; for mac
 (if (window-system)
     (progn)
   (when (eq system-type 'darwin)
-    (require 'pbcopy)
-    (turn-on-pbcopy)))
+    (use-package pbcopy
+      :config
+      (turn-on-pbcopy))))
 
 ;;;; End Editing
 
@@ -348,18 +368,25 @@
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings 'meta))
 
-(require 'framemove)
-(windmove-default-keybindings)
-(setq framemove-hook-into-windmove t)
+(use-package framemove
+  :config
+  (windmove-default-keybindings)
+  (setq framemove-hook-into-windmove t))
 
 ;;;; End Navigation
 
 ;;;; Begin File Management
 
 ;;; projectile
-(projectile-global-mode)
-(setq projectile-completion-system 'helm)
-(helm-projectile-on)
+(use-package projectile
+  :diminish projectile-mode
+  :ensure helm
+  :ensure helm-projectile
+  :init
+  :config
+  (projectile-global-mode)
+  (setq projectile-completion-system 'helm)
+  (helm-projectile-on))
 
 ;;; saving
 (setq auto-save-default nil) ; no autosave
@@ -388,54 +415,83 @@
 (setq ido-use-filename-at-point t) ; prefer file names near point
 
 ;;; flx matching
-(require 'flx-ido)
-(ido-everywhere 1)
-(flx-ido-mode 1)
-(setq ido-use-faces nil)
+
+(use-package flx-ido
+  :init
+  (ido-everywhere 1)
+  (flx-ido-mode 1)
+  (setq ido-use-faces nil))
 
 ;; same filenames get the directory name inserted also
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'reverse)
-(setq uniquify-separator "|")
-(setq uniquify-after-kill-buffer-p t)
-(setq uniquify-ignore-buffers-re "^\\*")
+(use-package uniquify
+  :ensure nil
+  :config
+  (setq uniquify-buffer-name-style 'reverse)
+  (setq uniquify-separator "|")
+  (setq uniquify-after-kill-buffer-p t)
+  (setq uniquify-ignore-buffers-re "^\\*"))
 
 ;;; most recently used files
-(require 'recentf)
-(setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
-(recentf-mode 1)
-(setq recentf-max-menu-items 25)
+(use-package recentf
+  :config
+  (setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
+  (recentf-mode 1)
+  (setq recentf-max-menu-items 25))
 
 ;;;; End File Management
 
 ;;;; Begin Evil
 
 ;;; vim style undo
-(require 'undo-tree)
-(global-undo-tree-mode)
+(use-package undo-tree
+  :diminish undo-tree-mode
+  :config
+  (global-undo-tree-mode))
 
-(setq evil-want-C-u-scroll t) ; regain scroll up with c-u
-(setq evil-want-C-i-jump t) ; C-i jumps foward in jumplist
+(use-package evil
+  :init
+  ;; indenting related to evil
+  (add-hook 'python-mode-hook
+            (function (lambda ()
+                        (setq evil-shift-width python-indent))))
+  (add-hook 'ruby-mode-hook
+            (function (lambda ()
+                        (setq evil-shift-width ruby-indent-level))))
+  (add-hook 'emacs-lisp-mode-hook
+            (function (lambda ()
+                        (setq evil-shift-width lisp-body-indent))))
+  :config
+  (evil-mode 1)
 
-(require 'evil)
-(evil-mode 1)
-(define-key evil-normal-state-map ";" 'evil-ex)
-(define-key evil-normal-state-map "Y" 'copy-to-end-of-line)
-(define-key evil-visual-state-map ";" 'evil-ex)
-(evil-define-key 'normal org-mode-map (kbd "C-i") 'org-cycle) ; cycle org mode in terminal
+  (setq evil-want-C-u-scroll t) ; regain scroll up with c-u
+  (setq evil-want-C-i-jump t) ; C-i jumps foward in jumplist
 
-(require 'evil-matchit)
-(global-evil-matchit-mode 1)
+  ;; keybinds
+  (define-key evil-normal-state-map ";" 'evil-ex)
+  (define-key evil-normal-state-map "Y" 'copy-to-end-of-line)
+  (define-key evil-visual-state-map ";" 'evil-ex)
+  (evil-define-key 'normal org-mode-map (kbd "C-i") 'org-cycle) ; cycle org mode in terminal
 
-(require 'key-chord)
-(key-chord-mode 1)
-(key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
-(key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
-(key-chord-define evil-insert-state-map "kk" 'evil-normal-state)
-(key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
+  ;;; occur mode
+  (evil-set-initial-state 'occur-mode 'motion)
+  (evil-define-key 'motion occur-mode-map (kbd "RET") 'occur-mode-goto-occurrence)
+  (evil-define-key 'motion occur-mode-map (kbd "q")   'quit-window)
+  (setq evil-default-cursor t))  ; fix black cursor
+
+(use-package evil-matchit
+  :config
+  (global-evil-matchit-mode 1))
+
+(use-package key-chord
+  :config
+  (key-chord-mode 1)
+  (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+  (key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
+  (key-chord-define evil-insert-state-map "kk" 'evil-normal-state)
+  (key-chord-define evil-insert-state-map "kj" 'evil-normal-state))
 
 ;;; magit integration
-(require 'evil-magit)
+(use-package evil-magit)
 
 ;; esc quits
 (defun minibuffer-keyboard-quit ()
@@ -457,86 +513,76 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (global-set-key [escape] 'evil-exit-emacs-state)
 
 ;;; evil surround
-(require 'surround)
-(global-surround-mode 1)
+(use-package surround
+  :config
+  (global-surround-mode 1))
 
 ;;; tree like vim
-(require 'neotree)
-(add-hook 'neotree-mode-hook
-          (lambda ()
-            (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
-            (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
-            (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-            (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
+(use-package neotree
+  :commands (neotree-enter neotree-hide)
+  :init
+  (add-hook 'neotree-mode-hook
+            (lambda ()
+              (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
+              (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
+              (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+              (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter))))
 
 ;;; evil leader
-(require 'evil-leader)
-(global-evil-leader-mode)
-(add-hook 'fundamental-mode 'evil-leader-mode)
-(add-hook 'text-mode-hook 'evil-leader-mode)
-(add-hook 'prog-mode-hook 'evil-leader-mode)
-(add-hook 'speed-bar-mode-hook 'evil-leader-mode)
+(use-package evil-leader
+  :config
+  (add-hook 'fundamental-mode 'evil-leader-mode)
+  (add-hook 'text-mode-hook 'evil-leader-mode)
+  (add-hook 'prog-mode-hook 'evil-leader-mode)
+  :config
+  (global-evil-leader-mode)
+  (evil-leader/set-leader "<SPC>")
+  (evil-leader/set-key
+    "wh" 'split-window-below
+    "wv" 'split-window-right
+    "f"  'helm-projectile-find-file
+    "b"  'helm-buffers-list
+    "="  'iwb
+    "r"  'helm-for-files
+    "n"  'neotree-toggle
+    "p"  'helm-projectile-switch-project
+    "v"  (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
 
-(evil-leader/set-leader "<SPC>")
-(evil-leader/set-key
-  "wh" 'split-window-below
-  "wv" 'split-window-right
-  "f"  'helm-projectile-find-file
-  "b"  'helm-buffers-list
-  "="  'iwb
-  "r"  'helm-for-files
-  "n"  'neotree-toggle
-  "p"  'helm-projectile-switch-project
-  "v"  (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
+    ;; evil-nerd-commenter
+    "ci" 'evilnc-comment-or-uncomment-lines
+    "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
+    "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
+    "cc" 'evilnc-copy-and-comment-lines
+    "cp" 'evilnc-comment-or-uncomment-paragraphs
+    "cr" 'comment-or-uncomment-region
+    "cv" 'evilnc-toggle-invert-comment-line-by-line
+    "\\" 'evilnc-comment-operator
 
-  ;; evil-nerd-commenter
-  "ci" 'evilnc-comment-or-uncomment-lines
-  "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
-  "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
-  "cc" 'evilnc-copy-and-comment-lines
-  "cp" 'evilnc-comment-or-uncomment-paragraphs
-  "cr" 'comment-or-uncomment-region
-  "cv" 'evilnc-toggle-invert-comment-line-by-line
-  "\\" 'evilnc-comment-operator
+    ;; magit
+    "gs" 'magit-status
+    "gb" 'magit-blame
+    "gl" 'magit-log))
 
-  ;; magit
-  "gs" 'magit-status
-  "gb" 'magit-blame
-  "gl" 'magit-log
-  )
-
-;;; occur mode
-(evil-set-initial-state 'occur-mode 'motion)
-(evil-define-key 'motion occur-mode-map (kbd "RET") 'occur-mode-goto-occurrence)
-(evil-define-key 'motion occur-mode-map (kbd "q")   'quit-window)
-
-(setq evil-default-cursor t) ; fix black cursor
-
-;; indenting related to evil
-(add-hook 'python-mode-hook
-          (function (lambda ()
-                      (setq evil-shift-width python-indent))))
-(add-hook 'ruby-mode-hook
-          (function (lambda ()
-                      (setq evil-shift-width ruby-indent-level))))
-(add-hook 'emacs-lisp-mode-hook
-          (function (lambda ()
-                      (setq evil-shift-width lisp-body-indent))))
+(use-package evil-nerd-commenter)
 
 ;;;; End Evil
 
 ;;;; Begin Languages
 
 ;;; Haskell
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-(add-to-list 'completion-ignored-extensions ".hi")
-(add-hook 'haskell-mode-hook 'auto-revert-mode)
-(add-hook 'haskell-mode-hook 'fold-dwim-org/minor-mode)
-(add-hook 'haskell-mode-hook 'set-newline-and-indent)
+(use-package haskell-mode
+  :init
+  (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+  (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+  (add-hook 'haskell-mode-hook 'auto-revert-mode)
+  (add-hook 'haskell-mode-hook 'fold-dwim-org/minor-mode)
+  (add-hook 'haskell-mode-hook 'set-newline-and-indent)
+  (add-to-list 'completion-ignored-extensions ".hi"))
 
 ;;; C#
-(setq csharp-want-imenu nil) ; turn off the menu 
+(use-package csharp-mode
+  :config
+  (setq csharp-want-imenu nil)) ; turn off the menu 
 
 ;;;; End Languages
 
@@ -656,21 +702,21 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;;;; End Functions
 
 ;;;; Begin Org Mode
-(require 'org)
 
-;; folding like Org Mode in all modes
-(add-hook 'prog-mode-hook 'fold-dwim-org/minor-mode)
-(add-hook 'text-mode-hook 'fold-dwim-org/minor-mode)
-
-;; associate .org files with org-mode inside of emacs
-(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-
-;; hotkeys for org-mode
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cb" 'org-iswitchb)
-(setq org-src-fontify-natively t)
-(setq org-hide-leading-stars nil)
+(use-package org
+  :init
+  ;; folding like Org Mode in all modes
+  (add-hook 'prog-mode-hook 'fold-dwim-org/minor-mode)
+  (add-hook 'text-mode-hook 'fold-dwim-org/minor-mode)
+  ;; associate .org files with org-mode inside of emacs
+  (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+  :config
+  ;; hotkeys for org-mode
+  (global-set-key "\C-cl" 'org-store-link)
+  (global-set-key "\C-cc" 'org-capture)
+  (global-set-key "\C-ca" 'org-agenda)
+  (global-set-key "\C-cb" 'org-iswitchb)
+  (setq org-src-fontify-natively t)
+  (setq org-hide-leading-stars nil))
 
 ;;;; End Org Mode
