@@ -404,9 +404,10 @@
 (ido-mode 'both) ; for buffers and files
 
 (setq confirm-nonexistent-file-or-buffer nil) ; do not confirm a new file or buffer
+(setq ido-enable-tramp-completion t) ; tramp completion
+
 (setq ido-enable-flex-matching t)
 (setq ido-create-new-buffer 'always)
-(setq ido-enable-tramp-completion nil)
 (setq ido-enable-last-directory-history nil)
 (setq ido-confirm-unique-completion nil) ; wait for RET, even for unique?
 (setq ido-use-filename-at-point t) ; prefer file names near point
