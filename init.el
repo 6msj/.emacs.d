@@ -719,5 +719,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (global-set-key "\C-cb" 'org-iswitchb)
   (setq org-src-fontify-natively t)
   (setq org-hide-leading-stars t)
+  (setq org-goto-interface 'outline-path-completion
+        org-goto-max-level 10))
 
 ;;;; End Org Mode
