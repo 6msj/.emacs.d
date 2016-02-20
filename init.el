@@ -377,11 +377,14 @@
 
 ;;;; Begin File Management
 
+(use-package ag) ; silver searcher
+
 ;;; projectile
 (use-package projectile
   :diminish projectile-mode
   :ensure helm
   :ensure helm-projectile
+  :ensure helm-ag
   :init
   :config
   (projectile-global-mode)
@@ -538,14 +541,18 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (global-evil-leader-mode)
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key
-    "wh" 'split-window-below
-    "wv" 'split-window-right
+    ;; projectile
     "f"  'helm-projectile-find-file
     "b"  'helm-buffers-list
+    "p"  'helm-projectile-switch-project
+    "ag" 'helm-projectile-ag
+
+    ;; random
+    "wh" 'split-window-below
+    "wv" 'split-window-right
     "="  'iwb
     "r"  'helm-for-files
     "n"  'neotree-toggle
-    "p"  'helm-projectile-switch-project
     "v"  (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
 
     ;; evil-nerd-commenter
