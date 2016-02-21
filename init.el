@@ -34,15 +34,15 @@
 
 (package-initialize) ; activate all packages (in particular autoloads)
 
-;; bootstrap `use-package'
+;; bootstrap 'use-package'
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
 (eval-when-compile
   (require 'use-package))
-(require 'diminish) ; if you use :diminish
-(require 'bind-key) ; if you use any :bind variant
+(require 'diminish) ; for :diminish
+(require 'bind-key) ; for :bind
 
 (setq use-package-always-ensure t) ; install package if not existing
 
@@ -136,16 +136,16 @@
   (defun explorer ()
     (interactive)
     (cond
-     ;; In buffers with file name
+     ;; in buffers with file name
      ((buffer-file-name)
       (shell-command (concat "start explorer /e,/select,\"" (replace-regexp-in-string "/" "\\\\" (buffer-file-name)) "\"")))
-     ;; In dired mode
+     ;; in dired mode
      ((eq major-mode 'dired-mode)
       (shell-command (concat "start explorer /e,\"" (replace-regexp-in-string "/" "\\\\" (dired-current-directory)) "\"")))
-     ;; In eshell mode
+     ;; in eshell mode
      ((eq major-mode 'eshell-mode)
       (shell-command (concat "start explorer /e,\"" (replace-regexp-in-string "/" "\\\\" (eshell/pwd)) "\"")))
-     ;; Use default-directory as last resource
+     ;; use default-directory as last resource
      (t
       (shell-command (concat "start explorer /e,\"" (replace-regexp-in-string "/" "\\\\" default-directory) "\"")))))
   (global-set-key (kbd "s-j") 'explorer))
