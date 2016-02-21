@@ -177,6 +177,8 @@
                   (lambda ()
                     (interactive)
                     (call-interactively (key-binding "\C-x\C-s"))))
+  (if window-system
+      (menu-bar-mode 1)) ; mac needs a menu bar
 
   ;; reveal in finder
   (use-package reveal-in-osx-finder
@@ -187,9 +189,6 @@
   (set-face-attribute 'default nil :family "Inconsolata For Powerline")
   (set-face-attribute 'default nil :height 130)
   (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding")))
-
-(if window-system
-    (menu-bar-mode 1)) ; mac needs a menu bar
 
 ;;;; End Platform
 
