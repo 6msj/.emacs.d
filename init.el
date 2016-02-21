@@ -658,7 +658,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (rotate-windows-helper (window-list) (window-buffer (car (window-list))))
   (select-window (car (last (window-list)))))
 
-
 ;; use variable width font faces in current buffer
 (defun my-buffer-face-mode-variable ()
   "Set font to a variable width (proportional) fonts in current buffer"
