@@ -62,6 +62,7 @@
     (exec-path-from-shell-initialize)))
 
 (use-package multi-term
+  :if (not (eq system-type 'windows-nt))
   :commands (multi-term)
   :config
   (setq multi-term-program "/bin/zsh"))
@@ -73,7 +74,8 @@
 
 ;;;; Begin Theme
 
-(use-package spacemacs-theme)
+(use-package spacemacs-theme
+  :defer)
 
 (setq frame-title-format '("%b")) ; set the title to be the current file
 
@@ -217,7 +219,8 @@
 
 ;;;; Begin Experience
 
-(use-package magit)
+(use-package magit
+  :commands (magit-autoload-commands))
 
 ;; prefer vertical splits
 ;; https://stackoverflow.com/questions/2081577/setting-emacs-split-to-horizontal
@@ -401,6 +404,10 @@
 
 ;;; projectile
 (use-package projectile
+  :commands (helm-projectile-find-file
+             helm-buffers-list
+             helm-projectile-switch-project
+             helm-projectile-ag)
   :diminish projectile-mode
   :ensure helm
   :ensure helm-projectile
@@ -590,7 +597,14 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     "gb" 'magit-blame
     "gl" 'magit-log))
 
-(use-package evil-nerd-commenter)
+(use-package evil-nerd-commenter
+  :commands (evilnc-comment-or-uncomment-lines
+             evilnc-quick-comment-or-uncomment-to-the-line
+             evilnc-copy-and-comment-lines
+             evilnc-comment-or-uncomment-paragraphs
+             comment-or-uncomment-region
+             evilnc-toggle-invert-comment-line-by-line
+             evilnc-comment-operator))
 
 ;;;; End Evil
 
@@ -598,6 +612,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;;; Haskell
 (use-package haskell-mode
+  :mode "\\.hs\\'"
   :init
   (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
   (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
@@ -608,12 +623,17 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;;; C#
 (use-package csharp-mode
+  :mode "\\.cs\\'"
   :config
   (setq csharp-want-imenu nil)) ; turn off the menu 
 
 ;;;; End Languages
 
 ;;;; Begin Functions
+
+;; function that returns list of magit commands that will load magit
+(defun magit-autoload-commands ()
+  (list 'magit-status 'magit-blame 'magit-log))
 
 ;; auto indent function using return
 (defun set-newline-and-indent ()
@@ -739,12 +759,12 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;;;; Begin Org Mode
 
 (use-package org
+  :mode ("\\.org\\'" . org-mode)
   :init
   ;; folding like Org Mode in all modes
   (add-hook 'prog-mode-hook 'fold-dwim-org/minor-mode)
   (add-hook 'text-mode-hook 'fold-dwim-org/minor-mode)
   ;; associate .org files with org-mode inside of emacs
-  (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
   :config
   ;; hotkeys for org-mode
   (global-set-key "\C-cl" 'org-store-link)
