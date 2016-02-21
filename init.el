@@ -131,6 +131,25 @@
 
 ;;;; Begin Platform
 
+;;; Windows Specifc
+(when (eq system-type 'windows-nt)
+  (defun explorer ()
+    (interactive)
+    (cond
+     ;; In buffers with file name
+     ((buffer-file-name)
+      (shell-command (concat "start explorer /e,/select,\"" (replace-regexp-in-string "/" "\\\\" (buffer-file-name)) "\"")))
+     ;; In dired mode
+     ((eq major-mode 'dired-mode)
+      (shell-command (concat "start explorer /e,\"" (replace-regexp-in-string "/" "\\\\" (dired-current-directory)) "\"")))
+     ;; In eshell mode
+     ((eq major-mode 'eshell-mode)
+      (shell-command (concat "start explorer /e,\"" (replace-regexp-in-string "/" "\\\\" (eshell/pwd)) "\"")))
+     ;; Use default-directory as last resource
+     (t
+      (shell-command (concat "start explorer /e,\"" (replace-regexp-in-string "/" "\\\\" default-directory) "\"")))))
+  (global-set-key (kbd "s-j") 'explorer))
+
 ;;; Mac Specific
 ;; https://github.com/adobe-fonts/source-code-pro
 (when (eq system-type 'darwin)
@@ -550,6 +569,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     "r"  'helm-for-files
     "n"  'neotree-toggle
     "v"  (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
+    "e"  'explorer-finder
 
     ;; evil-nerd-commenter
     "ci" 'evilnc-comment-or-uncomment-lines
@@ -670,6 +690,15 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (interactive)
   (setq buffer-face-mode-face '(:family "Consolas" :height 120))
   (buffer-face-mode))
+
+;; os agnostic open in file explorer
+(defun explorer-finder ()
+  "Opens up file explorer based on operating system."
+  (interactive)
+  (if (eq system-type 'windows-nt)
+      (explorer))
+  (if (eq system-type 'darwin)
+      (reveal-in-osx-finder)))
 
 ;; close compilation window on successful compile
 (setq compilation-finish-functions 'compile-autoclose)
