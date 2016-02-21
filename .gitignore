@@ -8,4 +8,5 @@ eshell/
 recentf
 server/*
 url/*
+.python-environments/*
 
