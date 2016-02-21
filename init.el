@@ -296,7 +296,14 @@
   (setq company-idle-delay .1)
   (setq company-minimum-prefix-length 2))
 
-;;; omnisharp
+;;; python - jedi
+(defun my/python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
+(use-package company-jedi
+  :init
+  (add-hook 'python-mode-hook 'my/python-mode-hook))
+
+;;;  c# - omnisharp
 (use-package omnisharp
   :init
   (add-hook 'csharp-mode-hook 'omnisharp-mode)
@@ -626,7 +633,20 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (use-package csharp-mode
   :mode "\\.cs\\'"
   :config
-  (setq csharp-want-imenu nil)) ; turn off the menu 
+  (setq csharp-want-imenu nil)) ; turn off the menu
+
+;;; Python
+
+;; pdb setup, note the python version
+(if (eq system-type 'darwin)
+    (setq pdb-path '/usr/lib/python2.7/pdb.py
+          gud-pdb-command-name (symbol-name pdb-path)))
+
+(defadvice pdb (before gud-query-cmdline activate)
+  "Provide a better default command line when called interactively."
+  (interactive
+   (list (gud-query-cmdline pdb-path
+                            (file-name-nondirectory buffer-file-name)))))
 
 ;;;; End Languages
 
