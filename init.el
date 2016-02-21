@@ -7,6 +7,9 @@
 (let ((default-directory "~/.emacs.d/"))
   (normal-top-level-add-subdirs-to-load-path))
 
+(if (eq system-type 'windows-nt)
+  (add-to-list 'exec-path "C:/Program Files (x86)/Git/bin/"))
+
 (add-to-list 'load-path "~/.emacs.d/packages/")
 
 (setq inhibit-startup-screen t) ; disable startup screen
