@@ -18,6 +18,7 @@
 ;;htmlize
 ;;jedi
 ;;yasnippet
+;; test
 
 ;;; packages
 (setq package-list '(diminish)) 
