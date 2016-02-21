@@ -510,9 +510,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (global-set-key [escape] 'evil-exit-emacs-state)
 
 ;;; evil surround
-(use-package surround
+(use-package evil-surround
   :config
-  (global-surround-mode 1))
+  (global-evil-surround-mode 1))
 
 ;;; tree like vim
 (use-package neotree
