@@ -639,14 +639,31 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;; pdb setup, note the python version
 (if (eq system-type 'darwin)
-    (setq pdb-path '/usr/lib/python2.7/pdb.py
-          gud-pdb-command-name (symbol-name pdb-path)))
+    (progn
+      (setq pdb-path '/usr/lib/python2.7/pdb.py)
+      (setq gud-pdb-command-name (symbol-name pdb-path))
 
-(defadvice pdb (before gud-query-cmdline activate)
-  "Provide a better default command line when called interactively."
-  (interactive
-   (list (gud-query-cmdline pdb-path
-                            (file-name-nondirectory buffer-file-name)))))
+      (defadvice pdb (before gud-query-cmdline activate)
+        "Provide a better default command line when called interactively."
+        (interactive
+         (list (gud-query-cmdline pdb-path
+                                  (file-name-nondirectory buffer-file-name)))))))
+
+;; https://github.com/emacsmirror/python-mode - see troubleshooting
+;; https://bugs.launchpad.net/python-mode/+bug/963253
+;; http://pswinkels.blogspot.com/2010/04/debugging-python-code-from-within-emacs.html
+(if (eq system-type 'windows-nt)
+    (progn
+      (setq windows-python-pdb-path "c:/python27/python -i c:/python27/Lib/pdb.py")
+      (setq pdb-path 'C:/Python27/Lib/pdb.py)
+      (setq gud-pdb-command-name (symbol-name pdb-path))
+      (setq gud-pdb-command-name windows-python-pdb-path)
+
+      ;; everytime we enter a new python buffer, set the command path to include the buffer filename
+      (add-hook 'python-mode-hook (function
+                                  (lambda ()
+                                    (setq gud-pdb-command-name
+                                           (concat windows-python-pdb-path " " buffer-file-name)))))))
 
 ;;;; End Languages
 
