@@ -125,6 +125,8 @@
 
 ;; diminish modeline clutter
 (when (require 'diminish nil 'noerror)
+  (diminish 'subword-mode)
+  (diminish 'visual-line-mode)
   (eval-after-load "hideshow"
     '(diminish 'hs-minor-mode))
   (eval-after-load "autorevert"
