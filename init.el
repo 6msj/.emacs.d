@@ -95,20 +95,24 @@
   (lambda (item)
     (add-to-list 'custom-theme-load-path item)))
 
-(use-package theme-changer
-  :init
-  (setq calendar-location-name "Dallas, TX")
-  (setq calendar-latitude 32.85)
-  (setq calendar-longitude -96.85)
-  :config
-  (change-theme 'spacemacs-light 'spacemacs-dark))
-
 (use-package spaceline-config
   :ensure spaceline
   :config
   (spaceline-emacs-theme)
   (setq powerline-default-separator 'wave)
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
+
+(use-package theme-changer
+  :init
+  (setq calendar-location-name "Dallas, TX")
+  (setq calendar-latitude 32.85)
+  (setq calendar-longitude -96.85)
+  :config
+  ;; requires spaceline-config package to be loaded already
+  (defun reset-line--change-theme (&rest args)
+    (powerline-reset))
+  (advice-add 'change-theme :after #'reset-line--change-theme)
+  (change-theme 'spacemacs-light 'spacemacs-dark))
 
 ;; disable ui fluff
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
