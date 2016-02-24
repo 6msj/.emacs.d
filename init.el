@@ -16,7 +16,6 @@
 (setq ring-bell-function #'ignore) ; mute system sound
 
 ;;htmlize
-;;jedi
 ;;yasnippet
 
 ;;; packages
