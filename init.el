@@ -44,6 +44,7 @@
 (require 'bind-key) ; for :bind
 
 (setq use-package-always-ensure t) ; install package if not existing
+(setq use-package-verbose t) ; check loading times
 
 ;; fetch the list of packages available
 (when (not package-archive-contents)
