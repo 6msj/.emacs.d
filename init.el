@@ -608,6 +608,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     "n"  'neotree-toggle
     "v"  (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
     "e"  'explorer-finder
+    "m"  'multi-term
 
     ;; evil-nerd-commenter
     "ci" 'evilnc-comment-or-uncomment-lines
