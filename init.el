@@ -66,6 +66,7 @@
   :if (not (eq system-type 'windows-nt))
   :commands (multi-term)
   :config
+  (add-to-list 'term-unbind-key-list "C-q") ; C-q binds to raw input by default
   (setq multi-term-program "/bin/zsh"))
 
 (use-package dash)
@@ -410,6 +411,19 @@
   (windmove-default-keybindings)
   (setq framemove-hook-into-windmove t))
 
+;; navigating splits similar to tmux config
+(global-unset-key (kbd "C-q"))
+(global-set-key (kbd "C-q -") 'split-window-below)
+(global-set-key (kbd "C-q |") 'split-window-right)
+(global-set-key (kbd "C-q h") 'windmove-left)
+(global-set-key (kbd "C-q l") 'windmove-right)
+(global-set-key (kbd "C-q k") 'windmove-up)
+(global-set-key (kbd "C-q j") 'windmove-down)
+(global-set-key (kbd "C-q C-h") 'windmove-left)
+(global-set-key (kbd "C-q C-l") 'windmove-right)
+(global-set-key (kbd "C-q C-k") 'windmove-up)
+(global-set-key (kbd "C-q C-j") 'windmove-down)
+
 ;;;; End Navigation
 
 ;;;; Begin File Management
@@ -587,6 +601,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     ;; random
     "wh" 'split-window-below
     "wv" 'split-window-right
+    "-"  'split-window-below
+    "|"  'split-window-right
     "="  'iwb
     "r"  'helm-for-files
     "n"  'neotree-toggle
