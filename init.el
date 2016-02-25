@@ -525,8 +525,8 @@
 
   ;; keybinds
   (define-key evil-normal-state-map ";" 'evil-ex)
-  (define-key evil-normal-state-map "Y" 'copy-to-end-of-line)
   (define-key evil-visual-state-map ";" 'evil-ex)
+  (define-key evil-normal-state-map "Y" 'copy-to-end-of-line)
   (evil-define-key 'normal org-mode-map (kbd "C-i") 'org-cycle) ; cycle org mode in terminal
 
   ;;; occur mode
@@ -542,8 +542,7 @@
 (use-package key-chord
   :config
   (key-chord-mode 1)
-  (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
-  (key-chord-define evil-insert-state-map "jj" 'evil-normal-state))
+  (key-chord-define evil-insert-state-map "jk" 'evil-normal-state))
 
 ;;; magit integration
 (use-package evil-magit)
