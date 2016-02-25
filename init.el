@@ -529,9 +529,7 @@
   :config
   (key-chord-mode 1)
   (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
-  (key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
-  (key-chord-define evil-insert-state-map "kk" 'evil-normal-state)
-  (key-chord-define evil-insert-state-map "kj" 'evil-normal-state))
+  (key-chord-define evil-insert-state-map "jj" 'evil-normal-state))
 
 ;;; magit integration
 (use-package evil-magit)
