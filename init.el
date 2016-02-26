@@ -215,6 +215,7 @@
 
   ;; reveal in finder
   (use-package reveal-in-osx-finder
+    :commands (reveal-in-osx-finder)
     :config
     (global-set-key (kbd "s-r") 'reveal-in-osx-finder)))
 
