@@ -415,6 +415,7 @@
 (global-unset-key (kbd "C-q"))
 (global-set-key (kbd "C-q -") 'split-window-below)
 (global-set-key (kbd "C-q |") 'split-window-right)
+(global-set-key (kbd "C-q \\") 'split-window-right)
 (global-set-key (kbd "C-q h") 'windmove-left)
 (global-set-key (kbd "C-q l") 'windmove-right)
 (global-set-key (kbd "C-q k") 'windmove-up)
@@ -602,6 +603,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     "wv" 'split-window-right
     "-"  'split-window-below
     "|"  'split-window-right
+    "\\" 'split-window-right
     "="  'iwb
     "r"  'helm-for-files
     "n"  'neotree-toggle
