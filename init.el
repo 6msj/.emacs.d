@@ -511,6 +511,8 @@
 
 (use-package evil
   :init
+  (setq evil-want-C-u-scroll t) ; regain scroll up with c-u
+  (setq evil-want-C-i-jump t) ; C-i jumps foward in jumplist
   ;; indenting related to evil
   (add-hook 'python-mode-hook
             (function (lambda ()
@@ -523,10 +525,6 @@
                         (setq evil-shift-width lisp-body-indent))))
   :config
   (evil-mode 1)
-
-  (setq evil-want-C-u-scroll t) ; regain scroll up with c-u
-  (setq evil-want-C-i-jump t) ; C-i jumps foward in jumplist
-
   ;; keybinds
   (define-key evil-normal-state-map ";" 'evil-ex)
   (define-key evil-visual-state-map ";" 'evil-ex)
