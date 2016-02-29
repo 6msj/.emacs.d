@@ -277,6 +277,12 @@
   (show-paren-mode t))
 
 ;;;; End Experience
+(use-package flycheck
+  :diminish flycheck-mode
+  :init
+  (add-hook 'python-mode-hook #'flycheck-mode)
+  :commands flycheck-mode)
+
 
 ;;;; Begin Completion
 
