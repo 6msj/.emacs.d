@@ -62,6 +62,7 @@
 (use-package multi-term
   :if (not (eq system-type 'windows-nt))
   :commands (multi-term)
+  :init
   :config
   (add-to-list 'term-unbind-key-list "C-q") ; C-q binds to raw input by default
   (setq multi-term-program "/bin/zsh"))
@@ -517,6 +518,7 @@
   :init
   (setq evil-want-C-u-scroll t) ; regain scroll up with c-u
   (setq evil-want-C-i-jump t) ; C-i jumps foward in jumplist
+
   ;; indenting related to evil
   (add-hook 'python-mode-hook
             (function (lambda ()
@@ -566,6 +568,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       (setq deactivate-mark  t)
     (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
     (abort-recursive-edit)))
+
 (define-key evil-normal-state-map [escape] 'keyboard-quit)
 (define-key evil-visual-state-map [escape] 'keyboard-quit)
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
