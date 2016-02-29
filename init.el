@@ -261,9 +261,6 @@
 (use-package git-gutter-fringe+
   :after git-gutter+)
 
-;;; folding
-(use-package fold-dwim-org)
-
 ;; hide the comments too when you do a 'hs-hide-all'
 (setq hs-hide-comments nil)
 ;; Set whether isearch opens folded comments, code, or both
@@ -860,5 +857,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (setq org-hide-leading-stars t)
   (setq org-goto-interface 'outline-path-completion
         org-goto-max-level 10))
+
+;;; folding
+(use-package fold-dwim-org
+  :after org)
 
 ;;;; End Org Mode
