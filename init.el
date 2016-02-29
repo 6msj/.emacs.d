@@ -15,7 +15,6 @@
 (setq inhibit-startup-screen t) ; disable startup screen
 (setq ring-bell-function #'ignore) ; mute system sound
 
-;;htmlize
 ;;yasnippet
 
 ;;; packages
@@ -117,9 +116,6 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-
-;; cursorline
-;;(global-hl-line-mode 1)
 
 ;; colorful delimiters
 (use-package rainbow-delimiters
@@ -277,7 +273,6 @@
 (use-package linum
   :config
   (global-linum-mode 1))
-;;(require 'linum-relative)
 
 ;;; highlight parentheses
 (use-package paren
