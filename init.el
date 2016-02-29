@@ -228,7 +228,7 @@
 ;; prefer vertical splits
 ;; https://stackoverflow.com/questions/2081577/setting-emacs-split-to-horizontal
 (setq split-height-threshold nil)
-(setq split-width-threshold 200)
+(setq split-width-threshold 150)
 
 ;; scroll by 1 line at the end of the file
 ;;(setq scroll-step 1
