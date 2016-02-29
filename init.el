@@ -287,7 +287,6 @@
   (add-hook 'python-mode-hook #'flycheck-mode)
   :commands flycheck-mode)
 
-
 ;;;; Begin Completion
 
 ;;; company
@@ -621,9 +620,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     "f"  'projectile-find-file
     "p"  'projectile-switch-project
     "ag" 'projectile-ag
-    "b"  'projectile-switch-to-buffer
 
     ;; ivy
+    "b"  'ivy-switch-buffer
     "r"  'ivy-recentf
 
     ;; random
