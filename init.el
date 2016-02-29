@@ -513,6 +513,9 @@
   (add-hook 'emacs-lisp-mode-hook
             (function (lambda ()
                         (setq evil-shift-width lisp-body-indent))))
+  (add-hook 'org-mode-hook
+            (function (lambda ()
+                        (setq evil-shift-width 4))))
   :config
   (evil-mode 1)
   ;; keybinds
