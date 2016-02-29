@@ -431,6 +431,11 @@
 
 ;;;; Begin File Management
 
+(use-package smex
+  :bind (("M-x" . smex))
+  :config
+  (global-set-key (kbd "M-X") 'smex-major-mode-commands))
+
 (use-package ag) ; silver searcher
 
 ;;; projectile
