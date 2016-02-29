@@ -251,14 +251,11 @@
 
 (use-package git-gutter+
   :diminish git-gutter+-mode
+  :commands (global-git-gutter+-mode)
+  :init
+  (add-hook 'after-save-hook #'global-git-gutter+-mode)
   :config
-  (global-git-gutter+-mode))
-
-(use-package git-gutter-fringe
-  :config
-  (set-face-foreground 'git-gutter-fr:modified "yellow")
-  (set-face-foreground 'git-gutter-fr:added    "blue")
-  (set-face-foreground 'git-gutter-fr:deleted  "white"))
+  (use-package git-gutter-fringe+))
 
 ;;; folding
 (use-package fold-dwim-org)
