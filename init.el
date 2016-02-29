@@ -608,10 +608,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;;; evil leader
 (use-package evil-leader
   :config
-  (add-hook 'fundamental-mode 'evil-leader-mode)
-  (add-hook 'text-mode-hook 'evil-leader-mode)
-  (add-hook 'prog-mode-hook 'evil-leader-mode)
-  :config
   (global-evil-leader-mode)
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key
