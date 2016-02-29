@@ -304,13 +304,15 @@
 (defun my/python-mode-hook ()
   (add-to-list 'company-backends 'company-jedi))
 (use-package company-jedi
+  :commands (my/python-mode-hook)
   :init
-  (add-hook 'python-mode-hook 'my/python-mode-hook))
+  (add-hook 'python-mode-hook #'my/python-mode-hook))
 
 ;;;  c# - omnisharp
 (use-package omnisharp
+  :commands (omnisharp-mode)
   :init
-  (add-hook 'csharp-mode-hook 'omnisharp-mode)
+  (add-hook 'csharp-mode-hook #'omnisharp-mode)
   :config
   (eval-after-load 'company
     '(add-to-list 'company-backends 'company-omnisharp))
