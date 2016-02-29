@@ -566,7 +566,8 @@
   (key-chord-define evil-insert-state-map "jk" 'evil-normal-state))
 
 ;;; magit integration
-(use-package evil-magit)
+(use-package evil-magit
+  :after magit)
 
 ;; esc quits
 (defun minibuffer-keyboard-quit ()
