@@ -280,12 +280,14 @@
   :config
   (show-paren-mode t))
 
-;;;; End Experience
+;; syntax check
 (use-package flycheck
   :diminish flycheck-mode
   :init
   (add-hook 'python-mode-hook #'flycheck-mode)
   :commands flycheck-mode)
+
+;;;; End Experience
 
 ;;;; Begin Completion
 
