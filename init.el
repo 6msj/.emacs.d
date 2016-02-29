@@ -256,9 +256,10 @@
   :diminish git-gutter+-mode
   :commands (global-git-gutter+-mode)
   :init
-  (add-hook 'after-save-hook #'global-git-gutter+-mode)
-  :config
-  (use-package git-gutter-fringe+))
+  (add-hook 'after-save-hook #'global-git-gutter+-mode))
+
+(use-package git-gutter-fringe+
+  :after git-gutter+)
 
 ;;; folding
 (use-package fold-dwim-org)
