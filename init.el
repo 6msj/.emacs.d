@@ -224,7 +224,9 @@
 ;;;; Begin Experience
 
 (use-package magit
-  :commands (magit-autoload-commands))
+  :commands (magit-autoload-commands)
+  :config
+  (setq magit-completing-read-function 'ivy-completing-read))
 
 ;; prefer vertical splits
 ;; https://stackoverflow.com/questions/2081577/setting-emacs-split-to-horizontal
@@ -432,6 +434,18 @@
 
 ;;;; Begin File Management
 
+(use-package swiper
+  :ensure counsel
+  :diminish ivy-mode
+  :config
+  ;(ivy-mode 1)
+  ;(define-key ivy-mode-map [escape] 'minibuffer-keyboard-quit)
+  (setq ivy-count-format "")
+  ;(define-key ivy-mode-map (kbd "RET") 'ivy-alt-done)
+  ;(define-key ivy-mode-map (kbd "C-j") 'ivy-done)
+  ;(setq ivy-use-virtual-buffers t)
+  (setq ivy-height 7))
+
 (use-package smex
   :bind (("M-x" . smex))
   :config
@@ -441,19 +455,15 @@
 
 ;;; projectile
 (use-package projectile
-  :commands (helm-projectile-find-file
-             helm-buffers-list
-             helm-projectile-switch-project
-             helm-projectile-ag)
+  :commands (projectile-find-file
+             projectile-switch-project
+             projectile-switch-to-buffer
+             projectile-ag)
   :diminish projectile-mode
-  :ensure helm
-  :ensure helm-projectile
-  :ensure helm-ag
   :init
   :config
   (projectile-global-mode)
-  (setq projectile-completion-system 'helm)
-  (helm-projectile-on))
+  (setq projectile-completion-system 'ivy))
 
 ;;; saving
 (setq auto-save-default nil) ; no autosave
@@ -578,6 +588,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 (global-set-key [escape] 'evil-exit-emacs-state)
 
+(global-set-key [escape] 'minibuffer-keyboard-quit)
+
 ;;; evil surround
 (use-package evil-surround
   :config
@@ -604,10 +616,13 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key
     ;; projectile
-    "f"  'helm-projectile-find-file
-    "b"  'helm-buffers-list
-    "p"  'helm-projectile-switch-project
-    "ag" 'helm-projectile-ag
+    "f"  'projectile-find-file
+    "p"  'projectile-switch-project
+    "ag" 'projectile-ag
+    "b"  'projectile-switch-to-buffer
+
+    ;; ivy
+    "r"  'ivy-recentf
 
     ;; random
     "wh" 'split-window-below
@@ -616,7 +631,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     "|"  'split-window-right
     "\\" 'split-window-right
     "="  'iwb
-    "r"  'helm-for-files
     "n"  'neotree-toggle
     "v"  (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
     "e"  'explorer-finder
