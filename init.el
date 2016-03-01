@@ -77,7 +77,7 @@
 (use-package spacemacs-theme
   :defer)
 
-(setq frame-title-format '("%b")) ; set the title to be the current file
+(setq frame-title-format '("%f")) ; set the title to be the current file
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/packages/solarized")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
