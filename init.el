@@ -542,6 +542,51 @@
             (function (lambda ()
                         (setq evil-shift-width 4))))
   :config
+
+  ;; nesting evil-leader package declaration
+  ;; (global-evil-leader-mode) should be before (evil-mode 1)
+  ;; this is so evil-leader works in *messages* buffer
+  (use-package evil-leader
+    :config
+    (global-evil-leader-mode)
+    (evil-leader/set-leader "<SPC>")
+    (evil-leader/set-key
+      ;; projectile
+      "f"  'projectile-find-file
+      "p"  'projectile-switch-project
+      "ag" 'projectile-ag
+
+      ;; ivy
+      "b"  'ivy-switch-buffer
+      "r"  'ivy-recentf
+
+      ;; random
+      "wh" 'split-window-below
+      "wv" 'split-window-right
+      "-"  'split-window-below
+      "|"  'split-window-right
+      "\\" 'split-window-right
+      "="  'iwb
+      "n"  'neotree-toggle
+      "v"  (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
+      "e"  'explorer-finder
+      "m"  'multi-term
+
+      ;; evil-nerd-commenter
+      "ci" 'evilnc-comment-or-uncomment-lines
+      "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
+      "cc" 'evilnc-copy-and-comment-lines
+      "cp" 'evilnc-comment-or-uncomment-paragraphs
+      "cr" 'comment-or-uncomment-region
+      "cv" 'evilnc-toggle-invert-comment-line-by-line
+      "\\" 'evilnc-comment-or-uncomment-lines
+      "co" 'evilnc-comment-operator
+
+      ;; magit
+      "gs" 'magit-status
+      "gb" 'magit-blame
+      "gl" 'magit-log))
+
   (evil-mode 1)
   ;; keybinds
   (define-key evil-normal-state-map ";" 'evil-ex)
@@ -604,48 +649,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
               (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
               (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
               (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter))))
-
-;;; evil leader
-(use-package evil-leader
-  :config
-  (global-evil-leader-mode)
-  (evil-leader/set-leader "<SPC>")
-  (evil-leader/set-key
-    ;; projectile
-    "f"  'projectile-find-file
-    "p"  'projectile-switch-project
-    "ag" 'projectile-ag
-
-    ;; ivy
-    "b"  'ivy-switch-buffer
-    "r"  'ivy-recentf
-
-    ;; random
-    "wh" 'split-window-below
-    "wv" 'split-window-right
-    "-"  'split-window-below
-    "|"  'split-window-right
-    "\\" 'split-window-right
-    "="  'iwb
-    "n"  'neotree-toggle
-    "v"  (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
-    "e"  'explorer-finder
-    "m"  'multi-term
-
-    ;; evil-nerd-commenter
-    "ci" 'evilnc-comment-or-uncomment-lines
-    "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
-    "cc" 'evilnc-copy-and-comment-lines
-    "cp" 'evilnc-comment-or-uncomment-paragraphs
-    "cr" 'comment-or-uncomment-region
-    "cv" 'evilnc-toggle-invert-comment-line-by-line
-    "\\" 'evilnc-comment-or-uncomment-lines
-    "co" 'evilnc-comment-operator
-
-    ;; magit
-    "gs" 'magit-status
-    "gb" 'magit-blame
-    "gl" 'magit-log))
 
 (use-package evil-nerd-commenter
   :commands (evilnc-comment-or-uncomment-lines
