@@ -102,12 +102,12 @@
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
 
 (use-package theme-changer
+  :after spaceline-config
   :init
   (setq calendar-location-name "Dallas, TX")
   (setq calendar-latitude 32.85)
   (setq calendar-longitude -96.85)
   :config
-  ;; requires spaceline-config package to be loaded already
   (defun reset-line--change-theme (&rest args)
     (powerline-reset))
   (advice-add 'change-theme :after #'reset-line--change-theme)
