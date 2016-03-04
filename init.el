@@ -554,9 +554,9 @@
       ;; projectile
       "f"  'projectile-find-file
       "p"  'projectile-switch-project
-      "ag" 'projectile-ag
 
       ;; ivy
+      "ag" 'counsel-ag
       "b"  'ivy-switch-buffer
       "r"  'ivy-recentf
 
