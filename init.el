@@ -118,6 +118,10 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
+;; save window configurations
+(when (fboundp 'winner-mode)
+  (winner-mode 1))
+
 ;; colorful delimiters
 (use-package rainbow-delimiters
   :init
