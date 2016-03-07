@@ -298,6 +298,11 @@
   :init
   (add-hook 'after-init-hook 'global-company-mode)
 
+  ;; c
+  (add-hook 'c-mode-hook
+            (lambda ()
+            (set (make-local-variable 'company-backends) '(company-clang))))
+
   ;; ios
   (add-hook 'objc-mode-hook
             (lambda ()
