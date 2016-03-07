@@ -18,6 +18,8 @@
 ;;yasnippet
 
 ;;; packages
+
+;; M-x list-packages U x to upgrade packages
 (setq package-list '(diminish))
 
 (setq package-enable-at-startup nil)
