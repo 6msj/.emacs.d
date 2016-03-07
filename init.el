@@ -845,12 +845,12 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;;;; Begin Org Mode
 
 (use-package org
+  ;; associate .org files with org-mode inside of emacs
   :mode ("\\.org\\'" . org-mode)
   :init
   ;; folding like Org Mode in all modes
   (add-hook 'prog-mode-hook 'fold-dwim-org/minor-mode)
   (add-hook 'text-mode-hook 'fold-dwim-org/minor-mode)
-  ;; associate .org files with org-mode inside of emacs
   :config
   ;; hotkeys for org-mode
   (global-set-key "\C-cl" 'org-store-link)
