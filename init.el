@@ -303,7 +303,7 @@
             (lambda ()
               (set (make-local-variable 'company-backends) '(company-xcode))))
   :config
-  (setq company-idle-delay .1)
+  (setq company-idle-delay .05)
   (setq company-minimum-prefix-length 2))
 
 ;;; python - jedi
