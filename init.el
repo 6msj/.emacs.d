@@ -448,12 +448,7 @@
   :ensure counsel
   :diminish ivy-mode
   :config
-  ;(ivy-mode 1)
-  ;(define-key ivy-mode-map [escape] 'minibuffer-keyboard-quit)
   (setq ivy-count-format "")
-  ;(define-key ivy-mode-map (kbd "RET") 'ivy-alt-done)
-  ;(define-key ivy-mode-map (kbd "C-j") 'ivy-done)
-  ;(setq ivy-use-virtual-buffers t)
   (setq ivy-height 7))
 
 (use-package smex
