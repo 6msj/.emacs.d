@@ -15,8 +15,6 @@
 (setq inhibit-startup-screen t) ; disable startup screen
 (setq ring-bell-function #'ignore) ; mute system sound
 
-;;yasnippet
-
 ;;; packages
 
 ;; M-x list-packages U x to upgrade packages
