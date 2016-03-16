@@ -848,11 +848,22 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 (use-package org
   ;; associate .org files with org-mode inside of emacs
+  :commands (org-agenda)
   :mode ("\\.org\\'" . org-mode)
   :init
   ;; folding like Org Mode in all modes
   (add-hook 'prog-mode-hook 'fold-dwim-org/minor-mode)
   (add-hook 'text-mode-hook 'fold-dwim-org/minor-mode)
+
+  (add-hook 'org-agenda-mode-hook
+            (lambda ()
+              ;; evil mappings
+              (define-key org-agenda-mode-map "b" 'evil-backward-word-begin)
+              (define-key org-agenda-mode-map "w" 'evil-forward-word-begin)
+              (define-key org-agenda-mode-map "j" 'evil-next-line)
+              (define-key org-agenda-mode-map "k" 'evil-previous-line)
+              (define-key org-agenda-mode-map "h" 'evil-backward-char)
+              (define-key org-agenda-mode-map "l" 'evil-forward-char)))
   :config
   (when (eq system-type 'darwin)
     (setq org-agenda-files '("~/Dropbox/Notes")))
