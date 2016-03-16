@@ -854,6 +854,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (add-hook 'prog-mode-hook 'fold-dwim-org/minor-mode)
   (add-hook 'text-mode-hook 'fold-dwim-org/minor-mode)
   :config
+  (when (eq system-type 'darwin)
+    (setq org-agenda-files '("~/Dropbox/Notes")))
+
   ;; hotkeys for org-mode
   (global-set-key "\C-cl" 'org-store-link)
   (global-set-key "\C-cc" 'org-capture)
