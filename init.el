@@ -491,6 +491,13 @@
 (setq ido-confirm-unique-completion nil) ; wait for RET, even for unique?
 (setq ido-use-filename-at-point t) ; prefer file names near point
 
+;; http://emacsredux.com/blog/2013/04/21/edit-files-as-root/
+(defadvice ido-find-file (after find-file-sudo activate)
+  "Find file as root if necessary."
+  (unless (and buffer-file-name
+               (file-writable-p buffer-file-name))
+    (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
+
 ;;; flx matching
 (use-package flx-ido
   :init
