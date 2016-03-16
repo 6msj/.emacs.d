@@ -303,7 +303,7 @@
   ;; c
   (add-hook 'c-mode-hook
             (lambda ()
-            (set (make-local-variable 'company-backends) '(company-clang))))
+              (set (make-local-variable 'company-backends) '(company-clang))))
 
   ;; ios
   (add-hook 'objc-mode-hook
