@@ -863,8 +863,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
               (define-key org-agenda-mode-map "h" 'evil-backward-char)
               (define-key org-agenda-mode-map "l" 'evil-forward-char)))
   :config
-  (when (eq system-type 'darwin)
+  (if (eq system-type 'darwin)
     (setq org-agenda-files '("~/Dropbox/Notes")))
+
+  (if (eq system-type 'windows-nt)
+    (setq org-agenda-files '("C:/Users/james/Dropbox/Notes")))
 
   ;; hotkeys for org-mode
   (global-set-key "\C-cl" 'org-store-link)
