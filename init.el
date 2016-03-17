@@ -862,18 +862,16 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
               (define-key org-agenda-mode-map "k" 'evil-previous-line)
               (define-key org-agenda-mode-map "h" 'evil-backward-char)
               (define-key org-agenda-mode-map "l" 'evil-forward-char)))
+  ;; hotkeys for org-mode
+  :bind (("\C-cl" . org-store-link)
+         ("\C-cc" . org-capture)
+         ("\C-ca" . org-agenda)
+         ("\C-cb" . org-iswitchb))
   :config
   (if (eq system-type 'darwin)
     (setq org-agenda-files '("~/Dropbox/Notes")))
-
   (if (eq system-type 'windows-nt)
     (setq org-agenda-files '("C:/Users/james/Dropbox/Notes")))
-
-  ;; hotkeys for org-mode
-  (global-set-key "\C-cl" 'org-store-link)
-  (global-set-key "\C-cc" 'org-capture)
-  (global-set-key "\C-ca" 'org-agenda)
-  (global-set-key "\C-cb" 'org-iswitchb)
   (setq org-src-fontify-natively t)
   (setq org-hide-leading-stars t)
   (setq org-goto-interface 'outline-path-completion
