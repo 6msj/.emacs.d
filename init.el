@@ -713,6 +713,16 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
                                  (setq gud-pdb-command-name
                                        (concat windows-python-pdb-path " " buffer-file-name))))))
 
+;;; Erlang
+(use-package erlang
+  ;; We need to specify erlang-mode explicitely as the package is not called
+  ;; erlang-mode.
+  :mode (("\\.erl\\'" . erlang-mode)
+         ("\\.hrl\\'" . erlang-mode)
+         ("\\.xrl\\'" . erlang-mode))
+  :config
+  (setq erlang-indent-level 4))
+
 ;;;; End Languages
 
 ;;;; Begin Functions
