@@ -601,7 +601,7 @@
   (define-key evil-normal-state-map ";" 'evil-ex)
   (define-key evil-visual-state-map ";" 'evil-ex)
   (define-key evil-normal-state-map "Y" 'copy-to-end-of-line)
-  (evil-define-key 'normal org-mode-map (kbd "C-i") 'org-cycle) ; cycle org mode in terminal
+  (define-key evil-normal-state-map (kbd "TAB") 'hs-toggle-hiding)
 
   ;;; occur mode
   (evil-set-initial-state 'occur-mode 'motion)
