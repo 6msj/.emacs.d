@@ -384,6 +384,7 @@
 (add-hook 'perl-mode-hook       'hs-minor-mode)
 (add-hook 'sh-mode-hook         'hs-minor-mode)
 (add-hook 'python-mode-hook     'hs-minor-mode)
+(add-hook 'erlang-mode-hook     'hs-minor-mode)
 
 (global-auto-revert-mode t) ; automatically reload buffers on change
 
@@ -725,6 +726,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
          ("\\.hrl\\'" . erlang-mode)
          ("\\.xrl\\'" . erlang-mode))
   :config
+  ;; http://erlang.org/pipermail/erlang-questions/2003-June/009103.html
+  (setq hs-special-modes-alist
+	(cons '(erlang-mode
+		"^\\([a-z][a-zA-Z0-9_]*\\|'[^\n']*[^\\]'\\)\\s *(" nil "%"
+		erlang-end-of-clause) hs-special-modes-alist))
   (setq erlang-indent-level 4))
 
 ;;;; End Languages
