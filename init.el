@@ -521,7 +521,7 @@
   :config
   (setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
   (recentf-mode 1)
-  (setq recentf-max-menu-items 125))
+  (setq recentf-max-menu-items 325))
 
 ;;;; End File Management
 
