@@ -99,6 +99,8 @@
   :config
   (spaceline-emacs-theme)
   (setq powerline-default-separator 'wave)
+  (spaceline-toggle-buffer-size-off)
+  (spaceline-toggle-evil-state-off)
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
 
 (use-package theme-changer
