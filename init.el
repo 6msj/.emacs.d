@@ -230,6 +230,7 @@
 (use-package magit
   :commands (magit-autoload-commands)
   :config
+  (setq magit-refresh-status-buffer nil)
   (setq magit-completing-read-function 'ivy-completing-read))
 
 ;; prefer vertical splits
