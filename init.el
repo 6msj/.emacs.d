@@ -658,7 +658,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
             (lambda ()
               (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
               (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-              (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter))))
+              (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
+  :config
+  (setq neo-smart-open t))
 
 (use-package evil-nerd-commenter
   :commands (evilnc-comment-or-uncomment-lines
