@@ -11,3 +11,4 @@ url/*
 .python-environments/*
 .emacs.desktop
 smex-items
+projectile.cache
