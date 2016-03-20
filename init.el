@@ -349,11 +349,6 @@
 
 ;;;; Begin Editing
 
-;;; tramp for remote editing
-(use-package tramp
-  :config
-  (setq tramp-default-method "ssh"))
-
 (transient-mark-mode 1) ; enable transient mark mode
 
 (setq kill-whole-line t) ; kills entire line if at the beginning
