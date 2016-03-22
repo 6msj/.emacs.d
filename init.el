@@ -569,6 +569,8 @@
       ;; random
       "wh" 'split-window-below
       "wv" 'split-window-right
+      "wt" 'toggle-window-split
+      "wr" 'rotate-windows
       "-"  'split-window-below
       "|"  'split-window-right
       "\\" 'split-window-right
