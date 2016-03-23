@@ -639,6 +639,13 @@
   (key-chord-mode 1)
   (key-chord-define evil-insert-state-map "jk" 'evil-normal-state))
 
+(use-package evil-visualstar
+  :after evil
+  :commands (evil-visual-char)
+  :config
+  (global-evil-visualstar-mode)
+  (setq evil-visualstar/persistent t))
+
 ;;; magit integration
 (use-package evil-magit
   :after magit)
