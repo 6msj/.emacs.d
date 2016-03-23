@@ -311,7 +311,8 @@
 (use-package flycheck
   :diminish flycheck-mode
   :init
-  (add-hook 'python-mode-hook #'flycheck-mode)
+  (add-hook 'prog-mode-hook #'flycheck-mode)
+  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc emacs-lisp))
   :commands flycheck-mode)
 
 ;;;; End Experience
