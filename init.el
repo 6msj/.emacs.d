@@ -641,7 +641,6 @@
 
 (use-package evil-visualstar
   :after evil
-  :commands (evil-visual-char)
   :config
   (global-evil-visualstar-mode)
   (setq evil-visualstar/persistent t))
