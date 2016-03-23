@@ -574,7 +574,7 @@
       "-"  'split-window-below
       "|"  'split-window-right
       "\\" 'split-window-right
-      "="  'iwb
+      "="  'indent-region-or-buffer
       "n"  'neotree-toggle
       "v"  (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
       "e"  'explorer-finder
@@ -779,12 +779,24 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
                    name (file-name-nondirectory new-name)))))))
 
 ;; indent whole buffer
-(defun iwb ()
-  "indent whole buffer"
+(defun indent-buffer ()
+  "Indent the currently visited buffer."
   (interactive)
   (delete-trailing-whitespace)
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
+
+(defun indent-region-or-buffer ()
+  "Indent a region if selected, otherwise the whole buffer."
+  (interactive)
+  (save-excursion
+    (if (region-active-p)
+        (progn
+          (indent-region (region-beginning) (region-end))
+          (message "Indented selected region."))
+      (progn
+        (indent-buffer)
+        (message "Indented buffer.")))))
 
 ;; toggle window split
 (defun toggle-window-split ()
@@ -904,9 +916,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
          ("\C-cb" . org-iswitchb))
   :config
   (if (eq system-type 'darwin)
-    (setq org-agenda-files '("~/Dropbox/Notes")))
+      (setq org-agenda-files '("~/Dropbox/Notes")))
   (if (eq system-type 'windows-nt)
-    (setq org-agenda-files '("C:/Users/james/Dropbox/Notes")))
+      (setq org-agenda-files '("C:/Users/james/Dropbox/Notes")))
   (setq org-src-fontify-natively t)
   (setq org-hide-leading-stars t)
   (setq org-goto-interface 'outline-path-completion
