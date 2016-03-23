@@ -194,6 +194,9 @@
     (setq mac-option-key-is-meta t)
     (setq mac-option-modifier 'meta))
 
+  ;; commenting keybind similar to most osx ides
+  (global-set-key (kbd "s-/") 'evilnc-comment-or-uncomment-lines)
+
   ;; some key bindings to match osx
   (global-set-key (kbd "s-f") 'evil-search-forward)
   (global-set-key (kbd "s-F") 'evil-search-backward)
@@ -581,13 +584,16 @@
     (evil-leader/set-leader "<SPC>")
     (evil-leader/set-key
       ;; projectile
-      "f"  'projectile-find-file
-      "p"  'projectile-switch-project
+      "pf"  'projectile-find-file
+      "pp"  'projectile-switch-project
+      "pa"  'projectile-ag
 
       ;; ivy
+      "f"  'counsel-find-file
       "ag" 'counsel-ag
       "b"  'ivy-switch-buffer
       "r"  'ivy-recentf
+      "o"  'swiper
 
       ;; random
       "wh" 'split-window-below
@@ -602,6 +608,7 @@
       "v"  (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
       "e"  'explorer-finder
       "m"  'multi-term
+      "x"  'smex
 
       ;; evil-nerd-commenter
       "cc" 'evilnc-comment-or-uncomment-lines
