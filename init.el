@@ -775,7 +775,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
          ("\\.erb\\'" . web-mode)
          ("\\.mustache\\'" . web-mode)
          ("\\.djhtml\\'" . web-mode)
-         ("\\.jsp\\'" . web-mode)))
+         ("\\.jsp\\'" . web-mode))
+  :config
+  (global-unset-key (kbd "C-d"))
+  (global-set-key (kbd "C-d") 'evil-scroll-down))
 
 ;;;; End Languages
 
