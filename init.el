@@ -775,6 +775,14 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (global-unset-key (kbd "C-d"))
   (global-set-key (kbd "C-d") 'evil-scroll-down))
 
+;; colors for various 'color codes' aka hex strings
+(use-package rainbow-mode
+  :init
+  (add-hook 'css-mode-hook 'rainbow-mode)
+  :diminish rainbow-mode
+  :config
+  (rainbow-mode 1))
+
 ;;;; End Languages
 
 ;;;; Begin Functions
