@@ -923,10 +923,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   :commands (org-agenda)
   :mode ("\\.org\\'" . org-mode)
   :init
-  ;; folding like Org Mode in all modes
-  (add-hook 'prog-mode-hook 'fold-dwim-org/minor-mode)
-  (add-hook 'text-mode-hook 'fold-dwim-org/minor-mode)
-
   (add-hook 'org-agenda-mode-hook
             (lambda ()
               ;; evil mappings
@@ -953,6 +949,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;;; folding
 (use-package fold-dwim-org
-  :after org)
+  ;; evil seems to erase the tab binding
+  :init
+  (add-hook 'prog-mode-hook 'fold-dwim-org/minor-mode))
 
 ;;;; End Org Mode
