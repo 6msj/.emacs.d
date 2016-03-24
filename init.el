@@ -277,7 +277,9 @@
   :diminish git-gutter+-mode
   :commands (global-git-gutter+-mode)
   :init
-  (add-hook 'after-save-hook #'global-git-gutter+-mode))
+  (add-hook 'after-save-hook (lambda ()
+                               (unless global-git-gutter+-mode
+                                 (global-git-gutter+-mode)))))
 
 (use-package git-gutter-fringe+
   :after git-gutter+)
