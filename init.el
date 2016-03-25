@@ -920,7 +920,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;;; Groovy
 (use-package groovy-mode
-  :mode (("\\.gradle\\'" . groovy-mode))
+  :mode (("\\.gradle\\'" . groovy-mode)
+         ("\\.groovy\\'" . groovy-mode))
   :config
   (groovy-mode))
 
