@@ -133,6 +133,7 @@
 (when (require 'diminish nil 'noerror)
   (diminish 'subword-mode)
   (diminish 'visual-line-mode)
+  (diminish 'abbrev-mode)
   (eval-after-load "hideshow"
     '(diminish 'hs-minor-mode))
   (eval-after-load "autorevert"
