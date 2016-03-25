@@ -451,6 +451,26 @@
 (global-set-key (kbd "C-q C-j") 'windmove-down)
 (global-set-key (kbd "C-q C-x") 'delete-window)
 
+(use-package perspective
+  :defer 3
+  :init
+  (setq persp-mode-prefix-key (kbd "C-q"))
+  :config
+  ;; Need to skip doing anything if last perspective and last window.
+  ;; And also get persp-kill to kill the current perspective instead of forcing interaction.
+  (defun delete-perspective-or-window()
+    "Delete perspective if last window left but delete window if more than one."
+    (interactive)
+    (if (eq (count-windows) 1)
+        (persp-kill nil)
+      (delete-window)))
+
+  (define-key perspective-map (kbd "k") nil) ; keep up windmove-up instead
+  (define-key perspective-map (kbd "s") 'nil) ; this was persp-switch before
+  (define-key perspective-map (kbd "c") 'persp-switch) ; mirroring tmux
+  (define-key perspective-map (kbd "x") 'delete-perspective-or-window)
+  (persp-mode 1))
+
 ;;;; End Navigation
 
 ;;;; Begin File Management
