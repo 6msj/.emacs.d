@@ -779,6 +779,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;; colors for various 'color codes' aka hex strings
 (use-package rainbow-mode
+  :commands (rainbow-mode)
   :init
   (add-hook 'css-mode-hook 'rainbow-mode)
   :diminish rainbow-mode
