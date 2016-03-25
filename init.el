@@ -388,14 +388,7 @@
 (defvaralias 'cperl-indent-level 'tab-width)
 
 ;;; folding
-(add-hook 'c-mode-common-hook   'hs-minor-mode)
-(add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
-(add-hook 'java-mode-hook       'hs-minor-mode)
-(add-hook 'lisp-mode-hook       'hs-minor-mode)
-(add-hook 'perl-mode-hook       'hs-minor-mode)
-(add-hook 'sh-mode-hook         'hs-minor-mode)
-(add-hook 'python-mode-hook     'hs-minor-mode)
-(add-hook 'erlang-mode-hook     'hs-minor-mode)
+(add-hook 'prog-mode-hook 'hs-minor-mode)
 
 (global-auto-revert-mode t) ; automatically reload buffers on change
 
