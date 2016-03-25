@@ -604,7 +604,9 @@
       "ag" 'counsel-ag
       "b"  'ivy-switch-buffer
       "r"  'ivy-recentf
-      "o"  'swiper
+      "ss" 'swiper
+      "so" 'occur
+      "sb" 'multi-occur
 
       ;; random
       "wh" 'split-window-below
