@@ -407,20 +407,17 @@
   (autopair-global-mode 1))
 
 ;;; clipboards
-
 ;; for linux
-(when (eq system-type 'linux)
-  (use-package xclip
-    :config
-    (xclip-mode 1)))
+(use-package xclip
+  :if (eq system-type 'linux)
+  :config
+  (xclip-mode 1))
 
 ;; for mac
-(if (window-system)
-    (progn)
-  (when (eq system-type 'darwin)
-    (use-package pbcopy
-      :config
-      (turn-on-pbcopy))))
+(use-package pbcopy
+  :if (and (not window-system) (eq system-type 'darwin))
+  :config
+  (turn-on-pbcopy))
 
 ;;;; End Editing
 
