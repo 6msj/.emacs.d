@@ -577,6 +577,8 @@
       "pf"  'projectile-find-file
       "pp"  'projectile-switch-project
       "pa"  'projectile-ag
+      "po"  'projectile-find-other-file
+      "pO"  'projectile-find-other-file-other-window
 
       ;; ivy
       "f"  'counsel-find-file
