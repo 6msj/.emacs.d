@@ -314,10 +314,10 @@
 
 ;;; company
 (use-package company
+  :defer 3
   :diminish company-mode
+  :commands (global-company-mode) ; important so other packages can start company on demand
   :init
-  (add-hook 'after-init-hook 'global-company-mode)
-
   ;; c
   (add-hook 'c-mode-hook
             (lambda ()
@@ -328,27 +328,36 @@
             (lambda ()
               (set (make-local-variable 'company-backends) '(company-xcode))))
   :config
+  (global-company-mode)
   (setq company-idle-delay .05)
   (setq company-minimum-prefix-length 2))
 
 ;;; python - jedi
-(defun my/python-mode-hook ()
-  (add-to-list 'company-backends 'company-jedi))
 (use-package company-jedi
+  :ensure company
   :commands (my/python-mode-hook)
   :init
+  (defun my/python-mode-hook ()
+    (unless (global-company-mode)
+      (global-company-mode))
+    (add-to-list 'company-backends 'company-jedi))
   (add-hook 'python-mode-hook #'my/python-mode-hook))
 
 ;;;  c# - omnisharp
 (use-package omnisharp
+  :ensure company
   :commands (omnisharp-mode)
   :init
-  (add-hook 'csharp-mode-hook #'omnisharp-mode)
+  (defun my/csharp-mode-hook ()
+    (unless (global-company-mode)
+      (global-company-mode))
+    (omnisharp-mode)
+    (add-to-list 'company-backends 'company-omnisharp))
+  (add-hook 'csharp-mode-hook #'my/csharp-mode-hook)
   :config
-  (eval-after-load 'company
-    '(add-to-list 'company-backends 'company-omnisharp))
   ;; https://stackoverflow.com/questions/29382137/omnisharp-on-emacs-speed
-  (setq omnisharp-eldoc-support nil)) ; disable for speed
+  ;; disable for speed
+  (setq omnisharp-eldoc-support nil)) 
 
 ;;;; End Completion
 
