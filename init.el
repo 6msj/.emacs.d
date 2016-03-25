@@ -810,6 +810,12 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   :config
   (rainbow-mode 1))
 
+;;; Groovy
+(use-package groovy-mode
+  :mode (("\\.gradle\\'" . groovy-mode))
+  :config
+  (groovy-mode))
+
 ;;;; End Languages
 
 ;;;; Begin Functions
