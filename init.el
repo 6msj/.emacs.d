@@ -714,6 +714,9 @@
   (evil-set-initial-state 'occur-mode 'motion)
   (evil-define-key 'motion occur-mode-map (kbd "RET") 'occur-mode-goto-occurrence)
   (evil-define-key 'motion occur-mode-map (kbd "q")   'quit-window)
+  (evil-define-key 'motion special-mode-map (kbd "q") 'quit-window)
+  (evil-define-key 'normal special-mode-map (kbd "q") 'quit-window)
+  (evil-define-key 'visual special-mode-map (kbd "q") 'quit-window)
   (setq evil-default-cursor t))  ; fix black cursor
 
 (use-package evil-matchit
