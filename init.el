@@ -454,13 +454,11 @@
   :init
   (setq persp-mode-prefix-key (kbd "C-q"))
   :config
-  ;; Need to skip doing anything if last perspective and last window.
-  ;; And also get persp-kill to kill the current perspective instead of forcing interaction.
   (defun delete-perspective-or-window()
     "Delete perspective if last window left but delete window if more than one."
     (interactive)
-    (if (eq (count-windows) 1)
-        (persp-kill nil)
+    (if (and (eq (count-windows) 1) (> (hash-table-count perspectives-hash) 1))
+        (persp-kill (persp-name persp-curr))
       (delete-window)))
 
   (define-key perspective-map (kbd "k") nil) ; keep up windmove-up instead
