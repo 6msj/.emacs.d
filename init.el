@@ -642,6 +642,7 @@
   (define-key evil-visual-state-map ";" 'evil-ex)
   (define-key evil-normal-state-map "Y" 'copy-to-end-of-line)
   (define-key evil-normal-state-map (kbd "TAB") 'hs-toggle-hiding)
+  (define-key evil-visual-state-map (kbd "TAB") 'hs-toggle-hiding)
 
   ;;; occur mode
   (evil-set-initial-state 'occur-mode 'motion)
