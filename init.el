@@ -345,7 +345,7 @@
             (lambda ()
               (if company-backends
                   (add-to-list 'company-backends 'company-xcode)
-               (set (make-local-variable 'company-backends) '(company-xcode)))
+                (set (make-local-variable 'company-backends) '(company-xcode)))
               (update-company-with-yas)))
   :config
   ;; add yasnippet support for all company backends
