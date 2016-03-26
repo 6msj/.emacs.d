@@ -315,7 +315,7 @@
 
 ;;; company
 (use-package company
-  :defer 3
+  :defer 2
   :diminish company-mode
   :commands (global-company-mode) ; important so other packages can start company on demand
   :init
