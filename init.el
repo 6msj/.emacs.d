@@ -381,14 +381,14 @@
   (setq company-selection-wrap-around t)
 
   (global-company-mode)
-  (setq company-idle-delay .07)
+  (setq company-idle-delay .2)
   (setq company-minimum-prefix-length 1))
 
 ;; documentation popup for company
 (use-package company-quickhelp
   :after company
   :config
-  (setq company-quickhelp-delay 2)
+  (setq company-quickhelp-delay 3)
   (company-quickhelp-mode 1))
 
 ;;; python - jedi
