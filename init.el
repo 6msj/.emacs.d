@@ -346,7 +346,7 @@
               (if company-backends
                   (add-to-list 'company-backends 'company-xcode)
                 (set (make-local-variable 'company-backends) '(company-xcode)))
-              (update-company-with-yas)))
+              (company/merge-backends)))
   :config
   ;; add additional backend support for all company backends
   ;; https://emacs.stackexchange.com/questions/10431/get-company-to-show-suggestions-for-yasnippet-names
