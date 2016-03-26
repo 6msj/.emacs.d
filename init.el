@@ -313,25 +313,77 @@
 
 ;;;; Begin Completion
 
+;;; yasnippet
+(use-package yasnippet
+  :diminish yas-minor-mode
+  :commands (yas-expand
+             yas-insert-snippet
+             yas-new-snippet
+             yas-visit-snippet-file)
+  :after company
+  :config
+  ;; yas messages stretches the status buffer when it starts up
+  (setq yas-verbosity 2)
+  ;; using yasnippet through company mode, so disable all the binds
+  (define-key yas-minor-mode-map (kbd "C-i") nil)
+  (define-key yas-minor-mode-map (kbd "TAB") nil)
+  (define-key yas-minor-mode-map (kbd "<tab>") nil)
+  (define-key yas-minor-mode-map [(tab)] 'nil)
+  (define-key yas-minor-mode-map "\C-c&\C-s" nil)
+  (define-key yas-minor-mode-map "\C-c&\C-n" nil)
+  (define-key yas-minor-mode-map "\C-c&\C-v" nil)
+  (yas-global-mode 1))
+
 ;;; company
 (use-package company
   :defer 2
   :diminish company-mode
   :commands (global-company-mode) ; important so other packages can start company on demand
   :init
-  ;; c
-  (add-hook 'c-mode-hook
-            (lambda ()
-              (set (make-local-variable 'company-backends) '(company-clang))))
-
   ;; ios
   (add-hook 'objc-mode-hook
             (lambda ()
-              (set (make-local-variable 'company-backends) '(company-xcode))))
+              (if company-backends
+                  (add-to-list 'company-backends 'company-xcode)
+               (set (make-local-variable 'company-backends) '(company-xcode)))
+              (update-company-with-yas)))
   :config
+  ;; add yasnippet support for all company backends
+  ;; https://emacs.stackexchange.com/questions/10431/get-company-to-show-suggestions-for-yasnippet-names
+  ;; https://github.com/syl20bnr/spacemacs/pull/179
+  (defvar company-mode/enable-yas t
+    "Enable yasnippet for all backends.")
+  (defun company-mode/backend-with-yas (backend)
+    (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+        backend
+      (append (if (consp backend)
+                  backend
+                (list backend))
+              '(:with company-yasnippet))))
+
+  (defun update-company-with-yas ()
+    (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends)))
+  (update-company-with-yas)
+
+  ;; use tab to cycle selection
+  ;; https://github.com/company-mode/company-mode/issues/216
+  ;; https://github.com/company-mode/company-mode/issues/75
+  ;; https://github.com/company-mode/company-mode/issues/246#issuecomment-68538735
+  (setq company-auto-complete nil)
+
+  ;; in progress
+  ;; (define-key company-active-map [backtab] 'company-select-previous)
+  ;; (define-key company-active-map (kbd "<backtab>") 'company-select-previous)
+  (define-key company-active-map [tab] 'company-complete-common-or-cycle)
+  (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
+
+  ;; loop completion selections
+  (setq company-selection-wrap-around t)
+
   (global-company-mode)
-  (setq company-idle-delay .05)
-  (setq company-minimum-prefix-length 2))
+  (setq company-idle-delay .07)
+  (setq company-minimum-prefix-length 1))
+
 ;; documentation popup for company
 (use-package company-quickhelp
   :after company
@@ -347,7 +399,8 @@
   (defun my/python-mode-hook ()
     (unless (global-company-mode)
       (global-company-mode))
-    (add-to-list 'company-backends 'company-jedi))
+    (add-to-list 'company-backends 'company-jedi)
+    (update-company-with-yas))
   (add-hook 'python-mode-hook #'my/python-mode-hook))
 
 ;;;  c# - omnisharp
@@ -359,12 +412,13 @@
     (unless (global-company-mode)
       (global-company-mode))
     (omnisharp-mode)
-    (add-to-list 'company-backends 'company-omnisharp))
+    (add-to-list 'company-backends 'company-omnisharp)
+    (update-company-with-yas))
   (add-hook 'csharp-mode-hook #'my/csharp-mode-hook)
   :config
   ;; https://stackoverflow.com/questions/29382137/omnisharp-on-emacs-speed
   ;; disable for speed
-  (setq omnisharp-eldoc-support nil)) 
+  (setq omnisharp-eldoc-support nil))
 
 ;;;; End Completion
 
@@ -634,6 +688,10 @@
       "cr" 'comment-or-uncomment-region
       "cv" 'evilnc-toggle-invert-comment-line-by-line
       "co" 'evilnc-comment-operator
+
+      ;; yasnippet
+      "yn" 'yas-new-snippet
+      "yv" 'yas-visit-snippet-file
 
       ;; magit
       "gs" 'magit-status
