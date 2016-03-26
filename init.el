@@ -566,7 +566,6 @@
 (use-package evil
   :init
   (setq evil-want-C-u-scroll t) ; regain scroll up with c-u
-  (setq evil-want-C-i-jump t) ; C-i jumps foward in jumplist
 
   ;; indenting related to evil
   (add-hook 'python-mode-hook
@@ -582,7 +581,6 @@
             (function (lambda ()
                         (setq evil-shift-width 4))))
   :config
-
   ;; nesting evil-leader package declaration
   ;; (global-evil-leader-mode) should be before (evil-mode 1)
   ;; this is so evil-leader works in *messages* buffer
@@ -635,6 +633,10 @@
       "gs" 'magit-status
       "gb" 'magit-blame
       "gl" 'magit-log))
+
+  ;; C-j jumps foward in jumplist, C-o goes the other way
+  (setq evil-want-C-i-jump nil)
+  (define-key evil-motion-state-map (kbd "C-j") 'evil-jump-forward)
 
   (evil-mode 1)
   ;; keybinds
