@@ -332,6 +332,12 @@
   (global-company-mode)
   (setq company-idle-delay .05)
   (setq company-minimum-prefix-length 2))
+;; documentation popup for company
+(use-package company-quickhelp
+  :after company
+  :config
+  (setq company-quickhelp-delay 2)
+  (company-quickhelp-mode 1))
 
 ;;; python - jedi
 (use-package company-jedi
