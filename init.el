@@ -336,7 +336,7 @@
 
 ;;; company
 (use-package company
-  :defer 2
+  :defer 1
   :diminish company-mode
   :commands (global-company-mode) ; important so other packages can start company on demand
   :init
@@ -510,7 +510,7 @@
 (global-set-key (kbd "C-q C-x") 'delete-window)
 
 (use-package perspective
-  :defer 3
+  :defer 2
   :init
   (setq persp-mode-prefix-key (kbd "C-q"))
   :config
