@@ -348,22 +348,48 @@
                 (set (make-local-variable 'company-backends) '(company-xcode)))
               (update-company-with-yas)))
   :config
-  ;; add yasnippet support for all company backends
+  ;; add additional backend support for all company backends
   ;; https://emacs.stackexchange.com/questions/10431/get-company-to-show-suggestions-for-yasnippet-names
   ;; https://github.com/syl20bnr/spacemacs/pull/179
+  ;; https://stackoverflow.com/questions/134887/when-to-use-quote-in-lisp
+  (defun merge-backend-with-company-backends (backend-to-merge)
+    "Merges a backend with every backend in company-backends.
+The backend will only be merged if it's not already being used in the current backend.
+We do this because so that the backend we're merging will always be part of the completion candidates.
+For example, merging company-yasnippet to company-capf will yield (company-capf :with company-yasnippet)."
+
+    ;; create a list of backend-to-merge with a count equal to company-backends
+    ;; this is so mapcar* can iterate over both lists equally
+    ;; ex. if we have (company-capf company-xcode), then the list is (company-yasnippet company-yasnippet)
+    (setq blist (make-list (list-length company-backends) backend-to-merge))
+    ;; b will be backend-to-merge
+    ;; backend will be a backend from company-backends
+    (setq company-backends (mapcar* (lambda (backend b)
+                                      (if (and (listp backend) (member b backend))
+                                          backend
+                                        (append (if (consp backend)
+                                                    backend
+                                                  (list backend))
+                                                `(:with ,b)))) company-backends blist)))
+
   (defvar company-mode/enable-yas t
     "Enable yasnippet for all backends.")
-  (defun company-mode/backend-with-yas (backend)
-    (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
-        backend
-      (append (if (consp backend)
-                  backend
-                (list backend))
-              '(:with company-yasnippet))))
+  (defvar company-mode/enable-dabbrev t
+    "Enable dabbrev for all backends.")
+  (defvar company-mode/enable-dabbrev-code nil
+    "Enable dabbrev-code for all backends.")
+  (defun company/merge-backends ()
+    (when company-mode/enable-yas
+      (merge-backend-with-company-backends 'company-yasnippet))
+    (when company-mode/enable-dabbrev
+      (merge-backend-with-company-backends 'company-dabbrev))
+    (when company-mode/enable-dabbrev-code
+      (merge-backend-with-company-backends 'company-dabbrev-code)))
+  (company/merge-backends)
 
-  (defun update-company-with-yas ()
-    (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends)))
-  (update-company-with-yas)
+  ;; if the completion is JoJo, typing jojo will get to it
+  (setq company-dabbrev-downcase nil)
+  (setq company-dabbrev-ignore-case t) ; default is keep-prefix
 
   ;; use tab to cycle selection
   ;; https://github.com/company-mode/company-mode/issues/216
@@ -400,7 +426,7 @@
     (unless (global-company-mode)
       (global-company-mode))
     (add-to-list 'company-backends 'company-jedi)
-    (update-company-with-yas))
+    (company/merge-backends))
   (add-hook 'python-mode-hook #'my/python-mode-hook))
 
 ;;;  c# - omnisharp
@@ -413,7 +439,7 @@
       (global-company-mode))
     (omnisharp-mode)
     (add-to-list 'company-backends 'company-omnisharp)
-    (update-company-with-yas))
+    (company/merge-backends))
   (add-hook 'csharp-mode-hook #'my/csharp-mode-hook)
   :config
   ;; https://stackoverflow.com/questions/29382137/omnisharp-on-emacs-speed
