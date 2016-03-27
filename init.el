@@ -267,10 +267,14 @@
 (setq split-height-threshold nil)
 (setq split-width-threshold 150)
 
-(use-package smooth-scrolling
-  :config
-  (set-variable 'smooth-scroll-margin 5)
-  (setq scroll-preserve-screen-position 1))
+;; https://stackoverflow.com/questions/3631220/fix-to-get-smooth-scrolling-in-emacs
+(setq redisplay-dont-pause t
+      scroll-margin 5
+      scroll-step 1
+      scroll-conservatively 10000
+      scroll-preserve-screen-position 1
+      scroll-up-aggressively 0.01
+      scroll-down-aggressively 0.01)
 
 (add-hook 'text-mode-hook 'turn-on-visual-line-mode) ; wraps line when it reaches end
 
