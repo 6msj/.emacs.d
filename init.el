@@ -912,6 +912,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   :config
   (groovy-mode))
 
+;; Vimscript
+(use-package vimrc-mode
+  :mode (("\\.vimrc\\'" . vimrc-mode)))
+
 ;;;; End Languages
 
 ;;;; Begin Functions
