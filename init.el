@@ -398,6 +398,9 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (setq company-auto-complete nil)
   (define-key company-active-map [backtab] 'company-select-previous)
   (define-key company-active-map (kbd "<backtab>") 'company-select-previous)
+  (define-key company-active-map [S-tab] 'company-select-previous)
+  (define-key company-active-map [S-iso-lefttab] 'company-select-previous)
+  (define-key company-active-map [(shift tab)] 'company-select-previous)
   (define-key company-active-map [tab] 'company-complete-common-or-cycle)
   (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
 
@@ -483,6 +486,12 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 
 ;;; folding
 (add-hook 'prog-mode-hook 'hs-minor-mode)
+
+(use-package fold-dwim-org
+  ;; package only used for shift-tab folding
+  :init
+  (setq fold-dwim-org-strict nil)
+  (add-hook 'prog-mode-hook 'fold-dwim-org/minor-mode))
 
 (global-auto-revert-mode t) ; automatically reload buffers on change
 
@@ -725,6 +734,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (define-key evil-normal-state-map "Y" 'copy-to-end-of-line)
   (define-key evil-normal-state-map (kbd "TAB") 'hs-toggle-hiding)
   (define-key evil-visual-state-map (kbd "TAB") 'hs-toggle-hiding)
+  (define-key evil-motion-state-map (kbd "TAB") 'hs-toggle-hiding)
 
   ;;; occur mode
   (evil-set-initial-state 'occur-mode 'motion)
