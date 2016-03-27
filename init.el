@@ -396,8 +396,6 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   ;; https://github.com/company-mode/company-mode/issues/75
   ;; https://github.com/company-mode/company-mode/issues/246#issuecomment-68538735
   (setq company-auto-complete nil)
-
-  ;; in progress
   (define-key company-active-map [backtab] 'company-select-previous)
   (define-key company-active-map (kbd "<backtab>") 'company-select-previous)
   (define-key company-active-map [tab] 'company-complete-common-or-cycle)
@@ -407,7 +405,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (setq company-selection-wrap-around t)
 
   (global-company-mode)
-  (setq company-idle-delay .2)
+  (setq company-idle-delay .1)
   (setq company-minimum-prefix-length 1))
 
 ;; documentation popup for company
@@ -731,6 +729,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (evil-set-initial-state 'occur-mode 'motion)
   (evil-define-key 'motion occur-mode-map (kbd "RET") 'occur-mode-goto-occurrence)
   (evil-define-key 'motion occur-mode-map (kbd "q")   'quit-window)
+
   (evil-define-key 'motion special-mode-map (kbd "q") 'quit-window)
   (evil-define-key 'normal special-mode-map (kbd "q") 'quit-window)
   (evil-define-key 'visual special-mode-map (kbd "q") 'quit-window)
@@ -820,9 +819,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   :init
   (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
   (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-  (add-hook 'haskell-mode-hook 'auto-revert-mode)
-  (add-hook 'haskell-mode-hook 'fold-dwim-org/minor-mode)
-  (add-hook 'haskell-mode-hook 'set-newline-and-indent)
   (add-to-list 'completion-ignored-extensions ".hi"))
 
 ;;; C#
@@ -1044,6 +1040,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (when filename
       (find-file (cdr (assoc filename
                              file-assoc-list))))))
+
 ;;;; End Functions
 
 ;;;; Begin Org Mode
