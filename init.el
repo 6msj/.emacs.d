@@ -590,7 +590,8 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
       `(("." . ,(expand-file-name
                  (concat user-emacs-directory "backups")))))
 
-(setq vc-make-backup-files t) ; make backups of files, even when they're in version control
+;; don't make backups of files in version control
+(setq vc-make-backup-files nil)
 
 ;;; ido
 (setq ido-enable-flex-matching t)
