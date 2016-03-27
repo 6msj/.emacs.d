@@ -706,15 +706,6 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
       "m"  'multi-term
       "x"  'smex
 
-      ;; evil-nerd-commenter
-      "cc" 'evilnc-comment-or-uncomment-lines
-      "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
-      "ci" 'evilnc-copy-and-comment-lines
-      "cp" 'evilnc-comment-or-uncomment-paragraphs
-      "cr" 'comment-or-uncomment-region
-      "cv" 'evilnc-toggle-invert-comment-line-by-line
-      "co" 'evilnc-comment-operator
-
       ;; yasnippet
       "yn" 'yas-new-snippet
       "yv" 'yas-visit-snippet-file
@@ -806,14 +797,18 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (setq neo-mode-line-type 'neotree)
   (setq neo-show-hidden-files t))
 
-(use-package evil-nerd-commenter
-  :commands (evilnc-comment-or-uncomment-lines
-             evilnc-quick-comment-or-uncomment-to-the-line
-             evilnc-copy-and-comment-lines
-             evilnc-comment-or-uncomment-paragraphs
-             comment-or-uncomment-region
-             evilnc-toggle-invert-comment-line-by-line
-             evilnc-comment-operator))
+(use-package evil-commentary
+  :diminish evil-commentary-mode
+  :commands (evil-commentary
+             evil-commentary-yank
+             evil-commentary-line)
+  :bind (:map evil-normal-state-map
+              ("gc" . evil-commentary)
+              ("gy" . evil-commentary-yank)
+              ("s-/" . evil-commentary-line))
+  :init
+  :config
+  (evil-commentary-mode))
 
 ;;;; End Evil
 
