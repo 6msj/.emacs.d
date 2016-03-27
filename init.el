@@ -398,8 +398,8 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (setq company-auto-complete nil)
 
   ;; in progress
-  ;; (define-key company-active-map [backtab] 'company-select-previous)
-  ;; (define-key company-active-map (kbd "<backtab>") 'company-select-previous)
+  (define-key company-active-map [backtab] 'company-select-previous)
+  (define-key company-active-map (kbd "<backtab>") 'company-select-previous)
   (define-key company-active-map [tab] 'company-complete-common-or-cycle)
   (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
 
@@ -1076,11 +1076,5 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (setq org-hide-leading-stars t)
   (setq org-goto-interface 'outline-path-completion
         org-goto-max-level 10))
-
-;;; folding
-(use-package fold-dwim-org
-  ;; evil seems to erase the tab binding
-  :init
-  (add-hook 'prog-mode-hook 'fold-dwim-org/minor-mode))
 
 ;;;; End Org Mode
