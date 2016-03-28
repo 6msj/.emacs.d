@@ -573,7 +573,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   :diminish ivy-mode
   :config
   (setq ivy-count-format "")
-  (setq ivy-height 7))
+  (setq ivy-height 10))
 
 (use-package smex
   :bind (("M-x" . smex))
