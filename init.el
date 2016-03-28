@@ -715,7 +715,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
       "n"  'neotree-toggle
       "v"  (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
       "e"  'explorer-finder
-      "m"  'multi-term
+      "m"  'open-shell
       "x"  'smex
 
       ;; yasnippet
@@ -1037,6 +1037,13 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       (explorer))
   (if (eq system-type 'darwin)
       (reveal-in-osx-finder)))
+
+(defun open-shell ()
+  "Opens up a specific terminal depending on operating system."
+  (interactive)
+  (if (eq system-type 'windows-nt)
+      (eshell)
+    (multi-term)))
 
 ;; close compilation window on successful compile
 (setq compilation-finish-functions 'compile-autoclose)
