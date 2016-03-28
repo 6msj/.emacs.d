@@ -833,6 +833,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;;;; Begin Languages
 
+;;; Shell
+(add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
+
 ;;; Haskell
 (use-package haskell-mode
   :mode "\\.hs\\'"
