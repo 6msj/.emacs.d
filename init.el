@@ -236,7 +236,7 @@
 (use-package magit
   :commands (magit-autoload-commands)
   :config
-  (setq magit-repository-directories '("~/Developer" "~/.emacs.d" "~/.vim"))
+  (setq magit-repository-directories '("~/Developer" "~/.emacs.d" "~/.vim" "~/.zsh"))
   (setq magit-refresh-status-buffer nil)
   (setq magit-completing-read-function 'ivy-completing-read)
 
