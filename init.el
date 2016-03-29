@@ -579,7 +579,9 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   :config
   (global-set-key (kbd "M-X") 'smex-major-mode-commands))
 
-(use-package ag) ; silver searcher
+(use-package ag
+  :config
+  (setq ag-reuse-buffers t)) ; silver searcher
 
 ;;; projectile
 (use-package projectile
@@ -701,6 +703,8 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
       "ss" 'swiper
       "so" 'occur
       "sb" 'multi-occur
+      "sp" 'ag-project
+      "sa" 'ag
 
       ;; random
       "wh" 'split-window-below
