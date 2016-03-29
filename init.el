@@ -640,7 +640,15 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 (use-package uniquify
   :ensure nil
   :config
-  (setq recentf-max-saved-items 200
+  (setq uniquify-buffer-name-style 'reverse)
+  (setq uniquify-separator "|")
+  (setq uniquify-after-kill-buffer-p t)
+  (setq uniquify-ignore-buffers-re "^\\*"))
+
+;;; most recently used files
+(use-package recentf
+  :config
+  (setq recentf-max-saved-items 300
         ;; https://www.reddit.com/r/emacs/comments/3g468d/stop_recent_files_showing_elpa_packages/
         ;; Cleanup recent files only when Emacs is idle, but not when the mode
         ;; is enabled, because that unnecessarily slows down Emacs. My Emacs
@@ -651,17 +659,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
                               ".*\\.gz\\'"
                               "TAGS"
                               ".*-autoloads\\.el\\'"))
-  (setq uniquify-buffer-name-style 'reverse)
-  (setq uniquify-separator "|")
-  (setq uniquify-after-kill-buffer-p t)
-  (setq uniquify-ignore-buffers-re "^\\*"))
-
-;;; most recently used files
-(use-package recentf
-  :config
-  (setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
-  (recentf-mode 1)
-  (setq recentf-max-menu-items 325))
+  (recentf-mode 1))
 
 ;;;; End File Management
 
