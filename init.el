@@ -640,6 +640,17 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 (use-package uniquify
   :ensure nil
   :config
+  (setq recentf-max-saved-items 200
+        ;; https://www.reddit.com/r/emacs/comments/3g468d/stop_recent_files_showing_elpa_packages/
+        ;; Cleanup recent files only when Emacs is idle, but not when the mode
+        ;; is enabled, because that unnecessarily slows down Emacs. My Emacs
+        ;; idles often enough to have the recent files list clean up regularly
+        recentf-auto-cleanup 300
+        recentf-exclude (list "/\\.git/.*\\'" ; git contents
+                              "/elpa/.*\\'"   ; package files
+                              ".*\\.gz\\'"
+                              "TAGS"
+                              ".*-autoloads\\.el\\'"))
   (setq uniquify-buffer-name-style 'reverse)
   (setq uniquify-separator "|")
   (setq uniquify-after-kill-buffer-p t)
