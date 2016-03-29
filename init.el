@@ -532,8 +532,10 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 ;; navigating splits similar to tmux config
 (global-unset-key (kbd "C-q"))
 (global-set-key (kbd "C-q -") 'split-window-below)
+(global-set-key (kbd "C-q C--") 'split-window-below)
 (global-set-key (kbd "C-q |") 'split-window-right)
 (global-set-key (kbd "C-q \\") 'split-window-right)
+(global-set-key (kbd "C-q C-\\") 'split-window-right)
 (global-set-key (kbd "C-q h") 'windmove-left)
 (global-set-key (kbd "C-q l") 'windmove-right)
 (global-set-key (kbd "C-q k") 'windmove-up)
