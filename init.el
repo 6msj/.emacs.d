@@ -343,6 +343,15 @@
   :diminish company-mode
   :commands (global-company-mode) ; important so other packages can start company on demand
   :init
+
+  ;; changing prefix lengths depending on mode
+  (defun set-company-min-prefix-length (len)
+    (make-local-variable 'company-minimum-prefix-length)
+    (setq company-minimum-prefix-length len))
+  (add-hook 'eshell-mode-hook (apply-partially #'set-company-min-prefix-length 5))
+  (add-hook 'term-mode-hook (apply-partially #'set-company-min-prefix-length 5))
+  (add-hook 'prog-mode-hook (apply-partially #'set-company-min-prefix-length 1))
+
   ;; ios
   (add-hook 'objc-mode-hook
             (lambda ()
