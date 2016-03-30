@@ -279,11 +279,6 @@
       scroll-conservatively 10000
       scroll-preserve-screen-position 1)
 
-(use-package smooth-scrolling
-  :config
-  (set-variable 'smooth-scroll-margin 5)
-  (setq scroll-preserve-screen-position 1))
-
 (add-hook 'text-mode-hook 'turn-on-visual-line-mode) ; wraps line when it reaches end
 
 (use-package git-gutter+
