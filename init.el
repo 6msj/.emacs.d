@@ -1141,4 +1141,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (setq org-goto-interface 'outline-path-completion
         org-goto-max-level 10))
 
+(use-package org-bullets
+  :after org
+  :init
+  (add-hook 'org-mode-hook (lambda ()
+                             (org-bullets-mode 1)))
+  :config
+  (org-bullets-mode 1))
 ;;;; End Org Mode
