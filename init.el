@@ -268,7 +268,11 @@
 (setq split-width-threshold 150)
 
 ;; https://stackoverflow.com/questions/3631220/fix-to-get-smooth-scrolling-in-emacs
-(setq redisplay-dont-pause t)
+(setq redisplay-dont-pause t
+      scroll-margin 5
+      scroll-step 1
+      scroll-conservatively 10000
+      scroll-preserve-screen-position 1)
 
 (use-package smooth-scrolling
   :config
@@ -583,7 +587,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   :diminish ivy-mode
   :config
   (setq ivy-count-format "")
-  (setq ivy-height 10))
+  (setq ivy-height 15))
 
 (use-package smex
   :bind (("M-x" . smex))
