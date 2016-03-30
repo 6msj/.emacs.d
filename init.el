@@ -176,7 +176,12 @@
       (when font
         (set-face-attribute 'default nil :font font))
       font))
-  (find-and-set-font "Source Code Pro-12" "Consolas-12" "Envy Code R-12" "DejaVu Sans Mono-11" "Menlo-12")
+  (find-and-set-font
+   "Menlo-11"
+   "Consolas-12"
+   "DejaVu Sans Mono-11"
+   "Source Code Pro-12"
+   "Envy Code R-12")
 
   ;; use the osx emoji font for emoticons
   (when (fboundp 'set-fontset-font)
