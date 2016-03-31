@@ -111,7 +111,10 @@
   (setq calendar-longitude -96.85)
   :config
   (defun reset-line--change-theme (&rest args)
-    (powerline-reset))
+    (powerline-reset)
+    (when (bound-and-true-p org-mode)
+        (org-reload)
+        (message "org-mode reloaded")))
   (advice-add 'change-theme :after #'reset-line--change-theme)
   (change-theme 'spacemacs-light 'spacemacs-dark))
 
