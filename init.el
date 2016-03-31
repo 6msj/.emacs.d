@@ -753,6 +753,9 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
       "yv" 'yas-visit-snippet-file
 
       ;; magit
+      "gr" (lambda () (interactive)
+             (let ((current-prefix-arg '(4))) ; C-u
+               (call-interactively 'magit-status)))
       "gs" 'magit-status
       "gb" 'magit-blame
       "gl" 'magit-log))
