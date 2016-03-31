@@ -565,7 +565,6 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 (global-set-key (kbd "C-q S-x") 'kill-this-buffer)
 (global-set-key (kbd "C-q C-S-x") 'kill-this-buffer)
 
-
 (use-package perspective
   :defer 2
   :init
