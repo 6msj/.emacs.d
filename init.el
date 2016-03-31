@@ -748,8 +748,12 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
       "n"  'neotree-toggle
       "v"  (lambda () (interactive)(find-file "~/.emacs.d/init.el"))
       "e"  'explorer-finder
-      "m"  'open-shell
       "x"  'smex
+
+      ;; shell
+      "mm" 'open-shell
+      "mo" 'find-file-other-window
+      "mf" 'find-file-at-point
 
       ;; yasnippet
       "yn" 'yas-new-snippet
