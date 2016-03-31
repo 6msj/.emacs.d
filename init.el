@@ -743,7 +743,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
       "\\" 'split-window-right
       "="  'indent-region-or-buffer
       "n"  'neotree-toggle
-      "v"  (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
+      "v"  (lambda () (interactive)(find-file "~/.emacs.d/init.el"))
       "e"  'explorer-finder
       "m"  'open-shell
       "x"  'smex
