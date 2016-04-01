@@ -323,6 +323,12 @@
 
 ;;;; Begin Completion
 
+(use-package which-key
+  :defer 1
+  :diminish which-key-mode
+  :config
+  (which-key-mode 1))
+
 ;;; yasnippet
 (use-package yasnippet
   :diminish yas-minor-mode
