@@ -341,6 +341,7 @@
   :defer 1
   :diminish which-key-mode
   :config
+  (which-key-setup-side-window-right)
   (which-key-mode 1))
 
 ;;; yasnippet
