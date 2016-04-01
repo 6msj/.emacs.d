@@ -111,7 +111,8 @@
   (setq calendar-longitude -96.85)
   :config
   (defun reset-line--change-theme (&rest args)
-    (powerline-reset)
+    (when (fboundp 'powerline-reset)
+      (powerline-reset))
     (when (bound-and-true-p org-mode)
       (org-reload)
       (message "org-mode reloaded")))
