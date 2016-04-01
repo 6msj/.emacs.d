@@ -774,7 +774,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
       ;; shell
       "mm" 'open-shell
       "mo" 'find-file-other-window
-      "mf" 'find-file-at-point
+      "mf" 'find-file
 
       ;; yasnippet
       "yn" 'yas-new-snippet
