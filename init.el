@@ -94,17 +94,25 @@
   (lambda (item)
     (add-to-list 'custom-theme-load-path item)))
 
-(use-package spaceline-config
-  :ensure spaceline
+;; (use-package spaceline-config
+;;   :ensure spaceline
+;;   :config
+;;   (spaceline-emacs-theme)
+;;   (setq powerline-default-separator 'wave)
+;;   (spaceline-toggle-buffer-size-off)
+;;   (spaceline-toggle-evil-state-off)
+;;   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
+
+(use-package smart-mode-line
   :config
-  (spaceline-emacs-theme)
-  (setq powerline-default-separator 'wave)
-  (spaceline-toggle-buffer-size-off)
-  (spaceline-toggle-evil-state-off)
-  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
+  (setq sml/mode-width 'full)
+  (setq sml/name-width 30)
+  (setq sml/theme 'respectful)
+  (setq sml/no-confirm-load-theme t)
+  (smart-mode-line-enable))
 
 (use-package theme-changer
-  :after spaceline-config
+  :after (spaceline-config smart-mode-line)
   :init
   (setq calendar-location-name "Dallas, TX")
   (setq calendar-latitude 32.85)
