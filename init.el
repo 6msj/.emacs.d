@@ -1016,15 +1016,14 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;;;; Begin Functions
 
-;; function that returns list of magit commands that will load magit
 (defun magit-autoload-commands ()
+  "Returns a list of magit commands that will load magit."
   (list 'magit-status 'magit-blame 'magit-log))
 
-;; auto indent function using return
 (defun set-newline-and-indent ()
+  "Binds RET to autoindent after a new line."
   (local-set-key (kbd "RET") 'newline-and-indent))
 
-;; function to rename current buffer file
 (defun rename-current-buffer-file ()
   "Renames current buffer and file it is visiting."
   (interactive)
@@ -1042,7 +1041,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
           (message "File '%s' successfully renamed to '%s'"
                    name (file-name-nondirectory new-name)))))))
 
-;; indent whole buffer
 (defun indent-buffer ()
   "Indent the currently visited buffer."
   (interactive)
@@ -1062,8 +1060,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
         (indent-buffer)
         (message "Indented buffer.")))))
 
-;; toggle window split
 (defun toggle-window-split ()
+  "Toggles window split."
   (interactive)
   (if (= (count-windows) 2)
       (let* ((this-win-buffer (window-buffer))
@@ -1088,8 +1086,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
           (select-window first-win)
           (if this-win-2nd (other-window 1))))))
 
-;; rotate windows
 (defun rotate-windows-helper(x d)
+  "Rotates windows."
   (if (equal (cdr x) nil) (set-window-buffer (car x) d)
     (set-window-buffer (car x) (window-buffer (cadr x))) (rotate-windows-helper (cdr x) d)))
 
@@ -1098,21 +1096,18 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (rotate-windows-helper (window-list) (window-buffer (car (window-list))))
   (select-window (car (last (window-list)))))
 
-;; use variable width font faces in current buffer
 (defun my-buffer-face-mode-variable ()
   "Set font to a variable width (proportional) fonts in current buffer"
   (interactive)
   (setq buffer-face-mode-face '(:family "Helvetica" :height 130 :width semi-condensed))
   (buffer-face-mode))
 
-;; use monospaced font faces in current buffer
 (defun my-buffer-face-mode-fixed ()
   "Sets a fixed width (monospace) font in current buffer"
   (interactive)
   (setq buffer-face-mode-face '(:family "Consolas" :height 120))
   (buffer-face-mode))
 
-;; os agnostic open in file explorer
 (defun explorer-finder ()
   "Opens up file explorer based on operating system."
   (interactive)
@@ -1128,9 +1123,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       (eshell)
     (multi-term)))
 
-;; close compilation window on successful compile
 (setq compilation-finish-functions 'compile-autoclose)
 (defun compile-autoclose (buffer string)
+  "Closes compilation window on successful compile."
   (cond ((string-match "finished" string)
          (message "Build maybe successful: closing window.")
          (run-with-timer 1 nil
@@ -1139,7 +1134,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
         (t
          (message "Compilation exited abnormally: %s" string))))
 
-;; function to find recent files using ido
 (defun recentf-ido-find-file ()
   "Find a recent file using Ido."
   (interactive)
@@ -1158,6 +1152,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (when filename
       (find-file (cdr (assoc filename
                              file-assoc-list))))))
+
 
 ;;;; End Functions
 
