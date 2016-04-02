@@ -85,6 +85,11 @@
 (use-package spacemacs-theme
   :defer)
 
+(use-package spacemacs-theme
+  :defer
+  :init
+  (setq spacemacs-theme-comment-bg nil))
+
 (setq frame-title-format '("%f")) ; set the title to be the current file
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
