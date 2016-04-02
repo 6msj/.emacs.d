@@ -3,6 +3,10 @@
 ;; increase memory
 (setq gc-cons-threshold 100000000) ; 100 mb
 
+;; use display pixels to determine device
+(when (eq (display-pixel-width) 1440)
+  (defvar macbook-pro-retina t "flag indicating macbook-pro retina"))
+
 ;;; loadpath
 (let ((default-directory "~/.emacs.d/"))
   (normal-top-level-add-subdirs-to-load-path))
@@ -73,6 +77,10 @@
 ;;;; End Init
 
 ;;;; Begin Theme
+
+;; default frame size
+(when macbook-pro-retina
+  (setq initial-frame-alist '((width . 90) (height . 45))))
 
 (use-package spacemacs-theme
   :defer)
@@ -188,7 +196,7 @@
       (when font
         (set-face-attribute 'default nil :font font))
       font))
-  (if (eq (display-pixel-width) 1440)
+  (if macbook-pro-retina
       (find-and-set-font
        "Source Code Pro-12"
        "Monaco-11"
