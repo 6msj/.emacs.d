@@ -87,7 +87,6 @@
 
 (setq frame-title-format '("%f")) ; set the title to be the current file
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/packages/solarized")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 ;; https://stackoverflow.com/questions/9840558/why-cant-emacs-24-find-a-custom-theme-i-added
