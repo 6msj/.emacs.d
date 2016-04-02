@@ -1184,6 +1184,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       (setq org-agenda-files '("C:/Users/james/Dropbox/Notes")))
   (setq org-src-fontify-natively t)
   (setq org-hide-leading-stars t)
+  (setq org-hide-emphasis-markers t)
   (setq org-goto-interface 'outline-path-completion
         org-goto-max-level 10))
 
