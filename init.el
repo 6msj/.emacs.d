@@ -964,6 +964,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
         (cons '(erlang-mode
                 "^\\([a-z][a-zA-Z0-9_]*\\|'[^\n']*[^\\]'\\)\\s *(" nil "%"
                 erlang-end-of-clause) hs-special-modes-alist))
+  (setq tab-width 4)
   (setq erlang-indent-level 4)
   (setq erlang-font-lock-level-4))
 
