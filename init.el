@@ -79,7 +79,7 @@
 ;;;; Begin Theme
 
 ;; default frame size
-(when macbook-pro-retina
+(when (boundp 'macbook-pro-retina)
   (setq initial-frame-alist '((width . 90) (height . 45))))
 
 (use-package color-theme-solarized
@@ -226,7 +226,7 @@
       (when font
         (set-face-attribute 'default nil :font font))
       font))
-  (if macbook-pro-retina
+  (if (boundp 'macbook-pro-retina)
       (find-and-set-font
        "Source Code Pro-12"
        "Monaco-11"
