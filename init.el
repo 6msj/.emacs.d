@@ -29,8 +29,11 @@
 ;;; repositories
 (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
                          ("gnu" . "http://elpa.gnu.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")))
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+
+;; windows seems to hang on marmalade
+(unless (eq system-type 'windows-nt)
+  (add-to-list package-archives ("marmalade" . "http://marmalade-repo.org/packages/")))
 
 (package-initialize) ; activate all packages (in particular autoloads)
 
