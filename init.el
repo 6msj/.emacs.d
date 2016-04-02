@@ -452,7 +452,9 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
                                         (append (if (consp backend)
                                                     backend
                                                   (list backend))
-                                                `(:with ,b)))) company-backends blist)))
+                                                (if (member :with backend)
+                                                    `(,b)
+                                                  `(:with ,b))))) company-backends blist)))
 
   (defvar company-mode/enable-yas t
     "Enable yasnippet for all backends.")
