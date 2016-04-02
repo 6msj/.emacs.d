@@ -472,7 +472,6 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 
 ;;; python - jedi
 (use-package company-jedi
-  :ensure company
   :commands (my/python-mode-hook)
   :init
   (defun my/python-mode-hook ()
@@ -484,7 +483,6 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 
 ;;;  c# - omnisharp
 (use-package omnisharp
-  :ensure company
   :commands (omnisharp-mode)
   :init
   (defun my/csharp-mode-hook ()
@@ -803,7 +801,6 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   ;; C-j jumps foward in jumplist, C-o goes the other way
   (setq evil-want-C-i-jump nil)
   (define-key evil-motion-state-map (kbd "C-j") 'evil-jump-forward)
-
 
   (setq evil-normal-state-tag   (propertize " NORMAL ")
         evil-emacs-state-tag    (propertize " EMACS ")
