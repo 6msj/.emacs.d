@@ -195,6 +195,7 @@
 
 ;;; Windows Specifc
 (when (eq system-type 'windows-nt)
+  (set-face-attribute 'default nil :font "Consolas-10")
   (defun explorer ()
     (interactive)
     (cond
