@@ -33,7 +33,7 @@
 
 ;; windows seems to hang on marmalade
 (unless (eq system-type 'windows-nt)
-  (add-to-list package-archives ("marmalade" . "http://marmalade-repo.org/packages/")))
+  (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/")))
 
 (package-initialize) ; activate all packages (in particular autoloads)
 
