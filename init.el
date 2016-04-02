@@ -82,7 +82,7 @@
 (when macbook-pro-retina
   (setq initial-frame-alist '((width . 90) (height . 45))))
 
-(use-package spacemacs-theme
+(use-package color-theme-solarized
   :defer)
 
 (use-package spacemacs-theme
@@ -130,14 +130,40 @@
   (setq calendar-latitude 32.85)
   (setq calendar-longitude -96.85)
   :config
+  (defvar using-solarized-theme t "flag to switch between spacemacs and solarized")
   (defun reset-line--change-theme (&rest args)
+    (when using-solarized-theme
+      (update-solarized-background))
     (when (fboundp 'powerline-reset)
       (powerline-reset))
     (when (bound-and-true-p org-mode)
+      (when using-solarized-theme
+        (customize-org-mode-solarized))
       (org-reload)
       (message "org-mode reloaded")))
   (advice-add 'change-theme :after #'reset-line--change-theme)
-  (change-theme 'spacemacs-light 'spacemacs-dark))
+
+  (defun is-daytime()
+    "Figuring out day or night."
+    (let*
+        ((now (current-time))
+         (today-times    (sunrise-sunset-times (today)))
+         (tomorrow-times (sunrise-sunset-times (tomorrow)))
+         (sunrise-today (first today-times))
+         (sunset-today (second today-times))
+         (sunrise-tomorrow (first tomorrow-times)))
+      (daytime-p sunrise-today sunset-today)))
+
+  (defun update-solarized-background ()
+    (if (is-daytime)
+        (set-frame-parameter nil 'background-mode 'light)
+      (set-frame-parameter nil 'background-mode 'dark)))
+
+  (if (not using-solarized-theme)
+      (change-theme 'spacemacs-light 'spacemacs-dark)
+    (progn
+      (update-solarized-background)
+      (change-theme 'solarized 'solarized))))
 
 ;; disable ui fluff
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -1186,7 +1212,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (setq org-hide-leading-stars t)
   (setq org-hide-emphasis-markers t)
   (setq org-goto-interface 'outline-path-completion
-        org-goto-max-level 10))
+        org-goto-max-level 10)
+  (when using-solarized-theme
+    (customize-org-mode-solarized)))
 
 (use-package org-bullets
   :after org
@@ -1195,4 +1223,42 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
                              (org-bullets-mode 1)))
   :config
   (org-bullets-mode 1))
+
+(defun customize-org-mode-solarized ()
+  ;; http://www.howardism.org/Technical/Emacs/orgmode-wordprocessor.html
+  ;; https://github.com/nashamri/spacemacs-theme/blob/master/spacemacs-common.el
+  (font-lock-add-keywords 'org-mode
+                          '(("^ +\\([-*]\\) "
+                             (0 (prog1 ()
+                                  (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+  (let*
+      ((daytime (is-daytime))
+       (gui window-system)
+
+       (war "#dc752f")
+       (suc (if (not daytime) "#86ddc2f" (if gui "#42ae2c" "#00af00")))
+       (green-bg (if daytime (if gui "#edf2e9" "#ffffff") (if gui "#293235" "262626")))
+       (yellow-bg (if daytime (if gui "#f6f1e1" "#ffffff") (if gui "#32322c" "#262626")))
+
+       ;; (face-font 'default) -> "-*-Source Code Pro-normal-normal- ..."
+       ;; (split-string) -> ("" "*" "Source Code Pro" "normal" "normal" ...)
+       (font-used (nth 2 (split-string (face-font 'default) "-")))
+       (font `(:font ,font-used))
+       (base-font-color     (face-foreground 'default nil 'default))
+       (hl           `(:inherit default :weight bold :foreground ,base-font-color)))
+
+    (custom-theme-set-faces
+     'user
+     `(org-todo ((t (,@hl ,@font :inherit bold :foreground ,war :background ,yellow-bg))))
+     `(org-done ((t (,@hl ,@font ::inherit bold :foreground ,suc :background ,green-bg))))
+     `(org-level-8 ((t (,@hl ,@font))))
+     `(org-level-7 ((t (,@hl ,@font))))
+     `(org-level-6 ((t (,@hl ,@font))))
+     `(org-level-5 ((t (,@hl ,@font))))
+     `(org-level-4 ((t (,@hl ,@font :height 1.0))))
+     `(org-level-3 ((t (,@hl ,@font :height 1.1))))
+     `(org-level-2 ((t (,@hl ,@font :height 1.2 :inherit bold))))
+     `(org-level-1 ((t (,@hl ,@font :height 1.3 :inherit bold))))
+     `(org-document-title ((t (,@hl ,@font :height 1.5 :underline nil)))))))
 ;;;; End Org Mode
