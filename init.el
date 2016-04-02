@@ -458,9 +458,9 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 
   (defvar company-mode/enable-yas t
     "Enable yasnippet for all backends.")
-  (defvar company-mode/enable-dabbrev t
+  (defvar company-mode/enable-dabbrev nil
     "Enable dabbrev for all backends.")
-  (defvar company-mode/enable-dabbrev-code nil
+  (defvar company-mode/enable-dabbrev-code t
     "Enable dabbrev-code for all backends.")
   (defun company/merge-backends ()
     (when company-mode/enable-yas
