@@ -1009,6 +1009,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (use-package web-mode
   :mode (("\\.phtml\\'" . web-mode)
          ("\\.tpl\\.php\\'" . web-mode)
+         ("\\.blade\\.php\\'" . web-mode)
+         ("/\\(views\\|html\\|theme\\|templates\\)/.*\\.php\\'" . web-mode)
          ("\\.[agj]sp\\'" . web-mode)
          ("\\.as[cp]x\\'" . web-mode)
          ("\\.erb\\'" . web-mode)
