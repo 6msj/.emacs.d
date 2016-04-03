@@ -1021,6 +1021,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (global-unset-key (kbd "C-d"))
   (global-set-key (kbd "C-d") 'evil-scroll-down))
 
+;;; Php
+(use-package php-mode
+  :mode ("\\.php\\'" . php-mode))
+
 ;; colors for various 'color codes' aka hex strings
 (use-package rainbow-mode
   :commands (rainbow-mode)
