@@ -1244,7 +1244,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
        (gui window-system)
 
        (war "#dc752f")
-       (suc (if (not daytime) "#86ddc2f" (if gui "#42ae2c" "#00af00")))
+       (suc (if gui "#42ae2c" "#00af00"))
        (green-bg (if daytime (if gui "#edf2e9" "#ffffff") (if gui "#293235" "262626")))
        (yellow-bg (if daytime (if gui "#f6f1e1" "#ffffff") (if gui "#32322c" "#262626")))
 
