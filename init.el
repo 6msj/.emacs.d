@@ -133,11 +133,12 @@
 (use-package smart-mode-line
   :config
   (when (on-windows)
-        (add-to-list 'sml/replacer-regexp-list '("C:/Users/james/Dropbox/Notes/" ":NOTES:"))
-        (add-to-list 'sml/replacer-regexp-list '("C:/Users/james/Dropbox/" ":DB:")))
+    (add-to-list 'sml/replacer-regexp-list '("C:/Users/james/Developer/" ":DEV:"))
+    (add-to-list 'sml/replacer-regexp-list '("C:/Users/james/Dropbox/Notes/" ":NOTES:"))
+    (add-to-list 'sml/replacer-regexp-list '("C:/Users/james/Dropbox/" ":DB:")))
   (unless (on-windows)
-      (add-to-list 'sml/replacer-regexp-list '("^~/Developer/" ":DEV:"))
-      (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/Notes/" ":NOTES:")))
+    (add-to-list 'sml/replacer-regexp-list '("^~/Developer/" ":DEV:"))
+    (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/Notes/" ":NOTES:")))
   (setq sml/mode-width 'full)
   (setq sml/name-width 30)
   (setq sml/theme 'respectful)
