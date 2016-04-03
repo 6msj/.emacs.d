@@ -204,20 +204,24 @@
     (cond
      ;; in buffers with file name
      ((buffer-file-name)
-      (shell-command (concat "start explorer /e,/select,\""
-                             (replace-regexp-in-string "/" "\\\\" (buffer-file-name)) "\"")))
+      (shell-command
+       (concat "start explorer /e,/select,\""
+               (replace-regexp-in-string "/" "\\\\" (buffer-file-name)) "\"")))
      ;; in dired mode
      ((eq major-mode 'dired-mode)
-      (shell-command (concat "start explorer /e,\""
-                             (replace-regexp-in-string "/" "\\\\" (dired-current-directory)) "\"")))
+      (shell-command
+       (concat "start explorer /e,\""
+               (replace-regexp-in-string "/" "\\\\" (dired-current-directory)) "\"")))
      ;; in eshell mode
      ((eq major-mode 'eshell-mode)
-      (shell-command (concat "start explorer /e,\""
-                             (replace-regexp-in-string "/" "\\\\" (eshell/pwd)) "\"")))
+      (shell-command
+       (concat "start explorer /e,\""
+               (replace-regexp-in-string "/" "\\\\" (eshell/pwd)) "\"")))
      ;; use default-directory as last resource
      (t
-      (shell-command (concat "start explorer /e,\""
-                             (replace-regexp-in-string "/" "\\\\" default-directory) "\"")))))
+      (shell-command
+       (concat "start explorer /e,\""
+               (replace-regexp-in-string "/" "\\\\" default-directory) "\"")))))
   (global-set-key (kbd "s-j") 'explorer))
 
 ;;; Mac Specific
