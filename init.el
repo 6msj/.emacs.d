@@ -263,9 +263,6 @@
     (setq mac-option-key-is-meta t)
     (setq mac-option-modifier 'meta))
 
-  ;; commenting keybind similar to most osx ides
-  (global-set-key (kbd "s-/") 'evilnc-comment-or-uncomment-lines)
-
   ;; some key bindings to match osx
   (global-set-key (kbd "s-f") 'evil-search-forward)
   (global-set-key (kbd "s-F") 'evil-search-backward)
