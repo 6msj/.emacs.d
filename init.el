@@ -640,6 +640,14 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   :init
   (setq persp-mode-prefix-key (kbd "C-q"))
   :config
+  ;; default blue doesn't look right with solarized + smartline
+  ;; use default font color instead
+  (when using-solarized-theme
+    (custom-theme-set-faces
+     'user
+     (let ((base-font-color (face-foreground 'default nil 'default)))
+       `(persp-selected-face ((t (:foreground ,base-font-color)))))))
+
   (defun delete-perspective-or-window()
     "Delete perspective if last window left but delete window if more than one."
     (interactive)
