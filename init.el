@@ -1,5 +1,17 @@
 ;;;; Begin Init
 
+(defun on-windows ()
+  "Are we on windows?"
+  (eq system-type 'windows-nt))
+
+(defun on-osx ()
+  "Are we on osx?"
+  (eq system-type 'darwin))
+
+(defun on-linux ()
+  "Are we on linux?"
+  (eq system-type 'linux))
+
 ;; increase memory
 (setq gc-cons-threshold 100000000) ; 100 mb
 
@@ -11,7 +23,7 @@
 (let ((default-directory "~/.emacs.d/"))
   (normal-top-level-add-subdirs-to-load-path))
 
-(if (eq system-type 'windows-nt)
+(if (on-windows)
     (add-to-list 'exec-path "C:/Program Files (x86)/Git/bin/"))
 
 (add-to-list 'load-path "~/.emacs.d/packages/")
@@ -32,7 +44,7 @@
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 ;; windows seems to hang on marmalade
-(unless (eq system-type 'windows-nt)
+(unless (on-windows)
   (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/")))
 
 (package-initialize) ; activate all packages (in particular autoloads)
@@ -67,7 +79,7 @@
     (exec-path-from-shell-initialize)))
 
 (use-package multi-term
-  :if (not (eq system-type 'windows-nt))
+  :if (not (on-windows))
   :commands (multi-term)
   :init
   :config
@@ -120,13 +132,12 @@
 
 (use-package smart-mode-line
   :config
-  (if (eq system-type 'windows-nt)
-      (progn
+  (when (on-windows)
         (add-to-list 'sml/replacer-regexp-list '("C:/Users/james/Dropbox/Notes/" ":NOTES:"))
         (add-to-list 'sml/replacer-regexp-list '("C:/Users/james/Dropbox/" ":DB:")))
-    (progn
+  (unless (on-windows)
       (add-to-list 'sml/replacer-regexp-list '("^~/Developer/" ":DEV:"))
-      (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/Notes/" ":NOTES:"))))
+      (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/Notes/" ":NOTES:")))
   (setq sml/mode-width 'full)
   (setq sml/name-width 30)
   (setq sml/theme 'respectful)
@@ -204,7 +215,7 @@
 ;;;; Begin Platform
 
 ;;; Windows Specifc
-(when (eq system-type 'windows-nt)
+(when (on-windows)
   (set-face-attribute 'default nil :font "Consolas-10")
   (defun explorer ()
     (interactive)
@@ -233,7 +244,7 @@
 
 ;;; Mac Specific
 ;; https://github.com/adobe-fonts/source-code-pro
-(when (eq system-type 'darwin)
+(when (on-osx)
   (defun find-and-set-font (&rest candidates)
     "Set the first font found in CANDIDATES."
     (let ((font (cl-find-if (lambda (f) (find-font (font-spec :name f)))
@@ -296,7 +307,7 @@
     :config
     (global-set-key (kbd "s-r") 'reveal-in-osx-finder)))
 
-(when (eq system-type 'linux)
+(when (on-linux)
   (set-face-attribute 'default nil :family "Inconsolata For Powerline")
   (set-face-attribute 'default nil :height 130)
   (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding")))
@@ -597,13 +608,13 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 ;;; clipboards
 ;; for linux
 (use-package xclip
-  :if (eq system-type 'linux)
+  :if (on-linux)
   :config
   (xclip-mode 1))
 
 ;; for mac
 (use-package pbcopy
-  :if (and (not window-system) (eq system-type 'darwin))
+  :if (and (not window-system) (on-osx))
   :config
   (turn-on-pbcopy))
 
@@ -977,7 +988,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;;; Python
 
 ;; pdb setup
-(when (eq system-type 'darwin)
+(when (on-osx)
   (setq pdb-path '/usr/lib/python2.7/pdb.py)
   (setq gud-pdb-command-name (symbol-name pdb-path))
 
@@ -990,7 +1001,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; https://github.com/emacsmirror/python-mode - see troubleshooting
 ;; https://bugs.launchpad.net/python-mode/+bug/963253
 ;; http://pswinkels.blogspot.com/2010/04/debugging-python-code-from-within-emacs.html
-(when (eq system-type 'windows-nt)
+(when (on-windows)
   (setq windows-python-pdb-path "c:/python27/python -i c:/python27/Lib/pdb.py")
   (setq pdb-path 'C:/Python27/Lib/pdb.py)
   (setq gud-pdb-command-name (symbol-name pdb-path))
@@ -1159,15 +1170,15 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (defun explorer-finder ()
   "Opens up file explorer based on operating system."
   (interactive)
-  (if (eq system-type 'windows-nt)
+  (if (on-windows)
       (explorer))
-  (if (eq system-type 'darwin)
+  (if (on-osx)
       (reveal-in-osx-finder)))
 
 (defun open-shell ()
   "Opens up a specific terminal depending on operating system."
   (interactive)
-  (if (eq system-type 'windows-nt)
+  (if (on-windows)
       (eshell)
     (multi-term)))
 
@@ -1201,7 +1212,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       (find-file (cdr (assoc filename
                              file-assoc-list))))))
 
-
 ;;;; End Functions
 
 ;;;; Begin Org Mode
@@ -1226,9 +1236,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
          ("\C-ca" . org-agenda)
          ("\C-cb" . org-iswitchb))
   :config
-  (if (eq system-type 'darwin)
+  (if (on-osx)
       (setq org-agenda-files '("~/Dropbox/Notes")))
-  (if (eq system-type 'windows-nt)
+  (if (on-windows)
       (setq org-agenda-files '("C:/Users/james/Dropbox/Notes")))
   (setq org-src-fontify-natively t)
   (setq org-hide-leading-stars t)
