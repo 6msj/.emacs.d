@@ -814,6 +814,20 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
       "ex" 'eval-last-sexp-and-replace
       "eb" 'eval-buffer))
 
+  (defun setup-clojure-leader-keys ()
+    "Sets up commands for cider/clojure."
+    ;; http://emacs.stackexchange.com/questions/20779/m-and-m-in-evil-mode
+    (evil-leader/set-key-for-mode 'clojure-mode
+      "."  'cider-find-dwim
+      ","  'cider-pop-back
+      "cj" 'cider-jack-in
+      "ct" 'cider-test-run-test
+      "er" 'cider-eval-region
+      "ee" 'cider-eval-last-sexp
+      "ex" 'cider-eval-last-sexp-and-replace
+      "eb" 'cider-eval-buffer
+      "cd" 'cider-doc))
+
   ;; nesting evil-leader package declaration
   ;; (global-evil-leader-mode) should be before (evil-mode 1)
   ;; this is so evil-leader works in *messages* buffer
@@ -823,6 +837,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
     (evil-leader/set-leader "<SPC>")
 
     ;; mode specific leader keys
+    (setup-clojure-leader-keys)
     (setup-emacs-lisp-leader-keys)
 
     (evil-leader/set-key
@@ -1085,6 +1100,32 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; Vimscript
 (use-package vimrc-mode
   :mode (("\\.vimrc\\'" . vimrc-mode)))
+
+;; Clojure
+(use-package clojure-mode
+  :mode (("\\.clj\\'" . clojure-mode)
+         ("\\.edn\\'" . clojure-mode)))
+
+(use-package cider
+  :defer
+  :init (add-hook 'cider-mode-hook #'clj-refactor-mode)
+  :diminish subword-mode
+  :config
+  (setq nrepl-log-messages t
+        cider-repl-display-in-current-window t
+        cider-repl-use-clojure-font-lock t
+        cider-prompt-save-file-on-load 'always-save
+        cider-font-lock-dynamically '(macro core function var)
+        nrepl-hide-special-buffers t
+        cider-overlays-use-font-lock t)
+  (cider-repl-toggle-pretty-printing))
+
+(use-package cider-eval-sexp-fu
+  :defer t)
+
+(use-package clj-refactor
+  :defer t
+  :diminish clj-refactor-mode)
 
 ;;;; End Languages
 
