@@ -1108,8 +1108,13 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 (use-package cider
   :defer
-  :init (add-hook 'cider-mode-hook #'clj-refactor-mode)
-  :diminish subword-mode
+  :init
+  (defun my/cider-mode-hook ()
+    (unless (global-company-mode)
+      (global-company-mode))
+    (clj-refactor-mode)
+    (company/merge-backends))
+  (add-hook 'cider-mode-hook #'my/cider-mode-hook)
   :config
   (setq nrepl-log-messages t
         cider-repl-display-in-current-window t
