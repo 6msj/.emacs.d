@@ -848,12 +848,6 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 
   (evil-mode 1)
   ;; keybinds
-  (define-key evil-normal-state-map ";" 'evil-ex)
-  (define-key evil-visual-state-map ";" 'evil-ex)
-  (evil-define-key 'motion special-mode-map (kbd ";") 'evil-ex)
-  (evil-define-key 'normal special-mode-map (kbd ";") 'evil-ex)
-  (evil-define-key 'visual special-mode-map (kbd ";") 'evil-ex)
-
   (define-key evil-normal-state-map "Y" 'copy-to-end-of-line)
   (define-key evil-normal-state-map (kbd "TAB") 'hs-toggle-hiding)
   (define-key evil-visual-state-map (kbd "TAB") 'hs-toggle-hiding)
