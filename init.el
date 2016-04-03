@@ -120,6 +120,7 @@
 
 (use-package smart-mode-line
   :config
+  (add-to-list 'sml/replacer-regexp-list '("^~/Developer/" ":DEV:"))
   (setq sml/mode-width 'full)
   (setq sml/name-width 30)
   (setq sml/theme 'respectful)
