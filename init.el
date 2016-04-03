@@ -1277,6 +1277,48 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   :commands (org-agenda)
   :mode ("\\.org\\'" . org-mode)
   :init
+  (defun customize-org-mode-solarized ()
+    ;; http://www.howardism.org/Technical/Emacs/orgmode-wordprocessor.html
+    ;; https://github.com/nashamri/spacemacs-theme/blob/master/spacemacs-common.el
+    (font-lock-add-keywords 'org-mode
+                            '(("^ +\\([-*]\\) "
+                               (0 (prog1 ()
+                                    (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+    (let*
+        ((daytime (is-daytime))
+         (gui window-system)
+
+         (war "#dc752f")
+         (suc (if gui "#42ae2c" "#00af00"))
+         (green-bg (if daytime (if gui "#edf2e9" "#ffffff") (if gui "#293235" "262626")))
+         (yellow-bg (if daytime (if gui "#f6f1e1" "#ffffff") (if gui "#32322c" "#262626")))
+         (head1 (if daytime (if gui "#3a81c3" "#268bd2") (if gui "#4f97d7" "#268bd2")))
+         (head2 (if daytime (if gui "#2d9574" "#2aa198") (if gui "#2d9574" "#2aa198")))
+         (head3 (if daytime (if gui "#67b11d" "#5faf00") (if gui "#67b11d" "#67b11d")))
+         (head4 (if daytime (if gui "#b1951d" "#875f00") (if gui "#b1951d" "#875f00")))
+
+         ;; (face-font 'default) -> "-*-Source Code Pro-normal-normal- ..."
+         ;; (split-string) -> ("" "*" "Source Code Pro" "normal" "normal" ...)
+         (font-used (nth 2 (split-string (face-font 'default) "-")))
+         (font `(:font ,font-used))
+         (base-font-color     (face-foreground 'default nil 'default))
+         (hl           `(:inherit default :weight bold :foreground ,base-font-color)))
+
+      (custom-theme-set-faces
+       'user
+       `(org-todo ((t (,@hl ,@font :inherit bold :foreground ,war :background ,yellow-bg))))
+       `(org-done ((t (,@hl ,@font ::inherit bold :foreground ,suc :background ,green-bg))))
+       `(org-level-8 ((t (,@hl ,@font :foreground ,head4))))
+       `(org-level-7 ((t (,@hl ,@font :foreground ,head3))))
+       `(org-level-6 ((t (,@hl ,@font :foreground ,head2))))
+       `(org-level-5 ((t (,@hl ,@font :foreground ,head1))))
+       `(org-level-4 ((t (,@hl ,@font :height 1.0 :foreground ,head4))))
+       `(org-level-3 ((t (,@hl ,@font :height 1.1 :foreground ,head3))))
+       `(org-level-2 ((t (,@hl ,@font :height 1.2 :inherit bold :foreground ,head2))))
+       `(org-level-1 ((t (,@hl ,@font :height 1.3 :inherit bold :foreground ,head1))))
+       `(org-document-title ((t (,@hl ,@font :height 1.5 :underline nil)))))))
+
   (add-hook 'org-agenda-mode-hook
             (lambda ()
               ;; evil mappings
@@ -1312,45 +1354,4 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   :config
   (org-bullets-mode 1))
 
-(defun customize-org-mode-solarized ()
-  ;; http://www.howardism.org/Technical/Emacs/orgmode-wordprocessor.html
-  ;; https://github.com/nashamri/spacemacs-theme/blob/master/spacemacs-common.el
-  (font-lock-add-keywords 'org-mode
-                          '(("^ +\\([-*]\\) "
-                             (0 (prog1 ()
-                                  (compose-region (match-beginning 1) (match-end 1) "•"))))))
-
-  (let*
-      ((daytime (is-daytime))
-       (gui window-system)
-
-       (war "#dc752f")
-       (suc (if gui "#42ae2c" "#00af00"))
-       (green-bg (if daytime (if gui "#edf2e9" "#ffffff") (if gui "#293235" "262626")))
-       (yellow-bg (if daytime (if gui "#f6f1e1" "#ffffff") (if gui "#32322c" "#262626")))
-       (head1 (if daytime (if gui "#3a81c3" "#268bd2") (if gui "#4f97d7" "#268bd2")))
-       (head2 (if daytime (if gui "#2d9574" "#2aa198") (if gui "#2d9574" "#2aa198")))
-       (head3 (if daytime (if gui "#67b11d" "#5faf00") (if gui "#67b11d" "#67b11d")))
-       (head4 (if daytime (if gui "#b1951d" "#875f00") (if gui "#b1951d" "#875f00")))
-
-       ;; (face-font 'default) -> "-*-Source Code Pro-normal-normal- ..."
-       ;; (split-string) -> ("" "*" "Source Code Pro" "normal" "normal" ...)
-       (font-used (nth 2 (split-string (face-font 'default) "-")))
-       (font `(:font ,font-used))
-       (base-font-color     (face-foreground 'default nil 'default))
-       (hl           `(:inherit default :weight bold :foreground ,base-font-color)))
-
-    (custom-theme-set-faces
-     'user
-     `(org-todo ((t (,@hl ,@font :inherit bold :foreground ,war :background ,yellow-bg))))
-     `(org-done ((t (,@hl ,@font ::inherit bold :foreground ,suc :background ,green-bg))))
-     `(org-level-8 ((t (,@hl ,@font :foreground ,head4))))
-     `(org-level-7 ((t (,@hl ,@font :foreground ,head3))))
-     `(org-level-6 ((t (,@hl ,@font :foreground ,head2))))
-     `(org-level-5 ((t (,@hl ,@font :foreground ,head1))))
-     `(org-level-4 ((t (,@hl ,@font :height 1.0 :foreground ,head4))))
-     `(org-level-3 ((t (,@hl ,@font :height 1.1 :foreground ,head3))))
-     `(org-level-2 ((t (,@hl ,@font :height 1.2 :inherit bold :foreground ,head2))))
-     `(org-level-1 ((t (,@hl ,@font :height 1.3 :inherit bold :foreground ,head1))))
-     `(org-document-title ((t (,@hl ,@font :height 1.5 :underline nil)))))))
 ;;;; End Org Mode
