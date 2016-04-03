@@ -805,6 +805,15 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
             (function (lambda ()
                         (setq evil-shift-width 4))))
   :config
+
+  (defun setup-emacs-lisp-leader-keys ()
+    "Sets up commands for emacs-lisp."
+    (evil-leader/set-key-for-mode 'emacs-lisp-mode
+      "er" 'eval-region
+      "ee" 'eval-last-sexp
+      "ex" 'eval-last-sexp-and-replace
+      "eb" 'eval-buffer))
+
   ;; nesting evil-leader package declaration
   ;; (global-evil-leader-mode) should be before (evil-mode 1)
   ;; this is so evil-leader works in *messages* buffer
@@ -812,6 +821,10 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
     :config
     (global-evil-leader-mode)
     (evil-leader/set-leader "<SPC>")
+
+    ;; mode specific leader keys
+    (setup-emacs-lisp-leader-keys)
+
     (evil-leader/set-key
       ;; projectile
       "pf"  'projectile-find-file
