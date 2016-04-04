@@ -190,7 +190,8 @@
     (if (is-daytime)
         (set-frame-parameter nil 'background-mode 'light)
       (set-frame-parameter nil 'background-mode 'dark))
-    (enable-theme 'solarized))
+    (when (boundp 'solarized)
+      (enable-theme 'solarized)))
 
   (if (not using-solarized-theme)
       (change-theme 'spacemacs-light 'spacemacs-dark)
