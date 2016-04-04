@@ -79,7 +79,7 @@
     (package-install package)))
 
 ;; set the shell environment properly
-(when (memq window-system '(mac ns))
+(when (on-osx)
   (use-package exec-path-from-shell
     :config
     (setq exec-path-from-shell-check-startup-files nil)
@@ -263,7 +263,7 @@
       (when font
         (set-face-attribute 'default nil :font font))
       font))
-  (if (boundp 'macbook-pro-retina)
+  (if (on-macbook-retina)
       (find-and-set-font
        "Source Code Pro-12"
        "Monaco-11"
