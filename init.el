@@ -806,6 +806,14 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
                         (setq evil-shift-width 4))))
   :config
 
+  (defun setup-lisp-interaction-leader-keys ()
+    "Sets up commands for emacs-lisp."
+    (evil-leader/set-key-for-mode 'lisp-interaction-mode
+      "er" 'eval-region
+      "ee" 'eval-last-sexp
+      "ex" 'eval-last-sexp-and-replace
+      "eb" 'eval-buffer))
+
   (defun setup-emacs-lisp-leader-keys ()
     "Sets up commands for emacs-lisp."
     (evil-leader/set-key-for-mode 'emacs-lisp-mode
@@ -844,6 +852,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 
     ;; mode specific leader keys
     (setup-clojure-leader-keys)
+    (setup-lisp-interaction-leader-keys)
     (setup-emacs-lisp-leader-keys)
     (setup-org-leader-keys)
 
