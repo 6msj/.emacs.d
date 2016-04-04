@@ -828,6 +828,12 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
       "eb" 'cider-eval-buffer
       "cd" 'cider-doc))
 
+  (defun setup-org-leader-keys ()
+    "Sets up commands for org-mode."
+    (evil-leader/set-key-for-mode 'org-mode
+      "ct" 'org-todo
+      "<RET>" 'org-insert-heading-respect-content))
+
   ;; nesting evil-leader package declaration
   ;; (global-evil-leader-mode) should be before (evil-mode 1)
   ;; this is so evil-leader works in *messages* buffer
@@ -839,6 +845,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
     ;; mode specific leader keys
     (setup-clojure-leader-keys)
     (setup-emacs-lisp-leader-keys)
+    (setup-org-leader-keys)
 
     (evil-leader/set-key
       ;; projectile
