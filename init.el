@@ -189,7 +189,8 @@
   (defun update-solarized-background ()
     (if (is-daytime)
         (set-frame-parameter nil 'background-mode 'light)
-      (set-frame-parameter nil 'background-mode 'dark)))
+      (set-frame-parameter nil 'background-mode 'dark))
+    (enable-theme 'solarized))
 
   (if (not using-solarized-theme)
       (change-theme 'spacemacs-light 'spacemacs-dark)
