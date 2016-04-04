@@ -12,12 +12,19 @@
   "Are we on linux?"
   (eq system-type 'linux))
 
+;; use display pixels to determine device
+(setq display-width (display-pixel-width))
+
+(defun on-macbook-retina ()
+  "Are we on macbook?"
+  (eq display-width 1440))
+
+(defun on-imac ()
+  "Are we on imac?"
+  (> display-width 4400))
+
 ;; increase memory
 (setq gc-cons-threshold 100000000) ; 100 mb
-
-;; use display pixels to determine device
-(when (eq (display-pixel-width) 1440)
-  (defvar macbook-pro-retina t "flag indicating macbook-pro retina"))
 
 ;;; loadpath
 (let ((default-directory "~/.emacs.d/"))
@@ -94,8 +101,11 @@
 ;;;; Begin Theme
 
 ;; default frame size
-(when (boundp 'macbook-pro-retina)
+(when (on-macbook-retina)
   (setq initial-frame-alist '((width . 90) (height . 45))))
+
+(when (on-imac)
+  (setq initial-frame-alist '((width . 132) (height . 86))))
 
 (use-package color-theme-solarized
   :defer)
