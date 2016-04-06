@@ -925,6 +925,10 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (setq evil-want-C-i-jump nil)
   (define-key evil-motion-state-map (kbd "C-j") 'evil-jump-forward)
 
+  ;; swap the ` and ' keys
+  (define-key evil-motion-state-map "'" 'evil-goto-mark)
+  (define-key evil-motion-state-map "`" 'evil-goto-mark-line)
+
   (setq evil-normal-state-tag   (propertize " NORMAL ")
         evil-emacs-state-tag    (propertize " EMACS ")
         evil-insert-state-tag   (propertize " INSERT ")
