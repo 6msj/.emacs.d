@@ -818,6 +818,8 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
                         (setq evil-shift-width 4))))
   :config
 
+  (setq evil-flash-delay 8) ;; control the highlight time of searches
+
   (defun setup-lisp-interaction-leader-keys ()
     "Sets up commands for emacs-lisp."
     (evil-leader/set-key-for-mode 'lisp-interaction-mode
