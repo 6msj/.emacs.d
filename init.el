@@ -1396,3 +1396,82 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (org-bullets-mode 1))
 
 ;;;; End Org Mode
+
+;;;; Begin Mail
+
+;;; sending mail
+(require 'smtpmail)
+(setq message-send-mail-function 'smtpmail-send-it
+      smtpmail-stream-type 'starttls
+      smtpmail-default-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587)
+
+;;; receiving mail
+
+;; add the source shipped with mu to load-path
+(when (on-macbook-retina)
+  (add-to-list 'load-path
+               (expand-file-name
+                "/usr/local/Cellar/mu/0.9.16/share/emacs/site-lisp/mu/mu4e")))
+
+(require 'mu4e)
+(use-package evil-mu4e)
+(use-package mu4e-maildirs-extension
+  :config
+  (mu4e-maildirs-extension))
+
+;; tell mu4e where my mail is
+(setq mu4e-maildir (expand-file-name "~/Mail"))
+;; tell mu4e how to sync email
+(setq mu4e-get-mail-command "/usr/local/bin/mbsync -c ~/.emacs.d/.mbsyncrc gmail")
+;; tell mu4e to use w3m for html rendering
+(setq mu4e-html2text-command "/usr/local/bin/w3m -T text/html")
+;; download directory
+(setq mu4e-attachment-dir "~/Downloads")
+;; skip duplicate emails
+(setq mu4e-headers-skip-duplicates t)
+
+;; query for mails every 60 seconds
+(setq mu4e-update-interval 60)
+(setq mu4e-headers-auto-update t)
+
+;; don't save message to Sent Messages, IMAP takes care of this
+(setq mu4e-sent-messages-behavior 'delete)
+
+;; show images
+(setq mu4e-show-images t)
+
+;; don't keep message buffers around
+(setq message-kill-buffer-on-exit t)
+
+;; use 'fancy' non-ascii characters in various places in mu4e
+(setq mu4e-use-fancy-chars t)
+
+;; don't show 'indexing' messages
+(setq mu4e-hide-index-messages t)
+
+;; taken from mu4e page to define bookmarks
+(add-to-list 'mu4e-bookmarks '("flag:attach" "Messages with attachment" ?a) t)
+(add-to-list 'mu4e-bookmarks '("size:5M..500M" "Big messages" ?b) t)
+(add-to-list 'mu4e-bookmarks '("flag:flagged" "Flagged messages" ?f) t)
+
+;; mu4e requires to specify drafts, sent, and trash dirs
+(setq mu4e-drafts-folder "/mu4e/drafts")
+(setq mu4e-sent-folder "/mu4e/sent")
+(setq mu4e-trash-folder "/mu4e/trash")
+
+;; use imagemagick, if available
+(when (fboundp 'imagemagick-register-types)
+  (imagemagick-register-types))
+
+;; general emacs mail settings; used when composing e-mail
+;; the non-mu4e-* stuff is inherited from emacs/message-mode
+(setq mu4e-reply-to-address "me@example.com"
+      user-mail-address "ja.nguyen@gmail.com"
+      user-full-name  "James Nguyen"
+      mu4e-compose-signature
+      (concat
+       "James Nguyen\n"))
+
+;;;; End Mail
