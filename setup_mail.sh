@@ -80,7 +80,7 @@ then
 fi
 
 echo "linking $HOME/.emacs.d/.gpg-agent.conf to $HOME/.gnupg/gpg-agent.conf "
-ln -s $HOME/.emacs.d/.gpg-agent.conf $HOME/.gnupg/gpg-agent.conf
+mkdir -p $HOME/.gnupg; ln -s $HOME/.emacs.d/.gpg-agent.conf $HOME/.gnupg/gpg-agent.conf
 
 if [ -f $HOME/.mbsyncrc ];
 then
