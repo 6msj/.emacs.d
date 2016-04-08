@@ -950,9 +950,13 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (evil-define-key 'motion occur-mode-map (kbd "RET") 'occur-mode-goto-occurrence)
   (evil-define-key 'motion occur-mode-map (kbd "q")   'quit-window)
 
+  ;; special mode
   (evil-define-key 'motion special-mode-map (kbd "q") 'quit-window)
   (evil-define-key 'normal special-mode-map (kbd "q") 'quit-window)
   (evil-define-key 'visual special-mode-map (kbd "q") 'quit-window)
+
+  ;; magit mode
+  (evil-define-key 'normal magit-status-mode-map (kbd "q") 'delete-window)
 
   (setq evil-default-cursor t))  ; fix black cursor
 
