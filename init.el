@@ -177,10 +177,13 @@
          (sunrise-tomorrow (first tomorrow-times)))
       (daytime-p sunrise-today sunset-today)))
 
+  (defun use-dark-theme()
+    (is-daytime))
+
   (defun update-solarized-background ()
-    (if (is-daytime)
-        (set-frame-parameter nil 'background-mode 'light)
-      (set-frame-parameter nil 'background-mode 'dark))
+    (if (use-dark-theme)
+        (set-frame-parameter nil 'background-mode 'dark)
+      (set-frame-parameter nil 'background-mode 'light))
     (when (boundp 'solarized)
       (enable-theme 'solarized)))
 
@@ -1318,17 +1321,17 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
                                     (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
     (let*
-        ((daytime (is-daytime))
+        ((light (not (use-dark-theme)))
          (gui window-system)
 
          (war "#dc752f")
          (suc (if gui "#42ae2c" "#00af00"))
-         (green-bg (if daytime (if gui "#edf2e9" "#ffffff") (if gui "#293235" "262626")))
-         (yellow-bg (if daytime (if gui "#f6f1e1" "#ffffff") (if gui "#32322c" "#262626")))
-         (head1 (if daytime (if gui "#3a81c3" "#268bd2") (if gui "#4f97d7" "#268bd2")))
-         (head2 (if daytime (if gui "#2d9574" "#2aa198") (if gui "#2d9574" "#2aa198")))
-         (head3 (if daytime (if gui "#67b11d" "#5faf00") (if gui "#67b11d" "#67b11d")))
-         (head4 (if daytime (if gui "#b1951d" "#875f00") (if gui "#b1951d" "#875f00")))
+         (green-bg (if light (if gui "#edf2e9" "#ffffff") (if gui "#293235" "262626")))
+         (yellow-bg (if light (if gui "#f6f1e1" "#ffffff") (if gui "#32322c" "#262626")))
+         (head1 (if light (if gui "#3a81c3" "#268bd2") (if gui "#4f97d7" "#268bd2")))
+         (head2 (if light (if gui "#2d9574" "#2aa198") (if gui "#2d9574" "#2aa198")))
+         (head3 (if light (if gui "#67b11d" "#5faf00") (if gui "#67b11d" "#67b11d")))
+         (head4 (if light (if gui "#b1951d" "#875f00") (if gui "#b1951d" "#875f00")))
 
          ;; (face-font 'default) -> "-*-Source Code Pro-normal-normal- ..."
          ;; (split-string) -> ("" "*" "Source Code Pro" "normal" "normal" ...)
