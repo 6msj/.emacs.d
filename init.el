@@ -158,12 +158,7 @@
     (when using-solarized-theme
       (update-solarized-background))
     (when (fboundp 'powerline-reset)
-      (powerline-reset))
-    (when (bound-and-true-p org-mode)
-      (when using-solarized-theme
-        (customize-org-mode-solarized))
-      (org-reload)
-      (message "org-mode reloaded")))
+      (powerline-reset)))
   (advice-add 'change-theme :after #'reset-line--change-theme)
 
   (defun is-daytime()
@@ -180,12 +175,20 @@
   (defun use-dark-theme()
     (is-daytime))
 
-  (defun update-solarized-background ()
+  (defun update-solarized-background (&optional frame)
+    "Update a few ui elements related to the solarized background.
+This should be called after (change-theme) when used with the theme-changer package.
+Otherwise the symbol 'solarized won't yet be defined."
+    (when (bound-and-true-p org-mode)
+      (when using-solarized-theme
+        (customize-org-mode-solarized))
+      (org-reload)
+      (message "org-mode reloaded"))
     (if (use-dark-theme)
-        (set-frame-parameter nil 'background-mode 'dark)
-      (set-frame-parameter nil 'background-mode 'light))
-    (when (boundp 'solarized)
-      (enable-theme 'solarized)))
+        (set-frame-parameter frame 'background-mode 'dark)
+      (set-frame-parameter frame 'background-mode 'light))
+    (enable-theme 'solarized))
+
 
   (if (not using-solarized-theme)
       (change-theme 'spacemacs-light 'spacemacs-dark)
