@@ -1426,9 +1426,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   ;; tell mu4e where my mail is
   (setq mu4e-maildir (expand-file-name "~/Mail"))
   ;; tell mu4e how to sync email
-  (setq mu4e-get-mail-command "/usr/local/bin/mbsync -c ~/.emacs.d/.mbsyncrc gmail")
+  (setq mu4e-get-mail-command "mbsync -a")
   ;; tell mu4e to use w3m for html rendering
-  (setq mu4e-html2text-command "/usr/local/bin/w3m -T text/html")
+  (setq mu4e-html2text-command "w3m -T text/html")
   ;; download directory
   (setq mu4e-attachment-dir "~/Downloads")
   ;; skip duplicate emails
