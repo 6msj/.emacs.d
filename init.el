@@ -190,8 +190,8 @@
   (if (not using-solarized-theme)
       (change-theme 'spacemacs-light 'spacemacs-dark)
     (progn
-      (update-solarized-background)
-      (change-theme 'solarized 'solarized))))
+      (change-theme 'solarized 'solarized)
+      (update-solarized-background))))
 
 ;; disable ui fluff
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
