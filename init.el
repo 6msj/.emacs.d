@@ -943,6 +943,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (define-key evil-normal-state-map (kbd "TAB") 'hs-toggle-hiding)
   (define-key evil-visual-state-map (kbd "TAB") 'hs-toggle-hiding)
   (define-key evil-motion-state-map (kbd "TAB") 'hs-toggle-hiding)
+  (define-key evil-insert-state-map (kbd "TAB") 'indent-for-tab-command) ;; default tab command
 
   ;;; occur mode
   (evil-set-initial-state 'occur-mode 'motion)
