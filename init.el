@@ -703,6 +703,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 
 (use-package ag
   :config
+  (setq ag-highlight-search t)
   (setq ag-reuse-buffers t)) ; silver searcher
 
 ;;; projectile
