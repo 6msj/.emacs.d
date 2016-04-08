@@ -131,15 +131,6 @@
   (lambda (item)
     (add-to-list 'custom-theme-load-path item)))
 
-;; (use-package spaceline-config
-;;   :ensure spaceline
-;;   :config
-;;   (spaceline-emacs-theme)
-;;   (setq powerline-default-separator 'wave)
-;;   (spaceline-toggle-buffer-size-off)
-;;   (spaceline-toggle-evil-state-off)
-;;   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
-
 (use-package smart-mode-line
   :config
   (when (on-windows)
