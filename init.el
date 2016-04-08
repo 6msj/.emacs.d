@@ -1143,9 +1143,14 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (unless (global-company-mode)
       (global-company-mode))
     (clj-refactor-mode)
+    (eldoc-mode)
     (company/merge-backends))
   (add-hook 'cider-mode-hook #'my/cider-mode-hook)
   :config
+  ;; use shift return to get a new line in repl
+  (define-key cider-repl-mode-map (kbd "C-j") nil)
+  (define-key cider-repl-mode-map [(shift return)] 'cider-repl-newline-and-indent)
+
   (setq nrepl-log-messages t
         cider-repl-display-in-current-window t
         cider-repl-use-clojure-font-lock t
