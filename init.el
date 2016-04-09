@@ -859,6 +859,12 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
       "ct" 'org-todo
       "<RET>" 'org-insert-heading-respect-content))
 
+  (defun magit-status-pick-repository ()
+    "Calls magit-status with a prefix argument to allow picking the repository."
+    (interactive)
+    (let ((current-prefix-arg '(4))) ; C-u
+      (call-interactively 'magit-status)))
+
   ;; nesting evil-leader package declaration
   ;; (global-evil-leader-mode) should be before (evil-mode 1)
   ;; this is so evil-leader works in *messages* buffer
@@ -917,9 +923,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
       "yv" 'yas-visit-snippet-file
 
       ;; magit
-      "gr" (lambda () (interactive)
-             (let ((current-prefix-arg '(4))) ; C-u
-               (call-interactively 'magit-status)))
+      "gr" 'magit-status-pick-repository
       "gs" 'magit-status
       "gb" 'magit-blame
       "gl" 'magit-log))
