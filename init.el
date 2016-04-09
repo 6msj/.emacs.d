@@ -932,6 +932,17 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (define-key evil-motion-state-map "'" 'evil-goto-mark)
   (define-key evil-motion-state-map "`" 'evil-goto-mark-line)
 
+  ;; swapping words
+  (defun transpose-words-backwards ()
+    "Does the reverse of transpose-words.
+Moves the point to the position where we can transpose again for a bubbling effect."
+                                           (interactive)
+                                           (let ((current-prefix-arg '(-1))) ; C-u
+                                             (call-interactively 'transpose-words)
+                                             (evil-backward-word-begin)))
+  (define-key evil-normal-state-map "gl" 'transpose-words)
+  (define-key evil-normal-state-map "gh" 'transpose-words-backwards)
+
   (setq evil-normal-state-tag   (propertize " NORMAL ")
         evil-emacs-state-tag    (propertize " EMACS ")
         evil-insert-state-tag   (propertize " INSERT ")
