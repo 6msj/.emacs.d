@@ -613,10 +613,8 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 
 (global-auto-revert-mode t) ; automatically reload buffers on change
 
-(use-package autopair
-  :diminish autopair-mode
-  :config
-  (autopair-global-mode 1))
+;; automatic pairs
+(electric-pair-mode 1)
 
 ;;; clipboards
 ;; for linux
