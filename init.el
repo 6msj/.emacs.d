@@ -940,10 +940,10 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (defun transpose-words-backwards ()
     "Does the reverse of transpose-words.
 Moves the point to the position where we can transpose again for a bubbling effect."
-                                           (interactive)
-                                           (let ((current-prefix-arg '(-1))) ; C-u
-                                             (call-interactively 'transpose-words)
-                                             (evil-backward-word-begin)))
+    (interactive)
+    (let ((current-prefix-arg '(-1))) ; C-u
+      (call-interactively 'transpose-words)
+      (evil-backward-word-begin)))
   (define-key evil-normal-state-map "gl" 'transpose-words)
   (define-key evil-normal-state-map "gh" 'transpose-words-backwards)
 
