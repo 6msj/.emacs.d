@@ -1459,6 +1459,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 (use-package mu4e
   :ensure nil
+  :commands (mu4e)
   :config
   ;; tell mu4e where my mail is
   (setq mu4e-maildir (expand-file-name "~/Mail"))
