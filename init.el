@@ -893,14 +893,15 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 
       ;; ivy
       "f"  'counsel-find-file
-      "ag" 'counsel-ag
       "b"  'ivy-switch-buffer
       "r"  'ivy-recentf
       "ss" 'swiper
+      "sa" 'counsel-ag
+      "sf" 'counsel-git
       "so" 'occur
       "sb" 'multi-occur
-      "sp" 'ag-project
-      "sa" 'ag
+      "ag" 'ag
+      "ap" 'ag-project
 
       ;; random
       "wh" 'split-window-below
