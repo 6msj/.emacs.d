@@ -975,6 +975,10 @@ Moves the point to the position where we can transpose again for a bubbling effe
   ;; magit mode
   (evil-define-key 'normal magit-status-mode-map (kbd "q") 'delete-window)
 
+  ;; mu4e mode
+  (evil-define-key 'normal mu4e-view-mode-map (kbd "q") 'delete-window)
+  (evil-define-key 'motion mu4e-view-mode-map (kbd "q") 'delete-window)
+
   (setq evil-default-cursor t))  ; fix black cursor
 
 (use-package evil-matchit
