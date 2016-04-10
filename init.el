@@ -962,6 +962,13 @@ Moves the point to the position where we can transpose again for a bubbling effe
   (define-key evil-motion-state-map (kbd "TAB") 'hs-toggle-hiding)
   (define-key evil-insert-state-map (kbd "TAB") 'indent-for-tab-command) ;; default tab command
 
+  ;; reselect text after identing
+  ;; https://superuser.com/questions/469327/combining-two-operators-in-evil-mode-emacs
+  (define-key evil-visual-state-map "g>" 'evil-shift-right)
+  (define-key evil-visual-state-map "g<" 'evil-shift-left)
+  (define-key evil-visual-state-map ">" (kbd "g>gv"))
+  (define-key evil-visual-state-map "<" (kbd "g<gv"))
+
   ;;; occur mode
   (evil-set-initial-state 'occur-mode 'motion)
   (evil-define-key 'motion occur-mode-map (kbd "RET") 'occur-mode-goto-occurrence)
