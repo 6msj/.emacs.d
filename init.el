@@ -991,6 +991,9 @@ Moves the point to the position where we can transpose again for a bubbling effe
   (evil-define-key 'normal mu4e-view-mode-map (kbd "q") 'delete-window)
   (evil-define-key 'motion mu4e-view-mode-map (kbd "q") 'delete-window)
 
+  ;; org mode
+  (evil-define-key 'normal org-mode-map (kbd "TAB") 'org-cycle)
+
   (setq evil-default-cursor t))  ; fix black cursor
 
 (use-package evil-matchit
