@@ -1166,7 +1166,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
          ("\\.edn\\'" . clojure-mode)))
 
 (use-package cider
-  :defer
+  :commands (cider-jack-in)
   :init
   (defun my/cider-mode-hook ()
     (unless (global-company-mode)
@@ -1189,8 +1189,17 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
         cider-overlays-use-font-lock t)
   (cider-repl-toggle-pretty-printing))
 
+(use-package eval-sexp-fu
+  :commands (eval-sexp-fu-flash-mode)
+  :init
+  (add-hook 'cider-mode-hook 'eval-sexp-fu-flash-mode)
+  (add-hook 'clojure-mode-hook 'eval-sexp-fu-flash-mode)
+  (add-hook 'emacs-lisp-mode-hook 'eval-sexp-fu-flash-mode)
+  :config
+  (eval-sexp-fu-flash-mode 1))
+
 (use-package cider-eval-sexp-fu
-  :defer t)
+  :after eval-sexp-fu)
 
 (use-package clj-refactor
   :defer t
@@ -1514,5 +1523,4 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   :after mu4e
   :config
   (mu4e-maildirs-extension))
-
 ;;;; End Mail
