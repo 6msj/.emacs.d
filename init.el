@@ -695,6 +695,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   :ensure counsel
   :diminish ivy-mode
   :config
+  (setq counsel-ag-base-command "ag -U --nocolor --nogroup %s -- .") ; default: "ag --nocolor --nogroup %s -- ."
   (setq ivy-count-format "")
   (setq ivy-height 15))
 
@@ -705,6 +706,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 
 (use-package ag
   :config
+  (add-to-list 'ag-arguments "-U") ;; ignore .ignore files by default
   (setq ag-highlight-search t)
   (setq ag-reuse-buffers t)) ; silver searcher
 
