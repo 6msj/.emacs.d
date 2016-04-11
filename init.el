@@ -1003,8 +1003,16 @@ Moves the point to the position where we can transpose again for a bubbling effe
   (evil-define-key 'normal magit-status-mode-map (kbd "q") 'delete-window)
 
   ;; mu4e mode
-  (evil-define-key 'normal mu4e-view-mode-map (kbd "q") 'delete-window)
-  (evil-define-key 'motion mu4e-view-mode-map (kbd "q") 'delete-window)
+  (evil-define-key 'motion mu4e-view-mode-map (kbd "q") 'mu4e~view-quit-buffer)
+  (evil-define-key 'motion mu4e-headers-mode-map (kbd "q") 'mu4e~headers-quit-buffer)
+  (evil-define-key 'motion mu4e-main-mode-map (kbd "gr") nil)
+  (evil-define-key 'motion mu4e-main-mode-map (kbd "gR") 'mu4e-update-mail-and-index)
+  (evil-define-key 'motion mu4e-main-mode-map (kbd "gm") nil)
+  (evil-define-key 'motion mu4e-main-mode-map (kbd "gM") 'mu4e~headers-jump-to-maildir)
+  (evil-define-key 'motion mu4e-main-mode-map (kbd "C-j") nil)
+  (evil-define-key 'motion mu4e-main-mode-map (kbd "C-k") nil)
+  (evil-define-key 'motion mu4e-main-mode-map (kbd "C-n") 'mu4e-headers-next)
+  (evil-define-key 'motion mu4e-main-mode-map (kbd "C-p") 'mu4e-headers-prev)
 
   ;; org mode
   (evil-define-key 'normal org-mode-map (kbd "TAB") 'org-cycle)
