@@ -994,7 +994,6 @@ Moves the point to the position where we can transpose again for a bubbling effe
 
   ;; ggtags-mode
   (evil-define-key 'normal ggtags-global-mode-map (kbd "h") 'evil-backward-char)
-
   (evil-define-key 'normal ggtags-mode-map
     (kbd "gr") 'ggtags-find-reference
     (kbd "gt") 'ggtags-find-tag-dwim
@@ -1004,8 +1003,9 @@ Moves the point to the position where we can transpose again for a bubbling effe
 
   ;; occur mode
   (evil-set-initial-state 'occur-mode 'motion)
-  (evil-define-key 'motion occur-mode-map (kbd "RET") 'occur-mode-goto-occurrence)
-  (evil-define-key 'motion occur-mode-map (kbd "q")   'quit-window)
+  (evil-define-key 'motion occur-mode-map
+    (kbd "RET") 'occur-mode-goto-occurrence
+    (kbd "q")   'quit-window)
 
   ;; special mode
   (evil-define-key 'motion special-mode-map (kbd "q") 'quit-window)
@@ -1018,23 +1018,25 @@ Moves the point to the position where we can transpose again for a bubbling effe
   ;; mu4e mode
   (evil-define-key 'motion mu4e-view-mode-map (kbd "q") 'mu4e~view-quit-buffer)
   (evil-define-key 'motion mu4e-headers-mode-map (kbd "q") 'mu4e~headers-quit-buffer)
-  (evil-define-key 'motion mu4e-main-mode-map (kbd "gr") nil)
-  (evil-define-key 'motion mu4e-main-mode-map (kbd "gR") 'mu4e-update-mail-and-index)
-  (evil-define-key 'motion mu4e-main-mode-map (kbd "gm") nil)
-  (evil-define-key 'motion mu4e-main-mode-map (kbd "gM") 'mu4e~headers-jump-to-maildir)
-  (evil-define-key 'motion mu4e-main-mode-map (kbd "C-j") nil)
-  (evil-define-key 'motion mu4e-main-mode-map (kbd "C-k") nil)
-  (evil-define-key 'motion mu4e-main-mode-map (kbd "C-n") 'mu4e-headers-next)
-  (evil-define-key 'motion mu4e-main-mode-map (kbd "C-p") 'mu4e-headers-prev)
+  (evil-define-key 'motion mu4e-main-mode-map
+    (kbd "gr") nil
+    (kbd "gR") 'mu4e-update-mail-and-index
+    (kbd "gm") nil
+    (kbd "gM") 'mu4e~headers-jump-to-maildir
+    (kbd "C-j") nil
+    (kbd "C-k") nil
+    (kbd "C-n") 'mu4e-headers-next
+    (kbd "C-p") 'mu4e-headers-prev)
 
   ;; org mode
-  (evil-define-key 'normal org-mode-map (kbd "TAB") 'org-cycle)
-  (evil-define-key 'emacs org-agenda-mode-map (kbd "b") 'evil-backward-word-begin)
-  (evil-define-key 'emacs org-agenda-mode-map (kbd "w") 'evil-forward-word-begin)
-  (evil-define-key 'emacs org-agenda-mode-map (kbd "j") 'evil-next-line)
-  (evil-define-key 'emacs org-agenda-mode-map (kbd "k") 'evil-prev-line)
-  (evil-define-key 'emacs org-agenda-mode-map (kbd "h") 'evil-backward-char)
-  (evil-define-key 'emacs org-agenda-mode-map (kbd "l") 'evil-forward-char)
+  (evil-define-key 'normal org-mode-map
+    (kbd "TAB") 'org-cycle
+    (kbd "b") 'evil-backward-word-begin
+    (kbd "w") 'evil-forward-word-begin
+    (kbd "j") 'evil-next-line
+    (kbd "k") 'evil-prev-line
+    (kbd "h") 'evil-backward-char
+    (kbd "l") 'evil-forward-char)
 
   ;; package mode bindings
   (evil-add-hjkl-bindings package-menu-mode 'emacs
