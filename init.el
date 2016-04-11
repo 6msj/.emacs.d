@@ -1008,6 +1008,12 @@ Moves the point to the position where we can transpose again for a bubbling effe
 
   ;; org mode
   (evil-define-key 'normal org-mode-map (kbd "TAB") 'org-cycle)
+  (evil-define-key 'emacs org-agenda-mode-map (kbd "b") 'evil-backward-word-begin)
+  (evil-define-key 'emacs org-agenda-mode-map (kbd "w") 'evil-forward-word-begin)
+  (evil-define-key 'emacs org-agenda-mode-map (kbd "j") 'evil-next-line)
+  (evil-define-key 'emacs org-agenda-mode-map (kbd "k") 'evil-prev-line)
+  (evil-define-key 'emacs org-agenda-mode-map (kbd "h") 'evil-backward-char)
+  (evil-define-key 'emacs org-agenda-mode-map (kbd "l") 'evil-forward-char)
 
   ;; package mode bindings
   (evil-add-hjkl-bindings package-menu-mode 'emacs
@@ -1437,15 +1443,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
        `(org-level-1 ((t (,@hl ,@font :height 1.3 :inherit bold :foreground ,head1))))
        `(org-document-title ((t (,@hl ,@font :height 1.5 :underline nil)))))))
 
-  (add-hook 'org-agenda-mode-hook
-            (lambda ()
-              ;; evil mappings
-              (define-key org-agenda-mode-map "b" 'evil-backward-word-begin)
-              (define-key org-agenda-mode-map "w" 'evil-forward-word-begin)
-              (define-key org-agenda-mode-map "j" 'evil-next-line)
-              (define-key org-agenda-mode-map "k" 'evil-previous-line)
-              (define-key org-agenda-mode-map "h" 'evil-backward-char)
-              (define-key org-agenda-mode-map "l" 'evil-forward-char)))
   ;; hotkeys for org-mode
   :bind (("\C-cl" . org-store-link)
          ("\C-cc" . org-capture)
