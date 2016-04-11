@@ -1029,12 +1029,12 @@ Moves the point to the position where we can transpose again for a bubbling effe
     (kbd "C-p") 'mu4e-headers-prev)
 
   ;; org mode
-  (evil-define-key 'normal org-mode-map
-    (kbd "TAB") 'org-cycle
+  (evil-define-key 'normal org-mode-map (kbd "TAB") 'org-cycle)
+  (evil-define-key 'emacs org-agenda-mode-map
     (kbd "b") 'evil-backward-word-begin
     (kbd "w") 'evil-forward-word-begin
     (kbd "j") 'evil-next-line
-    (kbd "k") 'evil-prev-line
+    (kbd "k") 'evil-previous-line
     (kbd "h") 'evil-backward-char
     (kbd "l") 'evil-forward-char)
 
