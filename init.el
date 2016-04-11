@@ -992,7 +992,7 @@ Moves the point to the position where we can transpose again for a bubbling effe
   (define-key evil-visual-state-map ">" (kbd "g>gv"))
   (define-key evil-visual-state-map "<" (kbd "g<gv"))
 
-  ;;; occur mode
+  ;; occur mode
   (evil-set-initial-state 'occur-mode 'motion)
   (evil-define-key 'motion occur-mode-map (kbd "RET") 'occur-mode-goto-occurrence)
   (evil-define-key 'motion occur-mode-map (kbd "q")   'quit-window)
