@@ -1373,7 +1373,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       (eshell)
     (multi-term)))
 
-(setq compilation-finish-functions 'compile-autoclose)
+;;(setq compilation-finish-functions 'compile-autoclose)
 (defun compile-autoclose (buffer string)
   "Closes compilation window on successful compile."
   (cond ((string-match "finished" string)
