@@ -819,12 +819,6 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
                         (setq evil-shift-width 4))))
   :config
 
-  ;; package mode bindings
-  (evil-add-hjkl-bindings package-menu-mode 'emacs
-    (kbd "/") 'evil-search-forward
-    (kbd "n") 'evil-search-next
-    (kbd "N") 'evil-search-previous)
-
   (setq evil-flash-delay 8) ;; control the highlight time of searches
 
   (defun setup-lisp-interaction-leader-keys ()
@@ -1014,6 +1008,12 @@ Moves the point to the position where we can transpose again for a bubbling effe
 
   ;; org mode
   (evil-define-key 'normal org-mode-map (kbd "TAB") 'org-cycle)
+
+  ;; package mode bindings
+  (evil-add-hjkl-bindings package-menu-mode 'emacs
+    (kbd "/") 'evil-search-forward
+    (kbd "n") 'evil-search-next
+    (kbd "N") 'evil-search-previous)
 
   (setq evil-default-cursor t))  ; fix black cursor
 
