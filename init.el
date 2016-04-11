@@ -377,7 +377,7 @@ Otherwise the symbol 'solarized won't yet be defined."
       scroll-conservatively 10000
       scroll-preserve-screen-position 1)
 
-(add-hook 'text-mode-hook 'turn-on-visual-line-mode) ; wraps line when it reaches end
+(visual-line-mode 1) ; wraps line when it reaches end
 
 (use-package git-gutter+
   :diminish git-gutter+-mode
