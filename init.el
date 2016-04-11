@@ -992,6 +992,16 @@ Moves the point to the position where we can transpose again for a bubbling effe
   (define-key evil-visual-state-map ">" (kbd "g>gv"))
   (define-key evil-visual-state-map "<" (kbd "g<gv"))
 
+  ;; ggtags-mode
+  (evil-define-key 'normal ggtags-global-mode-map (kbd "h") 'evil-backward-char)
+
+  (evil-define-key 'normal ggtags-mode-map
+    (kbd "gr") 'ggtags-find-reference
+    (kbd "gt") 'ggtags-find-tag-dwim
+    (kbd "g.") 'ggtags-find-tag-dwim
+    (kbd "gd") 'ggtags-find-definition
+    (kbd "g?") 'ggtags-show-definition)
+
   ;; occur mode
   (evil-set-initial-state 'occur-mode 'motion)
   (evil-define-key 'motion occur-mode-map (kbd "RET") 'occur-mode-goto-occurrence)
@@ -1263,6 +1273,22 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   :diminish clj-refactor-mode)
 
 ;;;; End Languages
+
+;;;; Begin Ide
+
+(use-package ggtags
+  :diminish ggtags-mode
+  :commands (ggtags-mode)
+  :init
+  (add-hook 'c-mode-common-hook
+            (lambda ()
+              (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+                (ggtags-mode 1))))
+  :config
+  (ggtags-mode 1))
+
+
+;;;; End Ide
 
 ;;;; Begin Functions
 
