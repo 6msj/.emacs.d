@@ -998,6 +998,7 @@ Moves the point to the position where we can transpose again for a bubbling effe
     (kbd "gr") 'ggtags-find-reference
     (kbd "gt") 'ggtags-find-tag-dwim
     (kbd "g.") 'ggtags-find-tag-dwim
+    (kbd "g,") 'ggtags-prev-mark
     (kbd "gd") 'ggtags-find-definition
     (kbd "g?") 'ggtags-show-definition)
 
