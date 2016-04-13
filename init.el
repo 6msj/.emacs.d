@@ -1444,11 +1444,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (defun customize-org-mode-solarized ()
     ;; http://www.howardism.org/Technical/Emacs/orgmode-wordprocessor.html
     ;; https://github.com/nashamri/spacemacs-theme/blob/master/spacemacs-common.el
-    (font-lock-add-keywords 'org-mode
-                            '(("^ +\\([-*]\\) "
-                               (0 (prog1 ()
-                                    (compose-region (match-beginning 1) (match-end 1) "•"))))))
-
     (let*
         ((light (not (use-dark-theme)))
          (gui window-system)
@@ -1489,6 +1484,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
          ("\C-ca" . org-agenda)
          ("\C-cb" . org-iswitchb))
   :config
+  (font-lock-add-keywords 'org-mode
+                          '(("^ +\\([-*]\\) "
+                             (0 (prog1 ()
+                                  (compose-region (match-beginning 1) (match-end 1) "•"))))))
   (if (on-osx)
       (setq org-agenda-files '("~/Dropbox/Notes")))
   (if (on-windows)
