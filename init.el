@@ -928,7 +928,8 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
       "gr" 'magit-status-pick-repository
       "gs" 'magit-status
       "gb" 'magit-blame
-      "gl" 'magit-log))
+      "gl" 'magit-log
+      "gm" 'mu4e))
 
   ;; C-j jumps foward in jumplist, C-o goes the other way
   (setq evil-want-C-i-jump nil)
@@ -1547,9 +1548,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 (use-package mu4e
   :ensure nil
-  :defer
   :commands (mu4e)
   :config
+  ;; don't show every a thread for every message in the inbox
+  (setq mu4e-headers-show-threads nil)
   ;; tell mu4e where my mail is
   (setq mu4e-maildir (expand-file-name "~/Mail"))
   ;; tell mu4e how to sync email
