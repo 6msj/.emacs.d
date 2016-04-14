@@ -1030,7 +1030,16 @@ Moves the point to the position where we can transpose again for a bubbling effe
     (kbd "C-p") 'mu4e-headers-prev)
 
   ;; org mode
-  (evil-define-key 'normal org-mode-map (kbd "TAB") 'org-cycle)
+  (evil-define-key 'normal org-mode-map
+    (kbd "TAB") 'org-cycle
+    ;; to be backward compatible with older org version
+    (kbd "]") (if (fboundp 'org-forward-same-level)
+                  'org-forward-same-level
+                'org-forward-heading-same-level)
+    (kbd "[") (if (fboundp 'org-backward-same-level)
+                  'org-backward-same-level
+                'org-backward-heading-same-level))
+
   (evil-define-key 'emacs org-agenda-mode-map
     (kbd "b") 'evil-backward-word-begin
     (kbd "w") 'evil-forward-word-begin
