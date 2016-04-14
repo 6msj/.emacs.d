@@ -459,6 +459,7 @@ Otherwise the symbol 'solarized won't yet be defined."
     (setq company-minimum-prefix-length len))
   (add-hook 'eshell-mode-hook (apply-partially #'set-company-min-prefix-length 5))
   (add-hook 'term-mode-hook (apply-partially #'set-company-min-prefix-length 5))
+  (add-hook 'org-mode-hook (apply-partially #'set-company-min-prefix-length 3))
   (add-hook 'prog-mode-hook (apply-partially #'set-company-min-prefix-length 1))
 
   ;; ios
@@ -533,7 +534,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (setq company-selection-wrap-around t)
 
   (global-company-mode)
-  (setq company-idle-delay .1)
+  (setq company-idle-delay .15)
   (setq company-minimum-prefix-length 1))
 
 ;; documentation popup for company
