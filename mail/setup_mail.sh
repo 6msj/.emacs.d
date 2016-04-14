@@ -45,6 +45,13 @@ else
     brew install gpg2
 fi
 
+if type "pinentry-mac" > /dev/null; then
+    echo "pinentry-mac installed"
+else
+    echo "pinentry-mac not installed. installing pinentry-mac"
+    brew install pinentry-mac
+fi
+
 if type "gnutls-cli" > /dev/null; then
     echo "gnutls installed"
 else
@@ -64,14 +71,22 @@ then
     mkdir $HOME/Mail/gmail
 fi
 
+# check for file
 if [ -f $HOME/.authinfo.gpg ];
 then
     echo "moving $HOME/.authinfo.gpg to $HOME/.authinfo.gpg_backup"
     mv $HOME/.authinfo.gpg $HOME/.authinfo.gpg_backup
 fi
 
+# check for symlink
+if [ -L $HOME/.authinfo.gpg ];
+then
+    echo "removing symlink $HOME/.authinfo.gpg"
+    rm $HOME/.authinfo.gpg
+fi
+
 echo "linking $HOME/.emacs.d/.email.gpg to $HOME/.authinfo.gpg "
-ln -s $HOME/.emacs.d/.email.gpg $HOME/.authinfo.gpg
+ln -s $HOME/.emacs.d/mail/.email.gpg $HOME/.authinfo.gpg
 
 if [ -f $HOME/.gnupg/gpg-agent.conf ];
 then
@@ -79,8 +94,14 @@ then
     mv $HOME/.gnupg/gpg-agent.conf $HOME/.gnupg/gpg-agent.conf_backup 
 fi
 
+if [ -L $HOME/.gnupg/gpg-agent.conf ];
+then
+    echo "removing symlink $HOME/.gnupg/gpg-agent.conf"
+    rm $HOME/.gnupg/gpg-agent.conf
+fi
+
 echo "linking $HOME/.emacs.d/.gpg-agent.conf to $HOME/.gnupg/gpg-agent.conf "
-mkdir -p $HOME/.gnupg; ln -s $HOME/.emacs.d/.gpg-agent.conf $HOME/.gnupg/gpg-agent.conf
+mkdir -p $HOME/.gnupg; ln -s $HOME/.emacs.d/mail/.gpg-agent.conf $HOME/.gnupg/gpg-agent.conf
 
 if [ -f $HOME/.mbsyncrc ];
 then
@@ -88,8 +109,18 @@ then
     mv $HOME/.mbsyncrc $HOME/.mbsyncrc_backup
 fi
 
+if [ -L $HOME/.mbsyncrc ];
+then
+    echo "removing symlink $HOME/.mbsyncrc"
+    rm $HOME/.mbsyncrc
+fi
+
 echo "linking $HOME/.emacs.d/.mbsyncrc to $HOME/.mbsyncrc "
-ln -s $HOME/.emacs.d/.mbsyncrc $HOME/.mbsyncrc
+ln -s $HOME/.emacs.d/mail/.mbsyncrc $HOME/.mbsyncrc
+
+echo "linking org.gnupg.gpg-agent.plist to ~/Library/LaunchAgents/"
+ln -s $HOME/.emacs.d/mail/org.gnupg.gpg-agent.plist ~/Library/LaunchAgents/org.gnupg.gpg-agent.plist
 
 echo "run $ mbsync gmail"
 echo "run $ mu index --maildir=~/Mail"
+echo "restart computer to check the launch agent in ~/Library/LaunchAgents or run another terminal to get the gpg-agent running."

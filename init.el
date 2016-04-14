@@ -1521,6 +1521,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;;;; Begin Mail
 
+;;; authentication
+(add-to-list 'auth-sources "~/.emacs.d/mail/.email.gpg")
+
 ;;; sending mail
 (require 'smtpmail)
 (setq message-send-mail-function 'smtpmail-send-it
@@ -1544,6 +1547,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 (use-package mu4e
   :ensure nil
+  :defer
   :commands (mu4e)
   :config
   ;; tell mu4e where my mail is
@@ -1609,4 +1613,5 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   :after mu4e
   :config
   (mu4e-maildirs-extension))
+
 ;;;; End Mail
