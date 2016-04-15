@@ -593,9 +593,17 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 
 ;; add auto indent to all programming modes
 ;; doing this after init for the first install
-(add-hook 'after-init-hook
-          (function (lambda ()
-                      (add-hook 'prog-mode-hook 'set-newline-and-indent))))
+;; (add-hook 'after-init-hook
+;;           (function (lambda ()
+;;                       (add-hook 'prog-mode-hook 'set-newline-and-indent))))
+
+;; emacs 24+ auto indents by default if electric-indent-mode is on
+;; so disable automatic indent by default
+(electric-indent-mode 0)
+;; but enable it in all programming modes
+(add-hook 'prog-mode-hook (lambda ()
+                            (interactive)
+                            (electric-indent-local-mode 1)))
 
 ;;; indenting
 (setq-default indent-tabs-mode nil)
@@ -821,7 +829,6 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
             (function (lambda ()
                         (setq evil-shift-width 4))))
   :config
-
   (setq evil-flash-delay 8) ;; control the highlight time of searches
 
   (defun setup-lisp-interaction-leader-keys ()
@@ -1308,10 +1315,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (defun magit-autoload-commands ()
   "Returns a list of magit commands that will load magit."
   (list 'magit-status 'magit-blame 'magit-log))
-
-(defun set-newline-and-indent ()
-  "Binds RET to autoindent after a new line."
-  (local-set-key (kbd "RET") 'newline-and-indent))
 
 (defun rename-current-buffer-file ()
   "Renames current buffer and file it is visiting."
