@@ -1545,15 +1545,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;;; receiving mail
 
 ;; add the source shipped with mu to load-path
-(when (on-macbook-retina)
+(when (on-osx)
   (add-to-list 'load-path
-               (expand-file-name
-                "/usr/local/Cellar/mu/0.9.16/share/emacs/site-lisp/mu/mu4e")))
-
-(when (on-imac)
-  (add-to-list 'load-path
-               (expand-file-name
-                "/usr/local/Cellar/mu/0.9.16/share/emacs/site-lisp/mu/mu4e")))
+               (concat
+                (replace-regexp-in-string "\n" "" (shell-command-to-string "echo $(brew --prefix mu)"))
+                "/share/emacs/site-lisp/mu4e")))
 
 (use-package mu4e
   :ensure nil
