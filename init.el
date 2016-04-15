@@ -1030,7 +1030,10 @@ Moves the point to the position where we can transpose again for a bubbling effe
   (evil-define-key 'normal magit-status-mode-map (kbd "q") 'delete-window)
 
   ;; mu4e mode
-  (evil-define-key 'motion mu4e-view-mode-map (kbd "q") 'mu4e~view-quit-buffer)
+  (evil-define-key 'motion mu4e-view-mode-map (kbd "q") 'mu4e~view-quit-buffer
+    (kbd "C-n") 'mu4e-view-headers-next
+    (kbd "C-p") 'mu4e-view-headers-prev)
+
   (evil-define-key 'motion mu4e-headers-mode-map (kbd "q") 'mu4e~headers-quit-buffer)
   (evil-define-key 'motion mu4e-main-mode-map
     (kbd "gr") nil
