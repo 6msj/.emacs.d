@@ -7,6 +7,13 @@ else
     brew install isync
 fi
 
+if type "msmtp" > /dev/null; then
+    echo "msmtp installed"
+else
+    echo "msmtp not installed. installing msmtp."
+    brew install msmtp
+fi
+
 if type "mu" > /dev/null; then
     echo "mu installed"
 else
@@ -117,6 +124,21 @@ fi
 
 echo "linking $HOME/.emacs.d/.mbsyncrc to $HOME/.mbsyncrc "
 ln -s $HOME/.emacs.d/mail/.mbsyncrc $HOME/.mbsyncrc
+
+if [ -f $HOME/.msmtprc ];
+then
+    echo "moving $HOME/.msmtprc to $HOME/.mbsyncrc_backup"
+    mv $HOME/.msmtprc $HOME/.msmtprc_backup
+fi
+
+if [ -L $HOME/.msmtprc ];
+then
+    echo "removing symlink $HOME/.msmtprc"
+    rm $HOME/.msmtprc
+fi
+
+echo "linking $HOME/.emacs.d/mail/.msmtprc to $HOME/.msmtprc"
+ln -s $HOME/.emacs.d/mail/.msmtprc $HOME/.msmtprc
 
 echo "linking org.gnupg.gpg-agent.plist to ~/Library/LaunchAgents/"
 ln -s $HOME/.emacs.d/mail/org.gnupg.gpg-agent.plist ~/Library/LaunchAgents/org.gnupg.gpg-agent.plist
