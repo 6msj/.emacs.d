@@ -399,7 +399,7 @@ Otherwise the symbol 'solarized won't yet be defined."
 ;;; line numbers
 (use-package linum
   :config
-  (global-linum-mode 1))
+  (global-linum-mode 0))
 
 ;;; highlight parentheses
 (use-package paren
