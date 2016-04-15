@@ -830,6 +830,10 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
             (function (lambda ()
                         (setq evil-shift-width 4))))
   :config
+  ;; http://spacemacs.org/doc/FAQ
+  ;; https://github.com/syl20bnr/spacemacs/issues/2032
+  ;; https://emacs.stackexchange.com/questions/14940/emacs-doesnt-paste-in-evils-visual-mode-with-every-os-clipboard/15054#15054
+  (fset 'evil-visual-update-x-selection 'ignore)
   (setq evil-flash-delay 8) ;; control the highlight time of searches
 
   (defun setup-lisp-interaction-leader-keys ()
