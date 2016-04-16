@@ -1065,6 +1065,9 @@ do a search for the string from projet root to mimic that functionality."
     (kbd "gr") 'ggtags-find-reference
     (kbd "gt") 'ggtags-find-tag-dwim)
 
+  ;; java
+  (evil-define-key 'normal java-mode-map (kbd "K") 'javadoc-lookup)
+
   ;; occur mode
   (evil-set-initial-state 'occur-mode 'motion)
   (evil-define-key 'motion occur-mode-map
@@ -1371,6 +1374,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; Json
 (use-package json-mode
   :mode ("\\.json\\'" . json-mode))
+
+;; Java
+(use-package javadoc-lookup
+  :commands (javadoc-lookup))
 
 ;;;; End Languages
 
