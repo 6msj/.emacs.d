@@ -852,15 +852,12 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
     "Sets up commands for cider/clojure."
     ;; http://emacs.stackexchange.com/questions/20779/m-and-m-in-evil-mode
     (evil-leader/set-key-for-mode 'clojure-mode
-      "."  'cider-find-dwim
-      ","  'cider-pop-back
       "cj" 'cider-jack-in
       "ct" 'cider-test-run-test
       "er" 'cider-eval-region
       "ee" 'cider-eval-last-sexp
       "ex" 'cider-eval-last-sexp-and-replace
-      "eb" 'cider-eval-buffer
-      "cd" 'cider-doc))
+      "eb" 'cider-eval-buffer))
 
   (defun setup-org-leader-keys ()
     "Sets up commands for org-mode."
@@ -1001,15 +998,53 @@ Moves the point to the position where we can transpose again for a bubbling effe
   (define-key evil-visual-state-map ">" (kbd "g>gv"))
   (define-key evil-visual-state-map "<" (kbd "g<gv"))
 
+  ;; macro to define keys for multiple modes
+  ;; modified a little to not have to repeat the 'mode' var
+  ;; https://www.reddit.com/r/emacs/comments/2u5uzq/i_wrote_a_somewhat_useful_elisp_macro/
+  (defmacro evil-define-multiple (keymaps mode &rest bindings)
+    "Macro to allow keymaps to be bound."
+    `(progn ,@(loop for keymap in keymaps
+                    appending
+                    (loop for (key cmd) in bindings
+                          collect `(evil-define-key ,mode ,keymap ,key ,cmd)))))
+
+  (defun mimic-find-references ()
+    "When we don't have find-usages/find-references,
+do a search for the string from projet root to mimic that functionality."
+    (interactive)
+    (ag-project (ag/dwim-at-point)))
+
+  ;; cider
+  (evil-define-multiple
+   (clojure-mode-map cider-mode-map cider-repl-mode-map)
+   'normal
+   ((kbd "g.") 'cider-find-dwim)
+   ((kbd "g,") 'cider-pop-back)
+   ((kbd "gd") 'cider-find-var)
+   ((kbd "gf") 'cider-find-file)
+   ((kbd "g?") 'cider-javadoc)
+   ((kbd "gr") 'mimic-find-references)
+   ((kbd "K")  'cider-doc))
+
+  ;; elisp-slime-nav
+  (evil-define-key 'normal elisp-slime-nav-mode-map
+    (kbd "g.") 'elisp-slime-nav-find-elisp-thing-at-point
+    (kbd "g,") 'pop-tag-mark
+    (kbd "gd") 'elisp-slime-nav-describe-elisp-thing-at-point
+    (kbd "g?") 'elisp-slime-nav-describe-elisp-thing-at-point
+    (kbd "gr") 'mimic-find-references
+    (kbd "K")  'elisp-slime-nav-describe-elisp-thing-at-point)
+
   ;; ggtags-mode
   (evil-define-key 'normal ggtags-global-mode-map (kbd "h") 'evil-backward-char)
   (evil-define-key 'normal ggtags-mode-map
-    (kbd "gr") 'ggtags-find-reference
-    (kbd "gt") 'ggtags-find-tag-dwim
     (kbd "g.") 'ggtags-find-tag-dwim
     (kbd "g,") 'ggtags-prev-mark
     (kbd "gd") 'ggtags-find-definition
-    (kbd "g?") 'ggtags-show-definition)
+    (kbd "gf") 'ggtags-find-file
+    (kbd "g?") 'ggtags-show-definition
+    (kbd "gr") 'ggtags-find-reference
+    (kbd "gt") 'ggtags-find-tag-dwim)
 
   ;; occur mode
   (evil-set-initial-state 'occur-mode 'motion)
@@ -1297,6 +1332,18 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   :defer t
   :diminish clj-refactor-mode)
 
+;; Elisp
+(use-package elisp-slime-nav
+  :diminish elisp-slime-nav-mode
+  :commands (turn-on-elisp-slime-nav-mode)
+  :init
+  (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
+    (add-hook hook 'turn-on-elisp-slime-nav-mode))
+  :config
+  (turn-on-elisp-slime-nav-mode)
+  (defadvice elisp-slime-nav-describe-elisp-thing-at-point (after slime-move-to-doc activate)
+    "Move point to the other window after opening up documentation window."
+    (pop-to-buffer "*Help*")))
 
 ;; Json
 (use-package json-mode
