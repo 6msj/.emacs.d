@@ -854,6 +854,18 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
       "ex" 'cider-eval-last-sexp-and-replace
       "eb" 'cider-eval-buffer))
 
+  (defun setup-python-leader-keys ()
+    "Sets up commands for python."
+    (evil-leader/set-key-for-mode 'python-mode
+      "ci" 'run-python
+      "cd" 'pdb
+      "cp" 'python-shell-switch-to-shell
+      "er" 'python-shell-send-region
+      "eb" 'python-shell-send-buffer
+      "es" 'python-shell-send-string
+      "el" 'python-shell-send-file
+      "ee" 'python-shell-send-defun))
+
   (defun setup-org-leader-keys ()
     "Sets up commands for org-mode."
     (evil-leader/set-key-for-mode 'org-mode
@@ -878,6 +890,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
     (setup-clojure-leader-keys)
     (setup-lisp-interaction-leader-keys)
     (setup-emacs-lisp-leader-keys)
+    (setup-python-leader-keys)
     (setup-org-leader-keys)
 
     (evil-leader/set-key
