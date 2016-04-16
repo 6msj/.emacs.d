@@ -593,12 +593,6 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 (fset 'yes-or-no-p 'y-or-n-p) ; yes or no to y or n
 (column-number-mode 1) ; makes the column number show up
 
-;; add auto indent to all programming modes
-;; doing this after init for the first install
-;; (add-hook 'after-init-hook
-;;           (function (lambda ()
-;;                       (add-hook 'prog-mode-hook 'set-newline-and-indent))))
-
 ;; emacs 24+ auto indents by default if electric-indent-mode is on
 ;; so disable automatic indent by default
 (electric-indent-mode 0)
