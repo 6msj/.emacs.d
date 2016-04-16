@@ -1255,7 +1255,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
          ("\\.edn\\'" . clojure-mode)))
 
 (use-package cider
-  :commands (cider-jack-in)
+  :commands (cider-mode cider-jack-in)
   :init
   (defun my/cider-mode-hook ()
     (unless (global-company-mode)
@@ -1263,8 +1263,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (clj-refactor-mode)
     (eldoc-mode)
     (company/merge-backends))
+  (add-hook 'clojure-mode-hook #'cider-mode)
   (add-hook 'cider-mode-hook #'my/cider-mode-hook)
   :config
+  ;; attempt to automatically look up symbol first
+  (setq cider-prompt-for-symbol nil)
   ;; use shift return to get a new line in repl
   (define-key cider-repl-mode-map (kbd "C-j") nil)
   (define-key cider-repl-mode-map [(shift return)] 'cider-repl-newline-and-indent)
