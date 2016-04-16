@@ -637,12 +637,6 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   :config
   (xclip-mode 1))
 
-;; for mac
-(use-package pbcopy
-  :if (and (not window-system) (on-osx))
-  :config
-  (turn-on-pbcopy))
-
 ;;;; End Editing
 
 ;;;; Begin Navigation
