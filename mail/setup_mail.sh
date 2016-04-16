@@ -68,13 +68,13 @@ fi
 
 if [ ! -d $HOME/Mail ];
 then
-    echo "creating director $HOME/Mail"
+    echo "creating directory $HOME/Mail"
     mkdir $HOME/Mail
 fi
 
 if [ ! -d $HOME/Mail/gmail ];
 then
-    echo "creating director $HOME/Mail"
+    echo "creating directory $HOME/Mail"
     mkdir $HOME/Mail/gmail
 fi
 
