@@ -931,6 +931,16 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
       "gl" 'magit-log
       "gm" 'mu4e))
 
+  ;; macro to define keys for multiple modes
+  ;; modified a little to not have to repeat the 'mode' var
+  ;; https://www.reddit.com/r/emacs/comments/2u5uzq/i_wrote_a_somewhat_useful_elisp_macro/
+  (defmacro evil-define-multiple (keymaps mode &rest bindings)
+    "Macro to allow keymaps to be bound."
+    `(progn ,@(loop for keymap in keymaps
+                    appending
+                    (loop for (key cmd) in bindings
+                          collect `(evil-define-key ,mode ,keymap ,key ,cmd)))))
+
   ;; C-j jumps foward in jumplist, C-o goes the other way
   (setq evil-want-C-i-jump nil)
   (define-key evil-motion-state-map (kbd "C-j") 'evil-jump-forward)
@@ -992,16 +1002,6 @@ Moves the point to the position where we can transpose again for a bubbling effe
   (define-key evil-visual-state-map "g<" 'evil-shift-left)
   (define-key evil-visual-state-map ">" (kbd "g>gv"))
   (define-key evil-visual-state-map "<" (kbd "g<gv"))
-
-  ;; macro to define keys for multiple modes
-  ;; modified a little to not have to repeat the 'mode' var
-  ;; https://www.reddit.com/r/emacs/comments/2u5uzq/i_wrote_a_somewhat_useful_elisp_macro/
-  (defmacro evil-define-multiple (keymaps mode &rest bindings)
-    "Macro to allow keymaps to be bound."
-    `(progn ,@(loop for keymap in keymaps
-                    appending
-                    (loop for (key cmd) in bindings
-                          collect `(evil-define-key ,mode ,keymap ,key ,cmd)))))
 
   (defun mimic-find-references ()
     "When we don't have find-usages/find-references,
