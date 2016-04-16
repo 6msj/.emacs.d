@@ -1079,6 +1079,10 @@ do a search for the string from projet root to mimic that functionality."
   ;; magit mode
   (evil-define-key 'normal magit-status-mode-map (kbd "q") 'delete-window)
 
+  ;; multi-term
+  (evil-define-key 'insert term-mode-map (kbd "TAB") 'term-send-raw) ;; rebinding
+  (evil-define-key 'insert term-raw-map (kbd "TAB") 'term-send-raw) ;; rebinding
+
   ;; mu4e mode
   (evil-define-key 'motion mu4e-view-mode-map (kbd "q") 'mu4e~view-quit-buffer
     (kbd "C-n") 'mu4e-view-headers-next
