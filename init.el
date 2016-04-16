@@ -1032,9 +1032,7 @@ Moves the point to the position where we can transpose again for a bubbling effe
 
   (evil-define-key 'motion mu4e-headers-mode-map (kbd "q") 'mu4e~headers-quit-buffer)
   (evil-define-key 'motion mu4e-main-mode-map
-    (kbd "gr") nil
     (kbd "gR") 'mu4e-update-mail-and-index
-    (kbd "gm") nil
     (kbd "gM") 'mu4e~headers-jump-to-maildir
     (kbd "C-j") nil
     (kbd "C-k") nil
@@ -1061,7 +1059,7 @@ Moves the point to the position where we can transpose again for a bubbling effe
     (kbd "l") 'evil-forward-char)
 
   ;; package mode bindings
-  (evil-add-hjkl-bindings package-menu-mode 'emacs
+  (evil-add-hjkl-bindings package-menu-mode-map 'emacs
     (kbd "/") 'evil-search-forward
     (kbd "n") 'evil-search-next
     (kbd "N") 'evil-search-previous)
