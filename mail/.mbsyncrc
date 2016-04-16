@@ -39,6 +39,20 @@ Create Both
 Expunge Both
 SyncState *
 
+Channel gmail-starred
+Master :gmail-remote:"[Gmail]/Starred"
+Slave :gmail-local:starred
+Create Both
+Expunge Both
+SyncState *
+
+Channel gmail-all
+Master :gmail-remote:"[Gmail]/All Mail"
+Slave :gmail-local:all
+Create Both
+Expunge Both
+SyncState *
+
 # GROUPS PUT TOGETHER CHANNELS, SO THAT WE CAN INVOKE
 # MBSYNC ON A GROUP TO SYNC ALL CHANNELS
 #
@@ -49,3 +63,5 @@ Group gmail
 Channel gmail-inbox
 Channel gmail-sent
 Channel gmail-trash
+Channel gmail-starred
+Channel gmail-all
