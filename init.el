@@ -949,9 +949,9 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (define-key evil-motion-state-map "'" 'evil-goto-mark)
   (define-key evil-motion-state-map "`" 'evil-goto-mark-line)
 
-  ;; intellij-like backspace
   ;; https://stackoverflow.com/questions/32977277/emacs-backspace-at-beginning-of-tabbed-line-similar-to-intellij
-  (defun my-backspace ()
+  (defun intellij-backspace ()
+    "Provides an intellij-like backspace."
     (interactive)
     (let* ((end (save-excursion
                   (end-of-line)
@@ -968,7 +968,18 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
             (end-of-line))
         (backward-delete-char-untabify 1))))
 
-  (define-key evil-insert-state-map (kbd "DEL") 'my-backspace)
+  (defun enable-or-disable-intellij-backspace (enable)
+    "If enable, enable intellij-like backspace, otherwise use default backspace."
+    (interactive)
+    (define-key evil-insert-state-local-map (kbd "DEL") (if enable 'intellij-backspace nil)))
+
+  (dolist (hook '(prog-mode-hook org-mode-hook))
+    (add-hook hook (lambda ()
+                     (enable-or-disable-intellij-backspace t))))
+
+  (dolist (hook '(python-mode-hook))
+    (add-hook hook (lambda ()
+                     (enable-or-disable-intellij-backspace nil))))
 
   ;; swapping words
   (defun transpose-words-backwards ()
