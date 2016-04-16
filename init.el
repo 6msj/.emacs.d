@@ -1297,6 +1297,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   :defer t
   :diminish clj-refactor-mode)
 
+
+;; Json
+(use-package json-mode
+  :mode ("\\.json\\'" . json-mode))
+
 ;;;; End Languages
 
 ;;;; Begin Ide
