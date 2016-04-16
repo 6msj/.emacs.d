@@ -194,7 +194,8 @@ Otherwise the symbol 'solarized won't yet be defined."
 
   ;; set up solarized background for new frames created
   (add-hook 'after-make-frame-functions (lambda (frame)
-                                          (update-solarized-background frame)))
+                                          (when using-solarized-theme
+                                            (update-solarized-background frame))))
 
   (if (not using-solarized-theme)
       (change-theme 'spacemacs-light 'spacemacs-dark)
