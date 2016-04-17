@@ -580,9 +580,6 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-c\C-m" 'execute-extended-command)
 
-(global-set-key (kbd "C-c o") 'occur) ;; occur!!
-(global-set-key (kbd "C-x C-r") 'rename-current-buffer-file) ;; rename
-
 ;;;; End Mappings
 
 ;;;; Begin Editing
