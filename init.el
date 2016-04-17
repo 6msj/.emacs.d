@@ -334,7 +334,7 @@ Otherwise the symbol 'solarized won't yet be defined."
 ;;;; Begin Experience
 
 (use-package magit
-  :commands (magit-autoload-commands)
+  :commands (magit-status magit-blame magit-log)
   :config
   (setq magit-repository-directories '("~/Developer"
                                        "~/.emacs.d"
@@ -1167,7 +1167,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 (global-set-key [escape] 'evil-exit-emacs-state)
-
 (global-set-key [escape] 'minibuffer-keyboard-quit)
 
 ;;; evil surround
@@ -1394,14 +1393,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   :config
   (ggtags-mode 1))
 
-
 ;;;; End Ide
 
 ;;;; Begin Functions
-
-(defun magit-autoload-commands ()
-  "Returns a list of magit commands that will load magit."
-  (list 'magit-status 'magit-blame 'magit-log))
 
 (defun rename-current-buffer-file ()
   "Renames current buffer and file it is visiting."
