@@ -1050,7 +1050,10 @@ do a search for the string from projet root to mimic that functionality."
     (kbd "C-n") 'mu4e-view-headers-next
     (kbd "C-p") 'mu4e-view-headers-prev)
 
-  (evil-define-key 'motion mu4e-headers-mode-map (kbd "q") 'mu4e~headers-quit-buffer)
+  (evil-define-key 'motion mu4e-headers-mode-map
+    (kbd "q") 'mu4e~headers-quit-buffer
+    (kbd "+") 'mu4e-headers-mark-for-flag)
+
   (evil-define-key 'motion mu4e-main-mode-map
     (kbd "gR") 'mu4e-update-mail-and-index
     (kbd "gM") 'mu4e~headers-jump-to-maildir
