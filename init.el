@@ -1692,6 +1692,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
         (concat
          "James Nguyen\n")))
 
+(use-package org-mu4e
+  :after mu4e
+  :ensure nil)
+
 ;; (require 'mu4e)
 (use-package evil-mu4e
   :if (require 'mu4e nil 'noerror)
