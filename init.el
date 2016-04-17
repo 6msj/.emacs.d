@@ -156,52 +156,14 @@
   (setq calendar-latitude 32.85)
   (setq calendar-longitude -96.85)
   :config
-  (defvar using-solarized-theme t "flag to switch between spacemacs and solarized")
   (defun reset-line--change-theme (&rest args)
-    (when using-solarized-theme
-      (update-solarized-background))
+    (when (bound-and-true-p org-mode)
+      (org-reload))
     (when (fboundp 'powerline-reset)
       (powerline-reset)))
   (advice-add 'change-theme :after #'reset-line--change-theme)
-
-  (defun is-daytime()
-    "Figuring out day or night."
-    (let*
-        ((now (current-time))
-         (today-times    (sunrise-sunset-times (today)))
-         (tomorrow-times (sunrise-sunset-times (tomorrow)))
-         (sunrise-today (first today-times))
-         (sunset-today (second today-times))
-         (sunrise-tomorrow (first tomorrow-times)))
-      (daytime-p sunrise-today sunset-today)))
-
-  (defun use-dark-theme()
-    (is-daytime))
-
-  (defun update-solarized-background (&optional frame)
-    "Update a few ui elements related to the solarized background.
-This should be called after (change-theme) when used with the theme-changer package.
-Otherwise the symbol 'solarized won't yet be defined."
-    (when (bound-and-true-p org-mode)
-      (when using-solarized-theme
-        (customize-org-mode-solarized))
-      (org-reload)
-      (message "org-mode reloaded"))
-    (if (use-dark-theme)
-        (set-frame-parameter frame 'background-mode 'dark)
-      (set-frame-parameter frame 'background-mode 'light))
-    (enable-theme 'solarized))
-
-  ;; set up solarized background for new frames created
-  (add-hook 'after-make-frame-functions (lambda (frame)
-                                          (when using-solarized-theme
-                                            (update-solarized-background frame))))
-
-  (if (not using-solarized-theme)
-      (change-theme 'spacemacs-light 'spacemacs-dark)
-    (progn
-      (change-theme 'solarized 'solarized)
-      (update-solarized-background))))
+  (set-frame-parameter nil 'background-mode 'light)
+  (change-theme 'gotham 'solarized))
 
 ;; disable ui fluff
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -1532,49 +1494,13 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   :commands (org-agenda)
   :mode ("\\.org\\'" . org-mode)
   :init
-  (defun customize-org-mode-solarized ()
-    ;; http://www.howardism.org/Technical/Emacs/orgmode-wordprocessor.html
-    ;; https://github.com/nashamri/spacemacs-theme/blob/master/spacemacs-common.el
-    (let*
-        ((light (not (use-dark-theme)))
-         (gui window-system)
-
-         (war "#dc752f")
-         (suc (if gui "#42ae2c" "#00af00"))
-         (green-bg (if light (if gui "#edf2e9" "#ffffff") (if gui "#293235" "262626")))
-         (yellow-bg (if light (if gui "#f6f1e1" "#ffffff") (if gui "#32322c" "#262626")))
-         (head1 (if light (if gui "#3a81c3" "#268bd2") (if gui "#4f97d7" "#268bd2")))
-         (head2 (if light (if gui "#2d9574" "#2aa198") (if gui "#2d9574" "#2aa198")))
-         (head3 (if light (if gui "#67b11d" "#5faf00") (if gui "#67b11d" "#67b11d")))
-         (head4 (if light (if gui "#b1951d" "#875f00") (if gui "#b1951d" "#875f00")))
-
-         ;; (face-font 'default) -> "-*-Source Code Pro-normal-normal- ..."
-         ;; (split-string) -> ("" "*" "Source Code Pro" "normal" "normal" ...)
-         (font-used (nth 2 (split-string (face-font 'default) "-")))
-         (font `(:font ,font-used))
-         (base-font-color     (face-foreground 'default nil 'default))
-         (hl           `(:inherit default :weight bold :foreground ,base-font-color)))
-
-      (custom-theme-set-faces
-       'user
-       `(org-todo ((t (,@hl ,@font :inherit bold :foreground ,war :background ,yellow-bg))))
-       `(org-done ((t (,@hl ,@font ::inherit bold :foreground ,suc :background ,green-bg))))
-       `(org-level-8 ((t (,@hl ,@font :foreground ,head4))))
-       `(org-level-7 ((t (,@hl ,@font :foreground ,head3))))
-       `(org-level-6 ((t (,@hl ,@font :foreground ,head2))))
-       `(org-level-5 ((t (,@hl ,@font :foreground ,head1))))
-       `(org-level-4 ((t (,@hl ,@font :height 1.0 :foreground ,head4))))
-       `(org-level-3 ((t (,@hl ,@font :height 1.1 :foreground ,head3))))
-       `(org-level-2 ((t (,@hl ,@font :height 1.2 :inherit bold :foreground ,head2))))
-       `(org-level-1 ((t (,@hl ,@font :height 1.3 :inherit bold :foreground ,head1))))
-       `(org-document-title ((t (,@hl ,@font :height 1.5 :underline nil)))))))
-
   ;; hotkeys for org-mode
   :bind (("\C-cl" . org-store-link)
          ("\C-cc" . org-capture)
          ("\C-ca" . org-agenda)
          ("\C-cb" . org-iswitchb))
   :config
+  ;; http://www.howardism.org/Technical/Emacs/orgmode-wordprocessor.html
   (font-lock-add-keywords 'org-mode
                           '(("^ +\\([-*]\\) "
                              (0 (prog1 ()
@@ -1587,9 +1513,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (setq org-hide-leading-stars t)
   (setq org-hide-emphasis-markers t)
   (setq org-goto-interface 'outline-path-completion
-        org-goto-max-level 10)
-  (when using-solarized-theme
-    (customize-org-mode-solarized)))
+        org-goto-max-level 10))
 
 (use-package org-bullets
   :after org
