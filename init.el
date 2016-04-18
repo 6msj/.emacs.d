@@ -1509,6 +1509,15 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
                           '(("^ +\\([-*]\\) "
                              (0 (prog1 ()
                                   (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+  (custom-theme-set-faces
+   'user
+   `(org-level-4 ((t (:inherit outline-4 :height 1.0))))
+   `(org-level-3 ((t (:inherit outline-3 :height 1.1))))
+   `(org-level-2 ((t (:inherit outline-2 :height 1.2 :weight bold))))
+   `(org-level-1 ((t (:inherit outline-1 :height 1.3 :weight bold))))
+   `(org-document-title ((t (:weight bold :height 1.4)))))
+
   (if (on-osx)
       (setq org-agenda-files '("~/Dropbox/Notes")))
   (if (on-windows)
