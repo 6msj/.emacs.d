@@ -1556,6 +1556,12 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   :ensure nil
   :commands (mu4e)
   :config
+  (use-package org-mu4e)
+  (use-package evil-mu4e)
+  (use-package mu4e-maildirs-extension
+    :config
+    (mu4e-maildirs-extension))
+
   ;; don't show every a thread for every message in the inbox
   (setq mu4e-headers-show-threads nil)
   ;; tell mu4e where my mail is
@@ -1610,20 +1616,5 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
         mu4e-compose-signature
         (concat
          "James Nguyen\n")))
-
-(use-package org-mu4e
-  :after mu4e
-  :ensure nil)
-
-;; (require 'mu4e)
-(use-package evil-mu4e
-  :if (require 'mu4e nil 'noerror)
-  :after mu4e)
-
-(use-package mu4e-maildirs-extension
-  :if (require 'mu4e nil 'noerror)
-  :after mu4e
-  :config
-  (mu4e-maildirs-extension))
 
 ;;;; End Mail
