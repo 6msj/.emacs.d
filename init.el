@@ -996,6 +996,7 @@ do a search for the string from projet root to mimic that functionality."
   (evil-define-multiple
    (clojure-mode-map cider-mode-map cider-repl-mode-map)
    'normal
+   ((kbd "gz") 'cider-switch-to-repl-buffer)
    ((kbd "g.") 'cider-find-dwim)
    ((kbd "g,") 'cider-pop-back)
    ((kbd "gd") 'cider-find-var)
