@@ -1534,7 +1534,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   :ensure nil
   :commands (mu4e)
   :config
-  (use-package org-mu4e)
+  (use-package org-mu4e
+    :ensure nil)
   (use-package evil-mu4e)
   (use-package mu4e-maildirs-extension
     :config
