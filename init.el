@@ -1432,18 +1432,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (rotate-windows-helper (window-list) (window-buffer (car (window-list))))
   (select-window (car (last (window-list)))))
 
-(defun my-buffer-face-mode-variable ()
-  "Set font to a variable width (proportional) fonts in current buffer"
-  (interactive)
-  (setq buffer-face-mode-face '(:family "Helvetica" :height 130 :width semi-condensed))
-  (buffer-face-mode))
-
-(defun my-buffer-face-mode-fixed ()
-  "Sets a fixed width (monospace) font in current buffer"
-  (interactive)
-  (setq buffer-face-mode-face '(:family "Consolas" :height 120))
-  (buffer-face-mode))
-
 (defun explorer-finder ()
   "Opens up file explorer based on operating system."
   (interactive)
@@ -1469,25 +1457,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
                          (get-buffer-window buffer t)))
         (t
          (message "Compilation exited abnormally: %s" string))))
-
-(defun recentf-ido-find-file ()
-  "Find a recent file using Ido."
-  (interactive)
-  (let* ((file-assoc-list
-          (mapcar (lambda (x)
-                    (cons (file-name-nondirectory x)
-                          x))
-                  recentf-list))
-         (filename-list
-          (remove-duplicates (mapcar #'car file-assoc-list)
-                             :test #'string=))
-         (filename (ido-completing-read "Choose recent file: "
-                                        filename-list
-                                        nil
-                                        t)))
-    (when filename
-      (find-file (cdr (assoc filename
-                             file-assoc-list))))))
 
 ;;;; End Functions
 
