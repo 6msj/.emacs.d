@@ -624,6 +624,8 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 (global-set-key (kbd "C-q 0") 'kill-this-buffer)
 (global-set-key (kbd "C-q ,") 'evil-prev-buffer)
 (global-set-key (kbd "C-q .") 'evil-next-buffer)
+(global-set-key (kbd "C-q u") 'winner-undo)
+(global-set-key (kbd "C-q r") 'winner-redo)
 
 (use-package perspective
   :defer 2
@@ -646,6 +648,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 
   (define-key perspective-map (kbd "k") nil) ; keep up windmove-up instead
   (define-key perspective-map (kbd "s") 'nil) ; this was persp-switch before
+  (define-key perspective-map (kbd "r") 'nil) ; this was persp-rename before
   (define-key perspective-map (kbd "c") 'persp-switch) ; mirroring tmux
   (define-key perspective-map (kbd "x") 'delete-perspective-or-window)
   (define-key perspective-map (kbd "/") 'persp-rename)
