@@ -1394,6 +1394,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (if (region-active-p)
         (progn
           (indent-region (region-beginning) (region-end))
+          (untabify (point-min) (point-max))
           (message "Indented selected region."))
       (progn
         (indent-buffer)
