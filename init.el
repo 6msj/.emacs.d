@@ -995,6 +995,12 @@ do a search for the string from projet root to mimic that functionality."
     (interactive)
     (ag-project (ag/dwim-at-point)))
 
+  ;; c
+  (evil-define-multiple
+   (c-mode-map objc-mode-map c++-mode-map)
+   'normal
+   ((kbd "go") 'ff-find-other-file))
+
   ;; cider
   (evil-define-multiple
    (clojure-mode-map cider-mode-map cider-repl-mode-map)
@@ -1343,6 +1349,23 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; Java
 (use-package javadoc-lookup
   :commands (javadoc-lookup))
+
+;; Objective-C
+(add-to-list 'auto-mode-alist '("\\.mm\\'" . objc-mode))
+
+(use-package objc-font-lock
+  :commands (objc-font-lock-mode)
+  :init
+  (add-hook 'objc-mode-hook #'objc-font-lock-mode)
+  :config
+  (setq objc-font-lock-background-face 'nil)
+  (setq objc-font-lock-bracket-face nil)
+  (objc-font-lock-mode 1))
+
+;; C
+(use-package dummy-h-mode
+  :mode ("\\.h$" . dummy-h-mode))
+
 
 ;;;; End Languages
 
