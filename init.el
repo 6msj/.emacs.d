@@ -853,12 +853,12 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
       "pO"  'projectile-find-other-file-other-window
 
       ;; ivy
-      "f"  'counsel-find-file
+      "f"  'counsel-git
       "b"  'ivy-switch-buffer
       "r"  'ivy-recentf
       "ss" 'swiper
       "sa" 'counsel-ag
-      "sf" 'counsel-git
+      "sf" 'counsel-find-file
       "so" 'occur
       "sb" 'multi-occur
       "ag" 'ag
