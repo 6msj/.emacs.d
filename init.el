@@ -1026,6 +1026,11 @@ do a search for the string from projet root to mimic that functionality."
   ;; java
   (evil-define-key 'normal java-mode-map (kbd "K") 'javadoc-lookup)
 
+  ;; objective-c
+  (evil-define-key 'normal objc-mode-map
+    (kbd "gr") 'mimic-find-references
+    (kbd "gp") 'occur-find-pragma)
+
   ;; occur mode
   (evil-set-initial-state 'occur-mode 'motion)
   (evil-define-key 'motion occur-mode-map
@@ -1370,6 +1375,12 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
                 (ggtags-mode 1))))
   :config
   (ggtags-mode 1))
+
+;;; ios
+(defun occur-find-pragma ()
+  (interactive)
+  (occur "pragma mark [a-zA-Z0-9]")
+  (pop-to-buffer "*Occur*"))
 
 ;;;; End Ide
 
