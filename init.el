@@ -731,7 +731,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 ;;; most recently used files
 (use-package recentf
   :config
-  (setq recentf-max-saved-items 300
+  (setq recentf-max-saved-items 200
         ;; https://www.reddit.com/r/emacs/comments/3g468d/stop_recent_files_showing_elpa_packages/
         ;; Cleanup recent files only when Emacs is idle, but not when the mode
         ;; is enabled, because that unnecessarily slows down Emacs. My Emacs
