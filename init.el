@@ -342,17 +342,6 @@
 
 (add-hook 'text-mode-hook 'visual-line-mode) ; wraps line when it reaches end
 
-(use-package git-gutter+
-  :diminish git-gutter+-mode
-  :commands (global-git-gutter+-mode)
-  :init
-  (add-hook 'after-save-hook (lambda ()
-                               (unless global-git-gutter+-mode
-                                 (global-git-gutter+-mode)))))
-
-(use-package git-gutter-fringe+
-  :after git-gutter+)
-
 ;; hide the comments too when you do a 'hs-hide-all'
 (setq hs-hide-comments nil)
 ;; Set whether isearch opens folded comments, code, or both
