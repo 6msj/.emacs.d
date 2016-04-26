@@ -157,8 +157,12 @@
   (setq calendar-longitude -96.85)
   :config
   (defun reset-line--change-theme (&rest args)
+    ;; runs org-reload on current org mode buffers
     (when (fboundp 'org-reload)
-      (org-reload))
+      (dolist (b (buffer-list))
+        (with-current-buffer b
+          (when (eq major-mode 'org-mode)
+            (org-reload)))))
     (when (fboundp 'powerline-reset)
       (powerline-reset)))
   (advice-add 'change-theme :after #'reset-line--change-theme)
