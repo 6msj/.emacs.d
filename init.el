@@ -823,6 +823,11 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
       "el" 'python-shell-send-file
       "ee" 'python-shell-send-defun))
 
+  (defun setup-objc-leader-keys ()
+    "Sets up commands for objc-mode."
+    (evil-leader/set-key-for-mode 'objc-mode
+      "=" 'clang-format-region-or-buffer))
+
   (defun setup-org-leader-keys ()
     "Sets up commands for org-mode."
     (evil-leader/set-key-for-mode 'org-mode
@@ -848,6 +853,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
     (setup-lisp-interaction-leader-keys)
     (setup-emacs-lisp-leader-keys)
     (setup-python-leader-keys)
+    (setup-objc-leader-keys)
     (setup-org-leader-keys)
 
     (evil-leader/set-key
@@ -1366,6 +1372,19 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (use-package dummy-h-mode
   :mode ("\\.h$" . dummy-h-mode))
 
+(use-package clang-format
+  :commands (clang-format-buffer clang-format-region)
+  :init
+  (defun clang-format-region-or-buffer()
+    "If clang-format is not available, do the default indenting.
+Otherwise try to use clang-format. Indents region if there's a selection,
+otherwise buffer is formatted."
+    (interactive)
+    (if (not (executable-find "clang-format"))
+        (indent-region-or-buffer)
+      (if (region-active-p)
+          (clang-format-region (region-beginning) (region-end))
+        (clang-format-buffer)))))
 
 ;;;; End Languages
 
