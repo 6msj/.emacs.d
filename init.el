@@ -645,6 +645,8 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (define-key perspective-map (kbd "c") 'persp-switch) ; mirroring tmux
   (define-key perspective-map (kbd "x") 'delete-perspective-or-window)
   (define-key perspective-map (kbd "/") 'persp-rename)
+  (define-key perspective-map (kbd "C-n") 'persp-next)
+  (define-key perspective-map (kbd "C-p") 'persp-prev)
   (persp-mode 1))
 
 ;;;; End Navigation
