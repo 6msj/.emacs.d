@@ -78,6 +78,12 @@ then
     mkdir $HOME/Mail/gmail
 fi
 
+if [ ! -d $HOME/Mail/whoshere ];
+then
+    echo "creating directory $HOME/whoshere"
+    mkdir $HOME/Mail/whoshere
+fi
+
 # check for file
 if [ -f $HOME/.authinfo.gpg ];
 then

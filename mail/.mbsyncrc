@@ -1,3 +1,4 @@
+# personal
 IMAPAccount gmail
 # Address to connect to
 Host imap.gmail.com
@@ -6,7 +7,6 @@ PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.authinfo.gpg | awk '/machin
 Port 993
 SSLType IMAPS
 AuthMechs LOGIN
-SSLVersions SSLv3
 CertificateFile /usr/local/etc/openssl/cert.pem
     
 IMAPStore gmail-remote
@@ -65,3 +65,30 @@ Channel gmail-sent
 Channel gmail-trash
 Channel gmail-starred
 Channel gmail-all
+
+# work
+IMAPAccount work
+Host outlook.office365.com
+Port 993
+User james@whoshere.net
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.authinfo.gpg | awk '/machine outlook.office365.com login james@whoshere.net/ {print $NF}'"
+SSLType IMAPS
+AuthMechs LOGIN
+CertificateFile /usr/local/etc/openssl/cert.pem
+
+IMAPStore work-remote
+Account work
+
+MaildirStore work-local
+Path ~/Mail/whoshere/
+Inbox ~/Mail/whoshere/inbox
+
+Channel work
+Master :work-remote:
+Slave :work-local:
+Patterns "Archive" "Deleted Items" "Drafts" "INBOX" "Sent Items" "Outbox"
+Create Slave
+Sync All
+Expunge Both
+# Save the synchronization state files in the relevant directory
+SyncState *
