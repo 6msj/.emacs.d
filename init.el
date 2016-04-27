@@ -1383,7 +1383,7 @@ otherwise buffer is formatted."
     (if (not (executable-find "clang-format"))
         (indent-region-or-buffer)
       (if (region-active-p)
-          (clang-format-region (region-beginning) (region-end))
+          (call-interactively 'clang-format-region)
         (clang-format-buffer)))))
 
 ;;;; End Languages
