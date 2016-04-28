@@ -1628,13 +1628,41 @@ otherwise buffer is formatted."
   ;; use imagemagick, if available
   (when (fboundp 'imagemagick-register-types)
     (imagemagick-register-types))
-  ;; general emacs mail settings; used when composing e-mail
-  ;; the non-mu4e-* stuff is inherited from emacs/message-mode
-  (setq mu4e-reply-to-address "me@example.com"
-        user-mail-address "ja.nguyen@gmail.com"
-        user-full-name  "James Nguyen"
-        mu4e-compose-signature
-        (concat
-         "James Nguyen\n")))
+
+  ;; setting up contexts between personal and work
+  (setq mu4e-contexts
+        `( ,(make-mu4e-context
+             :name "Personal"
+             :enter-func (lambda ()
+                           (mu4e-message "Switched to the Personal context"))
+             ;; leave-func not defined
+             :match-func (lambda (msg)
+                           (when msg
+                             (mu4e-message-contact-field-matches msg
+                                                                 :to "ja.nguyen@gmail.com")))
+             :vars '((user-mail-address . "ja.nguyen@gmail.com")
+                     (user-full-name . "James Nguyen")
+                     (mu4e-compose-signature .
+                                             (concat
+                                              "James Nguyen\n"))))
+           ,(make-mu4e-context
+             :name "Work"
+             :enter-func (lambda ()
+                           (mu4e-message "Switched to the Work context"))
+             ;; leave-fun not defined
+             :match-func (lambda (msg)
+                           (when msg
+                             (mu4e-message-contact-field-matches msg
+                                                                 :to "james@whoshere.net")))
+             :vars '((user-mail-address . "james@whoshere.net")
+                     (user-full-name . "James Nguyen")
+                     (mu4e-compose-signature .
+                                             (concat
+                                              "James Nguyen\n"))))))
+
+  ;; set `mu4e-context-policy` and `mu4e-compose-policy` to tweak when mu4e should
+  ;; guess or ask the correct context, e.g.
+  (setq mu4e-context-policy 'pick-first)
+  (setq mu4e-compose-context-policy 'ask-if-none))
 
 ;;;; End Mail
