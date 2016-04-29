@@ -658,7 +658,15 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   :ensure counsel
   :diminish ivy-mode
   :config
-  (setq counsel-ag-base-command "ag -U --nocolor --nogroup %s -- .") ; default: "ag --nocolor --nogroup %s -- ."
+  (defun my/counsel-find-file-dwim ()
+    "Tries to find file in project.
+If not in a project, fallback by using counsel-find-file."
+    (interactive)
+    (unless (ignore-errors (counsel-git))
+      (counsel-find-file)))
+
+  ;; default: "ag --nocolor --nogroup %s -- ."
+  (setq counsel-ag-base-command "ag -U --nocolor --nogroup %s -- .")
   (setq ivy-count-format "")
   (setq ivy-height 15))
 
@@ -866,7 +874,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
       "pO"  'projectile-find-other-file-other-window
 
       ;; ivy
-      "f"  'counsel-git
+      "f"  'my/counsel-find-file-dwim
       "b"  'ivy-switch-buffer
       "r"  'ivy-recentf
       "ss" 'swiper
