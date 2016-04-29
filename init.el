@@ -417,6 +417,7 @@
   (add-hook 'term-mode-hook (apply-partially #'set-company-min-prefix-length 5))
   (add-hook 'org-mode-hook (apply-partially #'set-company-min-prefix-length 3))
   (add-hook 'prog-mode-hook (apply-partially #'set-company-min-prefix-length 1))
+  (add-hook 'message-mode-hook (apply-partially #'set-company-min-prefix-length 5))
 
   ;; ios
   (add-hook 'objc-mode-hook
