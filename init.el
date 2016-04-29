@@ -1058,6 +1058,9 @@ do a search for the string from projet root to mimic that functionality."
     (kbd "RET") 'occur-mode-goto-occurrence
     (kbd "q")   'quit-window)
 
+  (evil-define-key 'normal org-mode-map
+    (kbd "g.") 'org-open-at-point)
+
   ;; special mode
   (evil-define-key 'motion special-mode-map (kbd "q") 'quit-window)
   (evil-define-key 'normal special-mode-map (kbd "q") 'quit-window)
@@ -1548,10 +1551,27 @@ otherwise buffer is formatted."
    `(org-level-1 ((t (:inherit outline-1 :height 1.3 :weight bold))))
    `(org-document-title ((t (:weight bold :height 1.4)))))
 
-  (if (on-osx)
-      (setq org-agenda-files '("~/Dropbox/Notes")))
-  (if (on-windows)
-      (setq org-agenda-files '("C:/Users/james/Dropbox/Notes")))
+  (when (on-osx)
+    (setq org-directory "~/Dropbox/Notes")
+    (setq org-agenda-files '("~/Dropbox/Notes")))
+  (when (on-windows)
+    (setq org-directory "C:/Users/james/Dropbox/Notes")
+    (setq org-agenda-files '("C:/Users/james/Dropbox/Notes")))
+
+  (setq org-capture-templates
+        '(;; standard todo
+          ("t" "Todo" entry
+           (file+headline (concat org-directory "/mine.org") "Tasks")
+           "* TODO %u %a %?\n")
+          ;; handle this message in the next two days
+          ("H" "High Priority" entry
+           (file+headline (concat org-directory "/mine.org") "High Priority")
+           "* TODO %a %?\nDEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+2d\"))")
+          ;; wait for an e-mail reply
+          ("W" "Wait for Reply"
+           entry (file+headline (concat org-directory "/mine.org") "Waiting")
+           "* WAIT %u %a %?\n")))
+
   (setq org-src-fontify-natively t)
   (setq org-hide-leading-stars t)
   (setq org-hide-emphasis-markers t)
@@ -1601,6 +1621,11 @@ otherwise buffer is formatted."
   (use-package mu4e-maildirs-extension
     :config
     (mu4e-maildirs-extension))
+
+  ;; synergy with org mode capture
+  (define-key mu4e-headers-mode-map (kbd "C-c c") 'org-mu4e-store-and-capture)
+  (define-key mu4e-view-mode-map    (kbd "C-c c") 'org-mu4e-store-and-capture)
+
   ;; don't show every a thread for every message in the inbox
   (setq mu4e-headers-show-threads nil)
   ;; tell mu4e where my mail is
