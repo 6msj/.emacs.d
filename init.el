@@ -1399,6 +1399,12 @@ otherwise buffer is formatted."
           (call-interactively 'clang-format-region)
         (clang-format-buffer)))))
 
+;; Swift
+(use-package swift-mode
+  :mode ("\\.swift\\'" . swift-mode)
+  :config
+  (define-key swift-repl-mode-map [(shift return)] 'evil-jump-forward))
+
 ;;;; End Languages
 
 ;;;; Begin Ide
