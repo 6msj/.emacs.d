@@ -1623,6 +1623,9 @@ otherwise buffer is formatted."
     :config
     (mu4e-maildirs-extension))
 
+  (add-to-list 'mu4e-view-actions
+               '("View in browser" . mu4e-action-view-in-browser) t)
+
   ;; synergy with org mode capture
   (define-key mu4e-headers-mode-map (kbd "C-c c") 'org-mu4e-store-and-capture)
   (define-key mu4e-view-mode-map    (kbd "C-c c") 'org-mu4e-store-and-capture)
