@@ -669,6 +669,10 @@ If not in a project, fallback by using counsel-find-file."
     (unless (ignore-errors (counsel-git))
       (counsel-find-file)))
 
+  ;; swapping behavior
+  (define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
+  (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-done)
+
   ;; default: "ag --nocolor --nogroup %s -- ."
   (setq counsel-ag-base-command "ag -U --nocolor --nogroup %s -- .")
   (setq ivy-count-format "")
