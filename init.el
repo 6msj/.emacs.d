@@ -1606,6 +1606,12 @@ otherwise buffer is formatted."
   (add-to-list 'mu4e-view-actions
                '("View in browser" . mu4e-action-view-in-browser) t)
 
+  ;; adding cc header
+  (add-hook 'mu4e-compose-mode-hook
+            (defun my-add-cc ()
+              "Add a cc: header."
+              (save-excursion (message-add-header "Cc: \n"))))
+
   ;; don't show every a thread for every message in the inbox
   (setq mu4e-headers-show-threads nil)
   ;; tell mu4e where my mail is
