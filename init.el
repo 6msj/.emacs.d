@@ -1075,6 +1075,7 @@ do a search for the string from projet root to mimic that functionality."
 
   ;; mu4e mode
   (evil-define-key 'motion mu4e-view-mode-map (kbd "q") 'mu4e~view-quit-buffer
+    (kbd "g.") 'mu4e~view-browse-url-from-binding
     (kbd "C-n") 'mu4e-view-headers-next
     (kbd "C-p") 'mu4e-view-headers-prev)
 
