@@ -86,7 +86,7 @@ Inbox ~/Mail/whoshere/inbox
 Channel work
 Master :work-remote:
 Slave :work-local:
-Patterns "Archive" "Deleted Items" "Drafts" "INBOX" "Sent Items" "Outbox"
+Patterns "Archive" "Deleted Items" "Drafts" "INBOX" "Sent Items"
 Create Slave
 Sync All
 Expunge Both
