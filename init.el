@@ -90,6 +90,8 @@
   :commands (multi-term)
   :init
   :config
+  (evil-define-key 'insert term-mode-map (kbd "TAB") 'term-send-raw) ;; rebinding
+  (evil-define-key 'insert term-raw-map (kbd "TAB") 'term-send-raw) ;; rebinding
   (add-to-list 'term-unbind-key-list "C-q") ; C-q binds to raw input by default
   (setq multi-term-program "/bin/zsh"))
 
@@ -302,6 +304,9 @@
 (use-package magit
   :commands (magit-status magit-blame magit-log)
   :config
+  (evil-define-key 'normal magit-status-mode-map
+    (kbd "q") 'delete-window)
+
   (setq magit-repository-directories '("~/Developer"
                                        "~/.emacs.d"
                                        "~/.vim"
@@ -771,20 +776,6 @@ If not in a project, fallback by using counsel-find-file."
 (use-package evil
   :init
   (setq evil-want-C-u-scroll t) ; regain scroll up with c-u
-
-  ;; indenting related to evil
-  (add-hook 'python-mode-hook
-            (function (lambda ()
-                        (setq evil-shift-width python-indent))))
-  (add-hook 'ruby-mode-hook
-            (function (lambda ()
-                        (setq evil-shift-width ruby-indent-level))))
-  (add-hook 'emacs-lisp-mode-hook
-            (function (lambda ()
-                        (setq evil-shift-width lisp-body-indent))))
-  (add-hook 'org-mode-hook
-            (function (lambda ()
-                        (setq evil-shift-width 4))))
   :config
   ;; http://spacemacs.org/doc/FAQ
   ;; https://github.com/syl20bnr/spacemacs/issues/2032
@@ -792,61 +783,16 @@ If not in a project, fallback by using counsel-find-file."
   (fset 'evil-visual-update-x-selection 'ignore)
   (setq evil-flash-delay 8) ;; control the highlight time of searches
 
-  (defun setup-lisp-interaction-leader-keys ()
-    "Sets up commands for emacs-lisp."
-    (evil-leader/set-key-for-mode 'lisp-interaction-mode
-      "er" 'eval-region
-      "ee" 'eval-last-sexp
-      "ex" 'eval-last-sexp-and-replace
-      "eb" 'eval-buffer))
-
-  (defun setup-emacs-lisp-leader-keys ()
-    "Sets up commands for emacs-lisp."
-    (evil-leader/set-key-for-mode 'emacs-lisp-mode
-      "er" 'eval-region
-      "ee" 'eval-last-sexp
-      "ex" 'eval-last-sexp-and-replace
-      "eb" 'eval-buffer))
-
-  (defun setup-clojure-leader-keys ()
-    "Sets up commands for cider/clojure."
-    ;; http://emacs.stackexchange.com/questions/20779/m-and-m-in-evil-mode
-    (evil-leader/set-key-for-mode 'clojure-mode
-      "cj" 'cider-jack-in
-      "ct" 'cider-test-run-test
-      "er" 'cider-eval-region
-      "ee" 'cider-eval-last-sexp
-      "ex" 'cider-eval-last-sexp-and-replace
-      "eb" 'cider-eval-buffer))
-
-  (defun setup-python-leader-keys ()
-    "Sets up commands for python."
-    (evil-leader/set-key-for-mode 'python-mode
-      "ci" 'run-python
-      "cd" 'pdb
-      "cp" 'python-shell-switch-to-shell
-      "er" 'python-shell-send-region
-      "eb" 'python-shell-send-buffer
-      "es" 'python-shell-send-string
-      "el" 'python-shell-send-file
-      "ee" 'python-shell-send-defun))
-
-  (defun setup-objc-leader-keys ()
-    "Sets up commands for objc-mode."
-    (evil-leader/set-key-for-mode 'objc-mode
-      "=" 'clang-format-region-or-buffer))
-
-  (defun setup-org-leader-keys ()
-    "Sets up commands for org-mode."
-    (evil-leader/set-key-for-mode 'org-mode
-      "ct" 'org-todo
-      "<RET>" 'org-insert-heading-respect-content))
-
   (defun magit-status-pick-repository ()
     "Calls magit-status with a prefix argument to allow picking the repository."
     (interactive)
     (let ((current-prefix-arg '(4))) ; C-u
       (call-interactively 'magit-status)))
+
+  (defun my/set-evil-shift-width (width)
+    "Changing local indent width based on width passed."
+    (make-local-variable 'evil-shift-width)
+    (setq evil-shift-width width))
 
   ;; nesting evil-leader package declaration
   ;; (global-evil-leader-mode) should be before (evil-mode 1)
@@ -855,14 +801,6 @@ If not in a project, fallback by using counsel-find-file."
     :config
     (global-evil-leader-mode)
     (evil-leader/set-leader "<SPC>")
-
-    ;; mode specific leader keys
-    (setup-clojure-leader-keys)
-    (setup-lisp-interaction-leader-keys)
-    (setup-emacs-lisp-leader-keys)
-    (setup-python-leader-keys)
-    (setup-objc-leader-keys)
-    (setup-org-leader-keys)
 
     (evil-leader/set-key
       ;; projectile
@@ -1000,110 +938,16 @@ do a search for the string from projet root to mimic that functionality."
     (interactive)
     (ag-project (ag/dwim-at-point)))
 
-  ;; c
-  (evil-define-multiple
-   (c-mode-map objc-mode-map c++-mode-map)
-   'normal
-   ((kbd "go") 'ff-find-other-file))
-
-  ;; cider
-  (evil-define-multiple
-   (clojure-mode-map cider-mode-map cider-repl-mode-map)
-   'normal
-   ((kbd "gz") 'cider-switch-to-repl-buffer)
-   ((kbd "g.") 'cider-find-dwim)
-   ((kbd "g,") 'cider-pop-back)
-   ((kbd "gd") 'cider-find-var)
-   ((kbd "gf") 'cider-find-file)
-   ((kbd "g?") 'cider-javadoc)
-   ((kbd "gr") 'mimic-find-references)
-   ((kbd "K")  'cider-doc))
-
-  ;; elisp-slime-nav
-  (evil-define-key 'normal elisp-slime-nav-mode-map
-    (kbd "g.") 'elisp-slime-nav-find-elisp-thing-at-point
-    (kbd "g,") 'pop-tag-mark
-    (kbd "gd") 'elisp-slime-nav-describe-elisp-thing-at-point
-    (kbd "g?") 'elisp-slime-nav-describe-elisp-thing-at-point
-    (kbd "gr") 'mimic-find-references
-    (kbd "K")  'elisp-slime-nav-describe-elisp-thing-at-point)
-
-  ;; ggtags-mode
-  (evil-define-key 'normal ggtags-global-mode-map (kbd "h") 'evil-backward-char)
-  (evil-define-key 'normal ggtags-mode-map
-    (kbd "g.") 'ggtags-find-tag-dwim
-    (kbd "g,") 'ggtags-prev-mark
-    (kbd "gd") 'ggtags-find-definition
-    (kbd "gf") 'ggtags-find-file
-    (kbd "g?") 'ggtags-show-definition
-    (kbd "gr") 'ggtags-find-reference
-    (kbd "gt") 'ggtags-find-tag-dwim)
-
-  ;; java
-  (evil-define-key 'normal java-mode-map (kbd "K") 'javadoc-lookup)
-
-  ;; objective-c
-  (evil-define-key 'normal objc-mode-map
-    (kbd "gr") 'mimic-find-references
-    (kbd "gp") 'occur-find-pragma)
-
   ;; occur mode
   (evil-set-initial-state 'occur-mode 'motion)
   (evil-define-key 'motion occur-mode-map
     (kbd "RET") 'occur-mode-goto-occurrence
     (kbd "q")   'quit-window)
 
-  (evil-define-key 'normal org-mode-map
-    (kbd "g.") 'org-open-at-point)
-
   ;; special mode
   (evil-define-key 'motion special-mode-map (kbd "q") 'quit-window)
   (evil-define-key 'normal special-mode-map (kbd "q") 'quit-window)
   (evil-define-key 'visual special-mode-map (kbd "q") 'quit-window)
-
-  ;; magit mode
-  (evil-define-key 'normal magit-status-mode-map (kbd "q") 'delete-window)
-
-  ;; multi-term
-  (evil-define-key 'insert term-mode-map (kbd "TAB") 'term-send-raw) ;; rebinding
-  (evil-define-key 'insert term-raw-map (kbd "TAB") 'term-send-raw) ;; rebinding
-
-  ;; mu4e mode
-  (evil-define-key 'motion mu4e-view-mode-map (kbd "q") 'mu4e~view-quit-buffer
-    (kbd "g.") 'mu4e~view-browse-url-from-binding
-    (kbd "C-n") 'mu4e-view-headers-next
-    (kbd "C-p") 'mu4e-view-headers-prev)
-
-  (evil-define-key 'motion mu4e-headers-mode-map
-    (kbd "q") 'mu4e~headers-quit-buffer
-    (kbd "+") 'mu4e-headers-mark-for-flag)
-
-  (evil-define-key 'motion mu4e-main-mode-map
-    (kbd "gR") 'mu4e-update-mail-and-index
-    (kbd "gM") 'mu4e~headers-jump-to-maildir
-    (kbd "C-j") nil
-    (kbd "C-k") nil
-    (kbd "C-n") 'mu4e-headers-next
-    (kbd "C-p") 'mu4e-headers-prev)
-
-  ;; org mode
-  (evil-define-key 'normal org-mode-map
-    (kbd "TAB") 'org-cycle
-    ;; to be backward compatible with older org version
-    (kbd "]") (if (fboundp 'org-forward-same-level)
-                  'org-forward-same-level
-                'org-forward-heading-same-level)
-    (kbd "[") (if (fboundp 'org-backward-same-level)
-                  'org-backward-same-level
-                'org-backward-heading-same-level))
-
-  (evil-define-key 'emacs org-agenda-mode-map
-    (kbd "b") 'evil-backward-word-begin
-    (kbd "w") 'evil-forward-word-begin
-    (kbd "j") 'evil-next-line
-    (kbd "k") 'evil-previous-line
-    (kbd "h") 'evil-backward-char
-    (kbd "l") 'evil-forward-char)
 
   ;; package mode bindings
   (evil-add-hjkl-bindings package-menu-mode-map 'emacs
@@ -1192,108 +1036,185 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;;;; Begin Languages
 
-;;; Shell
-(add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
+;;; C family of languages.
 
-;;; Haskell
-(use-package haskell-mode
-  :mode "\\.hs\\'"
+(evil-define-multiple
+ (c-mode-map objc-mode-map c++-mode-map)
+ 'normal
+ ((kbd "go") 'ff-find-other-file))
+
+(use-package dummy-h-mode
+  :mode ("\\.h$" . dummy-h-mode))
+
+(use-package clang-format
+  :commands (clang-format-buffer clang-format-region)
   :init
-  (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-  (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-  (add-to-list 'completion-ignored-extensions ".hi"))
+  (defun clang-format-region-or-buffer()
+    "If clang-format is not available, do the default indenting.
+Otherwise try to use clang-format. Indents region if there's a selection,
+otherwise buffer is formatted."
+    (interactive)
+    (if (not (executable-find "clang-format"))
+        (indent-region-or-buffer)
+      (if (region-active-p)
+          (call-interactively 'clang-format-region)
+        (clang-format-buffer))))
 
-;;; C#
+  (dolist (mode '(c-mode c++-mode objc-mode))
+    (evil-leader/set-key-for-mode mode
+      "=" 'clang-format-region-or-buffer)))
+
+(use-package ggtags
+  :diminish ggtags-mode
+  :commands (ggtags-mode)
+  :init
+  (add-hook 'c-mode-common-hook
+            (lambda ()
+              (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+                (ggtags-mode 1))))
+  :config
+  (evil-define-key 'normal ggtags-global-mode-map
+    (kbd "h") 'evil-backward-char)
+  (evil-define-key 'normal ggtags-mode-map
+    (kbd "g.") 'ggtags-find-tag-dwim
+    (kbd "g,") 'ggtags-prev-mark
+    (kbd "gd") 'ggtags-find-definition
+    (kbd "gf") 'ggtags-find-file
+    (kbd "g?") 'ggtags-show-definition
+    (kbd "gr") 'ggtags-find-reference
+    (kbd "gt") 'ggtags-find-tag-dwim)
+  (ggtags-mode 1))
+
+;; Objective-C
+(use-package cc-mode
+  :mode (("\\.m\\'" . objc-mode)
+         ("\\.mm\\'" . objc-mode))
+  :config
+  (defun occur-find-pragma ()
+    (interactive)
+    (occur "pragma mark [a-zA-Z0-9]")
+    (pop-to-buffer "*Occur*"))
+  (evil-define-key 'normal objc-mode-map
+    (kbd "gr") 'mimic-find-references
+    (kbd "gp") 'occur-find-pragma))
+
+;; Java
+(use-package cc-mode
+  :mode ("\\.java\\'" . java-mode)
+  :config
+  (use-package javadoc-lookup
+    :commands (javadoc-lookup)
+    :init
+    (evil-define-key 'normal java-mode-map (kbd "K") 'javadoc-lookup)))
+
+;; C#
 (use-package csharp-mode
   :mode "\\.cs\\'"
   :config
   (setq csharp-want-imenu nil)) ; turn off the menu
 
-;;; Python
+;;; Dynamic and/or interpreted languages.
 
-;; pdb setup
-(when (on-osx)
-  (setq pdb-path '/usr/lib/python2.7/pdb.py)
-  (setq gud-pdb-command-name (symbol-name pdb-path))
-
-  (defadvice pdb (before gud-query-cmdline activate)
-    "Provide a better default command line when called interactively."
-    (interactive
-     (list (gud-query-cmdline pdb-path
-                              (file-name-nondirectory buffer-file-name))))))
-
-;; https://github.com/emacsmirror/python-mode - see troubleshooting
-;; https://bugs.launchpad.net/python-mode/+bug/963253
-;; http://pswinkels.blogspot.com/2010/04/debugging-python-code-from-within-emacs.html
-(when (on-windows)
-  (setq windows-python-pdb-path "c:/python27/python -i c:/python27/Lib/pdb.py")
-  (setq pdb-path 'C:/Python27/Lib/pdb.py)
-  (setq gud-pdb-command-name (symbol-name pdb-path))
-  (setq gud-pdb-command-name windows-python-pdb-path)
-
-  ;; everytime we enter a new python buffer, set the command path to include the buffer filename
-  (add-hook 'python-mode-hook (function
-                               (lambda ()
-                                 (setq gud-pdb-command-name
-                                       (concat windows-python-pdb-path " " buffer-file-name))))))
-
-;;; Erlang
-(use-package erlang
-  ;; We need to specify erlang-mode explicitely as the package is not called
-  ;; erlang-mode.
-  :mode (("\\.erl\\'" . erlang-mode)
-         ("\\.hrl\\'" . erlang-mode)
-         ("\\.xrl\\'" . erlang-mode))
-  :config
-  ;; http://erlang.org/pipermail/erlang-questions/2003-June/009103.html
-  (setq hs-special-modes-alist
-        (cons '(erlang-mode
-                "^\\([a-z][a-zA-Z0-9_]*\\|'[^\n']*[^\\]'\\)\\s *(" nil "%"
-                erlang-end-of-clause) hs-special-modes-alist))
-  (setq tab-width 4)
-  (setq erlang-indent-level 4)
-  (setq erlang-font-lock-level-4))
-
-;;; Web
-;; http://web-mode.org/
-(use-package web-mode
-  :mode (("\\.phtml\\'" . web-mode)
-         ("\\.tpl\\.php\\'" . web-mode)
-         ("\\.blade\\.php\\'" . web-mode)
-         ("/\\(views\\|html\\|theme\\|templates\\)/.*\\.php\\'" . web-mode)
-         ("\\.[agj]sp\\'" . web-mode)
-         ("\\.as[cp]x\\'" . web-mode)
-         ("\\.erb\\'" . web-mode)
-         ("\\.mustache\\'" . web-mode)
-         ("\\.djhtml\\'" . web-mode)
-         ("\\.jsp\\'" . web-mode))
-  :config
-  (global-unset-key (kbd "C-d"))
-  (global-set-key (kbd "C-d") 'evil-scroll-down))
-
-;;; Php
-(use-package php-mode
-  :mode ("\\.php\\'" . php-mode))
-
-;; colors for various 'color codes' aka hex strings
-(use-package rainbow-mode
-  :commands (rainbow-mode)
-  :init
-  (add-hook 'css-mode-hook 'rainbow-mode)
-  :diminish rainbow-mode
-  :config
-  (rainbow-mode 1))
-
-;;; Groovy
+;; Groovy
 (use-package groovy-mode
   :mode (("\\.gradle\\'" . groovy-mode)
          ("\\.groovy\\'" . groovy-mode))
   :config
   (groovy-mode))
 
-;; Vimscript
-(use-package vimrc-mode
-  :mode (("\\.vimrc\\'" . vimrc-mode)))
+;; Swift
+(use-package swift-mode
+  :mode ("\\.swift\\'" . swift-mode)
+  :config
+  (evil-leader/set-key-for-mode 'swift-mode
+    "ez" 'swift-mode-run-repl
+    "eb" 'swift-mode-send-buffer
+    "er" 'swift-mode-send-region)
+  (define-key swift-repl-mode-map [(shift return)] 'evil-jump-forward))
+
+;; Ruby
+(use-package ruby-mode
+  :mode "\\.rb\\'"
+  :interpreter "ruby"
+  :config
+  (my/set-evil-shift-width ruby-indent-level))
+
+;; Python
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :interpreter ("python" . python-mode)
+  :config
+  (evil-leader/set-key-for-mode 'python-mode
+    "ci" 'run-python
+    "cd" 'pdb
+    "ez" 'python-shell-switch-to-shell
+    "er" 'python-shell-send-region
+    "eb" 'python-shell-send-buffer
+    "es" 'python-shell-send-string
+    "el" 'python-shell-send-file
+    "ee" 'python-shell-send-defun)
+  (my/set-evil-shift-width python-indent)
+
+  ;; pdb setup
+  (when (on-osx)
+    (setq pdb-path '/usr/lib/python2.7/pdb.py)
+    (setq gud-pdb-command-name (symbol-name pdb-path))
+
+    (defadvice pdb (before gud-query-cmdline activate)
+      "Provide a better default command line when called interactively."
+      (interactive
+       (list (gud-query-cmdline pdb-path
+                                (file-name-nondirectory buffer-file-name))))))
+
+  ;; https://github.com/emacsmirror/python-mode - see troubleshooting
+  ;; https://bugs.launchpad.net/python-mode/+bug/963253
+  ;; http://pswinkels.blogspot.com/2010/04/debugging-python-code-from-within-emacs.html
+  (when (on-windows)
+    (setq windows-python-pdb-path "c:/python27/python -i c:/python27/Lib/pdb.py")
+    (setq pdb-path 'C:/Python27/Lib/pdb.py)
+    (setq gud-pdb-command-name (symbol-name pdb-path))
+    (setq gud-pdb-command-name windows-python-pdb-path)
+
+    (defun my/set-pdb-command-path ()
+      (setq gud-pdb-command-name
+            (concat windows-python-pdb-path " " buffer-file-name)))
+
+    ;; everytime we enter a new python buffer, set the command path to include the buffer filename
+    (add-hook 'python-mode-hook 'my/set-pdb-command-path)))
+
+;;; Lisp like languages.
+
+(use-package lisp-mode
+  :ensure nil
+  :config
+  (dolist (mode '(emacs-lisp-mode lisp-interaction-mode))
+    (evil-leader/set-key-for-mode mode
+      "er" 'eval-region
+      "ee" 'eval-last-sexp
+      "ex" 'eval-last-sexp-and-replace
+      "eb" 'eval-buffer))
+  (my/set-evil-shift-width lisp-body-indent))
+
+;; Elisp
+(use-package elisp-slime-nav
+  :diminish elisp-slime-nav-mode
+  :commands (turn-on-elisp-slime-nav-mode)
+  :init
+  (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
+    (add-hook hook 'turn-on-elisp-slime-nav-mode))
+  :config
+  (evil-define-key 'normal elisp-slime-nav-mode-map
+    (kbd "g.") 'elisp-slime-nav-find-elisp-thing-at-point
+    (kbd "g,") 'pop-tag-mark
+    (kbd "gd") 'elisp-slime-nav-describe-elisp-thing-at-point
+    (kbd "g?") 'elisp-slime-nav-describe-elisp-thing-at-point
+    (kbd "gr") 'mimic-find-references
+    (kbd "K")  'elisp-slime-nav-describe-elisp-thing-at-point)
+
+  (turn-on-elisp-slime-nav-mode)
+  (defadvice elisp-slime-nav-describe-elisp-thing-at-point (after slime-move-to-doc activate)
+    "Move point to the other window after opening up documentation window."
+    (pop-to-buffer "*Help*")))
 
 ;; Clojure
 (use-package clojure-mode
@@ -1312,6 +1233,28 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (add-hook 'clojure-mode-hook #'cider-mode)
   (add-hook 'cider-mode-hook #'my/cider-mode-hook)
   :config
+  (evil-define-multiple
+   (clojure-mode-map cider-mode-map cider-repl-mode-map)
+   'normal
+   ((kbd "gz") 'cider-switch-to-repl-buffer)
+   ((kbd "g.") 'cider-find-dwim)
+   ((kbd "g,") 'cider-pop-back)
+   ((kbd "gd") 'cider-find-var)
+   ((kbd "gf") 'cider-find-file)
+   ((kbd "g?") 'cider-javadoc)
+   ((kbd "gr") 'mimic-find-references)
+   ((kbd "K")  'cider-doc))
+
+  ;; http://emacs.stackexchange.com/questions/20779/m-and-m-in-evil-mode
+  (evil-leader/set-key-for-mode 'clojure-mode
+    "cj" 'cider-jack-in
+    "cz" 'cider-jack-in
+    "ct" 'cider-test-run-test
+    "er" 'cider-eval-region
+    "ee" 'cider-eval-last-sexp
+    "ex" 'cider-eval-last-sexp-and-replace
+    "eb" 'cider-eval-buffer)
+
   ;; attempt to automatically look up symbol first
   (setq cider-prompt-for-symbol nil)
   ;; use shift return to get a new line in repl
@@ -1343,85 +1286,78 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   :defer t
   :diminish clj-refactor-mode)
 
-;; Elisp
-(use-package elisp-slime-nav
-  :diminish elisp-slime-nav-mode
-  :commands (turn-on-elisp-slime-nav-mode)
-  :init
-  (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
-    (add-hook hook 'turn-on-elisp-slime-nav-mode))
+;;; Functional
+
+;; Erlang
+(use-package erlang
+  ;; We need to specify erlang-mode explicitely as the package is not called
+  ;; erlang-mode.
+  :mode (("\\.erl\\'" . erlang-mode)
+         ("\\.hrl\\'" . erlang-mode)
+         ("\\.xrl\\'" . erlang-mode))
   :config
-  (turn-on-elisp-slime-nav-mode)
-  (defadvice elisp-slime-nav-describe-elisp-thing-at-point (after slime-move-to-doc activate)
-    "Move point to the other window after opening up documentation window."
-    (pop-to-buffer "*Help*")))
+  ;; http://erlang.org/pipermail/erlang-questions/2003-June/009103.html
+  (setq hs-special-modes-alist
+        (cons '(erlang-mode
+                "^\\([a-z][a-zA-Z0-9_]*\\|'[^\n']*[^\\]'\\)\\s *(" nil "%"
+                erlang-end-of-clause) hs-special-modes-alist))
+  (setq tab-width 4)
+  (setq erlang-indent-level 4)
+  (setq erlang-font-lock-level-4))
+
+;; Haskell
+(use-package haskell-mode
+  :mode "\\.hs\\'"
+  :init
+  (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+  (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+  (add-to-list 'completion-ignored-extensions ".hi"))
+
+;;; Web
+
+;; http://web-mode.org/
+(use-package web-mode
+  :mode (("\\.phtml\\'" . web-mode)
+         ("\\.tpl\\.php\\'" . web-mode)
+         ("\\.blade\\.php\\'" . web-mode)
+         ("/\\(views\\|html\\|theme\\|templates\\)/.*\\.php\\'" . web-mode)
+         ("\\.[agj]sp\\'" . web-mode)
+         ("\\.as[cp]x\\'" . web-mode)
+         ("\\.erb\\'" . web-mode)
+         ("\\.mustache\\'" . web-mode)
+         ("\\.djhtml\\'" . web-mode)
+         ("\\.jsp\\'" . web-mode))
+  :config
+  (global-unset-key (kbd "C-d"))
+  (global-set-key (kbd "C-d") 'evil-scroll-down))
+
+;; Php
+(use-package php-mode
+  :mode ("\\.php\\'" . php-mode))
+
+;;; Extras
 
 ;; Json
 (use-package json-mode
   :mode ("\\.json\\'" . json-mode))
 
-;; Java
-(use-package javadoc-lookup
-  :commands (javadoc-lookup))
+;; Shell
+(add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
 
-;; Objective-C
-(add-to-list 'auto-mode-alist '("\\.mm\\'" . objc-mode))
+;; Vimscript
+(use-package vimrc-mode
+  :mode (("\\.vimrc\\'" . vimrc-mode)))
 
-(use-package objc-font-lock
-  :commands (objc-font-lock-mode)
+;; colors for various 'color codes' aka hex strings
+(use-package rainbow-mode
+  :commands (rainbow-mode)
   :init
-  (add-hook 'objc-mode-hook #'objc-font-lock-mode)
+  (add-hook 'css-mode-hook 'rainbow-mode)
+  :diminish rainbow-mode
   :config
-  (setq objc-font-lock-background-face 'nil)
-  (setq objc-font-lock-bracket-face nil)
-  (objc-font-lock-mode 1))
-
-;; C
-(use-package dummy-h-mode
-  :mode ("\\.h$" . dummy-h-mode))
-
-(use-package clang-format
-  :commands (clang-format-buffer clang-format-region)
-  :init
-  (defun clang-format-region-or-buffer()
-    "If clang-format is not available, do the default indenting.
-Otherwise try to use clang-format. Indents region if there's a selection,
-otherwise buffer is formatted."
-    (interactive)
-    (if (not (executable-find "clang-format"))
-        (indent-region-or-buffer)
-      (if (region-active-p)
-          (call-interactively 'clang-format-region)
-        (clang-format-buffer)))))
-
-;; Swift
-(use-package swift-mode
-  :mode ("\\.swift\\'" . swift-mode)
-  :config
-  (define-key swift-repl-mode-map [(shift return)] 'evil-jump-forward))
+  (rainbow-mode 1))
 
 ;;;; End Languages
-
-;;;; Begin Ide
-
-(use-package ggtags
-  :diminish ggtags-mode
-  :commands (ggtags-mode)
-  :init
-  (add-hook 'c-mode-common-hook
-            (lambda ()
-              (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
-                (ggtags-mode 1))))
-  :config
-  (ggtags-mode 1))
-
-;;; ios
-(defun occur-find-pragma ()
-  (interactive)
-  (occur "pragma mark [a-zA-Z0-9]")
-  (pop-to-buffer "*Occur*"))
-
-;;;; End Ide
 
 ;;;; Begin Functions
 
@@ -1539,6 +1475,26 @@ otherwise buffer is formatted."
          ("\C-ca" . org-agenda)
          ("\C-cb" . org-iswitchb))
   :config
+  (evil-define-key 'normal org-mode-map
+    (kbd "g.") 'org-open-at-point
+    (kbd "TAB") 'org-cycle
+    ;; to be backward compatible with older org version
+    (kbd "]") (if (fboundp 'org-forward-same-level)
+                  'org-forward-same-level
+                'org-forward-heading-same-level)
+    (kbd "[") (if (fboundp 'org-backward-same-level)
+                  'org-backward-same-level
+                'org-backward-heading-same-level))
+
+  (evil-define-key 'emacs org-agenda-mode-map
+    (kbd "b") 'evil-backward-word-begin
+    (kbd "w") 'evil-forward-word-begin
+    (kbd "j") 'evil-next-line
+    (kbd "k") 'evil-previous-line
+    (kbd "h") 'evil-backward-char
+    (kbd "l") 'evil-forward-char)
+  (my/set-evil-shift-width 4)
+
   ;; http://www.howardism.org/Technical/Emacs/orgmode-wordprocessor.html
   (font-lock-add-keywords 'org-mode
                           '(("^ +\\([-*]\\) "
@@ -1624,12 +1580,31 @@ otherwise buffer is formatted."
     :config
     (mu4e-maildirs-extension))
 
-  (add-to-list 'mu4e-view-actions
-               '("View in browser" . mu4e-action-view-in-browser) t)
+  (evil-define-key 'motion mu4e-view-mode-map
+    (kbd "q") 'mu4e~view-quit-buffer
+    (kbd "g.") 'mu4e~view-browse-url-from-binding
+    (kbd "C-n") 'mu4e-view-headers-next
+    (kbd "C-p") 'mu4e-view-headers-prev)
+
+  (evil-define-key 'motion mu4e-headers-mode-map
+    (kbd "q") 'mu4e~headers-quit-buffer
+    (kbd "+") 'mu4e-headers-mark-for-flag)
+
+  (evil-define-key 'motion mu4e-main-mode-map
+    (kbd "gR") 'mu4e-update-mail-and-index
+    (kbd "gM") 'mu4e~headers-jump-to-maildir
+    (kbd "C-j") nil
+    (kbd "C-k") nil
+    (kbd "C-n") 'mu4e-headers-next
+    (kbd "C-p") 'mu4e-headers-prev)
 
   ;; synergy with org mode capture
   (define-key mu4e-headers-mode-map (kbd "C-c c") 'org-mu4e-store-and-capture)
   (define-key mu4e-view-mode-map    (kbd "C-c c") 'org-mu4e-store-and-capture)
+
+  ;; additional actions -> a key
+  (add-to-list 'mu4e-view-actions
+               '("View in browser" . mu4e-action-view-in-browser) t)
 
   ;; don't show every a thread for every message in the inbox
   (setq mu4e-headers-show-threads nil)
