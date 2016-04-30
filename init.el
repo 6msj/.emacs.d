@@ -1616,6 +1616,9 @@ otherwise buffer is formatted."
               "Add a cc: header."
               (save-excursion (message-add-header "Cc: \n"))))
 
+  ;; ivy completion
+  (setq mu4e-completing-read-function 'ivy-completing-read)
+
   ;; don't show every a thread for every message in the inbox
   (setq mu4e-headers-show-threads nil)
   ;; tell mu4e where my mail is
