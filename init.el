@@ -408,9 +408,8 @@
   :diminish company-mode
   :commands (global-company-mode) ; important so other packages can start company on demand
   :init
-
-  ;; changing prefix lengths depending on mode
   (defun set-company-min-prefix-length (len)
+    "Changing prefix lengths depending on mode."
     (make-local-variable 'company-minimum-prefix-length)
     (setq company-minimum-prefix-length len))
   (add-hook 'eshell-mode-hook (apply-partially #'set-company-min-prefix-length 5))
@@ -904,10 +903,6 @@ If not in a project, fallback by using counsel-find-file."
       "mm" 'open-shell
       "mo" 'find-file-other-window
       "mf" 'find-file
-
-      ;; yasnippet
-      "yn" 'yas-new-snippet
-      "yv" 'yas-visit-snippet-file
 
       ;; magit
       "gr" 'magit-status-pick-repository
