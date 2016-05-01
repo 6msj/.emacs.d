@@ -346,6 +346,10 @@ before calling magit-show-commit and set it back to nil afterwards."
             (t
              '(display-buffer-same-window)))))))
 
+;; another way to use meta
+(global-set-key "\C-x\C-m" 'execute-extended-command)
+(global-set-key "\C-c\C-m" 'execute-extended-command)
+
 ;; prefer vertical splits
 ;; https://stackoverflow.com/questions/2081577/setting-emacs-split-to-horizontal
 (setq split-height-threshold nil)
@@ -542,14 +546,6 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (setq omnisharp-eldoc-support nil))
 
 ;;;; End Completion
-
-;;;; Begin Mappings
-
-;; another way to use meta
-(global-set-key "\C-x\C-m" 'execute-extended-command)
-(global-set-key "\C-c\C-m" 'execute-extended-command)
-
-;;;; End Mappings
 
 ;;;; Begin Editing
 
