@@ -315,6 +315,15 @@
   (setq magit-refresh-status-buffer nil)
   (setq magit-completing-read-function 'ivy-completing-read)
 
+  (defadvice magit-show-commit (around dont-select-commit-window activate)
+    "magit-show-commit selects the window it opens unless magit-display-buffer-noselect is set.
+Setting magit-display-buffer-noselect changes the selection logic for other parts of magit though.
+Instead, advise magit-show-commit by setting magit-show-commit to t
+before calling magit-show-commit and set it back to nil afterwards."
+    (setq magit-display-buffer-noselect t)
+    (setq ad-return-value ad-do-it)
+    (setq magit-display-buffer-noselect nil))
+
   ;; https://github.com/magit/magit/issues/2541 (tweaked)
   ;; single window or special magit modes -> open in other window
   (setq magit-display-buffer-function
