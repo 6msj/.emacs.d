@@ -1146,6 +1146,19 @@ otherwise buffer is formatted."
   :config
   (my/set-evil-shift-width ruby-indent-level))
 
+(use-package motion-mode
+  :init
+  (add-hook 'ruby-mode-hook 'motion-recognize-project)
+  :config
+  (defun my/rake-to-device ()
+    "Executes rake device."
+    (interactive)
+    (motion-execute-rake-command "device"))
+  (evil-define-key 'normal motion-mode-map (kbd "K") 'motion-dash-at-point)
+  (evil-leader/set-key-for-mode 'motion-mode
+    "yd" 'my/rake-to-device
+    "yr" 'motion-execute-rake))
+
 ;; Python
 (use-package python
   :mode ("\\.py\\'" . python-mode)
