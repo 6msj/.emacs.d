@@ -942,6 +942,9 @@ do a search for the string from projet root to mimic that functionality."
     (interactive)
     (ag-project (ag/dwim-at-point)))
 
+  ;; help mode
+  (evil-define-key 'motion help-mode-map (kbd "g.") 'push-button)
+
   ;; occur mode
   (evil-set-initial-state 'occur-mode 'motion)
   (evil-define-key 'motion occur-mode-map
