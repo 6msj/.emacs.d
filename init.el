@@ -1232,7 +1232,6 @@ otherwise buffer is formatted."
     (kbd "g.") 'elisp-slime-nav-find-elisp-thing-at-point
     (kbd "g,") 'pop-tag-mark
     (kbd "gd") 'elisp-slime-nav-describe-elisp-thing-at-point
-    (kbd "g?") 'elisp-slime-nav-describe-elisp-thing-at-point
     (kbd "gr") 'mimic-find-references
     (kbd "K")  'elisp-slime-nav-describe-elisp-thing-at-point)
 
@@ -1258,6 +1257,7 @@ otherwise buffer is formatted."
   (add-hook 'clojure-mode-hook #'cider-mode)
   (add-hook 'cider-mode-hook #'my/cider-mode-hook)
   :config
+  (my/set-dash-or-zeal-subject "clojure")
   (evil-define-multiple
    (clojure-mode-map cider-mode-map cider-repl-mode-map)
    'normal
@@ -1266,7 +1266,6 @@ otherwise buffer is formatted."
    ((kbd "g,") 'cider-pop-back)
    ((kbd "gd") 'cider-find-var)
    ((kbd "gf") 'cider-find-file)
-   ((kbd "g?") 'cider-javadoc)
    ((kbd "gr") 'mimic-find-references)
    ((kbd "K")  'cider-doc))
 
@@ -1382,9 +1381,39 @@ otherwise buffer is formatted."
   :config
   (rainbow-mode 1))
 
+;; Documentation using Dash or Zeal
+(use-package dash-at-point
+  :if (on-osx)
+  :commands (dash-at-point dash-at-point-query)
+  :init
+  (defun dash-at-point-query ()
+    "Calls dash-at-point with editing."
+    (interactive)
+    (let ((current-prefix-arg '(4))) ; C-u
+      (call-interactively 'dash-at-point)))
+  :bind (:map evil-normal-state-map
+              ("g?" . dash-at-point-query)
+              ("g/" . dash-at-point)
+              ("K" . dash-at-point)))
+
+(use-package zeal-at-point
+  :if (not (on-osx))
+  :commands (zeal-at-point)
+  :init
+  :bind (:map evil-normal-state-map
+              ("g?" . zeal-at-point-search)
+              ("g/" . zeal-at-point)
+              ("K" . zeal-at-point)))
+
 ;;;; End Languages
 
 ;;;; Begin Functions
+
+(defun my/set-dash-or-zeal-subject (subject)
+  "Set up the subject for dash or zeal based on os."
+  (if (on-osx)
+      (setq dash-at-point-docset subject)
+    (setq zeal-at-point-set-docset subject)))
 
 (defun rename-current-buffer-file ()
   "Renames current buffer and file it is visiting."
