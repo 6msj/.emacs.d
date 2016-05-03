@@ -1249,13 +1249,14 @@ otherwise buffer is formatted."
   :commands (cider-mode cider-jack-in)
   :init
   (defun my/cider-mode-hook ()
+    (cider-mode 1)
     (unless (global-company-mode)
       (global-company-mode))
     (clj-refactor-mode)
     (eldoc-mode)
     (company/merge-backends))
-  (add-hook 'clojure-mode-hook #'cider-mode)
-  (add-hook 'cider-mode-hook #'my/cider-mode-hook)
+  (add-hook 'clojure-mode-hook #'my/cider-mode-hook)
+  (add-hook 'cider-repl-mode-hook #'my/cider-mode-hook)
   :config
   (my/set-dash-or-zeal-subject "clojure")
   (evil-define-multiple
