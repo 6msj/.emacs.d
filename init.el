@@ -1258,7 +1258,6 @@ otherwise buffer is formatted."
   (add-hook 'clojure-mode-hook #'my/cider-mode-hook)
   (add-hook 'cider-repl-mode-hook #'my/cider-mode-hook)
   :config
-  (my/set-dash-or-zeal-subject "clojure")
   (evil-define-multiple
    (clojure-mode-map cider-mode-map cider-repl-mode-map)
    'normal
@@ -1385,7 +1384,8 @@ otherwise buffer is formatted."
 ;; Documentation using Dash or Zeal
 (use-package dash-at-point
   :if (on-osx)
-  :commands (dash-at-point dash-at-point-query)
+  :commands (dash-at-point
+             dash-at-point-query)
   :init
   (defun dash-at-point-query ()
     "Calls dash-at-point with editing."
@@ -1395,7 +1395,10 @@ otherwise buffer is formatted."
   :bind (:map evil-normal-state-map
               ("g?" . dash-at-point-query)
               ("g/" . dash-at-point)
-              ("K" . dash-at-point)))
+              ("K" . dash-at-point))
+  :config
+  (add-to-list 'dash-at-point-mode-alist '(cider-mode . "clojure"))
+  (add-to-list 'dash-at-point-mode-alist '(cider-repl-mode . "clojure")))
 
 (use-package zeal-at-point
   :if (not (on-osx))
@@ -1404,17 +1407,14 @@ otherwise buffer is formatted."
   :bind (:map evil-normal-state-map
               ("g?" . zeal-at-point-search)
               ("g/" . zeal-at-point)
-              ("K" . zeal-at-point)))
+              ("K" . zeal-at-point))
+  :config
+  (add-to-list 'zeal-at-point-mode-alist '(cider-mode . "clojure"))
+  (add-to-list 'zeal-at-point-mode-alist '(cider-repl-mode . "clojure")))
 
 ;;;; End Languages
 
 ;;;; Begin Functions
-
-(defun my/set-dash-or-zeal-subject (subject)
-  "Set up the subject for dash or zeal based on os."
-  (if (on-osx)
-      (setq dash-at-point-docset subject)
-    (setq zeal-at-point-set-docset subject)))
 
 (defun rename-current-buffer-file ()
   "Renames current buffer and file it is visiting."
