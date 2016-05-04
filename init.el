@@ -1146,7 +1146,12 @@ otherwise buffer is formatted."
 
 ;; Ruby
 (use-package ruby-mode
-  :mode "\\.rb\\'"
+  :mode (("\\.rb$\\'")
+         ("\\Rakefile$\\'")
+         ("\\.gemspec$\\'")
+         ("\\.ru$\\'")
+         ("\\Gemfile$\\'")
+         ("\\.rake$\\'"))
   :interpreter "ruby"
   :config
   (my/set-evil-shift-width ruby-indent-level))
