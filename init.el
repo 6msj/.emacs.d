@@ -1099,8 +1099,9 @@ otherwise buffer is formatted."
 
 ;; Objective-C
 (use-package cc-mode
-  :mode (("\\.m\\'" . objc-mode)
-         ("\\.mm\\'" . objc-mode))
+  :mode
+  ("\\.m\\'" . objc-mode)
+  ("\\.mm\\'" . objc-mode)
   :config
   (defun occur-find-pragma ()
     (interactive)
@@ -1129,8 +1130,9 @@ otherwise buffer is formatted."
 
 ;; Groovy
 (use-package groovy-mode
-  :mode (("\\.gradle\\'" . groovy-mode)
-         ("\\.groovy\\'" . groovy-mode))
+  :mode
+  ("\\.gradle\\'" . groovy-mode)
+  ("\\.groovy\\'" . groovy-mode)
   :config
   (groovy-mode))
 
@@ -1146,12 +1148,13 @@ otherwise buffer is formatted."
 
 ;; Ruby
 (use-package ruby-mode
-  :mode (("\\.rb$\\'")
-         ("\\Rakefile$\\'")
-         ("\\.gemspec$\\'")
-         ("\\.ru$\\'")
-         ("\\Gemfile$\\'")
-         ("\\.rake$\\'"))
+  :mode
+  "\\.rb$\\'"
+  "\\Rakefile$\\'"
+  "\\.gemspec$\\'"
+  "\\.ru$\\'"
+  "\\Gemfile$\\'"
+  "\\.rake$\\'"
   :interpreter "ruby"
   :config
   (my/set-evil-shift-width ruby-indent-level))
@@ -1340,8 +1343,9 @@ otherwise buffer is formatted."
 
 ;; Clojure
 (use-package clojure-mode
-  :mode (("\\.clj\\'" . clojure-mode)
-         ("\\.edn\\'" . clojure-mode)))
+  :mode
+  ("\\.clj\\'" . clojure-mode)
+  ("\\.edn\\'" . clojure-mode))
 
 (use-package cider
   :commands (cider-mode cider-jack-in)
@@ -1414,9 +1418,10 @@ otherwise buffer is formatted."
 (use-package erlang
   ;; We need to specify erlang-mode explicitely as the package is not called
   ;; erlang-mode.
-  :mode (("\\.erl\\'" . erlang-mode)
-         ("\\.hrl\\'" . erlang-mode)
-         ("\\.xrl\\'" . erlang-mode))
+  :mode
+  ("\\.erl\\'" . erlang-mode)
+  ("\\.hrl\\'" . erlang-mode)
+  ("\\.xrl\\'" . erlang-mode)
   :config
   ;; http://erlang.org/pipermail/erlang-questions/2003-June/009103.html
   (setq hs-special-modes-alist
@@ -1439,16 +1444,17 @@ otherwise buffer is formatted."
 
 ;; http://web-mode.org/
 (use-package web-mode
-  :mode (("\\.phtml\\'" . web-mode)
-         ("\\.tpl\\.php\\'" . web-mode)
-         ("\\.blade\\.php\\'" . web-mode)
-         ("/\\(views\\|html\\|theme\\|templates\\)/.*\\.php\\'" . web-mode)
-         ("\\.[agj]sp\\'" . web-mode)
-         ("\\.as[cp]x\\'" . web-mode)
-         ("\\.erb\\'" . web-mode)
-         ("\\.mustache\\'" . web-mode)
-         ("\\.djhtml\\'" . web-mode)
-         ("\\.jsp\\'" . web-mode))
+  :mode
+  ("\\.phtml\\'" . web-mode)
+  ("\\.tpl\\.php\\'" . web-mode)
+  ("\\.blade\\.php\\'" . web-mode)
+  ("/\\(views\\|html\\|theme\\|templates\\)/.*\\.php\\'" . web-mode)
+  ("\\.[agj]sp\\'" . web-mode)
+  ("\\.as[cp]x\\'" . web-mode)
+  ("\\.erb\\'" . web-mode)
+  ("\\.mustache\\'" . web-mode)
+  ("\\.djhtml\\'" . web-mode)
+  ("\\.jsp\\'" . web-mode)
   :config
   (global-unset-key (kbd "C-d"))
   (global-set-key (kbd "C-d") 'evil-scroll-down))
@@ -1468,7 +1474,7 @@ otherwise buffer is formatted."
 
 ;; Vimscript
 (use-package vimrc-mode
-  :mode (("\\.vimrc\\'" . vimrc-mode)))
+  :mode ("\\.vimrc\\'" . vimrc-mode))
 
 ;; colors for various 'color codes' aka hex strings
 (use-package rainbow-mode
