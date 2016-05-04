@@ -1156,6 +1156,99 @@ otherwise buffer is formatted."
   :config
   (my/set-evil-shift-width ruby-indent-level))
 
+(use-package projectile-rails
+  :commands (projectile-rails-on)
+  :init
+  (add-hook 'ruby-mode-hook #'projectile-rails-on)
+  :config
+  (evil-define-key 'normal projectile-rails-mode-map
+    (kbd "gf") 'projectile-rails-goto-file-at-point)
+  (which-key-add-major-mode-key-based-replacements 'ruby-mode
+    "<SPC>ym" "find model"
+    "<SPC>yM" "find current model"
+    "<SPC>yc" "find controller"
+    "<SPC>yC" "find current controller"
+    "<SPC>yv" "find view"
+    "<SPC>yV" "find current view"
+    "<SPC>yh" "find helper"
+    "<SPC>yH" "find current helper"
+    "<SPC>yl" "find lib"
+    "<SPC>yf" "find feature"
+    "<SPC>yp" "find spec"
+    "<SPC>yP" "find current spec"
+    "<SPC>yt" "find test"
+    "<SPC>yT" "find current test"
+    "<SPC>yn" "find migration"
+    "<SPC>yN" "find current migration"
+    "<SPC>yu" "find fixture"
+    "<SPC>yU" "find current fixture"
+    "<SPC>yj" "find javascript"
+    "<SPC>ys" "find stylesheet"
+    "<SPC>yo" "find log"
+    "<SPC>yi" "find initializer"
+    "<SPC>ye" "find environment"
+    "<SPC>ya" "find locale"
+    "<SPC>y@" "find mailer"
+    "<SPC>y!v" "find validator"
+    "<SPC>yy" "find layout"
+    "<SPC>yk" "find rake task"
+    "<SPC>yb" "find job"
+    "<SPC>y!b" "dbconsole"
+    "<SPC>y!c" "console"
+    "<SPC>y!s" "server"
+    "<SPC>y!r" "rake"
+    "<SPC>y!g" "generate"
+    "<SPC>yx" "extract region"
+    "<SPC>y<RET>" "goto file"
+    "<SPC>ygg" "goto gemfile"
+    "<SPC>ygr" "goto routes"
+    "<SPC>ygd" "goto schema"
+    "<SPC>ygs" "goto seeds"
+    "<SPC>ygh" "goto spec helper")
+  (evil-leader/set-key-for-mode 'ruby-mode
+    "ym" 'projectile-rails-find-model
+    "yM" 'projectile-rails-find-current-model
+    "yc" 'projectile-rails-find-controller
+    "yC" 'projectile-rails-find-current-controller
+    "yv" 'projectile-rails-find-view
+    "yV" 'projectile-rails-find-current-view
+    "yh" 'projectile-rails-find-helper
+    "yH" 'projectile-rails-find-current-helper
+    "yl" 'projectile-rails-find-lib
+    "yf" 'projectile-rails-find-feature
+    "yp" 'projectile-rails-find-spec
+    "yP" 'projectile-rails-find-current-spec
+    "yt" 'projectile-rails-find-test
+    "yT" 'projectile-rails-find-current-test
+    "yn" 'projectile-rails-find-migration
+    "yN" 'projectile-rails-find-current-migration
+    "yu" 'projectile-rails-find-fixture
+    "yU" 'projectile-rails-find-current-fixture
+    "yj" 'projectile-rails-find-javascript
+    "ys" 'projectile-rails-find-stylesheet
+    "yo" 'projectile-rails-find-log
+    "yi" 'projectile-rails-find-initializer
+    "ye" 'projectile-rails-find-environment
+    "ya" 'projectile-rails-find-locale
+    "y@" 'projectile-rails-find-mailer
+    "y!v" 'projectile-rails-find-validator
+    "yy" 'projectile-rails-find-layout
+    "yk" 'projectile-rails-find-rake-task
+    "yb" 'projectile-rails-find-job
+    "y!b" 'projectile-rails-dbconsole
+    "y!c" 'projectile-rails-console
+    "y!s" 'projectile-rails-server
+    "y!r" 'projectile-rails-rake
+    "y!g" 'projectile-rails-generate
+    "yx" 'projectile-rails-extract-region
+    "y<RET>" 'projectile-rails-goto-file-at-point
+    "ygg" 'projectile-rails-goto-gemfile
+    "ygr" 'projectile-rails-goto-routes
+    "ygd" 'projectile-rails-goto-schema
+    "ygs" 'projectile-rails-goto-seeds
+    "ygh" 'projectile-rails-goto-spec-helper)
+  (use-package evil-rails))
+
 (use-package motion-mode
   :init
   (add-hook 'ruby-mode-hook 'motion-recognize-project)
