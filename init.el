@@ -396,7 +396,7 @@ before calling magit-show-commit and set it back to nil afterwards."
   :defer 1
   :diminish which-key-mode
   :config
-  (which-key-setup-side-window-right-bottom)
+  (which-key-setup-side-window-bottom)
   (which-key-mode 1))
 
 ;;; yasnippet
