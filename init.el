@@ -1167,6 +1167,9 @@ otherwise buffer is formatted."
   (evil-define-key 'normal projectile-rails-mode-map
     (kbd "gf") 'projectile-rails-goto-file-at-point)
   (which-key-add-major-mode-key-based-replacements 'ruby-mode
+    "<SPC>y" "rails"
+    "<SPC>yg" "goto"
+    "<SPC>y!" "shell"
     "<SPC>ym" "find model"
     "<SPC>yM" "find current model"
     "<SPC>yc" "find controller"
@@ -1202,7 +1205,7 @@ otherwise buffer is formatted."
     "<SPC>y!r" "rake"
     "<SPC>y!g" "generate"
     "<SPC>yx" "extract region"
-    "<SPC>y<RET>" "goto file"
+    "<SPC>y <RET>" "goto file"
     "<SPC>ygg" "goto gemfile"
     "<SPC>ygr" "goto routes"
     "<SPC>ygd" "goto schema"
@@ -1244,7 +1247,7 @@ otherwise buffer is formatted."
     "y!r" 'projectile-rails-rake
     "y!g" 'projectile-rails-generate
     "yx" 'projectile-rails-extract-region
-    "y<RET>" 'projectile-rails-goto-file-at-point
+    "y <RET>" 'projectile-rails-goto-file-at-point
     "ygg" 'projectile-rails-goto-gemfile
     "ygr" 'projectile-rails-goto-routes
     "ygd" 'projectile-rails-goto-schema
