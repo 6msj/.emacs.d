@@ -1158,7 +1158,23 @@ otherwise buffer is formatted."
   "\\.rake$\\'"
   :interpreter "ruby"
   :config
-  (my/set-evil-shift-width ruby-indent-level))
+  (my/set-evil-shift-width ruby-indent-level)
+  (use-package bundler
+    :config
+    (dolist (mode '(ruby-mode motion-mode))
+      (which-key-add-major-mode-key-based-replacements mode
+        "<SPC>yb" "bundler")
+      (evil-leader/set-key-for-mode mode
+        "ybo" 'bundle-open
+        "ybc" 'bundle-console
+        "ybC" 'bundle-check
+        "ybi" 'bundle-install
+        "ybu" 'bundle-update
+        "ybe" 'bundle-exec
+        "ybO" 'bundle-outdated
+        "ybs" 'bundle-show
+        "ybv" 'bundle-version
+        "ybb" 'bundle-command))))
 
 (use-package projectile-rails
   :commands (projectile-rails-on)
@@ -1174,12 +1190,12 @@ otherwise buffer is formatted."
       "<SPC>yg" "goto"
       "<SPC>ya" "find locale"
       "<SPC>yA" "find job"
-      "<SPC>yb" "generate"
       "<SPC>yc" "find controller"
       "<SPC>yC" "find current controller"
       "<SPC>yd" "dbconsole"
       "<SPC>yD" "console"
       "<SPC>ye" "find environment"
+      "<SPC>yE" "generate"
       "<SPC>yf" "find feature"
       "<SPC>yF" "find validator"
       "<SPC>ygg" "goto gemfile"
@@ -1216,12 +1232,12 @@ otherwise buffer is formatted."
     (evil-leader/set-key-for-mode mode
       "ya" 'projectile-rails-find-locale
       "yA" 'projectile-rails-find-job
-      "yb" 'projectile-rails-generate
       "yc" 'projectile-rails-find-controller
       "yC" 'projectile-rails-find-current-controller
       "yd" 'projectile-rails-dbconsole
       "yD" 'projectile-rails-console
       "ye" 'projectile-rails-find-environment
+      "yE" 'projectile-rails-generate
       "yf" 'projectile-rails-find-feature
       "yF" 'projectile-rails-find-validator
       "ygg" 'projectile-rails-goto-gemfile
