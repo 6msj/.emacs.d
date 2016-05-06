@@ -1265,9 +1265,21 @@ otherwise buffer is formatted."
     "Executes rake device."
     (interactive)
     (motion-execute-rake-command "device"))
+  (defun my/rake-pod-install ()
+    "Executes rake device."
+    (interactive)
+    (motion-execute-rake-command "pod:install"))
+  (defun my/rake-run-sim ()
+    "Tries to reload motion app.
+If failure, run rake instead."
+    (interactive)
+    (unless (ignore-errors (motion-reload-app))
+      (motion-execute-rake)))
   (evil-define-key 'normal motion-mode-map (kbd "K") 'motion-dash-at-point)
   (evil-leader/set-key-for-mode 'motion-mode
+    "ypi" 'my/rake-pod-install
     "yd" 'my/rake-to-device
+    "yy" 'my/rake-run-sim
     "yr" 'motion-execute-rake))
 
 ;; Python
