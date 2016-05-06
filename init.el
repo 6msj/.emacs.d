@@ -698,13 +698,6 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   :diminish projectile-mode
   :init
   :config
-  (defun my/projectile-find ()
-    "Tries to find file in project.
-If not in a project, fallback by using counsel-find-file."
-    (interactive)
-    (unless (ignore-errors (projectile-find-file))
-      (unless (ignore-errors (counsel-git))
-        (counsel-find-file))))
   (projectile-global-mode)
   (setq projectile-completion-system 'ivy))
 
@@ -805,6 +798,15 @@ If not in a project, fallback by using counsel-find-file."
     (make-local-variable 'evil-shift-width)
     (setq evil-shift-width width))
 
+  (defun my/find-file-dwim ()
+    "Tries to find file in project.
+If not in a project, fallback by using counsel-find-file."
+    (interactive)
+    (unless (ignore-errors (projectile-find-file))
+      (unless (ignore-errors (counsel-git))
+        (unless (ignore-errors (counsel-find-file))
+          (call-interactively 'find-file)))))
+
   ;; nesting evil-leader package declaration
   ;; (global-evil-leader-mode) should be before (evil-mode 1)
   ;; this is so evil-leader works in *messages* buffer
@@ -821,7 +823,7 @@ If not in a project, fallback by using counsel-find-file."
       "pO"  'projectile-find-other-file-other-window
 
       ;; ivy
-      "f"  'my/projectile-find
+      "f"  'my/find-file-dwim
       "b"  'ivy-switch-buffer
       "r"  'ivy-recentf
       "ss" 'swiper
