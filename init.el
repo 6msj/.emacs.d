@@ -667,13 +667,6 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   :ensure counsel
   :diminish ivy-mode
   :config
-  (defun my/counsel-find-file-dwim ()
-    "Tries to find file in project.
-If not in a project, fallback by using counsel-find-file."
-    (interactive)
-    (unless (ignore-errors (counsel-git))
-      (counsel-find-file)))
-
   ;; swapping behavior
   (define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
   (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-done)
@@ -699,10 +692,18 @@ If not in a project, fallback by using counsel-find-file."
   :commands (projectile-find-file
              projectile-switch-project
              projectile-switch-to-buffer
-             projectile-ag)
+             projectile-ag
+             my/projectile-find)
   :diminish projectile-mode
   :init
   :config
+  (defun my/projectile-find ()
+    "Tries to find file in project.
+If not in a project, fallback by using counsel-find-file."
+    (interactive)
+    (unless (ignore-errors (projectile-find-file))
+      (unless (ignore-errors (counsel-git))
+        (counsel-find-file))))
   (projectile-global-mode)
   (setq projectile-completion-system 'ivy))
 
@@ -813,14 +814,13 @@ If not in a project, fallback by using counsel-find-file."
 
     (evil-leader/set-key
       ;; projectile
-      "pf"  'projectile-find-file
       "pp"  'projectile-switch-project
       "pa"  'projectile-ag
       "po"  'projectile-find-other-file
       "pO"  'projectile-find-other-file-other-window
 
       ;; ivy
-      "f"  'my/counsel-find-file-dwim
+      "f"  'my/projectile-find
       "b"  'ivy-switch-buffer
       "r"  'ivy-recentf
       "ss" 'swiper
