@@ -397,6 +397,7 @@ before calling magit-show-commit and set it back to nil afterwards."
   :diminish which-key-mode
   :config
   (which-key-setup-side-window-bottom)
+  (setq which-key-sort-order 'which-key-key-order-alpha)
   (which-key-mode 1))
 
 ;;; yasnippet
