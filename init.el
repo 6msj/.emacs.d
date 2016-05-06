@@ -1292,6 +1292,8 @@ If failure, run rake instead."
     (unless (ignore-errors (motion-reload-app))
       (motion-execute-rake)))
   (evil-define-key 'normal motion-mode-map (kbd "K") 'motion-dash-at-point)
+  (which-key-add-major-mode-key-based-replacements 'motion-mode
+    "<SPC>yp" "pod")
   (evil-leader/set-key-for-mode 'motion-mode
     "ypi" 'my/rake-pod-install
     "yd" 'my/rake-to-device
