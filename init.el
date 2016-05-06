@@ -1282,9 +1282,17 @@ otherwise buffer is formatted."
     (interactive)
     (motion-execute-rake-command "device"))
   (defun my/rake-pod-install ()
-    "Executes rake device."
+    "Executes rake install."
     (interactive)
     (motion-execute-rake-command "pod:install"))
+  (defun my/rake-pod-update ()
+    "Executes rake update."
+    (interactive)
+    (motion-execute-rake-command "pod:update"))
+  (defun my/rake-clean ()
+    "Executes rake update."
+    (interactive)
+    (motion-execute-rake-command "clean"))
   (defun my/rake-run-sim ()
     "Tries to reload motion app.
 If failure, run rake instead."
@@ -1296,6 +1304,8 @@ If failure, run rake instead."
     "<SPC>yp" "pod")
   (evil-leader/set-key-for-mode 'motion-mode
     "ypi" 'my/rake-pod-install
+    "ypu" 'my/rake-pod-update
+    "yc" 'my/rake-clean
     "yd" 'my/rake-to-device
     "yy" 'my/rake-run-sim
     "yr" 'motion-execute-rake))
