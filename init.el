@@ -1172,91 +1172,90 @@ otherwise buffer is formatted."
     (which-key-add-major-mode-key-based-replacements mode
       "<SPC>y" "rails"
       "<SPC>yg" "goto"
-      "<SPC>yr" "shell"
-      "<SPC>ym" "find model"
-      "<SPC>yM" "find current model"
+      "<SPC>ya" "find locale"
+      "<SPC>yA" "find job"
+      "<SPC>yb" "generate"
       "<SPC>yc" "find controller"
       "<SPC>yC" "find current controller"
-      "<SPC>yv" "find view"
-      "<SPC>yV" "find current view"
-      "<SPC>yh" "find helper"
-      "<SPC>yH" "find current helper"
-      "<SPC>yl" "find lib"
-      "<SPC>yf" "find feature"
-      "<SPC>yp" "find spec"
-      "<SPC>yP" "find current spec"
-      "<SPC>yt" "find test"
-      "<SPC>yT" "find current test"
-      "<SPC>yn" "find migration"
-      "<SPC>yN" "find current migration"
-      "<SPC>yu" "find fixture"
-      "<SPC>yU" "find current fixture"
-      "<SPC>yj" "find javascript"
-      "<SPC>ys" "find stylesheet"
-      "<SPC>yo" "find log"
-      "<SPC>yi" "find initializer"
+      "<SPC>yd" "dbconsole"
+      "<SPC>yD" "console"
       "<SPC>ye" "find environment"
-      "<SPC>ya" "find locale"
-      "<SPC>y@" "find mailer"
-      "<SPC>yrv" "find validator"
-      "<SPC>yy" "find layout"
-      "<SPC>yk" "find rake task"
-      "<SPC>yb" "find job"
-      "<SPC>yrb" "dbconsole"
-      "<SPC>yrc" "console"
-      "<SPC>yrs" "server"
-      "<SPC>yrr" "rake"
-      "<SPC>yrg" "generate"
-      "<SPC>yx" "extract region"
-      "<SPC>y <RET>" "goto file"
+      "<SPC>yf" "find feature"
+      "<SPC>yF" "find validator"
       "<SPC>ygg" "goto gemfile"
       "<SPC>ygr" "goto routes"
       "<SPC>ygd" "goto schema"
       "<SPC>ygs" "goto seeds"
-      "<SPC>ygh" "goto spec helper")
+      "<SPC>ygh" "goto spec helper"
+      "<SPC>yh" "find helper"
+      "<SPC>yH" "find current helper"
+      "<SPC>yi" "find initializer"
+      "<SPC>yj" "find javascript"
+      "<SPC>yJ" "find stylesheet"
+      "<SPC>yl" "find lib"
+      "<SPC>yL" "find layout"
+      "<SPC>ym" "find model"
+      "<SPC>yM" "find current model"
+      "<SPC>yn" "find migration"
+      "<SPC>yN" "find current migration"
+      "<SPC>yo" "find log"
+      "<SPC>yp" "find spec"
+      "<SPC>yP" "find current spec"
+      "<SPC>yr" "rake"
+      "<SPC>yR" "find rake task"
+      "<SPC>yt" "find test"
+      "<SPC>yT" "find current test"
+      "<SPC>yv" "find view"
+      "<SPC>yV" "find current view"
+      "<SPC>yu" "find fixture"
+      "<SPC>yU" "find current fixture"
+      "<SPC>yx" "extract region"
+      "<SPC>yy" "server"
+      "<SPC>y@" "find mailer"
+      "<SPC>y <RET>" "goto file")
     (evil-leader/set-key-for-mode mode
-      "ym" 'projectile-rails-find-model
-      "yM" 'projectile-rails-find-current-model
+      "ya" 'projectile-rails-find-locale
+      "yA" 'projectile-rails-find-job
+      "yb" 'projectile-rails-generate
       "yc" 'projectile-rails-find-controller
       "yC" 'projectile-rails-find-current-controller
-      "yv" 'projectile-rails-find-view
-      "yV" 'projectile-rails-find-current-view
-      "yh" 'projectile-rails-find-helper
-      "yH" 'projectile-rails-find-current-helper
-      "yl" 'projectile-rails-find-lib
-      "yf" 'projectile-rails-find-feature
-      "yp" 'projectile-rails-find-spec
-      "yP" 'projectile-rails-find-current-spec
-      "yt" 'projectile-rails-find-test
-      "yT" 'projectile-rails-find-current-test
-      "yn" 'projectile-rails-find-migration
-      "yN" 'projectile-rails-find-current-migration
-      "yu" 'projectile-rails-find-fixture
-      "yU" 'projectile-rails-find-current-fixture
-      "yj" 'projectile-rails-find-javascript
-      "ys" 'projectile-rails-find-stylesheet
-      "yo" 'projectile-rails-find-log
-      "yi" 'projectile-rails-find-initializer
+      "yd" 'projectile-rails-dbconsole
+      "yD" 'projectile-rails-console
       "ye" 'projectile-rails-find-environment
-      "ya" 'projectile-rails-find-locale
-      "y@" 'projectile-rails-find-mailer
-      "yrv" 'projectile-rails-find-validator
-      "yy" 'projectile-rails-find-layout
-      "yk" 'projectile-rails-find-rake-task
-      "yb" 'projectile-rails-find-job
-      "yrb" 'projectile-rails-dbconsole
-      "yrc" 'projectile-rails-console
-      "yrs" 'projectile-rails-server
-      "yrr" 'projectile-rails-rake
-      "yrg" 'projectile-rails-generate
-      "yx" 'projectile-rails-extract-region
-      "y <RET>" 'projectile-rails-goto-file-at-point
+      "yf" 'projectile-rails-find-feature
+      "yF" 'projectile-rails-find-validator
       "ygg" 'projectile-rails-goto-gemfile
       "ygr" 'projectile-rails-goto-routes
       "ygd" 'projectile-rails-goto-schema
       "ygs" 'projectile-rails-goto-seeds
-      "ygh" 'projectile-rails-goto-spec-helper))
-  (use-package evil-rails))
+      "ygh" 'projectile-rails-goto-spec-helper
+      "yh" 'projectile-rails-find-helper
+      "yH" 'projectile-rails-find-current-helper
+      "yi" 'projectile-rails-find-initializer
+      "yj" 'projectile-rails-find-javascript
+      "yJ" 'projectile-rails-find-stylesheet
+      "yl" 'projectile-rails-find-lib
+      "yL" 'projectile-rails-find-layout
+      "ym" 'projectile-rails-find-model
+      "yM" 'projectile-rails-find-current-model
+      "yn" 'projectile-rails-find-migration
+      "yN" 'projectile-rails-find-current-migration
+      "yo" 'projectile-rails-find-log
+      "yp" 'projectile-rails-find-spec
+      "yP" 'projectile-rails-find-current-spec
+      "yr" 'projectile-rails-rake
+      "yR" 'projectile-rails-find-rake-task
+      "yt" 'projectile-rails-find-test
+      "yT" 'projectile-rails-find-current-test
+      "yu" 'projectile-rails-find-fixture
+      "yU" 'projectile-rails-find-current-fixture
+      "yv" 'projectile-rails-find-view
+      "yV" 'projectile-rails-find-current-view
+      "yx" 'projectile-rails-extract-region
+      "yy" 'projectile-rails-server
+      "y@" 'projectile-rails-find-mailer
+      "y <RET>" 'projectile-rails-goto-file-at-point)
+    (use-package evil-rails)))
 
 (use-package motion-mode
   :init
