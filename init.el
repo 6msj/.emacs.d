@@ -1029,7 +1029,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
               (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
               (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
   :config
-  (setq neo-smart-open t)
+  (setq neo-smart-open nil)
   (setq neo-theme 'nerd)
   (setq neo-mode-line-type 'neotree)
   (setq neo-show-hidden-files t))
