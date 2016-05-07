@@ -109,11 +109,8 @@
 (when (on-imac)
   (setq initial-frame-alist '((width . 132) (height . 86))))
 
-(use-package gotham-theme
-  :defer)
-
-(use-package color-theme-solarized
-  :defer)
+(use-package gotham-theme :defer)
+(use-package color-theme-solarized :defer)
 
 (use-package spacemacs-theme
   :defer
