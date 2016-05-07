@@ -1133,8 +1133,7 @@ otherwise buffer is formatted."
     (kbd "gd") 'ggtags-find-definition
     (kbd "gf") 'ggtags-find-file
     (kbd "g?") 'ggtags-show-definition
-    (kbd "gr") 'ggtags-find-reference
-    (kbd "gt") 'ggtags-find-tag-dwim)
+    (kbd "gr") 'ggtags-find-reference)
   (ggtags-mode 1))
 
 ;; Objective-C
