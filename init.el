@@ -596,7 +596,6 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   :diminish smartparens-mode
   :config
   (use-package smartparens-config :ensure nil)
-  ;; (show-smartparens-global-mode)
   (smartparens-global-mode 1)
   (sp-pair "(" ")" :wrap "C-(")
   (sp-pair "(" ")" :wrap "C-)")
