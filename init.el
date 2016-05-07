@@ -440,9 +440,14 @@ before calling magit-show-commit and set it back to nil afterwards."
   ;; ios
   (add-hook 'objc-mode-hook
             (lambda ()
-              (if company-backends
-                  (add-to-list 'company-backends 'company-xcode)
-                (set (make-local-variable 'company-backends) '(company-xcode)))
+              (if (not company-backends)
+                  (set (make-local-variable 'company-backends) '(company-xcode))
+                (let ((in-backend nil))
+                  (dolist (backend company-backends)
+                    (when (member 'company-xcode backend)
+                      (setq in-backend t)))
+                  (unless in-backend
+                    (add-to-list 'company-backends 'company-xcode))))
               (company/merge-backends)))
   :config
   ;; add additional backend support for all company backends
