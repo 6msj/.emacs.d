@@ -807,7 +807,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
     "Tries to find file in project.
 If not in a project, fallback by using counsel-find-file."
     (interactive)
-    (unless (ignore-errors (projectile-find-file))
+    (unless (ignore-errors ((call-interactively 'projectile-find-file)))
       (unless (ignore-errors (counsel-git))
         (unless (ignore-errors (counsel-find-file))
           (call-interactively 'find-file)))))
