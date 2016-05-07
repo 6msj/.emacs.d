@@ -372,11 +372,6 @@ before calling magit-show-commit and set it back to nil afterwards."
   :config
   (global-linum-mode 0))
 
-;;; highlight parentheses
-(use-package paren
-  :config
-  (show-paren-mode t))
-
 ;; syntax check
 (use-package flycheck
   :diminish flycheck-mode
@@ -589,6 +584,11 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 
 ;; automatic pairs
 (electric-pair-mode 1)
+;;; highlight parentheses
+(use-package paren
+  :config
+  (show-paren-mode t))
+
 
 ;;; clipboards
 ;; for linux
