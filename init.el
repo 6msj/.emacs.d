@@ -499,7 +499,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (define-key company-active-map [(shift tab)] 'company-select-previous)
   (define-key company-active-map [tab] 'company-complete-common-or-cycle)
   (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
-  (define-key company-active-map (kbd "C-n") 'company-complete-common-or-cycle)
+  (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
 
   ;; loop completion selections
