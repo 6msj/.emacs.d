@@ -1303,6 +1303,11 @@ If failure, run rake instead."
     (interactive)
     (unless (ignore-errors (motion-reload-app))
       (motion-execute-rake)))
+  (defun my/rake-execute (command)
+    "Enter in rake command to execute."
+    (interactive "sEnter Rake command:")
+    (message command)
+    (motion-execute-rake-command command))
   (evil-define-key 'normal motion-mode-map (kbd "K") 'motion-dash-at-point)
   (which-key-add-major-mode-key-based-replacements 'motion-mode
     "<SPC>yp" "pod")
@@ -1311,6 +1316,7 @@ If failure, run rake instead."
     "ypu" 'my/rake-pod-update
     "yc" 'my/rake-clean
     "yd" 'my/rake-to-device
+    "yR" 'my/rake-execute
     "yy" 'my/rake-run-sim
     "yr" 'motion-execute-rake))
 
