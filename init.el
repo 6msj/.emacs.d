@@ -419,6 +419,10 @@ before calling magit-show-commit and set it back to nil afterwards."
   :diminish company-mode
   :commands (global-company-mode) ; important so other packages can start company on demand
   :init
+  (defun my/start-company ()
+    "Start company mode unless already started."
+    (unless (global-company-mode)
+      (global-company-mode)))
   (defun set-company-min-prefix-length (len)
     "Changing prefix lengths depending on mode."
     (make-local-variable 'company-minimum-prefix-length)
@@ -521,8 +525,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   :commands (my/python-mode-hook)
   :init
   (defun my/python-mode-hook ()
-    (unless (global-company-mode)
-      (global-company-mode))
+    (my/start-company)
     (add-to-list 'company-backends 'company-jedi)
     (company/merge-backends))
   (add-hook 'python-mode-hook #'my/python-mode-hook))
@@ -532,8 +535,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   :commands (omnisharp-mode)
   :init
   (defun my/csharp-mode-hook ()
-    (unless (global-company-mode)
-      (global-company-mode))
+    (my/start-company)
     (omnisharp-mode)
     (add-to-list 'company-backends 'company-omnisharp)
     (company/merge-backends))
@@ -1441,8 +1443,7 @@ If failure, run rake instead."
   :init
   (defun my/cider-mode-hook ()
     (cider-mode 1)
-    (unless (global-company-mode)
-      (global-company-mode))
+    (my/start-company)
     (clj-refactor-mode)
     (eldoc-mode)
     (company/merge-backends))
