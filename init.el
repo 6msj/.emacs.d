@@ -509,7 +509,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (setq company-selection-wrap-around t)
 
   (global-company-mode)
-  (setq company-idle-delay .15)
+  (setq company-idle-delay .2)
   (setq company-minimum-prefix-length 1))
 
 ;; documentation popup for company
