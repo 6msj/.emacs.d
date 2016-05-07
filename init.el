@@ -1313,6 +1313,7 @@ otherwise buffer is formatted."
     (use-package evil-rails)))
 
 (use-package motion-mode
+  :commands (motion-recognize-project)
   :init
   (add-hook 'ruby-mode-hook 'motion-recognize-project)
   :config
