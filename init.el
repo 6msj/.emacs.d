@@ -582,13 +582,47 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 
 (global-auto-revert-mode t) ; automatically reload buffers on change
 
-;; automatic pairs
-(electric-pair-mode 1)
 ;;; highlight parentheses
 (use-package paren
   :config
   (show-paren-mode t))
 
+;; automatic pairs
+(use-package smartparens
+  :load-path "~/.emacs.d/fork/smartparens/"
+  :ensure nil
+  :diminish smartparens-mode
+  :config
+  (use-package smartparens-config :ensure nil)
+  ;; (show-smartparens-global-mode)
+  (smartparens-global-mode 1)
+  (sp-pair "(" ")" :wrap "C-(")
+  (sp-pair "(" ")" :wrap "C-)")
+
+  ;; C Based
+  (setq c-esque '(c-mode
+                  java-mode
+                  c++-mode
+                  objc-mode
+                  csharp-mode
+                  javascript-mode
+                  json-mode
+                  php-mode))
+  (sp-local-pair c-esque "/*" "*/" :when '(sp-point-in-empty-line-p))
+  (sp-local-pair c-esque "(" nil
+                 :unless '(sp-point-before-word-p))
+  (sp-local-pair c-esque "[" nil
+                 :unless '(sp-point-before-word-p))
+  (sp-local-pair c-esque "{" nil
+                 :post-handlers '((my-create-newline-and-enter-sexp "RET"))
+                 :unless '(sp-point-before-word-p))
+
+  (defun my-create-newline-and-enter-sexp (&rest _ignored)
+    "Open a new brace or bracket expression, with relevant newlines and indent. "
+    (newline)
+    (indent-according-to-mode)
+    (forward-line -1)
+    (indent-according-to-mode)))
 
 ;;; clipboards
 ;; for linux
