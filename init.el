@@ -1760,7 +1760,10 @@ If failure, run rake instead."
 ;;;; Begin Mail
 
 ;;; authentication
-(add-to-list 'auth-sources "~/.emacs.d/mail/.email.gpg")
+(use-package auth-source
+  :ensure nil
+  :config
+  (add-to-list 'auth-sources "~/.emacs.d/mail/.email.gpg"))
 
 ;;; sending mail
 
