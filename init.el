@@ -1341,7 +1341,6 @@ If failure, run rake instead."
   (defun my/rake-execute (command)
     "Enter in rake command to execute."
     (interactive "sEnter Rake command:")
-    (message command)
     (motion-execute-rake-command command))
   (evil-define-key 'normal motion-mode-map (kbd "K") 'motion-dash-at-point)
   (which-key-add-major-mode-key-based-replacements 'motion-mode
