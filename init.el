@@ -561,6 +561,20 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   ;; disable for speed
   (setq omnisharp-eldoc-support nil))
 
+
+(use-package irony
+  ;; -DLIBCLANG_INCLUDE_DIR=/opt/local/libexec/llvm-3.9/include
+  ;; -DLIBCLANG_LIBRARY=/opt/local/libexec/llvm-3.9/lib/libclang.dylib
+  ;; -DLIBCLANG_INCLUDE_DIR=/opt/local/libexec/llvm-3.9/include -DLIBCLANG_LIBRARY=/opt/local/libexec/llvm-3.9/lib/libclang.dylib
+  :commands (irony-mode)
+  :init
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+  (defun my/irony-start ()
+    (unless (irony-mode)
+      (irony-mode)))
+  :config
+  (use-package company-irony))
+
 ;;;; End Completion
 
 ;;;; Begin Editing
