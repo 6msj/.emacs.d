@@ -1268,6 +1268,27 @@ Used http://hyegar.com/2016/03/02/emacs-for-objc/ as baseline."
         "ybv" 'bundle-version
         "ybb" 'bundle-command))))
 
+(use-package robe
+  :commands (robe-mode)
+  :init
+  (add-hook 'ruby-mode-hook #'my/robe-mode-hook)
+  (defun my/robe-mode-hook ()
+    "robe-mode hook."
+    (if (derived-mode-p 'motion-mode)
+        (robe-mode 0)
+      (robe-mode 1))
+    (my/company-start)
+    (my/company-push-backend 'company-robe)
+    (my/company-merge-backends))
+  :config
+  ;; (define-key map (kbd "C-c C-k") 'robe-rails-refresh)
+  (evil-define-key 'normal robe-mode-map
+    (kbd "g.") 'robe-jump
+    (kbd "g,") 'pop-tag-mark
+    (kbd "gd") 'robe-jump
+    (kbd "gf") 'robe-find-file
+    (kbd "K") 'robe-doc))
+
 (use-package projectile-rails
   :commands (projectile-rails-on)
   :init
