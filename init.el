@@ -615,6 +615,9 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (sp-pair "(" ")" :wrap "C-(")
   (sp-pair "(" ")" :wrap "C-)")
 
+  (sp-pair "\"" "\"" :unless '(sp-point-before-same-p
+                               sp-point-before-word-p
+                               sp-point-after-word-p))
   ;; C Based
   (setq c-esque '(c-mode
                   java-mode
