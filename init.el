@@ -607,8 +607,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 
 ;; automatic pairs
 (use-package smartparens
-  :load-path "~/.emacs.d/fork/smartparens/"
-  :ensure nil
+  ;; :load-path "~/.emacs.d/fork/smartparens/"
   :diminish smartparens-mode
   :config
   (use-package smartparens-config :ensure nil)
