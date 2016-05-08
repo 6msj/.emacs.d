@@ -22,3 +22,7 @@ snippets/
 SessionDesktop.el
 bookmarks
 messages.log
+.cask/
+.clang_complete
+irony/
+rake.cache
