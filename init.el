@@ -1188,12 +1188,13 @@ Used http://hyegar.com/2016/03/02/emacs-for-objc/ as baseline."
     (defvar mac-sdk-path "MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk")
     (when (on-osx)
       (setenv "LC_CTYPE" "UTF-8")
-      (my/company-set-clang-args
-       `("-isysroot"
-         ,(concat xcode-base-path ios-sdk-path)
-         ;; ,(concat xcode-base-path mac-sdk-path)
-         ;; "-std=c++11"
-         "-I" "/usr/include/c++/4.2.1"))))
+      (let ((args `("-isysroot"
+                    ,(concat xcode-base-path ios-sdk-path)
+                    ;; ,(concat xcode-base-path mac-sdk-path)
+                    ;; "-std=c++11"
+                    "-I" "/usr/include/c++/4.2.1"
+                    )))
+        (my/company-set-clang-args args))))
   :config
   (defun occur-find-pragma ()
     (interactive)
