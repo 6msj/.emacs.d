@@ -450,6 +450,11 @@ Ex. company-clang :with company-yasnippet."
           (setq in-backend t)))
       in-backend))
 
+  (defun my/company-push-backend (b)
+    "Adds backend b to company mode if it's not already in the list of backends."
+    (unless (my/company-backend-in-backends b)
+      (add-to-list 'company-backends b)))
+
   (add-hook 'eshell-mode-hook (apply-partially #'my/company-set-prefix-length 5))
   (add-hook 'term-mode-hook (apply-partially #'my/company-set-prefix-length 5))
   (add-hook 'org-mode-hook (apply-partially #'my/company-set-prefix-length 3))
