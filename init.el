@@ -374,6 +374,7 @@ before calling magit-show-commit and set it back to nil afterwards."
 
 ;; syntax check
 (use-package flycheck
+  :load-path "~/.emacs.d/fork/flycheck/"
   :diminish flycheck-mode
   :init
   (add-hook 'prog-mode-hook #'flycheck-mode)
@@ -1403,7 +1404,12 @@ Used http://hyegar.com/2016/03/02/emacs-for-objc/ as baseline."
 (use-package motion-mode
   :commands (motion-recognize-project)
   :init
-  (add-hook 'ruby-mode-hook 'motion-recognize-project)
+  (defun my/motion-mode-hook ()
+    "Motion mode hook."
+    (setq motion-flymake nil) ;; disable flymake
+    (motion-recognize-project)
+    (setq flycheck-checker 'ruby-rubocop))
+  (add-hook 'ruby-mode-hook #'my/motion-mode-hook)
   :config
   (defun my/rake-to-device ()
     "Executes rake device."

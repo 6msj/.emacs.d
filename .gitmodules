@@ -1,0 +1,3 @@
+[submodule "fork/flycheck"]
+	path = fork/flycheck
+	url = https://github.com/jojojames/flycheck.git
