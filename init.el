@@ -419,32 +419,43 @@ before calling magit-show-commit and set it back to nil afterwards."
   :diminish company-mode
   :commands (global-company-mode) ; important so other packages can start company on demand
   :init
-  (defun my/start-company ()
+
+  (defun my/company-start ()
     "Start company mode unless already started."
     (unless (global-company-mode)
       (global-company-mode)))
-  (defun set-company-min-prefix-length (len)
-    "Changing prefix lengths depending on mode."
+
+  (defun my/company-set-prefix-length (len)
+    "Changing prefix length locally."
     (make-local-variable 'company-minimum-prefix-length)
     (setq company-minimum-prefix-length len))
-  (add-hook 'eshell-mode-hook (apply-partially #'set-company-min-prefix-length 5))
-  (add-hook 'term-mode-hook (apply-partially #'set-company-min-prefix-length 5))
-  (add-hook 'org-mode-hook (apply-partially #'set-company-min-prefix-length 3))
-  (add-hook 'prog-mode-hook (apply-partially #'set-company-min-prefix-length 1))
-  (add-hook 'message-mode-hook (apply-partially #'set-company-min-prefix-length 5))
 
-  ;; ios
-  (add-hook 'objc-mode-hook
-            (lambda ()
-              (if (not company-backends)
-                  (set (make-local-variable 'company-backends) '(company-xcode))
-                (let ((in-backend nil))
-                  (dolist (backend company-backends)
-                    (when (member 'company-xcode backend)
-                      (setq in-backend t)))
-                  (unless in-backend
-                    (add-to-list 'company-backends 'company-xcode))))
-              (company/merge-backends)))
+  (defun my/company-set-delay (delay)
+    "Changing delay length locally."
+    (make-local-variable 'company-idle-delay)
+    (setq company-idle-delay delay))
+
+  (defun my/company-set-clang-args (clang-args)
+    "Set up clang arguments locally."
+    (make-local-variable 'company-clang-arguments)
+    (setq company-clang-arguments clang-args))
+
+  (defun my/company-backend-in-backends (b)
+    "Check if backend b is already in company-backends.
+We need to do this check because each backend has additional symbols attached.
+Ex. company-clang :with company-yasnippet."
+    (let ((in-backend nil))
+      (dolist (backend company-backends)
+        (when (member b backend)
+          (setq in-backend t)))
+      in-backend))
+
+  (add-hook 'eshell-mode-hook (apply-partially #'my/company-set-prefix-length 5))
+  (add-hook 'term-mode-hook (apply-partially #'my/company-set-prefix-length 5))
+  (add-hook 'org-mode-hook (apply-partially #'my/company-set-prefix-length 3))
+  (add-hook 'prog-mode-hook (apply-partially #'my/company-set-prefix-length 1))
+  (add-hook 'message-mode-hook (apply-partially #'my/company-set-prefix-length 5))
+
   :config
   ;; add additional backend support for all company backends
   ;; https://emacs.stackexchange.com/questions/10431/get-company-to-show-suggestions-for-yasnippet-names
@@ -478,14 +489,14 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
     "Enable dabbrev for all backends.")
   (defvar company-mode/enable-dabbrev-code t
     "Enable dabbrev-code for all backends.")
-  (defun company/merge-backends ()
+  (defun my/company-merge-backends ()
     (when company-mode/enable-yas
       (merge-backend-with-company-backends 'company-yasnippet))
     (when company-mode/enable-dabbrev
       (merge-backend-with-company-backends 'company-dabbrev))
     (when company-mode/enable-dabbrev-code
       (merge-backend-with-company-backends 'company-dabbrev-code)))
-  (company/merge-backends)
+  (my/company-merge-backends)
 
   ;; if the completion is JoJo, typing jojo will get to it
   (setq company-dabbrev-downcase nil)
@@ -525,9 +536,9 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   :commands (my/python-mode-hook)
   :init
   (defun my/python-mode-hook ()
-    (my/start-company)
+    (my/company-start)
     (add-to-list 'company-backends 'company-jedi)
-    (company/merge-backends))
+    (my/company-merge-backends))
   (add-hook 'python-mode-hook #'my/python-mode-hook))
 
 ;;;  c# - omnisharp
@@ -535,10 +546,10 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   :commands (omnisharp-mode)
   :init
   (defun my/csharp-mode-hook ()
-    (my/start-company)
+    (my/company-start)
     (omnisharp-mode)
     (add-to-list 'company-backends 'company-omnisharp)
-    (company/merge-backends))
+    (my/company-merge-backends))
   (add-hook 'csharp-mode-hook #'my/csharp-mode-hook)
   :config
   ;; https://stackoverflow.com/questions/29382137/omnisharp-on-emacs-speed
@@ -1141,6 +1152,30 @@ otherwise buffer is formatted."
   :mode
   ("\\.m\\'" . objc-mode)
   ("\\.mm\\'" . objc-mode)
+  :init
+  (add-hook 'objc-mode-hook #'my/objc-mode-hook)
+  (defun my/objc-mode-hook ()
+    "objc-mode hook"
+    (my/company-start)
+    (my/company-set-prefix-length 2)
+    (my/company-set-delay .3)
+    (my/setup-osx-completion)
+    (my/company-merge-backends))
+
+  (defun my/setup-osx-completion ()
+    "Setting up semantic ios/osx completion.
+Used http://hyegar.com/2016/03/02/emacs-for-objc/ as baseline."
+    (defvar xcode-base-path "/Applications/Xcode.app/Contents/Developer/Platforms/")
+    (defvar ios-sdk-path "iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk")
+    (defvar mac-sdk-path "MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk")
+    (when (on-osx)
+      (setenv "LC_CTYPE" "UTF-8")
+      (my/company-set-clang-args
+       `("-isysroot"
+         ,(concat xcode-base-path ios-sdk-path)
+         ;; ,(concat xcode-base-path mac-sdk-path)
+         ;; "-std=c++11"
+         "-I" "/usr/include/c++/4.2.1"))))
   :config
   (defun occur-find-pragma ()
     (interactive)
@@ -1441,10 +1476,10 @@ If failure, run rake instead."
   :init
   (defun my/cider-mode-hook ()
     (cider-mode 1)
-    (my/start-company)
+    (my/company-start)
     (clj-refactor-mode)
     (eldoc-mode)
-    (company/merge-backends))
+    (my/company-merge-backends))
   (add-hook 'clojure-mode-hook #'my/cider-mode-hook)
   (add-hook 'cider-repl-mode-hook #'my/cider-mode-hook)
   :config
