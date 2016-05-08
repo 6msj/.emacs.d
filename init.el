@@ -679,12 +679,18 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 (global-set-key (kbd "C-q C-k") 'windmove-up)
 (global-set-key (kbd "C-q C-j") 'windmove-down)
 (global-set-key (kbd "C-q x") 'delete-window)
+(global-set-key (kbd "C-q <backspace>") 'delete-window)
+(global-set-key (kbd "C-q C-<backspace>") 'delete-window)
 (global-set-key (kbd "C-q C-x") 'delete-window)
 (global-set-key (kbd "C-q 0") 'kill-this-buffer)
 (global-set-key (kbd "C-q ,") 'evil-prev-buffer)
+(global-set-key (kbd "C-q C-,") 'evil-prev-buffer)
 (global-set-key (kbd "C-q .") 'evil-next-buffer)
+(global-set-key (kbd "C-q C-.") 'evil-next-buffer)
 (global-set-key (kbd "C-q u") 'winner-undo)
+(global-set-key (kbd "C-q C-u") 'winner-undo)
 (global-set-key (kbd "C-q r") 'winner-redo)
+(global-set-key (kbd "C-q C-r") 'winner-redo)
 
 (use-package perspective
   :defer 2
