@@ -974,6 +974,11 @@ Moves the point to the position where we can transpose again for a bubbling effe
   (define-key evil-normal-state-map "gl" 'transpose-words)
   (define-key evil-normal-state-map "gh" 'transpose-words-backwards)
 
+  (defun copy-to-end-of-line ()
+    "Copy from point to end of line."
+    (interactive)
+    (evil-yank (point) (point-at-eol)))
+
   (setq evil-normal-state-tag   (propertize " NORMAL ")
         evil-emacs-state-tag    (propertize " EMACS ")
         evil-insert-state-tag   (propertize " INSERT ")
