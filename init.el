@@ -914,7 +914,7 @@ If not in a project, fallback by using counsel-find-file."
       "wh" 'split-window-below
       "wv" 'split-window-right
       "wt" 'toggle-window-split
-      "wt" 'rotate-windows
+      "wr" 'rotate-windows
       "-"  'split-window-below
       "|"  'split-window-right
       "\\" 'split-window-right
