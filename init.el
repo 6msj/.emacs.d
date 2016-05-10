@@ -1190,7 +1190,7 @@ otherwise buffer is formatted."
     "objc-mode hook"
     (my/company-start)
     (my/company-set-prefix-length 2)
-    (my/company-set-delay .3)
+    (my/company-set-delay .2)
     (my/setup-osx-completion)
     (my/company-merge-backends))
 
