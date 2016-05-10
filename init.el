@@ -1279,6 +1279,10 @@ Used http://hyegar.com/2016/03/02/emacs-for-objc/ as baseline."
   :config
   (setq csharp-want-imenu nil)) ; turn off the menu
 
+;; Rust
+(use-package rust-mode
+  :mode ("\\.rs\\'" . rust-mode))
+
 ;;; Dynamic and/or interpreted languages.
 
 ;; Groovy
