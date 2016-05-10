@@ -1184,6 +1184,7 @@ otherwise buffer is formatted."
   :mode
   ("\\.m\\'" . objc-mode)
   ("\\.mm\\'" . objc-mode)
+  ("\\.xctool.args\\'" . objc-mode)
   :init
   (add-hook 'objc-mode-hook #'my/objc-mode-hook)
   (defun my/objc-mode-hook ()
@@ -1217,6 +1218,51 @@ Used http://hyegar.com/2016/03/02/emacs-for-objc/ as baseline."
   (evil-define-key 'normal objc-mode-map
     (kbd "gr") 'mimic-find-references
     (kbd "gp") 'occur-find-pragma))
+
+(use-package xcode-mode
+  ;; https://github.com/phonegap/ios-sim
+  ;; https://github.com/facebook/xctool
+  :commands (xcode-mode)
+  :load-path "~/.emacs.d/fork/xcode-mode/"
+  :ensure nil
+  :init
+  (add-hook 'objc-mode-hook #'xcode-mode)
+  :config
+  (which-key-add-major-mode-key-based-replacements objc-mode
+    "<SPC>yb" "build"
+    "<SPC>yt" "test"
+    "<SPC>yc" "clean"
+    "<SPC>yp" "pod"
+    "<SPC>yo" "open"
+    "<SPC>yaa" "archive"
+    "<SPC>ydd" "derived data"
+    "<SPC>yy" "build and run"
+    "<SPC>yrr" "run app"
+    "<SPC>ybb" "build app"
+    "<SPC>ybt" "build tests"
+    "<SPC>ytr" "run tests"
+    "<SPC>ytt" "test single"
+    "<SPC>yto" "build tests only"
+    "<SPC>ycc" "clean app"
+    "<SPC>ypi" "install"
+    "<SPC>yos" "storyboard"
+    "<SPC>yop" "project"
+    "<SPC>yow" "workspace")
+  (evil-leader/set-key-for-mode 'objc-mode
+    "yy" 'xcode-xctool-build-and-run
+    "yrr" 'xcode-xctool-run
+    "ybb" 'xcode-xctool-build
+    "ybt" 'xcode-xctool-build-tests
+    "ytr" 'xcode-xctool-run-tests
+    "ytt" 'xcode-xctool-test
+    "yto" 'xcode-xctool-build-tests-only
+    "ycc" 'xcode-xctool-clean
+    "ypi" 'xcode-pod-install
+    "yos" 'xcode-open-storyboard
+    "yop" 'xcode-open-project
+    "yow" 'xcode-open-workspace
+    "yaa" 'xcode-xctool-archive
+    "ydd" 'xcode-delete-derived-data))
 
 ;; Java
 (use-package cc-mode

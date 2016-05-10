@@ -8,3 +8,6 @@
 [submodule "fork/motion-mode"]
 	path = fork/motion-mode
 	url = https://github.com/jojojames/motion-mode.git
+[submodule "fork/xcode-mode"]
+	path = fork/xcode-mode
+	url = https://github.com/jojojames/xcode-mode.git
