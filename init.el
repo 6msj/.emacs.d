@@ -1229,7 +1229,7 @@ Used http://hyegar.com/2016/03/02/emacs-for-objc/ as baseline."
   :init
   (add-hook 'objc-mode-hook #'xcode-mode)
   :config
-  (which-key-add-major-mode-key-based-replacements objc-mode
+  (which-key-add-major-mode-key-based-replacements 'objc-mode
     "<SPC>yb" "build"
     "<SPC>yt" "test"
     "<SPC>yc" "clean"
