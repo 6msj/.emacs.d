@@ -640,6 +640,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
                   objc-mode
                   csharp-mode
                   javascript-mode
+                  js-mode
                   json-mode
                   php-mode))
   (sp-local-pair c-esque "/*" "*/" :when '(sp-point-in-empty-line-p))
