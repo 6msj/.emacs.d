@@ -590,9 +590,10 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 ;; so disable automatic indent by default
 (electric-indent-mode 0)
 ;; but enable it in all programming modes
-(add-hook 'prog-mode-hook (lambda ()
-                            (interactive)
-                            (electric-indent-local-mode 1)))
+(dolist (mode '(prog-mode-hook yaml-mode-hook))
+  (add-hook mode (lambda ()
+                   (interactive)
+                   (electric-indent-local-mode 1))))
 
 ;;; indenting
 (setq-default indent-tabs-mode nil)
@@ -1697,6 +1698,10 @@ If failure, run rake instead."
   :mode ("\\.php\\'" . php-mode))
 
 ;;; Extras
+
+;; Yaml
+(use-package yaml-mode
+  :mode ("\\.yml\\'" . yaml-mode))
 
 ;; Json
 (use-package json-mode
