@@ -610,7 +610,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 ;; so disable automatic indent by default
 (electric-indent-mode 0)
 ;; but enable it in all programming modes
-(dolist (mode '(prog-mode-hook yaml-mode-hook css-mode-hook))
+(dolist (mode '(prog-mode-hook yaml-mode-hook css-mode-hook html-mode-hook))
   (add-hook mode (lambda ()
                    (interactive)
                    (electric-indent-local-mode 1))))
