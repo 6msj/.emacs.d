@@ -610,7 +610,10 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 ;; so disable automatic indent by default
 (electric-indent-mode 0)
 ;; but enable it in all programming modes
-(dolist (mode '(prog-mode-hook yaml-mode-hook css-mode-hook html-mode-hook))
+(dolist (mode '(prog-mode-hook
+                yaml-mode-hook
+                css-mode-hook
+                html-mode-hook))
   (add-hook mode (lambda ()
                    (interactive)
                    (electric-indent-local-mode 1))))
@@ -1001,7 +1004,11 @@ If not in a project, fallback by using counsel-find-file."
     (interactive)
     (define-key evil-insert-state-local-map (kbd "DEL") (if enable 'intellij-backspace nil)))
 
-  (dolist (hook '(prog-mode-hook org-mode-hook))
+  (dolist (hook '(prog-mode-hook
+                  org-mode-hook
+                  css-mode-hook
+                  html-mode-hook
+                  yaml-mode-hook))
     (add-hook hook (lambda ()
                      (enable-or-disable-intellij-backspace t))))
 
