@@ -155,6 +155,26 @@
   (setq calendar-latitude 32.85)
   (setq calendar-longitude -96.85)
   :config
+  (defun is-daytime()
+    "Figuring out day or night."
+    (let*
+        ((now (current-time))
+         (today-times    (sunrise-sunset-times (today)))
+         (tomorrow-times (sunrise-sunset-times (tomorrow)))
+         (sunrise-today (first today-times))
+         (sunset-today (second today-times))
+         (sunrise-tomorrow (first tomorrow-times)))
+      (daytime-p sunrise-today sunset-today)))
+  (defun do-additional-theme-changes ()
+    "Execute additional theme changes."
+    (let* ((daytime (is-daytime))
+           (mode-line-active (if daytime "#091f2e" "#eee8d5"))
+           (mode-line-inactive (if daytime "#11151c" "#eee8d5")))
+      (set-face-attribute 'mode-line nil
+                          :box `(:line-width 2 :color ,mode-line-active))
+      (set-face-attribute 'modeline-inactive nil
+                          :box `(:line-width 1 :color ,mode-line-inactive))))
+
   (defun reset-line--change-theme (&rest args)
     ;; runs org-reload on current org mode buffers
     (when (fboundp 'org-reload)
@@ -163,7 +183,8 @@
           (when (eq major-mode 'org-mode)
             (org-reload)))))
     (when (fboundp 'powerline-reset)
-      (powerline-reset)))
+      (powerline-reset))
+    (do-additional-theme-changes))
   (advice-add 'change-theme :after #'reset-line--change-theme)
   (set-frame-parameter nil 'background-mode 'light)
   (change-theme 'gotham 'solarized))
@@ -461,7 +482,6 @@ Ex. company-clang :with company-yasnippet."
   (add-hook 'org-mode-hook (apply-partially #'my/company-set-prefix-length 3))
   (add-hook 'prog-mode-hook (apply-partially #'my/company-set-prefix-length 1))
   (add-hook 'message-mode-hook (apply-partially #'my/company-set-prefix-length 5))
-
   :config
   ;; add additional backend support for all company backends
   ;; https://emacs.stackexchange.com/questions/10431/get-company-to-show-suggestions-for-yasnippet-names
