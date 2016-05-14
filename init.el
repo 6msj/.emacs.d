@@ -174,7 +174,7 @@
       (set-face-attribute 'mode-line nil
                           :box `(:line-width 2 :color ,mode-line-active))
       (set-face-attribute 'modeline-inactive nil
-                          :box `(:line-width 1 :color ,mode-line-inactive))))
+                          :box `(:line-width 2 :color ,mode-line-inactive))))
 
   (defun reset-line--change-theme (&rest args)
     ;; runs org-reload on current org mode buffers
