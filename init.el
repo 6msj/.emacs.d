@@ -664,31 +664,51 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (sp-pair "(" ")" :wrap "C-(")
   (sp-pair "(" ")" :wrap "C-)")
 
-  (sp-pair "\"" "\"" :unless '(sp-point-before-same-p
-                               sp-point-before-word-p
-                               sp-point-after-word-p))
-  ;; C Based
-  (setq c-esque '(c-mode
-                  java-mode
-                  c++-mode
-                  objc-mode
-                  csharp-mode
-                  javascript-mode
-                  js-mode
-                  json-mode
-                  css-mode
-                  php-mode))
-  (sp-local-pair c-esque "/*" "*/" :when '(sp-point-in-empty-line-p))
-  (sp-local-pair c-esque "(" nil
-                 :unless '(sp-point-before-word-p))
-  (sp-local-pair c-esque "[" nil
-                 :unless '(sp-point-before-word-p))
-  (sp-local-pair c-esque "{" nil
-                 :post-handlers '((my-create-newline-and-enter-sexp "RET"))
-                 :unless '(sp-point-before-word-p))
+  (setq lispy '(lisp-mode
+                emacs-lisp-mode
+                clojure-mode
+                scheme-mode))
+  (setq bracy '(c-mode
+                c++-mode
+                objc-mode
+                csharp-mode
+                java-mode
+                js-mode
+                php-mode
+                json-mode
+                css-mode))
 
-  (defun my-create-newline-and-enter-sexp (&rest _ignored)
-    "Open a new brace or bracket expression, with relevant newlines and indent. "
+  (sp-local-pair bracy "/*" "*/"
+                 :when '(sp-point-in-empty-line-p))
+  (sp-local-pair bracy "(" nil
+                 :unless '(sp-point-before-word-p))
+  (sp-local-pair bracy "[" nil
+                 :unless '(sp-point-before-word-p))
+  (sp-local-pair bracy "{" "}"
+                 :when '(("RET" "<evil-ret>"))
+                 :post-handlers '(reindent-and-position-middle))
+
+  (sp-with-modes '(objc-mode)
+    (sp-local-pair "@interface" "@end"
+                   :when '(("SPC" "RET" "<evil-ret>"))
+                   :unless '(sp-in-comment-p)
+                   :post-handlers '(add-pair-and-return))
+    ;; this is not working yet
+    (sp-local-pair "@implementation" "@end"
+                   :when '(("SPC" "RET" "<evil-ret>"))
+                   :unless '(sp-in-comment-p)
+                   :post-handlers '(add-pair-and-return))) 
+
+  (defun add-pair-and-return (&rest _ignored)
+    "Adds the pair and then return to position."
+    (save-excursion
+      (insert "x")
+      (newline)
+      (indent-according-to-mode))
+    (delete-char 1))
+
+  (defun reindent-and-position-middle (&rest _ignored)
+    "Reindents and positions cursor in the middle."
     (newline)
     (indent-according-to-mode)
     (forward-line -1)
