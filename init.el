@@ -449,7 +449,6 @@ before calling magit-show-commit and set it back to nil afterwards."
   :diminish company-mode
   :commands (global-company-mode) ; important so other packages can start company on demand
   :init
-
   (defun my/company-start ()
     "Start company mode unless already started."
     (unless (global-company-mode)
@@ -487,8 +486,8 @@ Ex. company-clang :with company-yasnippet."
 
   (add-hook 'eshell-mode-hook (apply-partially #'my/company-set-prefix-length 5))
   (add-hook 'term-mode-hook (apply-partially #'my/company-set-prefix-length 5))
-  (add-hook 'org-mode-hook (apply-partially #'my/company-set-prefix-length 3))
-  (add-hook 'prog-mode-hook (apply-partially #'my/company-set-prefix-length 1))
+  (add-hook 'org-mode-hook (apply-partially #'my/company-set-prefix-length 5))
+  (add-hook 'prog-mode-hook (apply-partially #'my/company-set-prefix-length 3))
   (add-hook 'message-mode-hook (apply-partially #'my/company-set-prefix-length 5))
   :config
   ;; add additional backend support for all company backends
@@ -551,12 +550,15 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
 
+  ;; replace C-n and C-p from evil with company
+  (define-key evil-insert-state-map (kbd "C-n") 'company-complete)
+  (define-key evil-insert-state-map (kbd "C-p") 'company-complete)
+
   ;; loop completion selections
   (setq company-selection-wrap-around t)
 
   (global-company-mode)
-  (setq company-idle-delay .2)
-  (setq company-minimum-prefix-length 1))
+  (setq company-idle-delay .1))
 
 ;; documentation popup for company
 (use-package company-quickhelp
@@ -1228,8 +1230,8 @@ otherwise buffer is formatted."
   (defun my/objc-mode-hook ()
     "objc-mode hook"
     (my/company-start)
-    (my/company-set-prefix-length 2)
-    (my/company-set-delay .2)
+    (my/company-set-prefix-length 4)
+    (my/company-set-delay .5)
     (my/setup-osx-completion)
     (my/company-merge-backends))
 
