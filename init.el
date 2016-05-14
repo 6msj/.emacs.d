@@ -25,7 +25,7 @@
 
 ;; increase memory
 (setq gc-cons-threshold 100000000) ; 100 mb
-(add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
+(add-hook 'focus-out-hook 'garbage-collect)
 
 ;;; loadpath
 (let ((default-directory "~/.emacs.d/"))
