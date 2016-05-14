@@ -1097,7 +1097,7 @@ do a search for the string from projet root to mimic that functionality."
 (use-package key-chord
   :config
   ;; max time delay between two key presses to be considered a key chord
-  (setq key-chord-two-keys-delay 0.15) ; default 0.1
+  (setq key-chord-two-keys-delay 0.2) ; default 0.1
   (key-chord-mode 1)
   (key-chord-define evil-insert-state-map "jk" 'evil-normal-state))
 
