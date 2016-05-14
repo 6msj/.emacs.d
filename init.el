@@ -403,6 +403,13 @@ before calling magit-show-commit and set it back to nil afterwards."
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc emacs-lisp))
   :commands flycheck-mode)
 
+;; save on focus lost
+(use-package focus-autosave-mode
+  :defer 5
+  :diminish focus-autosave-mode
+  :config
+  (focus-autosave-mode))
+
 ;;;; End Experience
 
 ;;;; Begin Completion
