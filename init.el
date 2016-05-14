@@ -1506,6 +1506,10 @@ Used http://hyegar.com/2016/03/02/emacs-for-objc/ as baseline."
     "Executes rake update."
     (interactive)
     (motion-execute-rake-command "clean"))
+  (defun my/rake-spec ()
+    "Executes rake spec."
+    (interactive)
+    (motion-execute-rake-command "spec"))
   (defun my/rake-run-sim ()
     "Tries to reload motion app.
 If failure, run rake instead."
@@ -1526,6 +1530,7 @@ If failure, run rake instead."
     "yd" 'my/rake-to-device
     "yR" 'my/rake-execute
     "yy" 'my/rake-run-sim
+    "yt" 'my/rake-spec
     "yr" 'motion-execute-rake))
 
 ;; Python
