@@ -658,16 +658,23 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 (use-package smartparens
   ;; :load-path "~/.emacs.d/fork/smartparens/"
   :diminish smartparens-mode
+  :init
+  (defun my/set-smartparens-settings ()
+    "Setting smartparens settings."
+    (setq sp-cancel-autoskip-on-backward-movement nil)
+    (setq sp-autoskip-closing-pair 'always-end)
+    (setq sp-autoskip-opening-pair t))
+  (defun my/smartparens-hook ()
+    "Custom hook for smartparens."
+    (my/set-smartparens-settings))
+  (add-hook 'prog-mode-hook #'my/smartparens-hook)
   :config
   (use-package smartparens-config :ensure nil)
   (smartparens-global-mode 1)
+  (my/set-smartparens-settings)
   (sp-pair "(" ")" :wrap "C-(")
   (sp-pair "(" ")" :wrap "C-)")
 
-  (setq lispy '(lisp-mode
-                emacs-lisp-mode
-                clojure-mode
-                scheme-mode))
   (setq bracy '(c-mode
                 c++-mode
                 objc-mode
