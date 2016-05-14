@@ -1591,6 +1591,7 @@ If failure, run rake instead."
   :config
   (dolist (mode '(emacs-lisp-mode lisp-interaction-mode))
     (evil-leader/set-key-for-mode mode
+      "ez" 'ielm
       "er" 'eval-region
       "ee" 'eval-last-sexp
       "ex" 'eval-last-sexp-and-replace
