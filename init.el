@@ -558,7 +558,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (setq company-selection-wrap-around t)
 
   (global-company-mode)
-  (setq company-idle-delay .1))
+  (setq company-idle-delay .5))
 
 ;; documentation popup for company
 (use-package company-quickhelp
