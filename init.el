@@ -1089,13 +1089,11 @@ Used http://hyegar.com/2016/03/02/emacs-for-objc/ as baseline."
 
   (defun my/alt-setup-ios-completion ()
     "Using instructions from https://github.com/yasuyk/auto-complete-clang-objc
-to set up objc completion.
-Notably, run '$ echo "" | g++ -v -x c++ -E -' to get the header paths on computer."
-    (defun my/alt-setup-ios-completion ()
-      (setq ac-clang-flags
-            (mapcar (lambda (item) (concat "-I" item))
-                    (split-string
-                     "
+to set up objc completion."
+    (setq ac-clang-flags
+          (mapcar (lambda (item) (concat "-I" item))
+                  (split-string
+                   "
    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1
    /usr/local/include
    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/7.3.0/include
@@ -1103,7 +1101,7 @@ Notably, run '$ echo "" | g++ -v -x c++ -E -' to get the header paths on compute
    /usr/include
    /System/Library/Frameworks
    /Library/Frameworks
-  ")))))
+  "))))
 
   (defun my/ac-base-clang-setup ()
     "Base method to set up this package."
@@ -1116,10 +1114,9 @@ Notably, run '$ echo "" | g++ -v -x c++ -E -' to get the header paths on compute
 
   (defun my/ac-objc-setup ()
     "Setting up objc completion in autocomplete."
-    (my/ac-base-clang-setup)
-    (my/setup-ios-completion)
-    ;; (my/alt-setup-ios-completion)
-    )
+    ;; (my/setup-ios-completion)
+    (my/alt-setup-ios-completion)
+    (my/ac-base-clang-setup))
   (add-hook 'objc-mode-hook 'my/ac-objc-setup)
   (add-hook 'c-mode-hook 'my/ac-base-clang-setup)
   (add-hook 'c++-mode-hook 'my/ac-base-clang-setup))
