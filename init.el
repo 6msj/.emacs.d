@@ -1011,23 +1011,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;;;; Begin Languages
 
-;; snippets
-(use-package yasnippet
-  :diminish yas-minor-mode
-  :after auto-complete
-  :config
-  ;; yas messages stretches the status buffer when it starts up
-  (setq yas-verbosity 2)
-  ;; using yasnippet through company mode, so disable all the binds
-  ;; (define-key yas-minor-mode-map (kbd "C-i") nil)
-  ;; (define-key yas-minor-mode-map (kbd "TAB") nil)
-  ;; (define-key yas-minor-mode-map (kbd "<tab>") nil)
-  ;; (define-key yas-minor-mode-map [(tab)] 'nil)
-  ;; (define-key yas-minor-mode-map "\C-c&\C-s" nil)
-  ;; (define-key yas-minor-mode-map "\C-c&\C-n" nil)
-  ;; (define-key yas-minor-mode-map "\C-c&\C-v" nil)
-  (yas-global-mode 1))
-
 ;; completion
 (use-package auto-complete
   :diminish auto-complete-mode
@@ -1068,6 +1051,23 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (define-key ac-menu-map [(shift tab)] 'ac-previous)
   (define-key evil-insert-state-map (kbd "C-n") 'ac-fuzzy-complete)
   (define-key evil-insert-state-map (kbd "C-p") 'ac-fuzzy-complete))
+
+;; snippets
+(use-package yasnippet
+  :diminish yas-minor-mode
+  :after auto-complete
+  :config
+  ;; yas messages stretches the status buffer when it starts up
+  (setq yas-verbosity 2)
+  ;; using yasnippet through company mode, so disable all the binds
+  ;; (define-key yas-minor-mode-map (kbd "C-i") nil)
+  ;; (define-key yas-minor-mode-map (kbd "TAB") nil)
+  ;; (define-key yas-minor-mode-map (kbd "<tab>") nil)
+  ;; (define-key yas-minor-mode-map [(tab)] 'nil)
+  ;; (define-key yas-minor-mode-map "\C-c&\C-s" nil)
+  ;; (define-key yas-minor-mode-map "\C-c&\C-n" nil)
+  ;; (define-key yas-minor-mode-map "\C-c&\C-v" nil)
+  (yas-global-mode 1))
 
 ;;; C family of languages.
 
