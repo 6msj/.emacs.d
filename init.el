@@ -516,7 +516,7 @@ before calling magit-show-commit and set it back to nil afterwards."
     (sp-local-pair "@implementation" "@end"
                    :when '(("SPC" "RET" "<evil-ret>"))
                    :unless '(sp-in-comment-p)
-                   :post-handlers '(add-pair-and-return))) 
+                   :post-handlers '(add-pair-and-return)))
 
   (defun add-pair-and-return (&rest _ignored)
     "Adds the pair and then return to position."
