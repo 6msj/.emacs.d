@@ -80,11 +80,12 @@
     (package-install package)))
 
 ;; set the shell environment properly
-(when (on-osx)
-  (use-package exec-path-from-shell
-    :config
-    (setq exec-path-from-shell-check-startup-files nil)
-    (exec-path-from-shell-initialize)))
+(use-package exec-path-from-shell
+  :if (on-osx)
+  :defer 2
+  :config
+  (setq exec-path-from-shell-check-startup-files nil)
+  (exec-path-from-shell-initialize))
 
 (use-package multi-term
   :if (not (on-windows))
