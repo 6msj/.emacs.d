@@ -1033,10 +1033,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (ac-config-default)
 
   ;; adding yasnippet to default sources
-  (setq-default ac-sources '(ac-source-yasnippet
-                             ac-source-abbrev
-                             ac-source-dictionary
-                             ac-source-words-in-same-mode-buffers))
+  (setq-default ac-sources (push 'ac-source-yasnippet ac-sources))
+
   (setq ac-use-fuzzy t)
   (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 
