@@ -410,10 +410,6 @@ before calling magit-show-commit and set it back to nil afterwards."
   :config
   (focus-autosave-mode))
 
-;;;; End Experience
-
-;;;; Begin Completion
-
 (use-package which-key
   :defer 1
   :diminish which-key-mode
@@ -422,195 +418,7 @@ before calling magit-show-commit and set it back to nil afterwards."
   (setq which-key-sort-order 'which-key-key-order-alpha)
   (which-key-mode 1))
 
-;;; yasnippet
-(use-package yasnippet
-  :diminish yas-minor-mode
-  :commands (yas-expand
-             yas-insert-snippet
-             yas-new-snippet
-             yas-visit-snippet-file)
-  :after company
-  :config
-  ;; yas messages stretches the status buffer when it starts up
-  (setq yas-verbosity 2)
-  ;; using yasnippet through company mode, so disable all the binds
-  (define-key yas-minor-mode-map (kbd "C-i") nil)
-  (define-key yas-minor-mode-map (kbd "TAB") nil)
-  (define-key yas-minor-mode-map (kbd "<tab>") nil)
-  (define-key yas-minor-mode-map [(tab)] 'nil)
-  (define-key yas-minor-mode-map "\C-c&\C-s" nil)
-  (define-key yas-minor-mode-map "\C-c&\C-n" nil)
-  (define-key yas-minor-mode-map "\C-c&\C-v" nil)
-  (yas-global-mode 1))
-
-;;; company
-(use-package company
-  :defer 1
-  :diminish company-mode
-  :commands (global-company-mode) ; important so other packages can start company on demand
-  :init
-  (defun my/company-start ()
-    "Start company mode unless already started."
-    (unless (global-company-mode)
-      (global-company-mode)))
-
-  (defun my/company-set-prefix-length (len)
-    "Changing prefix length locally."
-    (make-local-variable 'company-minimum-prefix-length)
-    (setq company-minimum-prefix-length len))
-
-  (defun my/company-set-delay (delay)
-    "Changing delay length locally."
-    (make-local-variable 'company-idle-delay)
-    (setq company-idle-delay delay))
-
-  (defun my/company-set-clang-args (clang-args)
-    "Set up clang arguments locally."
-    (make-local-variable 'company-clang-arguments)
-    (setq company-clang-arguments clang-args))
-
-  (defun my/company-backend-in-backends (b)
-    "Check if backend b is already in company-backends.
-We need to do this check because each backend has additional symbols attached.
-Ex. company-clang :with company-yasnippet."
-    (let ((in-backend nil))
-      (dolist (backend company-backends)
-        (when (member b backend)
-          (setq in-backend t)))
-      in-backend))
-
-  (defun my/company-push-backend (b)
-    "Adds backend b to company mode if it's not already in the list of backends."
-    (unless (my/company-backend-in-backends b)
-      (add-to-list 'company-backends b)))
-
-  (add-hook 'eshell-mode-hook (apply-partially #'my/company-set-prefix-length 5))
-  (add-hook 'term-mode-hook (apply-partially #'my/company-set-prefix-length 5))
-  (add-hook 'org-mode-hook (apply-partially #'my/company-set-prefix-length 5))
-  (add-hook 'prog-mode-hook (apply-partially #'my/company-set-prefix-length 3))
-  (add-hook 'message-mode-hook (apply-partially #'my/company-set-prefix-length 5))
-  :config
-  (use-package company-statistics
-    :config
-    (company-statistics-mode))
-
-  ;; add additional backend support for all company backends
-  ;; https://emacs.stackexchange.com/questions/10431/get-company-to-show-suggestions-for-yasnippet-names
-  ;; https://github.com/syl20bnr/spacemacs/pull/179
-  ;; https://stackoverflow.com/questions/134887/when-to-use-quote-in-lisp
-  (defun merge-backend-with-company-backends (backend-to-merge)
-    "Merges a backend with every backend in company-backends.
-The backend will only be merged if it's not already being used in the current backend.
-We do this because so that the backend we're merging will always be part of the completion candidates.
-For example, merging company-yasnippet to company-capf will yield (company-capf :with company-yasnippet)."
-
-    ;; create a list of backend-to-merge with a count equal to company-backends
-    ;; this is so mapcar* can iterate over both lists equally
-    ;; ex. if we have (company-capf company-xcode), then the list is (company-yasnippet company-yasnippet)
-    (setq blist (make-list (list-length company-backends) backend-to-merge))
-    ;; b will be backend-to-merge
-    ;; backend will be a backend from company-backends
-    (setq company-backends (mapcar* (lambda (backend b)
-                                      (if (and (listp backend) (member b backend))
-                                          backend
-                                        (append (if (consp backend)
-                                                    backend
-                                                  (list backend))
-                                                (if (member :with backend)
-                                                    `(,b)
-                                                  `(:with ,b))))) company-backends blist)))
-
-  (defvar company-mode/enable-yas t
-    "Enable yasnippet for all backends.")
-  (defvar company-mode/enable-dabbrev nil
-    "Enable dabbrev for all backends.")
-  (defvar company-mode/enable-dabbrev-code t
-    "Enable dabbrev-code for all backends.")
-  (defun my/company-merge-backends ()
-    (when company-mode/enable-yas
-      (merge-backend-with-company-backends 'company-yasnippet))
-    (when company-mode/enable-dabbrev
-      (merge-backend-with-company-backends 'company-dabbrev))
-    (when company-mode/enable-dabbrev-code
-      (merge-backend-with-company-backends 'company-dabbrev-code)))
-  (my/company-merge-backends)
-
-  ;; if the completion is JoJo, typing jojo will get to it
-  (setq company-dabbrev-downcase nil)
-  (setq company-dabbrev-ignore-case t) ; default is keep-prefix
-
-  ;; use tab to cycle selection
-  ;; https://github.com/company-mode/company-mode/issues/216
-  ;; https://github.com/company-mode/company-mode/issues/75
-  ;; https://github.com/company-mode/company-mode/issues/246#issuecomment-68538735
-  (setq company-auto-complete nil)
-  (define-key company-active-map [backtab] 'company-select-previous)
-  (define-key company-active-map (kbd "<backtab>") 'company-select-previous)
-  (define-key company-active-map [S-tab] 'company-select-previous)
-  (define-key company-active-map [S-iso-lefttab] 'company-select-previous)
-  (define-key company-active-map [(shift tab)] 'company-select-previous)
-  (define-key company-active-map [tab] 'company-complete-common-or-cycle)
-  (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
-  (define-key company-active-map (kbd "C-n") 'company-select-next)
-  (define-key company-active-map (kbd "C-p") 'company-select-previous)
-
-  ;; replace C-n and C-p from evil with company
-  (define-key evil-insert-state-map (kbd "C-n") 'company-complete)
-  (define-key evil-insert-state-map (kbd "C-p") 'company-complete)
-
-  ;; loop completion selections
-  (setq company-selection-wrap-around t)
-
-  (global-company-mode)
-  (setq company-idle-delay .5))
-
-;; documentation popup for company
-(use-package company-quickhelp
-  :after company
-  :config
-  (setq company-quickhelp-delay 3)
-  (company-quickhelp-mode 1))
-
-;;; python - jedi
-(use-package company-jedi
-  :commands (my/python-mode-hook)
-  :init
-  (defun my/python-mode-hook ()
-    (my/company-start)
-    (add-to-list 'company-backends 'company-jedi)
-    (my/company-merge-backends))
-  (add-hook 'python-mode-hook #'my/python-mode-hook))
-
-;;;  c# - omnisharp
-(use-package omnisharp
-  :commands (omnisharp-mode)
-  :init
-  (defun my/csharp-mode-hook ()
-    (my/company-start)
-    (omnisharp-mode)
-    (add-to-list 'company-backends 'company-omnisharp)
-    (my/company-merge-backends))
-  (add-hook 'csharp-mode-hook #'my/csharp-mode-hook)
-  :config
-  ;; https://stackoverflow.com/questions/29382137/omnisharp-on-emacs-speed
-  ;; disable for speed
-  (setq omnisharp-eldoc-support nil))
-
-
-(use-package irony
-  ;; -DLIBCLANG_INCLUDE_DIR=/opt/local/libexec/llvm-3.9/include
-  ;; -DLIBCLANG_LIBRARY=/opt/local/libexec/llvm-3.9/lib/libclang.dylib
-  ;; -DLIBCLANG_INCLUDE_DIR=/opt/local/libexec/llvm-3.9/include -DLIBCLANG_LIBRARY=/opt/local/libexec/llvm-3.9/lib/libclang.dylib
-  :commands (irony-mode)
-  :init
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-  (defun my/irony-start ()
-    (unless (irony-mode)
-      (irony-mode)))
-  :config
-  (use-package company-irony))
-
-;;;; End Completion
+;;;; End Experience
 
 ;;;; Begin Editing
 
@@ -1202,7 +1010,120 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;;;; Begin Languages
 
+;; snippets
+(use-package yasnippet
+  :diminish yas-minor-mode
+  :after auto-complete
+  :config
+  ;; yas messages stretches the status buffer when it starts up
+  (setq yas-verbosity 2)
+  ;; using yasnippet through company mode, so disable all the binds
+  ;; (define-key yas-minor-mode-map (kbd "C-i") nil)
+  ;; (define-key yas-minor-mode-map (kbd "TAB") nil)
+  ;; (define-key yas-minor-mode-map (kbd "<tab>") nil)
+  ;; (define-key yas-minor-mode-map [(tab)] 'nil)
+  ;; (define-key yas-minor-mode-map "\C-c&\C-s" nil)
+  ;; (define-key yas-minor-mode-map "\C-c&\C-n" nil)
+  ;; (define-key yas-minor-mode-map "\C-c&\C-v" nil)
+  (yas-global-mode 1))
+
+;; completion
+(use-package auto-complete
+  :diminish auto-complete-mode
+  :init
+  :config
+  (use-package fuzzy)
+  (defun my/ac-setup-default-sources ()
+    "Setting up default sources before adding more."
+    (setq ac-sources '(ac-source-yasnippet
+                       ac-source-abbrev
+                       ac-source-dictionary
+                       ac-source-words-in-same-mode-buffers)))
+  (defun my/ac-add-mode-to-modes (mode)
+    "Convenience method to add mode to ac-modes if not already there."
+    (unless (member mode 'ac-modes)
+      (add-to-list 'ac-modes mode)))
+  (defun my/ac-add-source (source)
+    "Convenience method to add a source to buffer local ac-sources."
+    (add-to-list 'ac-sources source))
+  (ac-config-default)
+
+  ;; adding yasnippet to default sources
+  (setq-default ac-sources '(ac-source-yasnippet
+                             ac-source-abbrev
+                             ac-source-dictionary
+                             ac-source-words-in-same-mode-buffers))
+  (setq ac-use-fuzzy t)
+  (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+
+  ;; binding keys
+  (setq ac-use-menu-map t)
+  (define-key ac-menu-map "\C-n" 'ac-next)
+  (define-key ac-menu-map "\C-p" 'ac-previous)
+  (define-key ac-menu-map [backtab] 'ac-previous)
+  (define-key ac-menu-map (kbd "<backtab>") 'ac-previous)
+  (define-key ac-menu-map [S-tab] 'ac-previous)
+  (define-key ac-menu-map [S-iso-lefttab] 'ac-previous)
+  (define-key ac-menu-map [(shift tab)] 'ac-previous)
+  (define-key evil-insert-state-map (kbd "C-n") 'ac-fuzzy-complete)
+  (define-key evil-insert-state-map (kbd "C-p") 'ac-fuzzy-complete))
+
 ;;; C family of languages.
+
+(use-package auto-complete-clang-async
+  :commands (ac-clang-launch-completion-process)
+  :init
+  (defun my/setup-ios-completion ()
+    "Setting up semantic ios/osx completion.
+Used http://hyegar.com/2016/03/02/emacs-for-objc/ as baseline."
+    (defvar xcode-base-path "/Applications/Xcode.app/Contents/Developer/Platforms/")
+    (defvar ios-sdk-path "iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk")
+    (defvar mac-sdk-path "MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk")
+    (when (on-osx)
+      (setenv "LC_CTYPE" "UTF-8")
+      (let ((args `("-isysroot"
+                    ,(concat xcode-base-path ios-sdk-path)
+                    ;; ,(concat xcode-base-path mac-sdk-path)
+                    ;; "-std=c++11"
+                    "-I" "/usr/include/c++/4.2.1")))
+        (setq ac-clang-flags args))))
+
+  (defun my/alt-setup-ios-completion ()
+    "Using instructions from https://github.com/yasuyk/auto-complete-clang-objc
+to set up objc completion.
+Notably, run '$ echo "" | g++ -v -x c++ -E -' to get the header paths on computer."
+    (defun my/alt-setup-ios-completion ()
+      (setq ac-clang-flags
+            (mapcar (lambda (item) (concat "-I" item))
+                    (split-string
+                     "
+   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1
+   /usr/local/include
+   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/7.3.0/include
+   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
+   /usr/include
+   /System/Library/Frameworks
+   /Library/Frameworks
+  ")))))
+
+  (defun my/ac-base-clang-setup ()
+    "Base method to set up this package."
+    (my/ac-add-mode-to-modes 'objc-mode)
+    (my/ac-setup-default-sources)
+    (my/ac-add-source 'ac-source-clang-async)
+    (setq ac-clang-complete-executable
+          "~/.emacs.d/fork/emacs-clang-complete-async/clang-complete")
+    (ac-clang-launch-completion-process))
+
+  (defun my/ac-objc-setup ()
+    "Setting up objc completion in autocomplete."
+    (my/ac-base-clang-setup)
+    (my/setup-ios-completion)
+    ;; (my/alt-setup-ios-completion)
+    )
+  (add-hook 'objc-mode-hook 'my/ac-objc-setup)
+  (add-hook 'c-mode-hook 'my/ac-base-clang-setup)
+  (add-hook 'c++-mode-hook 'my/ac-base-clang-setup))
 
 (evil-define-multiple
  (c-mode-map objc-mode-map c++-mode-map)
@@ -1256,31 +1177,6 @@ otherwise buffer is formatted."
   ("\\.m\\'" . objc-mode)
   ("\\.mm\\'" . objc-mode)
   ("\\.xctool.args\\'" . objc-mode)
-  :init
-  (add-hook 'objc-mode-hook #'my/objc-mode-hook)
-  (defun my/objc-mode-hook ()
-    "objc-mode hook"
-    (my/company-start)
-    (my/company-set-prefix-length 4)
-    (my/company-set-delay .5)
-    (my/setup-osx-completion)
-    (my/company-merge-backends))
-
-  (defun my/setup-osx-completion ()
-    "Setting up semantic ios/osx completion.
-Used http://hyegar.com/2016/03/02/emacs-for-objc/ as baseline."
-    (defvar xcode-base-path "/Applications/Xcode.app/Contents/Developer/Platforms/")
-    (defvar ios-sdk-path "iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk")
-    (defvar mac-sdk-path "MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk")
-    (when (on-osx)
-      (setenv "LC_CTYPE" "UTF-8")
-      (let ((args `("-isysroot"
-                    ,(concat xcode-base-path ios-sdk-path)
-                    ;; ,(concat xcode-base-path mac-sdk-path)
-                    ;; "-std=c++11"
-                    "-I" "/usr/include/c++/4.2.1"
-                    )))
-        (my/company-set-clang-args args))))
   :config
   (defun occur-find-pragma ()
     (interactive)
@@ -1348,7 +1244,29 @@ Used http://hyegar.com/2016/03/02/emacs-for-objc/ as baseline."
 (use-package csharp-mode
   :mode "\\.cs\\'"
   :config
-  (setq csharp-want-imenu nil)) ; turn off the menu
+  (setq csharp-want-imenu t))
+
+(use-package omnisharp
+  :commands (omnisharp-mode)
+  :init
+  (defun my/ac-setup-csharp ()
+    "Sets up c# completion with autocomplete."
+    (my/ac-add-mode-to-modes 'csharp-mode)
+    (my/ac-setup-default-sources)
+    (my/ac-add-source 'ac-source-omnisharp))
+  (defun my/omnisharp-setup ()
+    "Bootstrap omnisharp."
+    (setq omnisharp-debug t)
+    (setq omnisharp-server-executable-path
+          "~/.emacs.d/fork/omnisharp-server/OmniSharp/bin/Debug/OmniSharp.exe")
+    (omnisharp-mode))
+  (defun my/csharp-mode-hook ()
+    "csharp mode hook"
+    (my/omnisharp-setup)
+    (my/ac-setup-csharp))
+  (add-hook 'csharp-mode-hook #'my/csharp-mode-hook)
+  :config
+  (setq omnisharp-eldoc-support t))
 
 ;; Rust
 (use-package rust-mode
@@ -1411,10 +1329,10 @@ Used http://hyegar.com/2016/03/02/emacs-for-objc/ as baseline."
     "robe-mode hook."
     (if (derived-mode-p 'motion-mode)
         (robe-mode 0)
-      (robe-mode 1))
-    (my/company-start)
-    (my/company-push-backend 'company-robe)
-    (my/company-merge-backends))
+      (progn
+        (robe-mode 1)
+        (my/ac-setup-default-sources)
+        (ac-robe-setup))))
   :config
   ;; (define-key map (kbd "C-c C-k") 'robe-rails-refresh)
   (evil-define-key 'normal robe-mode-map
@@ -1528,6 +1446,7 @@ Used http://hyegar.com/2016/03/02/emacs-for-objc/ as baseline."
     "Motion mode hook."
     (setq motion-flymake nil) ;; disable flymake
     (motion-recognize-project)
+    (my/ac-add-mode-to-modes 'motion-mode)
     (setq flycheck-checker 'ruby-rubocop))
   (add-hook 'ruby-mode-hook #'my/motion-mode-hook)
   :config
@@ -1617,6 +1536,21 @@ If failure, run rake instead."
     ;; everytime we enter a new python buffer, set the command path to include the buffer filename
     (add-hook 'python-mode-hook 'my/set-pdb-command-path)))
 
+(use-package jedi
+  :commands (jedi:setup jedi:install-server)
+  :init
+  (defun my/python-mode-hook ()
+    (my/ac-setup-default-sources)
+    (jedi:setup))
+  (add-hook 'python-mode-hook #'my/python-mode-hook)
+  :config
+  (setq jedi:complete-on-dot t)
+  (evil-define-key 'normal jedi-mode-map
+    (kbd "g.") 'jedi:goto-definition
+    (kbd "g,") 'jedi:goto-definition-pop-marker
+    (kbd "gd") 'jedi:goto-definition
+    (kbd "K") 'jedi:show-doc))
+
 ;;; Lisp like languages.
 
 (use-package lisp-mode
@@ -1662,10 +1596,8 @@ If failure, run rake instead."
   :init
   (defun my/cider-mode-hook ()
     (cider-mode 1)
-    (my/company-start)
     (clj-refactor-mode)
-    (eldoc-mode)
-    (my/company-merge-backends))
+    (eldoc-mode))
   (add-hook 'clojure-mode-hook #'my/cider-mode-hook)
   (add-hook 'cider-repl-mode-hook #'my/cider-mode-hook)
   :config
@@ -1704,6 +1636,19 @@ If failure, run rake instead."
         nrepl-hide-special-buffers t
         cider-overlays-use-font-lock t)
   (cider-repl-toggle-pretty-printing))
+
+(use-package ac-cider
+  :commands (ac-cider-setup)
+  :init
+  (defun my/ac-cider-setup ()
+    "Setting up cider autocompletion."
+    (my/ac-add-mode-to-modes 'cider-mode)
+    (my/ac-add-mode-to-modes 'cider-repl-mode)
+    (my/ac-setup-default-sources)
+    (ac-flyspell-workaround)
+    (ac-cider-setup))
+  (add-hook 'cider-mode-hook #'my/ac-cider-setup)
+  (add-hook 'cider-repl-mode-hook #'my/ac-cider-setup))
 
 (use-package eval-sexp-fu
   :commands (eval-sexp-fu-flash-mode)

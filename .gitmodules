@@ -11,3 +11,9 @@
 [submodule "fork/xcode-mode"]
 	path = fork/xcode-mode
 	url = https://github.com/jojojames/xcode-mode.git
+[submodule "fork/emacs-clang-complete-async"]
+	path = fork/emacs-clang-complete-async
+	url = https://github.com/jojojames/emacs-clang-complete-async.git
+[submodule "fork/omnisharp-server"]
+	path = fork/omnisharp-server
+	url = https://github.com/jojojames/omnisharp-server
