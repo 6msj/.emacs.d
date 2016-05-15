@@ -490,6 +490,10 @@ Ex. company-clang :with company-yasnippet."
   (add-hook 'prog-mode-hook (apply-partially #'my/company-set-prefix-length 3))
   (add-hook 'message-mode-hook (apply-partially #'my/company-set-prefix-length 5))
   :config
+  (use-package company-statistics
+    :config
+    (company-statistics-mode))
+
   ;; add additional backend support for all company backends
   ;; https://emacs.stackexchange.com/questions/10431/get-company-to-show-suggestions-for-yasnippet-names
   ;; https://github.com/syl20bnr/spacemacs/pull/179
