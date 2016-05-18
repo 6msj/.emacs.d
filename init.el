@@ -264,6 +264,7 @@
        "Monaco-11"
        "Menlo-11")
     (find-and-set-font
+     "Mononoki-12"
      "Menlo-11"
      "Consolas-12"
      "DejaVu Sans Mono-11"
