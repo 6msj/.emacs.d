@@ -495,6 +495,7 @@ before calling magit-show-commit and set it back to nil afterwards."
                 csharp-mode
                 java-mode
                 js-mode
+                js2-mode
                 php-mode
                 json-mode
                 css-mode))
@@ -1709,6 +1710,24 @@ If failure, run rake instead."
   :config
   (global-unset-key (kbd "C-d"))
   (global-set-key (kbd "C-d") 'evil-scroll-down))
+
+;; Javascript
+(use-package js2-mode
+  :mode
+  ("\\.js\\'" . js2-mode)
+  :interpreter
+  ("node" . js2-mode)
+  :config
+  (evil-define-key 'normal js-mode-map
+    (kbd "g.") 'js2-jump-to-definition
+    (kbd "g,") 'pop-tag-mark
+    (kbd "gd") 'js2-jump-to-definition))
+
+(use-package ac-js2
+  :commands
+  (ac-js2-mode)
+  :init
+  (add-hook 'js2-mode-hook #'ac-js2-mode))
 
 ;; Php
 (use-package php-mode
