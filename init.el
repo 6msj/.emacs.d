@@ -399,7 +399,7 @@ before calling magit-show-commit and set it back to nil afterwards."
 
 ;; syntax check
 (use-package flycheck
-  :load-path "~/.emacs.d/fork/flycheck/"
+  ;; :load-path "~/.emacs.d/fork/flycheck/"
   :diminish flycheck-mode
   :init
   (add-hook 'prog-mode-hook #'flycheck-mode)
@@ -1455,6 +1455,7 @@ otherwise buffer is formatted."
     (setq flycheck-checker 'ruby-rubocop))
   (add-hook 'ruby-mode-hook #'my/motion-mode-hook)
   :config
+  (flycheck-add-mode 'ruby-rubocop 'motion-mode)
   (defun my/rake-to-device ()
     "Executes rake device."
     (interactive)
