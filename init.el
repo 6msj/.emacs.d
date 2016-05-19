@@ -1305,6 +1305,7 @@ otherwise buffer is formatted."
   (add-hook 'ruby-mode-hook
           (lambda ()
             (make-local-variable 'ac-stop-words)
+            (add-to-list 'ac-stop-words "def")
             (add-to-list 'ac-stop-words "end")
             (add-to-list 'ac-stop-words "do")))
   :config
