@@ -1301,6 +1301,12 @@ otherwise buffer is formatted."
   "\\Gemfile$\\'"
   "\\.rake$\\'"
   :interpreter "ruby"
+  :init
+  (add-hook 'ruby-mode-hook
+          (lambda ()
+            (make-local-variable 'ac-stop-words)
+            (add-to-list 'ac-stop-words "end")
+            (add-to-list 'ac-stop-words "do")))
   :config
   (my/set-evil-shift-width ruby-indent-level)
   (use-package bundler
