@@ -499,6 +499,8 @@ before calling magit-show-commit and set it back to nil afterwards."
                 js2-mode
                 php-mode
                 json-mode
+                ruby-mode
+                motion-mode
                 css-mode))
 
   (sp-local-pair bracy "/*" "*/"
