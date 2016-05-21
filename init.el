@@ -1624,6 +1624,7 @@ If failure, run rake instead."
     "cj" 'cider-jack-in
     "cz" 'cider-jack-in
     "ct" 'cider-test-run-test
+    "ez" 'cider-switch-to-repl-buffer
     "er" 'cider-eval-region
     "ee" 'cider-eval-last-sexp
     "ex" 'cider-eval-last-sexp-and-replace
