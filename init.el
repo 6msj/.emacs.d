@@ -423,6 +423,10 @@ before calling magit-show-commit and set it back to nil afterwards."
   (setq which-key-sort-order 'which-key-key-order-alpha)
   (which-key-mode 1))
 
+(use-package ace-jump-mode
+  :commands
+  (ace-jump-mode))
+
 ;;;; End Experience
 
 ;;;; Begin Editing
@@ -919,7 +923,15 @@ do a search for the string from projet root to mimic that functionality."
     (interactive)
     (ag-project (ag/dwim-at-point)))
 
-  ;; help mode
+  ;; search with ag
+  (define-key evil-normal-state-map "g?" #'ag-project)
+  (define-key evil-visual-state-map "g?" #'ag-project)
+
+  ;; jumping around
+  (define-key evil-normal-state-map "gp" #'ace-jump-mode)
+  (define-key evil-normal-state-map "gP" #'ace-jump-mode-pop-mark)
+
+  ;; mode help
   (evil-define-key 'motion help-mode-map (kbd "g.") 'push-button)
 
   ;; occur mode
@@ -1171,7 +1183,7 @@ otherwise buffer is formatted."
     (kbd "g.") 'ggtags-find-tag-dwim
     (kbd "g,") 'ggtags-prev-mark
     (kbd "gf") 'ggtags-find-file
-    (kbd "g?") 'ggtags-find-reference)
+    (kbd "g/") 'ggtags-find-reference)
   (ggtags-mode 1))
 
 (use-package etags-select
@@ -1192,8 +1204,8 @@ otherwise buffer is formatted."
     (occur "pragma mark [a-zA-Z0-9]")
     (pop-to-buffer "*Occur*"))
   (evil-define-key 'normal objc-mode-map
-    (kbd "g?") 'mimic-find-references
-    (kbd "gp") 'occur-find-pragma))
+    ;; (kbd "gp") 'occur-find-pragma)
+    (kbd "g/") 'mimic-find-references))
 
 (use-package xcode-mode
   ;; https://github.com/phonegap/ios-sim
@@ -1591,7 +1603,7 @@ If failure, run rake instead."
   (evil-define-key 'normal elisp-slime-nav-mode-map
     (kbd "g.") 'elisp-slime-nav-find-elisp-thing-at-point
     (kbd "g,") 'pop-tag-mark
-    (kbd "g?") 'mimic-find-references
+    (kbd "g/") 'mimic-find-references
     (kbd "K")  'elisp-slime-nav-describe-elisp-thing-at-point)
 
   (turn-on-elisp-slime-nav-mode)
@@ -1622,7 +1634,7 @@ If failure, run rake instead."
    ((kbd "g.") 'cider-find-dwim)
    ((kbd "g,") 'cider-pop-back)
    ((kbd "gf") 'cider-find-file)
-   ((kbd "g?") 'mimic-find-references)
+   ((kbd "g/") 'mimic-find-references)
    ((kbd "K")  'cider-doc))
 
   ;; http://emacs.stackexchange.com/questions/20779/m-and-m-in-evil-mode
@@ -1736,7 +1748,7 @@ If failure, run rake instead."
   :config
   ;; (use-package xref-js2) Look into this for Emacs 25.
   (evil-define-key 'normal js-mode-map
-    (kbd "g?") 'mimic-find-references
+    (kbd "g/") 'mimic-find-references
     (kbd "g.") 'js2-jump-to-definition
     (kbd "g,") 'pop-tag-mark))
 
@@ -1788,9 +1800,8 @@ If failure, run rake instead."
     (let ((current-prefix-arg '(4))) ; C-u
       (call-interactively 'dash-at-point)))
   :bind (:map evil-normal-state-map
-              ("g\\" . dash-at-point-query)
-              ("g/" . dash-at-point)
-              ("K" . dash-at-point))
+              ("g|" . dash-at-point-query)
+              ("g\\" . dash-at-point))
   :config
   (add-to-list 'dash-at-point-mode-alist '(cider-mode . "clojure"))
   (add-to-list 'dash-at-point-mode-alist '(cider-repl-mode . "clojure")))
@@ -1800,9 +1811,8 @@ If failure, run rake instead."
   :commands (zeal-at-point)
   :init
   :bind (:map evil-normal-state-map
-              ("g\\" . zeal-at-point-search)
-              ("g/" . zeal-at-point)
-              ("K" . zeal-at-point))
+              ("g|" . zeal-at-point-search)
+              ("g\\" . zeal-at-point))
   :config
   (add-to-list 'zeal-at-point-mode-alist '(cider-mode . "clojure"))
   (add-to-list 'zeal-at-point-mode-alist '(cider-repl-mode . "clojure")))
