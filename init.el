@@ -1174,6 +1174,12 @@ otherwise buffer is formatted."
     (kbd "g?") 'ggtags-find-reference)
   (ggtags-mode 1))
 
+(use-package etags-select
+  :bind (:map evil-normal-state-map
+              ("g." . etags-select-find-tag-at-point))
+  :config
+  (setq etags-select-use-short-name-completion t))
+
 ;; Objective-C
 (use-package cc-mode
   :mode
