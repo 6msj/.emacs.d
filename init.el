@@ -51,10 +51,6 @@
                          ("gnu" . "http://elpa.gnu.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 
-;; windows seems to hang on marmalade
-(unless (on-windows)
-  (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/")))
-
 (package-initialize) ; activate all packages (in particular autoloads)
 
 ;; bootstrap 'use-package'
