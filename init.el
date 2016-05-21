@@ -210,6 +210,8 @@
   (diminish 'subword-mode)
   (diminish 'visual-line-mode)
   (diminish 'abbrev-mode)
+  (eval-after-load "eldoc"
+    '(diminish 'eldoc-mode))
   (eval-after-load "hideshow"
     '(diminish 'hs-minor-mode))
   (eval-after-load "autorevert"
@@ -461,6 +463,8 @@ before calling magit-show-commit and set it back to nil afterwards."
   :init
   (setq fold-dwim-org-strict nil)
   (add-hook 'prog-mode-hook 'fold-dwim-org/minor-mode))
+
+(add-hook 'prog-mode-hook 'eldoc-mode)
 
 (global-auto-revert-mode t) ; automatically reload buffers on change
 
