@@ -1170,10 +1170,8 @@ otherwise buffer is formatted."
   (evil-define-key 'normal ggtags-mode-map
     (kbd "g.") 'ggtags-find-tag-dwim
     (kbd "g,") 'ggtags-prev-mark
-    (kbd "gd") 'ggtags-find-definition
     (kbd "gf") 'ggtags-find-file
-    (kbd "g?") 'ggtags-show-definition
-    (kbd "gr") 'ggtags-find-reference)
+    (kbd "g?") 'ggtags-find-reference)
   (ggtags-mode 1))
 
 ;; Objective-C
@@ -1188,7 +1186,7 @@ otherwise buffer is formatted."
     (occur "pragma mark [a-zA-Z0-9]")
     (pop-to-buffer "*Occur*"))
   (evil-define-key 'normal objc-mode-map
-    (kbd "gr") 'mimic-find-references
+    (kbd "g?") 'mimic-find-references
     (kbd "gp") 'occur-find-pragma))
 
 (use-package xcode-mode
@@ -1350,7 +1348,6 @@ otherwise buffer is formatted."
   (evil-define-key 'normal robe-mode-map
     (kbd "g.") 'robe-jump
     (kbd "g,") 'pop-tag-mark
-    (kbd "gd") 'robe-jump
     (kbd "gf") 'robe-find-file
     (kbd "K") 'robe-doc))
 
@@ -1561,7 +1558,6 @@ If failure, run rake instead."
   (evil-define-key 'normal jedi-mode-map
     (kbd "g.") 'jedi:goto-definition
     (kbd "g,") 'jedi:goto-definition-pop-marker
-    (kbd "gd") 'jedi:goto-definition
     (kbd "K") 'jedi:show-doc))
 
 ;;; Lisp like languages.
@@ -1589,8 +1585,7 @@ If failure, run rake instead."
   (evil-define-key 'normal elisp-slime-nav-mode-map
     (kbd "g.") 'elisp-slime-nav-find-elisp-thing-at-point
     (kbd "g,") 'pop-tag-mark
-    (kbd "gd") 'elisp-slime-nav-describe-elisp-thing-at-point
-    (kbd "gr") 'mimic-find-references
+    (kbd "g?") 'mimic-find-references
     (kbd "K")  'elisp-slime-nav-describe-elisp-thing-at-point)
 
   (turn-on-elisp-slime-nav-mode)
@@ -1620,9 +1615,8 @@ If failure, run rake instead."
    ((kbd "gz") 'cider-switch-to-repl-buffer)
    ((kbd "g.") 'cider-find-dwim)
    ((kbd "g,") 'cider-pop-back)
-   ((kbd "gd") 'cider-find-var)
    ((kbd "gf") 'cider-find-file)
-   ((kbd "gr") 'mimic-find-references)
+   ((kbd "g?") 'mimic-find-references)
    ((kbd "K")  'cider-doc))
 
   ;; http://emacs.stackexchange.com/questions/20779/m-and-m-in-evil-mode
@@ -1733,10 +1727,11 @@ If failure, run rake instead."
   :interpreter
   ("node" . js2-mode)
   :config
+  ;; (use-package xref-js2) Look into this for Emacs 25.
   (evil-define-key 'normal js-mode-map
+    (kbd "g?") 'mimic-find-references
     (kbd "g.") 'js2-jump-to-definition
-    (kbd "g,") 'pop-tag-mark
-    (kbd "gd") 'js2-jump-to-definition))
+    (kbd "g,") 'pop-tag-mark))
 
 (use-package ac-js2
   :commands
@@ -1786,7 +1781,7 @@ If failure, run rake instead."
     (let ((current-prefix-arg '(4))) ; C-u
       (call-interactively 'dash-at-point)))
   :bind (:map evil-normal-state-map
-              ("g?" . dash-at-point-query)
+              ("g\\" . dash-at-point-query)
               ("g/" . dash-at-point)
               ("K" . dash-at-point))
   :config
@@ -1798,7 +1793,7 @@ If failure, run rake instead."
   :commands (zeal-at-point)
   :init
   :bind (:map evil-normal-state-map
-              ("g?" . zeal-at-point-search)
+              ("g\\" . zeal-at-point-search)
               ("g/" . zeal-at-point)
               ("K" . zeal-at-point))
   :config
