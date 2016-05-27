@@ -1299,6 +1299,7 @@ otherwise buffer is formatted."
 (use-package swift-mode
   :mode ("\\.swift\\'" . swift-mode)
   :config
+  (add-to-list 'flycheck-checkers 'swift)
   (evil-leader/set-key-for-mode 'swift-mode
     "ez" 'swift-mode-run-repl
     "eb" 'swift-mode-send-buffer
