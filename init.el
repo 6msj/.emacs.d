@@ -521,11 +521,6 @@ before calling magit-show-commit and set it back to nil afterwards."
     (sp-local-pair "@interface" "@end"
                    :when '(("SPC" "RET" "<evil-ret>"))
                    :unless '(sp-in-comment-p)
-                   :post-handlers '(add-pair-and-return))
-    ;; this is not working yet
-    (sp-local-pair "@implementation" "@end"
-                   :when '(("SPC" "RET" "<evil-ret>"))
-                   :unless '(sp-in-comment-p)
                    :post-handlers '(add-pair-and-return)))
 
   (defun add-pair-and-return (&rest _ignored)
