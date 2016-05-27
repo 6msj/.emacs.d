@@ -1207,7 +1207,8 @@ otherwise buffer is formatted."
   :init
   (add-hook 'objc-mode-hook #'xcode-mode)
   :config
-  (which-key-add-major-mode-key-based-replacements 'objc-mode
+  (which-key-add-major-mode-key-based-replacements
+    'objc-mode
     "<SPC>yb" "build"
     "<SPC>yt" "test"
     "<SPC>yc" "clean"
@@ -1316,11 +1317,11 @@ otherwise buffer is formatted."
   :interpreter "ruby"
   :init
   (add-hook 'ruby-mode-hook
-          (lambda ()
-            (make-local-variable 'ac-stop-words)
-            (add-to-list 'ac-stop-words "def")
-            (add-to-list 'ac-stop-words "end")
-            (add-to-list 'ac-stop-words "do")))
+            (lambda ()
+              (make-local-variable 'ac-stop-words)
+              (add-to-list 'ac-stop-words "def")
+              (add-to-list 'ac-stop-words "end")
+              (add-to-list 'ac-stop-words "do")))
   :config
   (my/set-evil-shift-width ruby-indent-level)
   (use-package bundler
