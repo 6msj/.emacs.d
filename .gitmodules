@@ -17,3 +17,6 @@
 [submodule "fork/omnisharp-server"]
 	path = fork/omnisharp-server
 	url = https://github.com/jojojames/omnisharp-server
+[submodule "fork/company-mode"]
+	path = fork/company-mode
+	url = https://github.com/jojojames/company-mode
