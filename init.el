@@ -1157,6 +1157,13 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
                      "/Users/james"
                      "/.vim/dein/repos/github.com"
                      "/Valloric/YouCompleteMe/third_party/ycmd/ycmd"))
+
+  (defun my/ycmd-setup-keys ()
+    "Setting initial key bindings for ycmd."
+    (evil-define-key 'normal ycmd-mode-map
+      (kbd "g/") 'mimic-find-references
+      (kbd "g.") 'ycmd-goto
+      (kbd "g,") 'pop-tag-mark))
   (defun my/ycmd-base-setup ()
     "Base setup for ycmd."
     (set-variable 'ycmd-server-command `("python" ,ycmd-path))
@@ -1171,14 +1178,16 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
     "Setting up ios in ycmd."
     (set-variable 'ycmd-global-config "~/.emacs.d/lang/objc/ycm_conf.py")
     (my/ycmd-base-setup))
+  (defun my/ycmd-python-setup ()
+    "Setting up python in ycmd."
+    (set-variable 'ycmd-global-config "~/.emacs.d/lang/c/ycm_conf.py")
+    (evil-define-key 'normal ycmd-mode-map
+      (kbd "g/") 'ycmd-goto-references)
+    (my/ycmd-base-setup))
   (add-hook 'c-mode-hook #'my/ycmd-c-setup)
   (add-hook 'c++-mode-hook #'my/ycmd-c-setup)
   (add-hook 'objc-mode-hook #'my/ycmd-ios-setup)
-  :config
-  (evil-define-key 'normal ycmd-mode-map
-    (kbd "g/") 'mimic-find-references
-    (kbd "g.") 'ycmd-goto
-    (kbd "g,") 'pop-tag-mark))
+  (add-hook 'python-mode-hook #'my/ycmd-python-setup))
 
 ;; snippets
 (use-package yasnippet
@@ -1627,22 +1636,6 @@ If failure, run rake instead."
 
     ;; everytime we enter a new python buffer, set the command path to include the buffer filename
     (add-hook 'python-mode-hook 'my/set-pdb-command-path)))
-
-(use-package company-jedi
-  :commands (jedi:install-server my/python-mode-hook)
-  :init
-  (defun my/python-mode-hook ()
-    (add-to-list 'company-backends 'company-jedi)
-    (my/company-merge-backends))
-  (add-hook 'python-mode-hook #'my/python-mode-hook)
-  :config
-  (setq jedi:complete-on-dot t)
-  ;; not working yet
-  ;; (evil-define-key 'normal jedi-mode-map
-  ;;   (kbd "g.") 'jedi:goto-definition
-  ;;   (kbd "g,") 'jedi:goto-definition-pop-marker
-  ;;   (kbd "K") 'jedi:show-doc)
-  )
 
 ;;; Lisp like languages.
 
