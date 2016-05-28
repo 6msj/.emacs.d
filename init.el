@@ -1066,6 +1066,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;;; company
 (use-package company
+  :load-path "~/.emacs.d/fork/company-mode"
   :diminish company-mode
   :init
   (defun my/company-set-prefix-length (len)
@@ -1131,55 +1132,6 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
     ;; (merge-backend-with-company-backends 'company-dabbrev-code)
     )
   (my/company-merge-backends)
-
-  (defcustom company-tooltip-idle-delay .5
-    "The idle delay in seconds until tooltip when using
-`company-pseudo-tooltip-unless-just-one-frontend-delay`."
-    :type '(choice (const :tag "never (nil)" nil)
-                   (const :tag "immediate (0)" 0)
-                   (number :tag "seconds")))
-
-  (defvar company-tooltip-timer nil)
-
-  (defun company-ac-frontend (command)
-    "`compandy-pseudo-tooltip-frontend', but shown after a delay."
-    (when (and (eq command 'pre-command) company-tooltip-timer)
-      (cancel-timer company-tooltip-timer)
-      (setq company-tooltip-timer nil))
-    (unless (and (eq command 'post-command)
-                 (company--show-inline-p))
-      (if (or (not (eq command 'post-command))
-              (overlayp company-pseudo-tooltip-overlay))
-          (company-pseudo-tooltip-frontend command)
-        (setq company-tooltip-timer
-              (run-with-timer company-tooltip-idle-delay nil
-                              'company-pseudo-tooltip-frontend
-                              'post-command)))))
-
-  (defun company-tooltip-visible ()
-    "Returns whether the tooltip is visible."
-    (when (overlayp company-pseudo-tooltip-overlay)
-      (not (overlay-get company-pseudo-tooltip-overlay 'invisible))))
-
-  (defun company-ac-complete ()
-    "This should be used with `company-ac-frontend'.
-Mimics the way auto-complete does its completion.
-If tooltip is showing, select the next candidate.
-If only preview is showing or only one candidate, complete the selection."
-    (interactive)
-    (if (and (company-tooltip-visible) (> company-candidates-length 1))
-        (call-interactively 'company-select-next)
-      (call-interactively 'company-complete-selection)))
-
-  (defun company-ac-setup ()
-    "Sets up company to behave similarly to auto-complete mode."
-    (setq company-require-match nil)
-    (setq company-auto-complete #'company-tooltip-visible)
-    (setq company-frontends '(company-echo-metadata-frontend
-                              company-preview-frontend
-                              company-ac-frontend))
-    (define-key company-active-map [tab] 'company-ac-complete)
-    (define-key company-active-map (kbd "TAB") 'company-ac-complete))
 
   ;; if the completion is JoJo, typing jojo will get to it
   (setq company-dabbrev-downcase nil)
