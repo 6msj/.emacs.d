@@ -1129,7 +1129,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
     "Merge common backends."
     (merge-backend-with-company-backends 'company-yasnippet)
     ;; (merge-backend-with-company-backends 'company-dabbrev)
-    ;; (merge-backend-with-company-backends 'company-dabbrev-code)
+    (merge-backend-with-company-backends 'company-dabbrev-code)
     )
   (my/company-merge-backends)
 
@@ -1182,6 +1182,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   :config
   (setq company-quickhelp-delay 3))
 
+;; replicate ac-dict from auto-complete
 (use-package company-dict
   :after company
   :config
@@ -1439,9 +1440,6 @@ otherwise buffer is formatted."
   (setq sourcekit-verbose t)
   (defun my/company-setup-sourcekit ()
     "Setting up company sourcekit."
-    (auto-complete-mode 0)
-    (my/company-start)
-    (my/company-set-delay .2)
     (my/company-push-backend 'company-sourcekit)
     (my/company-merge-backends)))
 
