@@ -27,3 +27,5 @@ messages.log
 irony/
 rake.cache
 company-statistics-cache.el
+lang/c/ycm_conf.pyc
+lang/objc/ycm_conf.pyc

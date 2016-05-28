@@ -1024,46 +1024,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;;;; Begin Languages
 
 ;; completion
-(use-package auto-complete
-  :diminish auto-complete-mode
-  :defer
-  :init
-  :config
-  (setq ac-auto-show-menu 0.5)
-  (use-package fuzzy)
-  (defun my/ac-setup-default-sources ()
-    "Setting up default sources before adding more."
-    (setq ac-sources '(ac-source-yasnippet
-                       ac-source-abbrev
-                       ac-source-dictionary
-                       ac-source-words-in-same-mode-buffers)))
-  (defun my/ac-add-mode-to-modes (mode)
-    "Convenience method to add mode to ac-modes if not already there."
-    (unless (member mode 'ac-modes)
-      (add-to-list 'ac-modes mode)))
-  (defun my/ac-add-source (source)
-    "Convenience method to add a source to buffer local ac-sources."
-    (add-to-list 'ac-sources source))
-  (ac-config-default)
-
-  ;; adding yasnippet to default sources
-  (setq-default ac-sources (push 'ac-source-yasnippet ac-sources))
-
-  (setq ac-use-fuzzy t)
-  (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-
-  ;; binding keys
-  (setq ac-use-menu-map t)
-  (define-key ac-menu-map "\C-n" 'ac-next)
-  (define-key ac-menu-map "\C-p" 'ac-previous)
-  (define-key ac-menu-map [backtab] 'ac-previous)
-  (define-key ac-menu-map (kbd "<backtab>") 'ac-previous)
-  (define-key ac-menu-map [S-tab] 'ac-previous)
-  (define-key ac-menu-map [S-iso-lefttab] 'ac-previous)
-  (define-key ac-menu-map [(shift tab)] 'ac-previous)
-  (define-key evil-insert-state-map (kbd "C-n") 'ac-fuzzy-complete)
-  (define-key evil-insert-state-map (kbd "C-p") 'ac-fuzzy-complete))
-
 ;;; company
 (use-package company
   :load-path "~/.emacs.d/fork/company-mode"
@@ -1190,6 +1150,36 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (my/company-push-backend 'company-dict)
   (my/company-merge-backends))
 
+(use-package company-ycmd
+  :commands (ycmd-mode)
+  :init
+  (defvar ycmd-path (concat
+                     "/Users/james"
+                     "/.vim/dein/repos/github.com"
+                     "/Valloric/YouCompleteMe/third_party/ycmd/ycmd"))
+  (defun my/ycmd-base-setup ()
+    "Base setup for ycmd."
+    (set-variable 'ycmd-server-command `("python" ,ycmd-path))
+    (my/company-push-backend 'company-ycmd)
+    (my/company-merge-backends)
+    (ycmd-mode 1))
+  (defun my/ycmd-c-setup ()
+    "Setting up c in ycmd."
+    (set-variable 'ycmd-global-config "~/.emacs.d/lang/c/ycm_conf.py")
+    (my/ycmd-base-setup))
+  (defun my/ycmd-ios-setup ()
+    "Setting up ios in ycmd."
+    (set-variable 'ycmd-global-config "~/.emacs.d/lang/objc/ycm_conf.py")
+    (my/ycmd-base-setup))
+  (add-hook 'c-mode-hook #'my/ycmd-c-setup)
+  (add-hook 'c++-mode-hook #'my/ycmd-c-setup)
+  (add-hook 'objc-mode-hook #'my/ycmd-ios-setup)
+  :config
+  (evil-define-key 'normal ycmd-mode-map
+    (kbd "g/") 'mimic-find-references
+    (kbd "g.") 'ycmd-goto
+    (kbd "g,") 'pop-tag-mark))
+
 ;; snippets
 (use-package yasnippet
   :diminish yas-minor-mode
@@ -1208,58 +1198,6 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (yas-global-mode 1))
 
 ;;; C family of languages.
-
-(use-package auto-complete-clang-async
-  :commands (ac-clang-launch-completion-process)
-  :init
-  (defun my/setup-ios-completion ()
-    "Setting up semantic ios/osx completion.
-Used http://hyegar.com/2016/03/02/emacs-for-objc/ as baseline."
-    (defvar xcode-base-path "/Applications/Xcode.app/Contents/Developer/Platforms/")
-    (defvar ios-sdk-path "iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk")
-    (defvar mac-sdk-path "MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk")
-    (when (on-osx)
-      (setenv "LC_CTYPE" "UTF-8")
-      (let ((args `("-isysroot"
-                    ,(concat xcode-base-path ios-sdk-path)
-                    ;; ,(concat xcode-base-path mac-sdk-path)
-                    ;; "-std=c++11"
-                    "-I" "/usr/include/c++/4.2.1")))
-        (setq ac-clang-flags args))))
-
-  (defun my/alt-setup-ios-completion ()
-    "Using instructions from https://github.com/yasuyk/auto-complete-clang-objc
-to set up objc completion."
-    (setq ac-clang-flags
-          (mapcar (lambda (item) (concat "-I" item))
-                  (split-string
-                   "
-   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1
-   /usr/local/include
-   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/7.3.0/include
-   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
-   /usr/include
-   /System/Library/Frameworks
-   /Library/Frameworks
-  "))))
-
-  (defun my/ac-base-clang-setup ()
-    "Base method to set up this package."
-    (my/ac-add-mode-to-modes 'objc-mode)
-    (my/ac-setup-default-sources)
-    (my/ac-add-source 'ac-source-clang-async)
-    (setq ac-clang-complete-executable
-          "~/.emacs.d/fork/emacs-clang-complete-async/clang-complete")
-    (ac-clang-launch-completion-process))
-
-  (defun my/ac-objc-setup ()
-    "Setting up objc completion in autocomplete."
-    ;; (my/setup-ios-completion)
-    (my/alt-setup-ios-completion)
-    (my/ac-base-clang-setup))
-  (add-hook 'objc-mode-hook 'my/ac-objc-setup)
-  (add-hook 'c-mode-hook 'my/ac-base-clang-setup)
-  (add-hook 'c++-mode-hook 'my/ac-base-clang-setup))
 
 (evil-define-multiple
  (c-mode-map objc-mode-map c++-mode-map)
