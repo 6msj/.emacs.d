@@ -1066,15 +1066,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;;; company
 (use-package company
-  :defer 1
   :diminish company-mode
-  :commands (global-company-mode company-mode)
   :init
-  (defun my/company-start ()
-    "Start company mode unless already started."
-    (unless (company-mode)
-      (company-mode 1)))
-
   (defun my/company-set-prefix-length (len)
     "Changing prefix length locally."
     (make-local-variable 'company-minimum-prefix-length)
@@ -1214,7 +1207,8 @@ If only preview is showing or only one candidate, complete the selection."
   ;; loop completion selections
   (setq company-selection-wrap-around t)
   (setq company-idle-delay .1)
-  (company-ac-setup))
+  (company-ac-setup)
+  (global-company-mode))
 
 ;; add scoring to company statistics
 (use-package company-statistics
@@ -1235,6 +1229,13 @@ If only preview is showing or only one candidate, complete the selection."
   (add-hook 'company-mode-hook #'my/company-quickhelp-hook)
   :config
   (setq company-quickhelp-delay 3))
+
+(use-package company-dict
+  :after company
+  :config
+  (setq company-dict-dir (concat user-emacs-directory "ac-dict/"))
+  (my/company-push-backend 'company-dict)
+  (my/company-merge-backends))
 
 ;; snippets
 (use-package yasnippet
@@ -1435,11 +1436,10 @@ otherwise buffer is formatted."
 (use-package omnisharp
   :commands (omnisharp-mode)
   :init
-  (defun my/ac-setup-csharp ()
-    "Sets up c# completion with autocomplete."
-    (my/ac-add-mode-to-modes 'csharp-mode)
-    (my/ac-setup-default-sources)
-    (my/ac-add-source 'ac-source-omnisharp))
+  (defun my/company-omnisharp-setup ()
+    "Sets up c# completion with company."
+    (add-to-list 'company-backends 'company-omnisharp)
+    (my/company-merge-backends))
   (defun my/omnisharp-setup ()
     "Bootstrap omnisharp."
     (setq omnisharp-debug t)
@@ -1449,7 +1449,7 @@ otherwise buffer is formatted."
   (defun my/csharp-mode-hook ()
     "csharp mode hook"
     (my/omnisharp-setup)
-    (my/ac-setup-csharp))
+    (my/company-omnisharp-setup))
   (add-hook 'csharp-mode-hook #'my/csharp-mode-hook)
   :config
   (setq omnisharp-eldoc-support t))
@@ -1504,12 +1504,6 @@ otherwise buffer is formatted."
   "\\.rake$\\'"
   :interpreter "ruby"
   :init
-  (add-hook 'ruby-mode-hook
-            (lambda ()
-              (make-local-variable 'ac-stop-words)
-              (add-to-list 'ac-stop-words "def")
-              (add-to-list 'ac-stop-words "end")
-              (add-to-list 'ac-stop-words "do")))
   :config
   (my/set-evil-shift-width ruby-indent-level)
   (use-package bundler
@@ -1539,8 +1533,11 @@ otherwise buffer is formatted."
         (robe-mode 0)
       (progn
         (robe-mode 1)
-        (my/ac-setup-default-sources)
-        (ac-robe-setup))))
+        (my/company-robe-setup))))
+  (defun my/company-robe-setup ()
+    "Sets up ruby completion with company."
+    (my/company-push-backend 'company-robe)
+    (my/company-merge-backends))
   :config
   ;; (define-key map (kbd "C-c C-k") 'robe-rails-refresh)
   (evil-define-key 'normal robe-mode-map
@@ -1653,7 +1650,6 @@ otherwise buffer is formatted."
     "Motion mode hook."
     (setq motion-flymake nil) ;; disable flymake
     (motion-recognize-project)
-    (my/ac-add-mode-to-modes 'motion-mode)
     (setq flycheck-checker 'ruby-rubocop))
   (add-hook 'ruby-mode-hook #'my/motion-mode-hook)
   :config
@@ -1744,19 +1740,21 @@ If failure, run rake instead."
     ;; everytime we enter a new python buffer, set the command path to include the buffer filename
     (add-hook 'python-mode-hook 'my/set-pdb-command-path)))
 
-(use-package jedi
-  :commands (jedi:setup jedi:install-server)
+(use-package company-jedi
+  :commands (jedi:install-server my/python-mode-hook)
   :init
   (defun my/python-mode-hook ()
-    (my/ac-setup-default-sources)
-    (jedi:setup))
+    (add-to-list 'company-backends 'company-jedi)
+    (my/company-merge-backends))
   (add-hook 'python-mode-hook #'my/python-mode-hook)
   :config
   (setq jedi:complete-on-dot t)
-  (evil-define-key 'normal jedi-mode-map
-    (kbd "g.") 'jedi:goto-definition
-    (kbd "g,") 'jedi:goto-definition-pop-marker
-    (kbd "K") 'jedi:show-doc))
+  ;; not working yet
+  ;; (evil-define-key 'normal jedi-mode-map
+  ;;   (kbd "g.") 'jedi:goto-definition
+  ;;   (kbd "g,") 'jedi:goto-definition-pop-marker
+  ;;   (kbd "K") 'jedi:show-doc)
+  )
 
 ;;; Lisp like languages.
 
@@ -1803,7 +1801,8 @@ If failure, run rake instead."
   (defun my/cider-mode-hook ()
     (cider-mode 1)
     (clj-refactor-mode)
-    (eldoc-mode))
+    (eldoc-mode)
+    (my/company-merge-backends))
   (add-hook 'clojure-mode-hook #'my/cider-mode-hook)
   (add-hook 'cider-repl-mode-hook #'my/cider-mode-hook)
   :config
@@ -1842,19 +1841,6 @@ If failure, run rake instead."
         nrepl-hide-special-buffers t
         cider-overlays-use-font-lock t)
   (cider-repl-toggle-pretty-printing))
-
-(use-package ac-cider
-  :commands (ac-cider-setup)
-  :init
-  (defun my/ac-cider-setup ()
-    "Setting up cider autocompletion."
-    (my/ac-add-mode-to-modes 'cider-mode)
-    (my/ac-add-mode-to-modes 'cider-repl-mode)
-    (my/ac-setup-default-sources)
-    (ac-flyspell-workaround)
-    (ac-cider-setup))
-  (add-hook 'cider-mode-hook #'my/ac-cider-setup)
-  (add-hook 'cider-repl-mode-hook #'my/ac-cider-setup))
 
 (use-package eval-sexp-fu
   :commands (eval-sexp-fu-flash-mode)
@@ -1936,7 +1922,11 @@ If failure, run rake instead."
   :commands
   (ac-js2-mode)
   :init
-  (add-hook 'js2-mode-hook #'ac-js2-mode))
+  (defun my/ac-js2-hook ()
+    "Sets up ac-js2."
+    (ac-js2-mode)
+    (my/company-push-backend 'ac-js2-company))
+  (add-hook 'js2-mode-hook #'my/ac-js2-hook))
 
 ;; Php
 (use-package php-mode
