@@ -1195,7 +1195,6 @@ otherwise buffer is formatted."
     (occur "pragma mark [a-zA-Z0-9]")
     (pop-to-buffer "*Occur*"))
   (evil-define-key 'normal objc-mode-map
-    ;; (kbd "gp") 'occur-find-pragma)
     (kbd "g/") 'mimic-find-references))
 
 (use-package xcode-mode
