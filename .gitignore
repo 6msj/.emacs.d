@@ -26,3 +26,4 @@ messages.log
 .clang_complete
 irony/
 rake.cache
+company-statistics-cache.el
