@@ -1064,6 +1064,178 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (define-key evil-insert-state-map (kbd "C-n") 'ac-fuzzy-complete)
   (define-key evil-insert-state-map (kbd "C-p") 'ac-fuzzy-complete))
 
+;;; company
+(use-package company
+  :defer 1
+  :diminish company-mode
+  :commands (global-company-mode company-mode)
+  :init
+  (defun my/company-start ()
+    "Start company mode unless already started."
+    (unless (company-mode)
+      (company-mode 1)))
+
+  (defun my/company-set-prefix-length (len)
+    "Changing prefix length locally."
+    (make-local-variable 'company-minimum-prefix-length)
+    (setq company-minimum-prefix-length len))
+
+  (defun my/company-set-delay (delay)
+    "Changing delay length locally."
+    (make-local-variable 'company-idle-delay)
+    (setq company-idle-delay delay))
+
+  (defun my/company-set-clang-args (clang-args)
+    "Set up clang arguments locally."
+    (make-local-variable 'company-clang-arguments)
+    (setq company-clang-arguments clang-args))
+
+  (defun my/company-backend-in-backends (b)
+    "Check if backend b is already in company-backends.
+We need to do this check because each backend has additional symbols attached.
+Ex. company-clang :with company-yasnippet."
+    (let ((in-backend nil))
+      (dolist (backend company-backends)
+        (when (member b backend)
+          (setq in-backend t)))
+      in-backend))
+
+  (defun my/company-push-backend (b)
+    "Adds backend b to company mode if it's not already in the list of backends."
+    (unless (my/company-backend-in-backends b)
+      (add-to-list 'company-backends b)))
+
+  :config
+  ;; add additional backend support for all company backends
+  ;; https://emacs.stackexchange.com/questions/10431/get-company-to-show-suggestions-for-yasnippet-names
+  ;; https://github.com/syl20bnr/spacemacs/pull/179
+  ;; https://stackoverflow.com/questions/134887/when-to-use-quote-in-lisp
+  (defun merge-backend-with-company-backends (backend-to-merge)
+    "Merges a backend with every backend in company-backends.
+The backend will only be merged if it's not already being used in the current backend.
+We do this because so that the backend we're merging will always be part of the completion candidates.
+For example, merging company-yasnippet to company-capf will yield (company-capf :with company-yasnippet)."
+
+    ;; create a list of backend-to-merge with a count equal to company-backends
+    ;; this is so mapcar* can iterate over both lists equally
+    ;; ex. if we have (company-capf company-xcode), then the list is (company-yasnippet company-yasnippet)
+    (setq blist (make-list (list-length company-backends) backend-to-merge))
+    ;; b will be backend-to-merge
+    ;; backend will be a backend from company-backends
+    (setq company-backends (mapcar* (lambda (backend b)
+                                      (if (and (listp backend) (member b backend))
+                                          backend
+                                        (append (if (consp backend)
+                                                    backend
+                                                  (list backend))
+                                                (if (member :with backend)
+                                                    `(,b)
+                                                  `(:with ,b))))) company-backends blist)))
+  (defun my/company-merge-backends ()
+    "Merge common backends."
+    (merge-backend-with-company-backends 'company-yasnippet)
+    ;; (merge-backend-with-company-backends 'company-dabbrev)
+    ;; (merge-backend-with-company-backends 'company-dabbrev-code)
+    )
+  (my/company-merge-backends)
+
+  (defcustom company-tooltip-idle-delay .5
+    "The idle delay in seconds until tooltip when using
+`company-pseudo-tooltip-unless-just-one-frontend-delay`."
+    :type '(choice (const :tag "never (nil)" nil)
+                   (const :tag "immediate (0)" 0)
+                   (number :tag "seconds")))
+
+  (defvar company-tooltip-timer nil)
+
+  (defun company-ac-frontend (command)
+    "`compandy-pseudo-tooltip-frontend', but shown after a delay."
+    (when (and (eq command 'pre-command) company-tooltip-timer)
+      (cancel-timer company-tooltip-timer)
+      (setq company-tooltip-timer nil))
+    (unless (and (eq command 'post-command)
+                 (company--show-inline-p))
+      (if (or (not (eq command 'post-command))
+              (overlayp company-pseudo-tooltip-overlay))
+          (company-pseudo-tooltip-frontend command)
+        (setq company-tooltip-timer
+              (run-with-timer company-tooltip-idle-delay nil
+                              'company-pseudo-tooltip-frontend
+                              'post-command)))))
+
+  (defun company-tooltip-visible ()
+    "Returns whether the tooltip is visible."
+    (when (overlayp company-pseudo-tooltip-overlay)
+      (not (overlay-get company-pseudo-tooltip-overlay 'invisible))))
+
+  (defun company-ac-complete ()
+    "This should be used with `company-ac-frontend'.
+Mimics the way auto-complete does its completion.
+If tooltip is showing, select the next candidate.
+If only preview is showing or only one candidate, complete the selection."
+    (interactive)
+    (if (and (company-tooltip-visible) (> company-candidates-length 1))
+        (call-interactively 'company-select-next)
+      (call-interactively 'company-complete-selection)))
+
+  (defun company-ac-setup ()
+    "Sets up company to behave similarly to auto-complete mode."
+    (setq company-require-match nil)
+    (setq company-auto-complete #'company-tooltip-visible)
+    (setq company-frontends '(company-echo-metadata-frontend
+                              company-preview-frontend
+                              company-ac-frontend))
+    (define-key company-active-map [tab] 'company-ac-complete)
+    (define-key company-active-map (kbd "TAB") 'company-ac-complete))
+
+  ;; if the completion is JoJo, typing jojo will get to it
+  (setq company-dabbrev-downcase nil)
+  (setq company-dabbrev-ignore-case t) ; default is keep-prefix
+
+  ;; use tab to cycle selection
+  ;; https://github.com/company-mode/company-mode/issues/216
+  ;; https://github.com/company-mode/company-mode/issues/75
+  ;; https://github.com/company-mode/company-mode/issues/246#issuecomment-68538735
+  (setq company-auto-complete nil)
+  (define-key company-active-map [backtab] 'company-select-previous)
+  (define-key company-active-map (kbd "<backtab>") 'company-select-previous)
+  (define-key company-active-map [S-tab] 'company-select-previous)
+  (define-key company-active-map [S-iso-lefttab] 'company-select-previous)
+  (define-key company-active-map [(shift tab)] 'company-select-previous)
+  (define-key company-active-map [tab] 'company-complete-common-or-cycle)
+  (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
+  (define-key company-active-map (kbd "C-n") 'company-select-next)
+  (define-key company-active-map (kbd "C-p") 'company-select-previous)
+
+  ;; replace C-n and C-p from evil with company
+  (define-key evil-insert-state-map (kbd "C-n") 'company-complete)
+  (define-key evil-insert-state-map (kbd "C-p") 'company-complete)
+
+  ;; loop completion selections
+  (setq company-selection-wrap-around t)
+  (setq company-idle-delay .1)
+  (company-ac-setup))
+
+;; add scoring to company statistics
+(use-package company-statistics
+  :commands (company-statistics-mode)
+  :init
+  (defun my/company-statistics-hook ()
+    "Setting up company-statistics."
+    (company-statistics-mode 1))
+  (add-hook 'company-mode-hook #'my/company-statistics-hook))
+
+;; documentation popup for company
+(use-package company-quickhelp
+  :commands (company-quickhelp-mode)
+  :init
+  (defun my/company-quickhelp-hook ()
+    "Setting up company-quickhelp."
+    (company-quickhelp-mode 1))
+  (add-hook 'company-mode-hook #'my/company-quickhelp-hook)
+  :config
+  (setq company-quickhelp-delay 3))
+
 ;; snippets
 (use-package yasnippet
   :diminish yas-minor-mode
@@ -1306,6 +1478,20 @@ otherwise buffer is formatted."
     "eb" 'swift-mode-send-buffer
     "er" 'swift-mode-send-region)
   (define-key swift-repl-mode-map [(shift return)] 'evil-jump-forward))
+
+(use-package company-sourcekit
+  :init
+  :config
+  (add-hook 'swift-mode-hook #'my/company-setup-sourcekit)
+  (setq company-sourcekit-verbose t)
+  (setq sourcekit-verbose t)
+  (defun my/company-setup-sourcekit ()
+    "Setting up company sourcekit."
+    (auto-complete-mode 0)
+    (my/company-start)
+    (my/company-set-delay .2)
+    (my/company-push-backend 'company-sourcekit)
+    (my/company-merge-backends)))
 
 ;; Ruby
 (use-package ruby-mode
