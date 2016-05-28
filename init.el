@@ -1028,6 +1028,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   :diminish auto-complete-mode
   :init
   :config
+  (setq ac-auto-show-menu 0.5)
   (use-package fuzzy)
   (defun my/ac-setup-default-sources ()
     "Setting up default sources before adding more."
