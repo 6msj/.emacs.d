@@ -1026,6 +1026,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; completion
 (use-package auto-complete
   :diminish auto-complete-mode
+  :defer
   :init
   :config
   (setq ac-auto-show-menu 0.5)
