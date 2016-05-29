@@ -505,6 +505,7 @@ before calling magit-show-commit and set it back to nil afterwards."
                 json-mode
                 ruby-mode
                 motion-mode
+                swift-mode
                 css-mode))
 
   (sp-local-pair bracy "/*" "*/"
