@@ -1163,6 +1163,12 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
   (my/company-push-backend 'company-dict)
   (my/company-merge-backends))
 
+;; shell completion
+(use-package company-shell
+  :after company
+  :config
+  (my/company-push-backend 'company-shell))
+
 (use-package company-ycmd
   :commands (ycmd-mode)
   :init
