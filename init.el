@@ -792,8 +792,8 @@ If not in a project, fallback by using counsel-find-file."
       ;; random
       "wh" 'split-window-below
       "wv" 'split-window-right
-      "wt" 'toggle-window-split
-      "wr" 'rotate-windows
+      "wr" 'toggle-window-split
+      "wt" 'rotate-windows
       "-"  'split-window-below
       "|"  'split-window-right
       "\\" 'split-window-right
