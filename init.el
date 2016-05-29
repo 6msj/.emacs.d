@@ -1169,6 +1169,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
     (set-variable 'ycmd-server-command `("python" ,ycmd-path))
     (my/company-push-backend 'company-ycmd)
     (my/company-merge-backends)
+    (my/ycmd-setup-keys)
     (ycmd-mode 1))
   (defun my/ycmd-c-setup ()
     "Setting up c in ycmd."
