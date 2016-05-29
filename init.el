@@ -1153,7 +1153,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
     (company-quickhelp-mode 1))
   (add-hook 'company-mode-hook #'my/company-quickhelp-hook)
   :config
-  (setq company-quickhelp-delay 3))
+  (setq company-quickhelp-delay 4))
 
 ;; replicate ac-dict from auto-complete
 (use-package company-dict
