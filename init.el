@@ -436,6 +436,7 @@ before calling magit-show-commit and set it back to nil afterwards."
 ;; emacs 24+ auto indents by default if electric-indent-mode is on
 ;; so disable automatic indent by default
 (electric-indent-mode 0)
+
 ;; but enable it in all programming modes
 (dolist (mode '(prog-mode-hook
                 yaml-mode-hook
@@ -1030,6 +1031,16 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   :load-path "~/.emacs.d/fork/company-mode"
   :diminish company-mode
   :init
+  (defun company-ac-setup ()
+    "Sets up company to behave similarly to auto-complete mode."
+    (setq company-require-match nil)
+    (setq company-auto-complete #'company-tooltip-visible)
+    (setq company-frontends '(company-echo-metadata-frontend
+                              company-pseudo-tooltip-frontend-with-delay
+                              company-preview-frontend))
+    (define-key company-active-map [tab] 'company-complete-selection-or-select-next-if-tooltip-visible)
+    (define-key company-active-map (kbd "TAB") 'company-complete-selection-or-select-next-if-tooltip-visible))
+
   (defun my/company-set-prefix-length (len)
     "Changing prefix length locally."
     (make-local-variable 'company-minimum-prefix-length)
@@ -1092,6 +1103,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
     ;; (merge-backend-with-company-backends 'company-dabbrev)
     (merge-backend-with-company-backends 'company-dabbrev-code)
     )
+
   (my/company-merge-backends)
 
   ;; if the completion is JoJo, typing jojo will get to it
