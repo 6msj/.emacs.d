@@ -1757,8 +1757,6 @@ If failure, run rake instead."
 
 ;; Erlang
 (use-package erlang
-  ;; We need to specify erlang-mode explicitely as the package is not called
-  ;; erlang-mode.
   :mode
   ("\\.erl\\'" . erlang-mode)
   ("\\.hrl\\'" . erlang-mode)
