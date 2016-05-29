@@ -1394,6 +1394,7 @@ otherwise buffer is formatted."
   (define-key swift-repl-mode-map [(shift return)] 'evil-jump-forward))
 
 (use-package company-sourcekit
+  :mode ("\\.swift\\'" . swift-mode)
   :init
   :config
   (add-hook 'swift-mode-hook #'my/company-setup-sourcekit)
