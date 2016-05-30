@@ -895,6 +895,16 @@ Moves the point to the position where we can transpose again for a bubbling effe
         evil-visual-state-tag   (propertize " VISUAL ")
         evil-operator-state-tag (propertize " OPERATOR "))
 
+  ;; setting default evil state for these modes
+  (cl-loop for mode in '(package-menu-mode
+                         occur-mode
+                         messages-buffer-mode
+                         flycheck-error-list-mode
+                         cider-stacktrace-mode)
+           do (add-to-list 'evil-motion-state-modes mode))
+
+  (add-hook 'git-commit-mode-hook 'evil-insert-state)
+
   (evil-mode 1)
   ;; keybinds
   (define-key evil-normal-state-map "Y" 'copy-to-end-of-line)
