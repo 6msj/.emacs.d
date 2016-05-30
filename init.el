@@ -926,6 +926,13 @@ do a search for the string from projet root to mimic that functionality."
     (interactive)
     (ag-project (ag/dwim-at-point)))
 
+  ;; compilation mode rebinds
+  (add-hook 'compilation-mode-hook '(lambda ()
+                                      (local-unset-key "g")
+                                      (local-unset-key "h")
+                                      (evil-define-key 'motion compilation-mode-map "r" 'recompile)
+                                      (evil-define-key 'motion compilation-mode-map "h" 'evil-backward-char)))
+
   ;; search with ag
   (define-key evil-normal-state-map "g?" #'ag-project)
   (define-key evil-visual-state-map "g?" #'ag-project)
