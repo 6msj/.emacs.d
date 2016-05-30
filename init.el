@@ -257,7 +257,7 @@
       font))
   (if (on-macbook-retina)
       (find-and-set-font
-       "mononoki-12"
+       "Mononoki-12"
        "Source Code Pro-12"
        "Monaco-11"
        "Menlo-11")
