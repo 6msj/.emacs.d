@@ -1,7 +1,6 @@
 [submodule "fork/flycheck"]
 	path = fork/flycheck
 	url = https://github.com/jojojames/flycheck.git
-
 [submodule "fork/smartparens"]
 	path = fork/smartparens
 	url = https://github.com/jojojames/smartparens.git
