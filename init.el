@@ -1110,7 +1110,6 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 
   ;; use tab to cycle selection
   ;; https://github.com/company-mode/company-mode/issues/216
-  ;; https://github.com/company-mode/company-mode/issues/75
   ;; https://github.com/company-mode/company-mode/issues/246#issuecomment-68538735
   (setq company-auto-complete nil)
   (define-key company-active-map [backtab] 'company-select-previous)
