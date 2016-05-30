@@ -1,31 +1,6 @@
 import os
 import ycm_core
 
-# default_flags = [
-# '-Wall',
-# '-Wextra',
-# '-Werror',
-# '-Wc++98-compat',
-# '-Wno-long-long',
-# '-Wno-variadic-macros',
-# '-fexceptions',
-# '-DNDEBUG',
-# '-std=c++11',
-# '-x',
-# 'c++',
-# # This path will only work on OS X, but extra paths that don't exist are not harmful
-# '-isystem'
-# '/System/Library/Frameworks/Python.framework/Headers',
-# '-isystem',
-# '/usr/include',
-# '-isystem',
-# '/usr/local/include',
-# '-isystem',
-# '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1',
-# '-isystem',
-# '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
-# ]
-
 default_flags = [
 '-isysroot',
 '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk',
