@@ -587,10 +587,6 @@ before calling magit-show-commit and set it back to nil afterwards."
 (global-set-key (kbd "C-q C-u") 'winner-undo)
 (global-set-key (kbd "C-q r") 'winner-redo)
 (global-set-key (kbd "C-q C-r") 'winner-redo)
-(define-key evil-normal-state-map (kbd "<left>") 'windmove-left)
-(define-key evil-normal-state-map (kbd "<right>") 'windmove-right)
-(define-key evil-normal-state-map (kbd "<up>") 'windmove-up)
-(define-key evil-normal-state-map (kbd "<down>") 'windmove-down)
 
 (use-package perspective
   :defer 2
