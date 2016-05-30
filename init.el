@@ -1029,7 +1029,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;;; company
 (use-package company
   :load-path "~/.emacs.d/fork/company-mode"
-  :diminish company-mode
+  ;; :diminish company-mode
   :init
   (defun company-ac-setup ()
     "Sets up company to behave similarly to auto-complete mode."
