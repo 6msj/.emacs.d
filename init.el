@@ -1101,9 +1101,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
     "Merge common backends."
     (merge-backend-with-company-backends 'company-yasnippet)
     ;; (merge-backend-with-company-backends 'company-dabbrev)
-    (merge-backend-with-company-backends 'company-dabbrev-code)
-    )
-
+    (merge-backend-with-company-backends 'company-dabbrev-code))
   (my/company-merge-backends)
 
   ;; if the completion is JoJo, typing jojo will get to it
