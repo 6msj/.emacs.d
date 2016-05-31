@@ -1226,7 +1226,7 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 ;; snippets
 (use-package yasnippet
   :diminish yas-minor-mode
-  :after auto-complete
+  :after company
   :config
   ;; yas messages stretches the status buffer when it starts up
   (setq yas-verbosity 2)
