@@ -1416,14 +1416,15 @@ otherwise buffer is formatted."
 (use-package company-sourcekit
   :mode ("\\.swift\\'" . swift-mode)
   :init
-  :config
   (add-hook 'swift-mode-hook #'my/company-setup-sourcekit)
-  (setq company-sourcekit-verbose t)
-  (setq sourcekit-verbose t)
   (defun my/company-setup-sourcekit ()
     "Setting up company sourcekit."
     (my/company-push-backend 'company-sourcekit)
-    (my/company-merge-backends)))
+    ;; (set (make-local-variable 'company-backends) `(,'(company-sourcekit company-dabbrev-code :with company-yasnippet)))
+    (my/company-merge-backends))
+  :config
+  (setq company-sourcekit-verbose t)
+  (setq sourcekit-verbose t))
 
 ;; Ruby
 (use-package ruby-mode
