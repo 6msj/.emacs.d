@@ -903,8 +903,6 @@ Moves the point to the position where we can transpose again for a bubbling effe
                          cider-stacktrace-mode)
            do (add-to-list 'evil-motion-state-modes mode))
 
-  (add-hook 'git-commit-mode-hook 'evil-insert-state)
-
   (evil-mode 1)
   ;; keybinds
   (define-key evil-normal-state-map "Y" 'copy-to-end-of-line)
