@@ -85,7 +85,7 @@
 
 (use-package multi-term
   :if (not (on-windows))
-  :commands (multi-term)
+  :commands (multi-term multi-term-next multi-term-prev)
   :init
   :config
   (evil-define-key 'insert term-mode-map (kbd "TAB") 'term-send-raw) ;; rebinding
@@ -808,6 +808,8 @@ If not in a project, fallback by using counsel-find-file."
 
       ;; shell
       "mm" 'open-shell
+      "mn" 'multi-term-next
+      "mp" 'multi-term-prev
       "mo" 'find-file-other-window
       "mf" 'find-file
 
