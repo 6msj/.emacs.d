@@ -1225,6 +1225,10 @@ For example, merging company-yasnippet to company-capf will yield (company-capf 
 (use-package yasnippet
   :diminish yas-minor-mode
   :after company
+  :init
+  ;; https://github.com/joaotavora/yasnippet/issues/289
+  (add-hook 'term-mode-hook (lambda ()
+                              (yas-minor-mode -1)))
   :config
   ;; yas messages stretches the status buffer when it starts up
   (setq yas-verbosity 2)
