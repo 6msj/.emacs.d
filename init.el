@@ -488,6 +488,7 @@ before calling magit-show-commit and set it back to nil afterwards."
     "Custom hook for smartparens."
     (my/set-smartparens-settings))
   (add-hook 'prog-mode-hook #'my/smartparens-hook)
+
   :config
   (use-package smartparens-config :ensure nil)
   (smartparens-global-mode 1)
@@ -721,6 +722,7 @@ before calling magit-show-commit and set it back to nil afterwards."
                               "/elpa/.*\\'"   ; package files
                               ".*\\.gz\\'"
                               "TAGS"
+                              "company-statistics-cache.el"
                               ".*-autoloads\\.el\\'"))
   (recentf-mode 1))
 
