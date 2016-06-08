@@ -167,8 +167,8 @@
   (defun do-additional-theme-changes ()
     "Execute additional theme changes."
     (let* ((daytime (is-daytime))
-           (mode-line-active (if daytime "#091f2e" "#eee8d5"))
-           (mode-line-inactive (if daytime "#11151c" "#eee8d5")))
+           (mode-line-active (if daytime "#eee8d5" "#091f2e"))
+           (mode-line-inactive (if daytime "#eee8d5" "#11151c")))
       (set-face-attribute 'mode-line nil
                           :box `(:line-width 2 :color ,mode-line-active))
       (set-face-attribute 'modeline-inactive nil
@@ -186,7 +186,7 @@
     (do-additional-theme-changes))
   (advice-add 'change-theme :after #'reset-line--change-theme)
   (set-frame-parameter nil 'background-mode 'light)
-  (change-theme 'gotham 'solarized))
+  (change-theme 'solarized 'gotham))
 
 ;; disable ui fluff
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
