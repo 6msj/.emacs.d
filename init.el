@@ -88,8 +88,9 @@
   :commands (multi-term multi-term-next multi-term-prev)
   :init
   :config
-  (evil-define-key 'insert term-mode-map (kbd "TAB") 'term-send-raw) ;; rebinding
   (evil-define-key 'insert term-raw-map (kbd "TAB") 'term-send-raw) ;; rebinding
+  (evil-define-key 'normal term-raw-map (kbd "p") 'term-paste)
+  (define-key term-raw-map (kbd "C-y") 'term-paste)
   (add-to-list 'term-unbind-key-list "C-q") ; C-q binds to raw input by default
   (setq multi-term-program "/bin/zsh"))
 
