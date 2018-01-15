@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: clisp
+# key: clisp_
+# --
+#+begin_src lisp :tangle yes
+$0
+#+end_src

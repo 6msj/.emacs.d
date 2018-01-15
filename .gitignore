@@ -1,0 +1,87 @@
+auto-save-list/
+backups/*
+!backups/.gitignore
+ac-comphist.dat
+projectile-bookmarks.eld
+tramp
+.tramp
+eshell/
+recentf
+server/*
+url/*
+.python-environments/*
+.emacs.desktop
+smex-items
+projectile.cache
+recentf~
+themes/
+GPATH
+GRTAGS
+GTAGS
+TAGS
+SessionDesktop.el
+bookmarks
+messages.log
+.cask/
+.clang_complete
+irony/
+rake.cache
+company-statistics-cache.el
+company-cache.el
+lang/objc/ycm_conf.pyc
+lang/c/ycm_conf.pyc
+flycheck_*
+async-bytecomp.log
+elpa/archives/gnu/archive-contents
+elpa/archives/melpa/archive-contents
+elpa/archives/gnu/archive-contents.signed
+elpa/gnupg/.gpg-v21-migrated
+elpa/archives/melpa/archive-contents.signed
+elpa/26/archives/gnu/archive-contents.signed
+elpa/26/archives/melpa/archive-contents
+
+network-security.data
+
+# Omnisharp
+.cache/
+
+# Javascript
+.tern-port
+
+# Python -> Anaconda
+anaconda-mode/
+
+# Servers
+servers/
+
+# Java
+meghanada/
+
+# C/C++ -> RTags
+# Ignore rtags binary that should be located in elpa/rtags directory.
+rtags-2.9/
+servers/25/rtags/
+servers/26/rtags/
+
+!/elpa/25/.nosearch
+/elpa/25/*
+/elpa/25/archives/gnu/archive-contents
+/elpa/25/archives/melpa/archive-contents
+/elpa/26/archives/gnu/archive-contents
+/elpa/25/archives/gnu/archive-contents.signed
+/elpa/26/archives/*
+/elpa/25/archives/*
+/elpa/27/
+
+# Ignore output from cron job for mail update.
+mail/cron.output
+
+# Image Thumbnails
+image-dired/
+
+request/
+
+elpa/gnupg/
+
+# Nov
+nov-places

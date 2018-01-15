@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: scheme
+# key: scheme_
+# --
+#+begin_src scheme :tangle yes
+$0
+#+end_src

@@ -1,0 +1,54 @@
+[submodule "fork/smartparens"]
+    path = fork/smartparens
+    url = https://github.com/jojojames/smartparens.git
+[submodule "fork/xcode-mode"]
+    path = fork/xcode-mode
+    url = https://github.com/jojojames/xcode-mode.git
+[submodule "fork/company-mode"]
+    path = fork/company-mode
+    url = https://github.com/jojojames/company-mode
+[submodule "fork/yasnippet-snippets"]
+	path = fork/yasnippet-snippets
+	url = https://github.com/jojojames/yasnippet-snippets
+[submodule "fork/ycmd"]
+	path = fork/ycmd
+	url = https://github.com/jojojames/ycmd
+[submodule "fork/evil"]
+	path = fork/evil
+	url = https://github.com/jojojames/evil
+[submodule "fork/malinka"]
+	path = fork/malinka
+	url = https://github.com/jojojames/malinka
+[submodule "fork/gud-lldb"]
+	path = fork/gud-lldb
+	url = https://github.com/jojojames/gud-lldb.git
+[submodule "fork/swiper"]
+	path = fork/swiper
+	url = https://github.com/jojojames/swiper.git
+[submodule "fork/dired-sidebar"]
+	path = fork/dired-sidebar
+	url = https://github.com/jojojames/dired-sidebar.git
+[submodule "fork/evil-collection"]
+	path = fork/evil-collection
+	url = https://github.com/jojojames/evil-collection.git
+[submodule "fork/smart-jump"]
+	path = fork/smart-jump
+	url = https://github.com/jojojames/smart-jump.git
+[submodule "fork/flycheck-xcode"]
+	path = fork/flycheck-xcode
+	url = https://github.com/jojojames/flycheck-xcode
+[submodule "fork/fruity-theme"]
+	path = fork/fruity-theme
+	url = https://github.com/jojojames/fruity-theme
+[submodule "fork/flycheck-gradle"]
+	path = fork/flycheck-gradle
+	url = https://github.com/jojojames/flycheck-gradle
+[submodule "fork/flycheck-swiftlint"]
+	path = fork/flycheck-swiftlint
+	url = https://github.com/jojojames/flycheck-swiftlint
+[submodule "fork/matcha"]
+	path = fork/matcha
+	url = https://github.com/jojojames/matcha
+[submodule "fork/private_emacs"]
+	path = fork/private_emacs
+	url = https://jameshn@bitbucket.org/jameshn/private_emacs.git

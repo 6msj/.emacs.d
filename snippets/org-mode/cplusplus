@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: cplusplus
+# key: c++_
+# --
+#+begin_src c++ :tangle yes
+$0
+#+end_src

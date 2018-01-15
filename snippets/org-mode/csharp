@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: csharp
+# key: csharp_
+# --
+#+begin_src csharp :tangle yes
+$0
+#+end_src

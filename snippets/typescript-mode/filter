@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: filter
+# --
+filter($1 => {
+  $0
+});

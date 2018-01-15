@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: JvmStatic main function
+# key: maino
+# --
+@JvmStatic
+fun main(args: Array<string>) {
+    $0
+}

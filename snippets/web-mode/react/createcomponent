@@ -1,0 +1,31 @@
+# -*- mode: snippet -*-
+# name: create component
+# --
+`(unless (+buffer-contains-string-p "import * as React from \'react\';")
+   "import * as React from 'react';"))`
+`(unless (+buffer-contains-string-p "from \'react-native\'")
+   "
+import {
+  StyleSheet,
+  View,
+} from 'react-native';
+"))`
+export interface $1State {}
+
+export interface $1Props {}
+
+export class ${1:`(+yasnippet-expansion-buffer-name)`} extends React.Component<$1Props, $1State> {
+  public render(): JSX.Element {
+    return (
+      <View style={styles.container}>
+        $0
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});

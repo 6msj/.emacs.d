@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: eval-after-load_evil
+# key: eval-after-load-evil
+# --
+(eval-after-load 'evil
+  (lambda ()
+    $0))

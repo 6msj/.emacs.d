@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: componentDidMount
+# --
+public componentDidMount(): void {
+  $0
+}
