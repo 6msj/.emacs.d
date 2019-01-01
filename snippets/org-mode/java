@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: java
+# key: java_
+# --
+#+begin_src java :tangle yes
+$0
+#+end_src

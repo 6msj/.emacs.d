@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: major-mode_template
+# key: major-mode_template
+# --
+;;;; -*- lexical-binding: t; -*-
+
+(use-package $0
+  :ensure t
+  :config)
+
+(defun +$0 ()
+  "Bootstrap `(j|yasnippet-expansion-buffer-name)'."
+  (dolist (alist auto-mode-alist)
+    (when (eq (cdr alist) '+$0)
+      (setf (cdr alist) '$0)))
+  ($0))
+
+(provide '`(j|yasnippet-expansion-buffer-name)`)
+;; Local Variables:
+;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions)
+;; End:
+;;; `(j|yasnippet-expansion-buffer-name)`.el ends here

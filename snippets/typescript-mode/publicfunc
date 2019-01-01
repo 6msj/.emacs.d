@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: public func
+# --
+public $1 = ($2) => {
+  $0
+};

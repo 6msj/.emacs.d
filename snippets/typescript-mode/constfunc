@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: const func
+# --
+const $1 = ($2) => {
+  $0
+};

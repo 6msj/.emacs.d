@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: typescript
+# key: typescript_
+# --
+#+begin_src typescript :tangle yes
+$0
+#+end_src

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: objc
+# key: objc_
+# --
+#+begin_src objc :tangle yes
+$0
+#+end_src

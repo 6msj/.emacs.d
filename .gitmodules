@@ -1,0 +1,57 @@
+[submodule "fork/yasnippet-snippets"]
+	path = fork/yasnippet-snippets
+	url = https://github.com/jojojames/yasnippet-snippets
+[submodule "fork/evil"]
+	path = fork/evil
+	url = https://github.com/jojojames/evil
+[submodule "fork/gud-lldb"]
+	path = fork/gud-lldb
+	url = https://github.com/jojojames/gud-lldb.git
+[submodule "fork/dired-sidebar"]
+	path = fork/dired-sidebar
+	url = https://github.com/jojojames/dired-sidebar.git
+[submodule "fork/smart-jump"]
+	path = fork/smart-jump
+	url = https://github.com/jojojames/smart-jump.git
+[submodule "fork/flycheck-xcode"]
+	path = fork/flycheck-xcode
+	url = https://github.com/jojojames/flycheck-xcode
+[submodule "fork/fruity-theme"]
+	path = fork/fruity-theme
+	url = https://github.com/jojojames/fruity-theme
+[submodule "fork/flycheck-gradle"]
+	path = fork/flycheck-gradle
+	url = https://github.com/jojojames/flycheck-gradle
+[submodule "fork/flycheck-swiftlint"]
+	path = fork/flycheck-swiftlint
+	url = https://github.com/jojojames/flycheck-swiftlint
+[submodule "fork/matcha"]
+	path = fork/matcha
+	url = https://github.com/jojojames/matcha
+[submodule "fork/private_emacs"]
+	path = fork/private_emacs
+	url = https://jameshn@bitbucket.org/jameshn/private_emacs.git
+[submodule "fork/ibuffer-sidebar"]
+	path = fork/ibuffer-sidebar
+	url = https://github.com/jojojames/ibuffer-sidebar
+[submodule "fork/flycheck-jest"]
+	path = fork/flycheck-jest
+	url = https://github.com/jojojames/flycheck-jest
+[submodule "fork/evil-collection"]
+	path = fork/evil-collection
+	url = https://github.com/emacs-evil/evil-collection
+[submodule "fork/flymake-ktlint"]
+	path = fork/flymake-ktlint
+	url = https://github.com/jojojames/flymake-ktlint
+[submodule "fork/vscode-icon-emacs"]
+	path = fork/vscode-icon-emacs
+	url = https://github.com/jojojames/vscode-icon-emacs
+[submodule "fork/flymake-racket"]
+	path = fork/flymake-racket
+	url = https://github.com/jojojames/flymake-racket
+[submodule "fork/flymake-gradle"]
+	path = fork/flymake-gradle
+	url = https://github.com/jojojames/flymake-gradle
+[submodule "fork/lsp-install-scripts"]
+	path = fork/lsp-install-scripts
+	url = https://github.com/jojojames/lsp-install-scripts

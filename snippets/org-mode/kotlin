@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: kotlin
+# key: kotlin_
+# --
+#+begin_src kotlin :tangle yes
+$0
+#+end_src

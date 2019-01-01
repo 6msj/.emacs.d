@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Function with two parameters
+# key: fun2
+# --
+fun $1($2: $3, $4: $5): $6 {
+    $0
+}

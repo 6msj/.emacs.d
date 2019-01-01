@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: interface
+# key: inter
+# --
+export interface ${1:`(+yasnippet-expansion-buffer-name)`} {
+  $0
+}

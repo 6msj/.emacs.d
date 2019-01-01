@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: c
+# key: c_
+# --
+#+begin_src c :tangle yes
+$0
+#+end_src

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: xml
+# key: xml_
+# --
+#+begin_src nxml :tangle yes
+$0
+#+end_src

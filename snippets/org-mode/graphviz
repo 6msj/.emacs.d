@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: graphviz
+# key: graphviz_
+# --
+#+begin_src dot :file $1.png :cmdline -Kdot -Tpng
+$0
+#+end_src
+
+`(unless (+buffer-contains-string-p "Local variables")
+  (setq-local org-confirm-babel-evaluate nil) ;; Side effect and change this to nil...
+ "* Local variables
+# local variables:
+# org-confirm-babel-evaluate: nil
+# end:"))`

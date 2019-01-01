@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: componentWillUnmount
+# --
+public componentWillUnmount(): void {
+  $0
+}

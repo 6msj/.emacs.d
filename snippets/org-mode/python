@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: python
+# key: python_
+# --
+#+begin_src python :tangle yes
+$0
+#+end_src
