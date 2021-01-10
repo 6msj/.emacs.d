@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: NSMutableArray *
+# key: nsma
+# --
+NSMutableArray *

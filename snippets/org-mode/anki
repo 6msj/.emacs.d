@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: anki
+# key: anki
+# --
+* Template
+  :PROPERTIES:
+  :ANKI_DECK: $0
+  :ANKI_NOTE_TYPE: Basic
+  :END:
+** Front
+** Back

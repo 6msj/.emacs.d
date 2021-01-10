@@ -1,0 +1,54 @@
+# -*- mode: snippet -*-
+# name: create phx container
+# --
+`(unless (+buffer-contains-string-p "import * as React from \'react\';")
+   "import * as React from 'react';"))`
+`(unless (+buffer-contains-string-p "import * as ReactNavigation from \'react-navigation\';")
+   "import * as ReactNavigation from 'react-navigation';"))`
+`(unless (+buffer-contains-string-p "import { connect } from \'react-redux\';")
+   "import { connect } from 'react-redux';"))`
+`(unless (+buffer-contains-string-p "from \'react-native\'")
+   "
+import {
+  StyleSheet,
+  View,
+} from 'react-native';
+"))`
+`(unless (+buffer-contains-string-p "import { AppModel } from \'../models\';")
+   "import { AppModel } from '../models';"))`
+`(unless (+buffer-contains-string-p "import { ScreenHeaders } from \'../theme\';")
+   "import { ScreenHeaders } from '../theme';"))`
+
+export interface $1State {}
+
+export interface $1Props {}
+
+export class ${1:`(+yasnippet-expansion-buffer-name)`} extends React.Component<$1Props, $1State> {
+  public render(): JSX.Element {
+    return (
+      <View style={styles.container}>
+        $0
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+
+export const $1Container = connect(
+  (appModel: AppModel, ownProps: ReactNavigation.NavigationScreenProps<$1Props>) => {
+    // const routeParams = ownProps.navigation.state.params;
+
+    return {
+    } as Partial<$1Props>;
+  },
+  dispatch => ({
+  })
+  // tslint:disable-next-line:no-any
+)($1 as any);
+
+ScreenHeaders.setHeader($1Container, '$1');

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Iterate over NSDictionary
+# key: nsdi
+# --
+[$1 enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
+    $0
+}];

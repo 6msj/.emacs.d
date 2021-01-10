@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: async arrow
+# --
+async ($1) => {
+  $0
+};

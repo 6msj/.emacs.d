@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: NSDictionary<NSString *, NSString *> *
+# key: nsdss
+# --
+NSDictionary<NSString *, NSString *> *

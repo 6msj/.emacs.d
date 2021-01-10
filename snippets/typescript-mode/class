@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: class
+# --
+class ${1:`(+yasnippet-expansion-buffer-name)`} {
+  constructor($2) {
+      $0
+  }
+}

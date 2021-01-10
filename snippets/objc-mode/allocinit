@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: [[*Object alloc] init]
+# key: allocinit
+# --
+[[$1 alloc] init];$0

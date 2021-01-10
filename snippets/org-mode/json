@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: json
+# key: json_
+# --
+#+begin_src json :tangle yes
+$0
+#+end_src

@@ -1,0 +1,48 @@
+[submodule "fork/yasnippet-snippets"]
+	path = fork/yasnippet-snippets
+	url = https://github.com/jojojames/yasnippet-snippets
+[submodule "fork/evil"]
+	path = fork/evil
+	url = https://github.com/jojojames/evil
+[submodule "fork/dired-sidebar"]
+	path = fork/dired-sidebar
+	url = https://github.com/jojojames/dired-sidebar.git
+[submodule "fork/flycheck-xcode"]
+	path = fork/flycheck-xcode
+	url = https://github.com/jojojames/flycheck-xcode
+[submodule "fork/flycheck-gradle"]
+	path = fork/flycheck-gradle
+	url = https://github.com/jojojames/flycheck-gradle
+[submodule "fork/flycheck-swiftlint"]
+	path = fork/flycheck-swiftlint
+	url = https://github.com/jojojames/flycheck-swiftlint
+[submodule "fork/private_emacs"]
+	path = fork/private_emacs
+	url = https://jameshn@bitbucket.org/jameshn/private_emacs.git
+[submodule "fork/ibuffer-sidebar"]
+	path = fork/ibuffer-sidebar
+	url = https://github.com/jojojames/ibuffer-sidebar
+[submodule "fork/evil-collection"]
+	path = fork/evil-collection
+	url = https://github.com/emacs-evil/evil-collection
+[submodule "fork/flymake-ktlint"]
+	path = fork/flymake-ktlint
+	url = https://github.com/jojojames/flymake-ktlint
+[submodule "fork/vscode-icon-emacs"]
+	path = fork/vscode-icon-emacs
+	url = https://github.com/jojojames/vscode-icon-emacs
+[submodule "fork/flymake-racket"]
+	path = fork/flymake-racket
+	url = https://github.com/jojojames/flymake-racket
+[submodule "fork/flymake-gradle"]
+	path = fork/flymake-gradle
+	url = https://github.com/jojojames/flymake-gradle
+[submodule "fork/hg-histedit"]
+	path = fork/hg-histedit
+	url = https://github.com/jojojames/hg-histedit
+[submodule "fork/matcha"]
+	path = fork/matcha
+	url = git@github.com:jojojames/matcha.git
+[submodule "fork/smart-jump"]
+	path = fork/smart-jump
+	url = https://github.com/jojojames/smart-jump.git

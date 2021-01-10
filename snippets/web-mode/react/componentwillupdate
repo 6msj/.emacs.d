@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: componentWillUpdate
+# --
+// tslint:disable-next-line:no-any
+public componentWillUpdate(prevProps: any, prevState: any): void {
+  $0
+}

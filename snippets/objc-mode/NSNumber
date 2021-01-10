@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: NSNumber *
+# key: nsn
+# --
+NSNumber *

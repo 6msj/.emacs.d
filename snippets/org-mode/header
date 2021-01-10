@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: header
+# key: header
+# --
+#+TITLE: $1
+#+OPTIONS: \n:t
+
+* $0

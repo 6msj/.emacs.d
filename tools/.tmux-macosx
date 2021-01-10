@@ -1,0 +1,20 @@
+# Use C-q to start copying and use C-q p to paste.
+bind y run copy-mode
+bind p paste-buffer
+
+# FIXME: See how this interacts with Clipetty.
+# Copy paste integration
+# https://gist.github.com/rodricels/7951c3bd505d343b07309b76188af9b3
+bind -T copy-mode-vi 'v' send -X begin-selection
+bind -T copy-mode-vi 'y' send -X copy-pipe-and-cancel "pbcopy"
+
+# Selection with mouse should copy to clipboard right away, in addition to the default action.
+unbind -n -Tcopy-mode-vi MouseDragEnd1Pane
+bind -Tcopy-mode-vi MouseDragEnd1Pane send -X copy-selection-and-cancel\; run "tmux save-buffer - | pbcopy > /dev/null"
+
+unbind-key MouseDown2Pane
+bind-key -n MouseDown2Pane run " \
+  tmux set-buffer \'$(pbpaste)\'; \
+  tmux paste-buffer -p; \
+  tmux display-message 'paste might be missing semicolon.' \
+"
